@@ -12,6 +12,7 @@
 	<modules>
 		<module>emfjson</module>
 		<module>p2repository</module>
+		<module>sherlock</module>
 	</modules>
   
 	<properties>
