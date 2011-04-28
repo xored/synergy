@@ -5,6 +5,10 @@ Bundle-SymbolicName: com.xored.emfjson
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.xored.emfjson.internal.EmfJsonPlugin
 Bundle-Vendor: xored software, Inc.
-Require-Bundle: org.eclipse.core.runtime
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;bundle-version="2.6.1",
+ org.junit
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/tapestry-json-5.2.5.jar,
+ .
