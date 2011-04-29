@@ -1,12 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Gson
+Bundle-Name: Gson library
 Bundle-SymbolicName: com.google.gson
-Bundle-Version: 1.6.0
+Bundle-Version: 1.7.1
 Bundle-ClassPath: .
 Bundle-Vendor: Google
 Export-Package: com.google.gson,
  com.google.gson.annotations,
+ com.google.gson.internal,
  com.google.gson.reflect,
  com.google.gson.stream
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

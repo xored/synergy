@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.tapestry5.json.JSONArray;
-import org.apache.tapestry5.json.JSONObject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EAttribute;
@@ -15,49 +13,56 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+
 public class Emf2Json {
 
 	private static final String CLASS_ATTRIBUTE = EClass.class.getName();
 
-	public static JSONObject serialize(EObject object) {
+	public static JsonObject serialize(EObject object) {
 		return toJsonObject(object, true);
 	}
 
-	public static JSONObject toJsonObject(EObject object, boolean saveClass) {
+	public static JsonObject toJsonObject(EObject object, boolean saveClass) {
 
 		EClass eClass = object.eClass();
-		JSONObject jsonObject = new JSONObject();
+		JsonObject jsonObject = new JsonObject();
 		if (saveClass) {
-			jsonObject.put(CLASS_ATTRIBUTE, eClass.getEPackage().getName()
-					+ ":" + eClass.getName());
+			jsonObject.addProperty(CLASS_ATTRIBUTE, eClass.getEPackage()
+					.getName() + ":" + eClass.getName());
 		}
 
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 			Object value = object.eGet(feature);
 			if (feature.isMany()) {
-				JSONArray jsonArray = new JSONArray();
+				JsonArray jsonArray = new JsonArray();
 
 				if (value != null) {
 					List<?> list = (List<?>) value;
 					for (Object item : list) {
-						jsonArray.put(handleFeature(feature, item));
+						jsonArray.add(handleFeature(feature, item));
 					}
-					jsonObject.put(feature.getName(), jsonArray);
+					jsonObject.add(feature.getName(), jsonArray);
 				}
 			} else {
 				jsonObject
-						.put(feature.getName(), handleFeature(feature, value));
+						.add(feature.getName(), handleFeature(feature, value));
 			}
 		}
 		return jsonObject;
 	}
 
-	private static Object handleFeature(EStructuralFeature feature, Object value) {
+	private static JsonElement handleFeature(EStructuralFeature feature,
+			Object value) {
 		if (feature instanceof EAttribute) {
 			return adaptAttribute(value);
 		} else if (feature instanceof EReference) {
 			if (value == null) {
-				return JSONObject.NULL;
+				return JSON_NULL;
 			}
 			EReference ref = (EReference) feature;
 
@@ -67,12 +72,14 @@ public class Emf2Json {
 				return toJsonObject(eValue,
 						!eValue.eClass().equals(feature.getEType()));
 			} else {
-				return generateLink(eValue);
+				return new JsonPrimitive(generateLink(eValue));
 			}
 		} else {
-			return JSONObject.NULL;
+			return JSON_NULL;
 		}
 	}
+
+	private static final JsonElement JSON_NULL = new JsonNull();
 
 	private static String generateLink(EObject eValue) {
 		List<PathLocation> path = new ArrayList<PathLocation>();
@@ -108,17 +115,17 @@ public class Emf2Json {
 		}
 	}
 
-	private static Object adaptAttribute(Object value) {
+	private static JsonElement adaptAttribute(Object value) {
 		if (value == null) {
-			return JSONObject.NULL;
+			return new JsonNull();
 		}
 		if (value instanceof Enumerator) {
-			return ((Enumerator) value).getLiteral();
+			return new JsonPrimitive(((Enumerator) value).getLiteral());
 		}
-		return value;
+		return new JsonPrimitive(value.toString());
 	}
 
-	public static EObject deserialize(JSONObject jsonObject) {
+	public static EObject deserialize(JsonObject jsonObject) {
 		throw new UnsupportedOperationException();
 	}
 
