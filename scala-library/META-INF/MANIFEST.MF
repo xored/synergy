@@ -5,6 +5,25 @@ Bundle-SymbolicName: org.scala-lang.scala-library
 Bundle-Version: 2.8.1
 Bundle-ClassPath: .
 Bundle-Vendor: org.scala-lang
-Export-Package: scala.*
+Export-Package: scala,scala.actors,scala.actors.remote,scala.actors.sc
+ heduler,scala.actors.threadpool.helpers,scala.actors.threadpool.locks
+ ,scala.annotation,scala.annotation.target,scala.annotation.unchecked,
+ scala.collection,scala.collection.generic,scala.collection.immutable,
+ scala.collection.interfaces,scala.collection.mutable,scala.collection
+ .script,scala.compat,scala.concurrent,scala.concurrent.forkjoin,scala
+ .dbc,scala.dbc.datatype,scala.dbc.exception,scala.dbc.result,scala.db
+ c.statement,scala.dbc.statement.expression,scala.dbc.syntax,scala.dbc
+ .value,scala.dbc.vendor,scala.io,scala.math,scala.mobile,scala.ref,sc
+ ala.reflect,scala.reflect.generic,scala.runtime,scala.swing,scala.swi
+ ng.event,scala.swing.model,scala.swing.test,scala.swing.test.images,s
+ cala.testing,scala.text,scala.util,scala.util.automata,scala.util.con
+ tinuations,scala.util.control,scala.util.grammar,scala.util.logging,s
+ cala.util.matching,scala.util.parsing.ast,scala.util.parsing.combinat
+ or,scala.util.parsing.combinator.lexical,scala.util.parsing.combinato
+ r.syntactical,scala.util.parsing.combinator.testing,scala.util.parsin
+ g.combinator.token,scala.util.parsing.input,scala.util.parsing.json,s
+ cala.util.parsing.syntax,scala.util.regexp,scala.xml,scala.xml.dtd,sc
+ ala.xml.factory,scala.xml.include,scala.xml.include.sax,scala.xml.par
+ sing,scala.xml.persistent,scala.xml.pull,scala.xml.transform
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
