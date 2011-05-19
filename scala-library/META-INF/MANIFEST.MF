@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Scala runtime library
+Bundle-SymbolicName: org.scala-lang.scala-library
+Bundle-Version: 2.8.1
+Bundle-ClassPath: .
+Bundle-Vendor: org.scala-lang
+Export-Package: scala.*
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+
