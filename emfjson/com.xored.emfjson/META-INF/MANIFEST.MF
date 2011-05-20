@@ -5,6 +5,7 @@ Bundle-SymbolicName: com.xored.emfjson
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.xored.emfjson.internal.EmfJsonPlugin
 Bundle-Vendor: xored software, Inc.
+Export-Package: com.xored.emfjson
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.6.1",
  org.junit,
