@@ -9,6 +9,11 @@ import com.google.gson.Gson
 object Submit
 object Submitted
 
+class X5ServerReply {
+  var ok:java.lang.Boolean = _
+  var ids:java.util.List[String] = _
+}
+
 // component
 trait X5HttpSubmitterComponent {
 
@@ -33,6 +38,7 @@ trait X5HttpSubmitterComponentImpl extends X5HttpSubmitterComponent {
     with HttpHelpers {
     start
 
+    private val APP_ID = "x5agent"
     private val BULK_SIZE = 5 // no more than a 5 reports a time
 
     override def act =
@@ -43,25 +49,29 @@ trait X5HttpSubmitterComponentImpl extends X5HttpSubmitterComponent {
       }
 
     def submit(sender:OutputChannel[Any]):Unit = 
-      try { 
-        x5config.url match {
-          case Some(url) => {
-            val reports = x5storage.unsent(BULK_SIZE)
-            if (reports.size > 0) {
-              runSubmitJob(sender, url, reports)
-            } else sender ! Submitted
-          }
-          case None => sender ! Submitted
-        }
+      try {
+
+        val cfg = x5config.configuration
+        val instance = x5config.instanceId 
+        
+        val reports = x5storage.unsent(BULK_SIZE)
+        if (reports.size > 0) {
+          runSubmitJob(sender, cfg.url, cfg.source, instance, reports)
+        } else sender ! Submitted
+
       } catch {
         case t => { sender ! Submitted; logError("Exception thrown when scheduling eclipse job", t) }
       }
 
-    def runSubmitJob(sender:OutputChannel[Any], url:String, reports:List[Report]) = {
+    def runSubmitJob(sender:OutputChannel[Any], url:String, source:String, instance:String, reports:List[Report]) = {
       val job = new Job("X5 agent reporting job") {
         override protected def run(monitor:IProgressMonitor):IStatus = {
-          submitReports(url, reports)
-          Status.OK_STATUS
+          try {
+            submitReports(url, source, instance, reports)
+            Status.OK_STATUS
+          } catch {
+            case t => { logError("Exception is thrown while actually submitting a reports",t); Status.OK_STATUS }
+          }
         } 
       }
 
@@ -74,10 +84,11 @@ trait X5HttpSubmitterComponentImpl extends X5HttpSubmitterComponent {
     }
 
     import scala.collection.JavaConversions._
-    def submitReports(url:String, reports:List[Report]) = {
+    def submitReports(url:String, source:String, instance:String, reports:List[Report]) = {
       val bodies = reports.map(_.content)
-      val jsonPayload = bodies.mkString("[",",","]")
-      postJson(url, jsonPayload) fold (
+      val jsonPayload = bodies.mkString("{ \"facts\":[",",","] }")
+      val reqUrl = url+"/api/bulk?source="+encode(source)+"&clientId="+encode(instance)+"&appId="+encode(APP_ID)
+      postJson(reqUrl, jsonPayload) fold (
         error => { logError("Can't submit reports", error.cause) }
         , {
           case (200|201, body) => {
@@ -88,15 +99,13 @@ trait X5HttpSubmitterComponentImpl extends X5HttpSubmitterComponent {
               x5storage.markAsSent(t._1.id.get, sentDate, t._2)
             })
           }
-          case (x, _) => logError("Can't submit reports. X5 Server returned response code "+x)
+          case (x, b) => logError("Can't submit reports. X5 Server returned response code "+x+" for url "+reqUrl+
+            " . Body is "+b)
         }
       )
     }
 
-    private class X5ServerReply {
-      var ok:java.lang.Boolean = _
-      var ids:java.util.List[String] = _
-    }
+    private def encode(s:String) = java.net.URLEncoder.encode(s,"utf-8")
 
   }
 

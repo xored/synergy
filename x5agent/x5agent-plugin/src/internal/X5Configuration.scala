@@ -1,6 +1,8 @@
 package com.xored.x5agent.core.internal
 
 import java.util.Properties
+import java.util.UUID
+import com.xored.x5agent.core.Configuration
 import java.io.{File, FileOutputStream, FileInputStream}
 
 trait X5ConfigurationComponent {
@@ -11,9 +13,11 @@ trait X5ConfigurationComponent {
   def x5config:X5Configuration
 
   trait X5Configuration {
-    def lastConfiguredURL:Option[String]
-    def url:Option[String]
-    def setURL(url:String)
+    def lastConfiguration:Option[Configuration]
+
+    def configuration:Configuration
+    def setConfiguration(cfg:Configuration)
+    def instanceId:String
   }
 
 }
@@ -26,6 +30,14 @@ trait X5ConfigurationComponentImpl extends X5ConfigurationComponent {
   override def x5config = X5ConfigurationImpl
 
   object X5ConfigurationImpl extends X5Configuration {
+    private val DEFAULT_URL = "http://192.168.2.220"
+    private val DEFAULT_SOURCE = "default"
+    private val DEFAULT_CONFIG = Configuration(DEFAULT_URL, DEFAULT_SOURCE)
+
+    private val URL_KEY = "x5.url"
+    private val SOURCE_KEY = "x5.source"
+    private val INSTANCE_KEY = "x5.instance"
+
 
     val lastConfigDirName = userHome match {
       case null => { logError("Can't find user home folder location, so last configuration details are disabled"); null }
@@ -74,57 +86,80 @@ trait X5ConfigurationComponentImpl extends X5ConfigurationComponent {
     val lastConfigEnabled = (lastConfigFile != null)
     val configEnabled = (configFile != null)
 
-    private val URL_KEY = "x5.url"
+    var (_config:Configuration, _instanceId:String) = 
+      if (configEnabled) {
+        if (!configFile.exists) {
+          logInfo("No configuration found, assuming defaults")  
+          fallbackToDefaults
+        } else read(configFile) match {
+            case (Some(cfg),Some(i)) => (cfg,i)
+            case _ => fallbackToDefaults
+          }
+      } else fallbackToDefaults
 
-    var _lastUrl:Option[String] = try { 
-      if(lastConfigEnabled && lastConfigFile.exists) read(lastConfigFile)
+    private def fallbackToDefaults = {
+      var id = UUID.randomUUID().toString 
+      logInfo("Assigned instanceId is "+id)
+      save(DEFAULT_CONFIG, id, false)
+      (DEFAULT_CONFIG, id)
+    }
+
+    var _lastConfig:Option[Configuration] = try { 
+      if(lastConfigEnabled && lastConfigFile.exists) read(lastConfigFile)._1
       else None
     } catch {
       case t => { logError("Exception is thrown while reading configuration", t); None }
     }
 
-    var _url:Option[String] = try {
-      if (configEnabled && configFile.exists) read(configFile)
-      else None
-    } catch {
-      case t => { logError("Exception is thrown while reading configuration", t); None }
-    }
-
-
-    private def read(file:File):Option[String] = {
+    private def read(file:File):Tuple2[Option[Configuration],Option[String]] = {
       val p = new Properties()
       p.load(new FileInputStream(file))
-      p.getProperty(URL_KEY) match {
-        case null => None
-        case x => Some(x)
-      }
+      val url:Option[String] = opt (p.getProperty(URL_KEY))
+      val source:Option[String] = opt (p.getProperty(SOURCE_KEY))
+      val instanceId:Option[String] = opt (p.getProperty(INSTANCE_KEY))
+      ( (url, source) match {
+          case (Some(u), Some(s)) => Some(Configuration(u,s))
+          case _ => None
+        }, instanceId )
     } 
+    private def opt[A >:Null](x:A):Option[A] = 
+      x match {
+        case null => None
+        case _ => Some(x)
+      }
 
-    def lastConfiguredURL:Option[String] = _lastUrl
-
-    def url:Option[String] = _url
+    override def lastConfiguration:Option[Configuration] = _lastConfig
+    override def configuration:Configuration = _config
+    override def instanceId = _instanceId
+    override def setConfiguration(cfg:Configuration) = save(cfg, _instanceId)
     
-    def setURL(url:String):Unit = {
+    def save(cfg:Configuration, instanceId:String, updateLast:Boolean = true):Unit = {
       try {
-        val p = new Properties()
-        p.setProperty(URL_KEY, url)
+        val current = new Properties()
+        current.setProperty(URL_KEY, cfg.url)
+        current.setProperty(SOURCE_KEY, cfg.source)
+        current.setProperty(INSTANCE_KEY, instanceId)
+        val last = new Properties()
+        last.setProperty(URL_KEY, cfg.url)
+        last.setProperty(SOURCE_KEY, cfg.source)
 
         if (configEnabled) {
-          p.store(new FileOutputStream(configFile), "X5 Agent configuration") 
+          current.store(new FileOutputStream(configFile), "X5 Agent configuration") 
           logDebug("Updated configuration file "+configFile)
-        } else logError("Can't save the X5 url because configuration service is disabled because of previous errors")
+        } else logError("Can't save the X5 agent settings because configuration service is disabled because of previous errors")
 
-        if (lastConfigEnabled) {
-          p.store(new FileOutputStream(lastConfigFile), "last configured X5 location")
+        if (lastConfigEnabled && updateLast) {
+          last.store(new FileOutputStream(lastConfigFile), "last configured X5 properties")
           logDebug("Updated last config file "+lastConfigFile)
-        } else logError("Can't save the X5 url because configuration service is disabled because of previous errors")
+        } else if (updateLast) logError("Can't save the X5 agent settings because configuration service is disabled because of previous errors")
 
       } catch {
         case t => logError("Exception is thrown while saving a configuration", t)
       }
       //--- and finally
-      _url = Some(url)
-      _lastUrl = Some(url)
+      _config = cfg
+      if(updateLast) _lastConfig = Some(cfg)
+      _instanceId = instanceId
     }
 
   }
