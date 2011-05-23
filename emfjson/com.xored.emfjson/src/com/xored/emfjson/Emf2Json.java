@@ -180,7 +180,7 @@ public class Emf2Json {
 
 	private EObject fromJsonObject(JsonObject jsonObject, EClass eClass) {
 		if (jsonObject.has(CLASS_ATTRIBUTE)) {
-			Object explicitClassName = jsonObject.get(CLASS_ATTRIBUTE);
+			String explicitClassName = jsonObject.getAsJsonPrimitive(CLASS_ATTRIBUTE).getAsString();
 			EClass eClassExplicit = classNamesToEClass.get(explicitClassName);
 			if (eClassExplicit != null) {
 				eClass = eClassExplicit;
@@ -257,8 +257,8 @@ public class Emf2Json {
 
 			if (di.value.equals(JSON_NULL)) { // TODO: is it always JsonNull?
 				di.eOject.eSet(di.reference, null);
-			} else if (di.value instanceof String) {
-				EObject toSet = linkCache.get((String) di.value);
+			} else if (di.value instanceof JsonPrimitive && ((JsonPrimitive)di.value).isString() ) {
+				EObject toSet = linkCache.get( ((JsonPrimitive)di.value).getAsString() );
 				di.eOject.eSet(di.reference, toSet);
 			} else if (di.value instanceof JsonArray) {
 				JsonArray array = (JsonArray) di.value;

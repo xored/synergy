@@ -1,13 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EmfJson test
+Bundle-Name: Tests
 Bundle-SymbolicName: com.xored.emfjson-test
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: XORED
-Export-Package: com.xored.emfjson.test 
-Require-Bundle: org.junit4;bundle-version="4.5.0",
- org.eclipse.emf.ecore;bundle-version="2.6.1",
- com.google.gson;bundle-version="1.6.0",
- com.xored.emfjson
-Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Fragment-Host: com.xored.emfjson 
+Require-Bundle: org.junit4;bundle-version="4.5.0"

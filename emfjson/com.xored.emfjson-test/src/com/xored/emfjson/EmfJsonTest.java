@@ -1,4 +1,4 @@
-package com.xored.emfjson.test;
+package com.xored.emfjson;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import com.google.gson.JsonObject;
 
 import com.xored.emfjson.*;
-
 import org.junit.Test;
 
 public class EmfJsonTest {
@@ -48,18 +47,6 @@ public class EmfJsonTest {
 		writer.flush();
 		System.out.println("\n");
 	}*/
-
-	@Test
-	public void testEnum() throws Exception {
-	}
-
-	@Test
-	public void testMap() throws Exception {
-	}
-
-	@Test
-	public void testReferences() throws Exception {
-	}
 
 	private Data createData() {
 
