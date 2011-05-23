@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
-import com.xored.emfjson.*;
 import org.junit.Test;
 
 public class EmfJsonTest {
@@ -37,7 +37,7 @@ public class EmfJsonTest {
 
 		assertEquals(jsonObject.toString(), emf2Json.serialize(data)
 				.toString());
-		assertEquals("@//towns.1/users.0", jsonObject.get("admin"));
+		assertEquals("@//towns.1/users.0", ((JsonPrimitive)jsonObject.get("admin")).getAsString());
 		assertEquals(data.getTowns().get(1).getUsers().get(0), data.getAdmin());
 	}
 

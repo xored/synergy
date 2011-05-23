@@ -231,7 +231,7 @@ public class Emf2Json {
 					JsonArray jsonArray = jsonObject.getAsJsonArray(feature
 							.getName());
 					for (Object jsonValue : jsonArray) {
-						if (jsonValue.equals( JSON_NULL )) { // TODO: is it always JsonNull?
+						if (!jsonValue.equals( JSON_NULL )) { // TODO: is it always JsonNull?
 							list.add(handleJson(feature, jsonValue));
 						}
 					}
@@ -377,10 +377,9 @@ public class Emf2Json {
 		}
 		EDataType dataType = attr.getEAttributeType();
 		if (useStringConvertation(dataType)) {
-			return EcoreUtil.createFromString(dataType, (String) value);
+			return EcoreUtil.createFromString(dataType, ((JsonPrimitive)value).getAsString());
 		}
-
-		return Coercer.coerce(dataType.getInstanceClass(), value);
+                return Coercer.coerce(dataType.getInstanceClass(), value);
 	}
 
 	private boolean useStringConvertation(EDataType dataType) {
