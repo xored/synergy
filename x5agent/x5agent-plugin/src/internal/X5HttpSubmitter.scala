@@ -86,6 +86,7 @@ trait X5HttpSubmitterComponentImpl extends X5HttpSubmitterComponent {
     import scala.collection.JavaConversions._
     def submitReports(url:String, source:String, instance:String, reports:List[Report]) = {
       val bodies = reports.map(_.content)
+      logInfo("bodies: "+bodies)
       val jsonPayload = bodies.mkString("{ \"facts\":[",",","] }")
       val reqUrl = url+"/api/bulk?source="+encode(source)+"&clientId="+encode(instance)+"&appId="+encode(APP_ID)
       postJson(reqUrl, jsonPayload) fold (
@@ -98,6 +99,7 @@ trait X5HttpSubmitterComponentImpl extends X5HttpSubmitterComponent {
             reports.zip(scala.collection.JavaConversions.asScalaIterator[String](reply.ids.iterator).toList).map (t => {
               x5storage.markAsSent(t._1.id.get, sentDate, t._2)
             })
+            logInfo("Submitted "+reports.size+" reports")
           }
           case (x, b) => logError("Can't submit reports. X5 Server returned response code "+x+" for url "+reqUrl+
             " . Body is "+b)
