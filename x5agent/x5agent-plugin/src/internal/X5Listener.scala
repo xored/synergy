@@ -32,11 +32,13 @@ trait X5ListenerComponentImpl extends X5ListenerComponent {
 
     override def logging(status:IStatus, pluginId:String): Unit = wrapExceptions {
       val gson = new Gson
-      val eclipseStatus = Emf2Json.serialize(SherlockCore.convert(status))
-      val _system = Info.getSystem()
-      val systemInfo = Emf2Json.serialize(_system)
-      val javaInfo = Emf2Json.serialize(Info.getJava())
-      val eclipseInfo = Emf2Json.serialize(Info.getEclipse())
+      val emf2json = new Emf2Json
+
+      val eclipseStatus = emf2json.serialize(SherlockCore.convert(status))
+      val systemInfo = emf2json.serialize(Info.getSystem())
+      val javaInfo = emf2json.serialize(Info.getJava())
+      val eclipseInfo = emf2json.serialize(Info.getEclipse())
+
       val report = Map(
         "eclipseStatus"->eclipseStatus
         ,"systemInfo"->systemInfo
