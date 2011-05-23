@@ -48,6 +48,9 @@ trait X5LocalStorageComponentImpl extends X5LocalStorageComponent with Component
     override protected val connectionString = "jdbc:derby:"+x5dbFileName+";create=true"
 
     def start = if (enabled) {
+      val p = System.getProperties
+      p.put("derby.stream.error.field", "com.xored.x5agent.core.DerbyUtil$.errorStream")
+
       val driverName = "org.apache.derby.jdbc.EmbeddedDriver"
       Class.forName(driverName).newInstance()
 

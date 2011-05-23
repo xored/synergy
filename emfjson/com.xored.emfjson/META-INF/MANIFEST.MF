@@ -12,5 +12,4 @@ Require-Bundle: org.eclipse.core.runtime,
  com.google.gson;bundle-version="1.6.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: lib/tapestry-json-5.2.5.jar,
- .
+Bundle-ClassPath: .
