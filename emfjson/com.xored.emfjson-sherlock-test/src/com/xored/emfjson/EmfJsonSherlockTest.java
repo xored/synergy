@@ -51,6 +51,16 @@ public class EmfJsonSherlockTest {
   }
 
   @Test
+  public void testUptimeSerialization() throws Exception {
+    final EclipseInfo info = sampleInfo();
+    Emf2Json emf2json = new Emf2Json();
+    JsonObject object = emf2json.serialize(info);
+    JsonElement uptime = object.get("uptime");
+    assertTrue("wrong type for uptime: <"+uptime+">", ((JsonPrimitive)uptime).isNumber() );
+    assertEquals(uptime, new JsonPrimitive(10000));
+  }
+
+  @Test
   public void testEclipseInfoInMapSerialization() throws Exception {
     final EclipseInfo info = sampleInfo();
     Emf2Json emf2json = new Emf2Json();

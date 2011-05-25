@@ -86,6 +86,7 @@ trait X5HttpSubmitterComponentImpl extends X5HttpSubmitterComponent {
     import scala.collection.JavaConversions._
     def submitReports(url:String, source:String, instance:String, reports:List[Report]) = {
       val bodies = reports.map(_.content)
+      logInfo("bodies size: "+bodies.size)
       logInfo("bodies: "+bodies)
       val jsonPayload = bodies.mkString("{ \"facts\":[",",","] }")
       val reqUrl = url+"/api/bulk?source="+encode(source)+"&clientId="+encode(instance)+"&appId="+encode(APP_ID)
@@ -97,6 +98,7 @@ trait X5HttpSubmitterComponentImpl extends X5HttpSubmitterComponent {
             val reply = gson.fromJson(body, classOf[X5ServerReply])
             val sentDate = new java.util.Date
             reports.zip(scala.collection.JavaConversions.asScalaIterator[String](reply.ids.iterator).toList).map (t => {
+              logInfo("marking as sent "+t._1.id.get+" with remote id "+t._2)
               x5storage.markAsSent(t._1.id.get, sentDate, t._2)
             })
             logInfo("Submitted "+reports.size+" reports")

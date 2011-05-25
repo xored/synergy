@@ -152,7 +152,16 @@ public class Emf2Json {
 		if (useStringConvertation(dataType)) {
 			return new JsonPrimitive(EcoreUtil.convertToString(dataType, value));
 		}
-		return new JsonPrimitive(value.toString());
+                if (value instanceof Boolean) {
+                  return new JsonPrimitive((Boolean)value);
+                } else if (value instanceof Number) {
+                  return new JsonPrimitive((Number)value);
+                } else if (value instanceof String) {
+                  return new JsonPrimitive((String)value);
+                } else if (value instanceof Character) {
+                  return new JsonPrimitive((Character)value);
+                } else 
+		  return new JsonPrimitive(value.toString());
 	}
 
 	public EObject deserialize(JsonObject jsonObject) {
