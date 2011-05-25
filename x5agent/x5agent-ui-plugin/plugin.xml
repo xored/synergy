@@ -26,7 +26,7 @@
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
-               label="X5 Agent Engineering Menu"
+               label="X5"
                mnemonic="X"
                id="com.xored.x5agent.menus.engineeringMenu">
             <command
