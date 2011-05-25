@@ -11,11 +11,11 @@
   
 	<modules>
 		<module>emfjson</module>
-		<module>p2repository</module>
 		<module>sherlock</module>
 		<module>google-libs</module>		
 		<module>scala-library</module>
 		<module>x5agent</module>
+		<module>p2repository</module>
 	</modules>
   
 	<properties>
