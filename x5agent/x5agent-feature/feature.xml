@@ -16,12 +16,12 @@
       [license description here]
    </license> <!-- TODO: better license info & url -->
 
-   <plugin
+   <!--<plugin
          id="com.xored.x5agent.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
+         unpack="false"/>-->
 
    <plugin
          id="com.xored.x5agent.core"

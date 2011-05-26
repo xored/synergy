@@ -83,7 +83,7 @@
 				<configuration>
 					<resolver>p2</resolver>
 					<environments>
-<!--						<environment>
+						<environment>
 							<os>win32</os>
 							<ws>win32</ws>
 							<arch>x86</arch>
@@ -102,7 +102,7 @@
 							<os>linux</os>
 							<ws>gtk</ws>
 							<arch>x86_64</arch>
-						</environment>-->
+						</environment>
 						<environment>
 							<os>macosx</os>
 							<ws>cocoa</ws>
