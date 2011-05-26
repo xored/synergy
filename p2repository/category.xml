@@ -6,7 +6,7 @@
    <feature url="features/com.xored.sherlock_1.0.0.qualifier.jar" id="com.xored.sherlock" version="1.0.0.qualifier">
       <category name="com.xored.sherlock"/>
    </feature>
-   <feature url="features/com.xored.x5.agent_1.0.0.qualifier.jar" id="com.xored.x5.agent" version="1.0.0.qualifier">
+   <feature url="features/com.xored.x5agent_1.0.0.qualifier.jar" id="com.xored.x5agent" version="1.0.0.qualifier">
       <category name="com.xored.x5"/>
    </feature>
    <feature url="features/com.google.libs_1.0.0.qualifier.jar" id="com.google.libs" version="1.0.0.qualifier"/>

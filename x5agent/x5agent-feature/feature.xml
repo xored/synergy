@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.xored.x5.agent"
+      id="com.xored.x5agent"
       label="X5 Agent feature"
       version="1.0.0.qualifier">
 

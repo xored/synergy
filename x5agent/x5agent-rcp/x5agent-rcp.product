@@ -19,7 +19,7 @@
       <feature id="org.eclipse.platform"/>
       <feature id="org.eclipse.cvs"/>
       <feature id="org.eclipse.equinox.p2.user.ui"/>
-      <feature id="x5agent_feature"/>
+      <feature id="com.xored.x5agent"/>
    </features>
 
    <configurations>
