@@ -8,6 +8,7 @@ Bundle-Activator: com.xored.x5agent.core.X5AgentCorePlugin
 Export-Package: com.xored.x5agent.core
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
+ org.eclipse.core.resources,
  org.scala-lang.scala-library;bundle-version="2.8.1",
  org.junit4;bundle-version="4.5.0",
  org.apache.commons.httpclient;bundle-version="3.1.0",

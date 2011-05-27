@@ -5,6 +5,8 @@ import java.net.URL
 import org.apache.log4j._
 
 import org.eclipse.core.runtime.Platform
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.core.resources.IWorkspace
 
 case class X5AgentRuntimeException(msg:String,t:Throwable = null) 
   extends RuntimeException(msg,t)
@@ -32,30 +34,8 @@ trait X5AgentEssentials {
 
 object EclipseX5AgentEssentials {
 
-  private val installLocationURL:URL = 
-    try { Platform.getInstallLocation().getURL } catch {
-      case t => { println("Can't find install location. Reason:"); t.printStackTrace(); null }
-    }
-
-  protected val x5dirName:String = try {
-    val url = installLocationURL
-
-    if (url == null) {
-      println("Can't find X5 Agent directory location, because user home location is unknown")
-      null
-    } else url.getProtocol match {
-      case "file" => ( url.getFile + "x5agent/" )
-      case _ => { 
-        println(
-          "Can't find the X5Agent directory location. "
-          + "Expected Platform.getUserLocation() to return a file URL, but got " + url
-        )
-        null 
-      }
-    }
-  } catch {
-    case t => { println("Can't find X5 Agent directory location. Reason:"); t.printStackTrace(); null }
-  }
+  private val workspace = ResourcesPlugin.getWorkspace()
+  protected val x5dirName = workspace.getRoot.getLocation.toFile.getPath.toString + "/.x5agent/"
 
   private val x5dir:File =
     x5dirName match {
