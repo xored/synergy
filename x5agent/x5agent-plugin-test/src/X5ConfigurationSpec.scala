@@ -5,7 +5,7 @@ import org.specs2._
 import java.io.File
 import java.util.Date
 
-class X5LocalConfigurationSpec extends SpecificationWithJUnit { def is =
+class X5LocalConfigurationTest extends SpecificationWithJUnit { def is =
 
   "This is a specification to check the X5 configuration service"             ^
                                                                                 p^
