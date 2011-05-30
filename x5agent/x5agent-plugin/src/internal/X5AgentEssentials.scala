@@ -79,10 +79,18 @@ trait EclipseX5AgentEssentials extends X5AgentEssentials {
 
   private val log = Logger.getLogger(this.getClass())
 
-  override protected def logDebug(msg:String) = log.debug(msg)
-  override protected def logInfo(msg:String) = log.info(msg)
-  override protected def logError(msg:String) = log.error(msg)
-  override protected def logError(msg:String, t:Throwable) = log.error(msg,t)
+  private def logWrap[A](msg:String, fn: =>A):Unit =
+    try { fn } catch { 
+      case x => {
+        println("Can't write a message to log: "+msg+". Reason:")
+        x.printStackTrace
+      }
+    }
+
+  override protected def logDebug(msg:String) = logWrap(msg, ()=>{ log.debug(msg) })
+  override protected def logInfo(msg:String) = logWrap(msg, ()=>{ log.info(msg) })
+  override protected def logError(msg:String) = logWrap(msg, ()=>{ log.error(msg) })
+  override protected def logError(msg:String, t:Throwable) = logWrap(msg, ()=>{ log.error(msg,t) })
 
   override protected def x5dirName = EclipseX5AgentEssentials.x5dirName
   override protected def userName = EclipseX5AgentEssentials.userName
