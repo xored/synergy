@@ -20,9 +20,10 @@
   </properties>
 
   <modules>
+    <module>x5agent-derby-gag</module>
     <module>x5agent-ui-plugin</module>
     <module>x5agent-plugin</module>
-    <!--<module>x5agent-plugin-test</module>-->
+    <module>x5agent-plugin-test</module>
     <module>x5agent-feature</module>
     <!--module>x5agent-rcp</module-->
   </modules>

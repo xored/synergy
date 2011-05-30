@@ -10,9 +10,9 @@
   </parent>
 
   <groupId>com.xored</groupId>
-  <artifactId>x5agent-plugin-test</artifactId>
+  <artifactId>x5agent-derby-utils</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>eclipse-test-plugin</packaging>
+
+  <packaging>eclipse-plugin</packaging>
 
 </project>
-
