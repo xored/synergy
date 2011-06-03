@@ -30,7 +30,7 @@ trait X5ConfigurationComponentImpl extends X5ConfigurationComponent {
   override def x5config = X5ConfigurationImpl
 
   object X5ConfigurationImpl extends X5Configuration {
-    private val DEFAULT_URL = "http://192.168.2.220"
+    private val DEFAULT_URL = "http://x5.xored.com"
     private val DEFAULT_SOURCE = "default"
     private val DEFAULT_CONFIG = Configuration(DEFAULT_URL, DEFAULT_SOURCE)
 
