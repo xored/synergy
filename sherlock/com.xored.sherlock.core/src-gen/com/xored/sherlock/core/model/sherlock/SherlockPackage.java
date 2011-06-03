@@ -362,13 +362,40 @@ public interface SherlockPackage extends EPackage {
 	int ECLIPSE_INFO__FEATURES = 7;
 
 	/**
+	 * The feature id for the '<em><b>Workspace Partition Total Diskspace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_INFO__WORKSPACE_PARTITION_TOTAL_DISKSPACE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Workspace Partition Usable Diskspace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_INFO__WORKSPACE_PARTITION_USABLE_DISKSPACE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Workspace Partition Free Diskspace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE = 10;
+
+	/**
 	 * The number of structural features of the '<em>Eclipse Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ECLIPSE_INFO_FEATURE_COUNT = 8;
+	int ECLIPSE_INFO_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.impl.EclipsePluginImpl <em>Eclipse Plugin</em>}' class.
@@ -665,13 +692,22 @@ public interface SherlockPackage extends EPackage {
 	int ECLIPSE_STATUS__EXCEPTION = 5;
 
 	/**
+	 * The feature id for the '<em><b>Feature Guess</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_STATUS__FEATURE_GUESS = 6;
+
+	/**
 	 * The number of structural features of the '<em>Eclipse Status</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ECLIPSE_STATUS_FEATURE_COUNT = 6;
+	int ECLIPSE_STATUS_FEATURE_COUNT = 7;
 
 
 	/**
@@ -989,6 +1025,39 @@ public interface SherlockPackage extends EPackage {
 	EReference getEclipseInfo_Features();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionTotalDiskspace <em>Workspace Partition Total Diskspace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Workspace Partition Total Diskspace</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionTotalDiskspace()
+	 * @see #getEclipseInfo()
+	 * @generated
+	 */
+	EAttribute getEclipseInfo_WorkspacePartitionTotalDiskspace();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionUsableDiskspace <em>Workspace Partition Usable Diskspace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Workspace Partition Usable Diskspace</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionUsableDiskspace()
+	 * @see #getEclipseInfo()
+	 * @generated
+	 */
+	EAttribute getEclipseInfo_WorkspacePartitionUsableDiskspace();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionFreeDiskspace <em>Workspace Partition Free Diskspace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Workspace Partition Free Diskspace</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionFreeDiskspace()
+	 * @see #getEclipseInfo()
+	 * @generated
+	 */
+	EAttribute getEclipseInfo_WorkspacePartitionFreeDiskspace();
+
+	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.EclipsePlugin <em>Eclipse Plugin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,6 +1361,17 @@ public interface SherlockPackage extends EPackage {
 	EReference getEclipseStatus_Exception();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getFeatureGuess <em>Feature Guess</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Feature Guess</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipseStatus#getFeatureGuess()
+	 * @see #getEclipseStatus()
+	 * @generated
+	 */
+	EAttribute getEclipseStatus_FeatureGuess();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1556,6 +1636,30 @@ public interface SherlockPackage extends EPackage {
 		EReference ECLIPSE_INFO__FEATURES = eINSTANCE.getEclipseInfo_Features();
 
 		/**
+		 * The meta object literal for the '<em><b>Workspace Partition Total Diskspace</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ECLIPSE_INFO__WORKSPACE_PARTITION_TOTAL_DISKSPACE = eINSTANCE.getEclipseInfo_WorkspacePartitionTotalDiskspace();
+
+		/**
+		 * The meta object literal for the '<em><b>Workspace Partition Usable Diskspace</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ECLIPSE_INFO__WORKSPACE_PARTITION_USABLE_DISKSPACE = eINSTANCE.getEclipseInfo_WorkspacePartitionUsableDiskspace();
+
+		/**
+		 * The meta object literal for the '<em><b>Workspace Partition Free Diskspace</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE = eINSTANCE.getEclipseInfo_WorkspacePartitionFreeDiskspace();
+
+		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.impl.EclipsePluginImpl <em>Eclipse Plugin</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1788,6 +1892,14 @@ public interface SherlockPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ECLIPSE_STATUS__EXCEPTION = eINSTANCE.getEclipseStatus_Exception();
+
+		/**
+		 * The meta object literal for the '<em><b>Feature Guess</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ECLIPSE_STATUS__FEATURE_GUESS = eINSTANCE.getEclipseStatus_FeatureGuess();
 
 	}
 

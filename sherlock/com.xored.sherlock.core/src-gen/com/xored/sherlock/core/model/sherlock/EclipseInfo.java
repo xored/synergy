@@ -26,6 +26,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getUptime <em>Uptime</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getPlugins <em>Plugins</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getFeatures <em>Features</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionTotalDiskspace <em>Workspace Partition Total Diskspace</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionUsableDiskspace <em>Workspace Partition Usable Diskspace</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionFreeDiskspace <em>Workspace Partition Free Diskspace</em>}</li>
  * </ul>
  * </p>
  *
@@ -211,5 +214,83 @@ public interface EclipseInfo extends EObject {
 	 * @generated
 	 */
 	EList<EclipseFeature> getFeatures();
+
+	/**
+	 * Returns the value of the '<em><b>Workspace Partition Total Diskspace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Workspace Partition Total Diskspace</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Workspace Partition Total Diskspace</em>' attribute.
+	 * @see #setWorkspacePartitionTotalDiskspace(long)
+	 * @see com.xored.sherlock.core.model.sherlock.SherlockPackage#getEclipseInfo_WorkspacePartitionTotalDiskspace()
+	 * @model
+	 * @generated
+	 */
+	long getWorkspacePartitionTotalDiskspace();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionTotalDiskspace <em>Workspace Partition Total Diskspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Workspace Partition Total Diskspace</em>' attribute.
+	 * @see #getWorkspacePartitionTotalDiskspace()
+	 * @generated
+	 */
+	void setWorkspacePartitionTotalDiskspace(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Workspace Partition Usable Diskspace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Workspace Partition Usable Diskspace</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Workspace Partition Usable Diskspace</em>' attribute.
+	 * @see #setWorkspacePartitionUsableDiskspace(long)
+	 * @see com.xored.sherlock.core.model.sherlock.SherlockPackage#getEclipseInfo_WorkspacePartitionUsableDiskspace()
+	 * @model
+	 * @generated
+	 */
+	long getWorkspacePartitionUsableDiskspace();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionUsableDiskspace <em>Workspace Partition Usable Diskspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Workspace Partition Usable Diskspace</em>' attribute.
+	 * @see #getWorkspacePartitionUsableDiskspace()
+	 * @generated
+	 */
+	void setWorkspacePartitionUsableDiskspace(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Workspace Partition Free Diskspace</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Workspace Partition Free Diskspace</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Workspace Partition Free Diskspace</em>' attribute.
+	 * @see #setWorkspacePartitionFreeDiskspace(long)
+	 * @see com.xored.sherlock.core.model.sherlock.SherlockPackage#getEclipseInfo_WorkspacePartitionFreeDiskspace()
+	 * @model
+	 * @generated
+	 */
+	long getWorkspacePartitionFreeDiskspace();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionFreeDiskspace <em>Workspace Partition Free Diskspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Workspace Partition Free Diskspace</em>' attribute.
+	 * @see #getWorkspacePartitionFreeDiskspace()
+	 * @generated
+	 */
+	void setWorkspacePartitionFreeDiskspace(long value);
 
 } // EclipseInfo

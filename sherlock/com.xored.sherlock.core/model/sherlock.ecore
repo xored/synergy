@@ -41,6 +41,12 @@
         eType="#//EclipsePlugin" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//EclipseFeature" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workspacePartitionTotalDiskspace"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workspacePartitionUsableDiskspace"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workspacePartitionFreeDiskspace"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EclipsePlugin">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -78,5 +84,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sevirity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exception" eType="#//JavaException"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureGuess" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

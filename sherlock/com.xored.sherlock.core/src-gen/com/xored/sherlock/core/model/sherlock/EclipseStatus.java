@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getPlugin <em>Plugin</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getSevirity <em>Sevirity</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getException <em>Exception</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getFeatureGuess <em>Feature Guess</em>}</li>
  * </ul>
  * </p>
  *
@@ -176,5 +177,21 @@ public interface EclipseStatus extends EObject {
 	 * @generated
 	 */
 	void setException(JavaException value);
+
+	/**
+	 * Returns the value of the '<em><b>Feature Guess</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Feature Guess</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Feature Guess</em>' attribute list.
+	 * @see com.xored.sherlock.core.model.sherlock.SherlockPackage#getEclipseStatus_FeatureGuess()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getFeatureGuess();
 
 } // EclipseStatus

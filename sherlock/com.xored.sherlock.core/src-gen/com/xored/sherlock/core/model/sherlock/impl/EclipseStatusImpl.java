@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -36,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getPlugin <em>Plugin</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getSevirity <em>Sevirity</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getException <em>Exception</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getFeatureGuess <em>Feature Guess</em>}</li>
  * </ul>
  * </p>
  *
@@ -141,6 +143,16 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 	 * @ordered
 	 */
 	protected JavaException exception;
+
+	/**
+	 * The cached value of the '{@link #getFeatureGuess() <em>Feature Guess</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeatureGuess()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> featureGuess;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -305,6 +317,18 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<String> getFeatureGuess() {
+		if (featureGuess == null) {
+			featureGuess = new EDataTypeUniqueEList<String>(String.class, this, SherlockPackage.ECLIPSE_STATUS__FEATURE_GUESS);
+		}
+		return featureGuess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -336,6 +360,8 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 				return getSevirity();
 			case SherlockPackage.ECLIPSE_STATUS__EXCEPTION:
 				return getException();
+			case SherlockPackage.ECLIPSE_STATUS__FEATURE_GUESS:
+				return getFeatureGuess();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -368,6 +394,10 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 			case SherlockPackage.ECLIPSE_STATUS__EXCEPTION:
 				setException((JavaException)newValue);
 				return;
+			case SherlockPackage.ECLIPSE_STATUS__FEATURE_GUESS:
+				getFeatureGuess().clear();
+				getFeatureGuess().addAll((Collection<? extends String>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -398,6 +428,9 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 			case SherlockPackage.ECLIPSE_STATUS__EXCEPTION:
 				setException((JavaException)null);
 				return;
+			case SherlockPackage.ECLIPSE_STATUS__FEATURE_GUESS:
+				getFeatureGuess().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -422,6 +455,8 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 				return sevirity != SEVIRITY_EDEFAULT;
 			case SherlockPackage.ECLIPSE_STATUS__EXCEPTION:
 				return exception != null;
+			case SherlockPackage.ECLIPSE_STATUS__FEATURE_GUESS:
+				return featureGuess != null && !featureGuess.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -444,6 +479,8 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 		result.append(plugin);
 		result.append(", sevirity: ");
 		result.append(sevirity);
+		result.append(", featureGuess: ");
+		result.append(featureGuess);
 		result.append(')');
 		return result.toString();
 	}

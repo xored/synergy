@@ -6,6 +6,11 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
+import org.eclipse.core.runtime.IBundleGroup;
+import org.osgi.framework.Bundle;
+
+import java.util.List;
+
 import com.xored.sherlock.core.internal.SherlockLogListener;
 import com.xored.sherlock.core.model.sherlock.EclipseStatus;
 import com.xored.sherlock.core.model.sherlock.JavaException;
@@ -51,10 +56,30 @@ public class SherlockCore extends Plugin {
 
 	// Converters
 	public static EclipseStatus convert(IStatus status) {
+                return convert(status, null);
+        }
+
+	public static EclipseStatus convert(IStatus status, List<IBundleGroup> features) {
 		final EclipseStatus eclipseStatus = SherlockFactory.eINSTANCE.createEclipseStatus();
 		eclipseStatus.setCode(status.getCode());
 		eclipseStatus.setMessage(status.getMessage());
-		eclipseStatus.setPlugin(status.getPlugin());
+
+                String plugin = status.getPlugin();
+		eclipseStatus.setPlugin(plugin);
+
+                if (features != null) {
+                  for (IBundleGroup feature: features) {
+
+                    for (Bundle bundle : feature.getBundles()) {
+                      if (bundle.getSymbolicName().equals(plugin)) {
+                        eclipseStatus.getFeatureGuess().add(feature.getIdentifier());
+                        break;
+                      }
+                    }
+
+                  }
+                }
+
 		eclipseStatus.setSevirity(status.getSeverity());
 
 		final Throwable exception = status.getException();

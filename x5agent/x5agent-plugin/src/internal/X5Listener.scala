@@ -36,10 +36,12 @@ trait X5ListenerComponentImpl extends X5ListenerComponent {
       val gson = new Gson
       val emf2json = new Emf2Json
 
-      val eclipseStatus = emf2json.serialize(SherlockCore.convert(status))
+      val features = EclipseInfoProvider.getFeatures
+ 
+      val eclipseStatus = emf2json.serialize(SherlockCore.convert(status, features))
       val systemInfo = emf2json.serialize(Info.getSystem())
       val javaInfo = emf2json.serialize(Info.getJava())
-      val eclipseInfo = emf2json.serialize(Info.getEclipse())
+      val eclipseInfo = emf2json.serialize(Info.getEclipse(features))
 
       val report = new JsonObject
       report.add("eclipseStatus", eclipseStatus)

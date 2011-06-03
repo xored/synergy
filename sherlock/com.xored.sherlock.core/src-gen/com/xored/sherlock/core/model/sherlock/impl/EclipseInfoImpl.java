@@ -43,6 +43,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getUptime <em>Uptime</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getPlugins <em>Plugins</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getFeatures <em>Features</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getWorkspacePartitionTotalDiskspace <em>Workspace Partition Total Diskspace</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getWorkspacePartitionUsableDiskspace <em>Workspace Partition Usable Diskspace</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getWorkspacePartitionFreeDiskspace <em>Workspace Partition Free Diskspace</em>}</li>
  * </ul>
  * </p>
  *
@@ -178,6 +181,66 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 	 * @ordered
 	 */
 	protected EList<EclipseFeature> features;
+
+	/**
+	 * The default value of the '{@link #getWorkspacePartitionTotalDiskspace() <em>Workspace Partition Total Diskspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkspacePartitionTotalDiskspace()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long WORKSPACE_PARTITION_TOTAL_DISKSPACE_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getWorkspacePartitionTotalDiskspace() <em>Workspace Partition Total Diskspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkspacePartitionTotalDiskspace()
+	 * @generated
+	 * @ordered
+	 */
+	protected long workspacePartitionTotalDiskspace = WORKSPACE_PARTITION_TOTAL_DISKSPACE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getWorkspacePartitionUsableDiskspace() <em>Workspace Partition Usable Diskspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkspacePartitionUsableDiskspace()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getWorkspacePartitionUsableDiskspace() <em>Workspace Partition Usable Diskspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkspacePartitionUsableDiskspace()
+	 * @generated
+	 * @ordered
+	 */
+	protected long workspacePartitionUsableDiskspace = WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getWorkspacePartitionFreeDiskspace() <em>Workspace Partition Free Diskspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkspacePartitionFreeDiskspace()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getWorkspacePartitionFreeDiskspace() <em>Workspace Partition Free Diskspace</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkspacePartitionFreeDiskspace()
+	 * @generated
+	 * @ordered
+	 */
+	protected long workspacePartitionFreeDiskspace = WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -344,6 +407,69 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public long getWorkspacePartitionTotalDiskspace() {
+		return workspacePartitionTotalDiskspace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWorkspacePartitionTotalDiskspace(long newWorkspacePartitionTotalDiskspace) {
+		long oldWorkspacePartitionTotalDiskspace = workspacePartitionTotalDiskspace;
+		workspacePartitionTotalDiskspace = newWorkspacePartitionTotalDiskspace;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_TOTAL_DISKSPACE, oldWorkspacePartitionTotalDiskspace, workspacePartitionTotalDiskspace));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getWorkspacePartitionUsableDiskspace() {
+		return workspacePartitionUsableDiskspace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWorkspacePartitionUsableDiskspace(long newWorkspacePartitionUsableDiskspace) {
+		long oldWorkspacePartitionUsableDiskspace = workspacePartitionUsableDiskspace;
+		workspacePartitionUsableDiskspace = newWorkspacePartitionUsableDiskspace;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_USABLE_DISKSPACE, oldWorkspacePartitionUsableDiskspace, workspacePartitionUsableDiskspace));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getWorkspacePartitionFreeDiskspace() {
+		return workspacePartitionFreeDiskspace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWorkspacePartitionFreeDiskspace(long newWorkspacePartitionFreeDiskspace) {
+		long oldWorkspacePartitionFreeDiskspace = workspacePartitionFreeDiskspace;
+		workspacePartitionFreeDiskspace = newWorkspacePartitionFreeDiskspace;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE, oldWorkspacePartitionFreeDiskspace, workspacePartitionFreeDiskspace));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -379,6 +505,12 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 				return getPlugins();
 			case SherlockPackage.ECLIPSE_INFO__FEATURES:
 				return getFeatures();
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_TOTAL_DISKSPACE:
+				return getWorkspacePartitionTotalDiskspace();
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_USABLE_DISKSPACE:
+				return getWorkspacePartitionUsableDiskspace();
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE:
+				return getWorkspacePartitionFreeDiskspace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -419,6 +551,15 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 				getFeatures().clear();
 				getFeatures().addAll((Collection<? extends EclipseFeature>)newValue);
 				return;
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_TOTAL_DISKSPACE:
+				setWorkspacePartitionTotalDiskspace((Long)newValue);
+				return;
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_USABLE_DISKSPACE:
+				setWorkspacePartitionUsableDiskspace((Long)newValue);
+				return;
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE:
+				setWorkspacePartitionFreeDiskspace((Long)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -455,6 +596,15 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 			case SherlockPackage.ECLIPSE_INFO__FEATURES:
 				getFeatures().clear();
 				return;
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_TOTAL_DISKSPACE:
+				setWorkspacePartitionTotalDiskspace(WORKSPACE_PARTITION_TOTAL_DISKSPACE_EDEFAULT);
+				return;
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_USABLE_DISKSPACE:
+				setWorkspacePartitionUsableDiskspace(WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT);
+				return;
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE:
+				setWorkspacePartitionFreeDiskspace(WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -483,6 +633,12 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 				return plugins != null && !plugins.isEmpty();
 			case SherlockPackage.ECLIPSE_INFO__FEATURES:
 				return features != null && !features.isEmpty();
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_TOTAL_DISKSPACE:
+				return workspacePartitionTotalDiskspace != WORKSPACE_PARTITION_TOTAL_DISKSPACE_EDEFAULT;
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_USABLE_DISKSPACE:
+				return workspacePartitionUsableDiskspace != WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT;
+			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE:
+				return workspacePartitionFreeDiskspace != WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -509,6 +665,12 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 		result.append(buildId);
 		result.append(", uptime: ");
 		result.append(uptime);
+		result.append(", workspacePartitionTotalDiskspace: ");
+		result.append(workspacePartitionTotalDiskspace);
+		result.append(", workspacePartitionUsableDiskspace: ");
+		result.append(workspacePartitionUsableDiskspace);
+		result.append(", workspacePartitionFreeDiskspace: ");
+		result.append(workspacePartitionFreeDiskspace);
 		result.append(')');
 		return result.toString();
 	}

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
+import java.io.File;
 
 import org.eclipse.core.runtime.IBundleGroup;
 import org.osgi.framework.Bundle;
@@ -57,16 +58,29 @@ public final class Info {
 	}
 
 	public static EclipseInfo getEclipse() {
+          return getEclipse(EclipseInfoProvider.getFeatures());
+        }
+
+	public static EclipseInfo getEclipse(List<IBundleGroup> features) {
 		final EclipseInfo info = SherlockFactory.eINSTANCE.createEclipseInfo();
 
 		info.setBuildId(EclipseInfoProvider.getBuildId());
-		info.setWorkspaceLocation(EclipseInfoProvider.getWorkspaceLocation());
+                String workspace = EclipseInfoProvider.getWorkspaceLocation();
+		info.setWorkspaceLocation(workspace);
+
+                if (workspace!=null) { try {
+                  File workspaceDir = new File(workspace);
+                  info.setWorkspacePartitionTotalDiskspace( workspaceDir.getTotalSpace() );
+                  info.setWorkspacePartitionUsableDiskspace( workspaceDir.getUsableSpace() );
+                  info.setWorkspacePartitionFreeDiskspace( workspaceDir.getFreeSpace() );
+                } catch (Throwable t) {} }
+
 		info.setUptime(EclipseInfoProvider.getUptime());
 		info.setProductId(EclipseInfoProvider.getProductId());
 		info.setApplicationId(EclipseInfoProvider.getApplicationId());
 		info.getApplicationArgs().addAll(Arrays.asList(EclipseInfoProvider.getApplicationArgs()));
 
-		for (IBundleGroup group : EclipseInfoProvider.getFeatures()) {
+		for (IBundleGroup group : features) {
 			final EclipseFeature feature = SherlockFactory.eINSTANCE.createEclipseFeature();
 			feature.setId(group.getIdentifier());
 			feature.setVersion(group.getVersion());
