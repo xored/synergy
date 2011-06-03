@@ -5,6 +5,7 @@ import java.net.URL
 import org.apache.log4j._
 
 import org.eclipse.core.runtime.Platform
+import org.eclipse.core.runtime.Plugin
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.resources.IWorkspace
 
@@ -12,6 +13,7 @@ case class X5AgentRuntimeException(msg:String,t:Throwable = null)
   extends RuntimeException(msg,t)
 
 trait X5AgentEssentials {
+  protected def onStart:Unit
 
   protected def logDebug(msg:String):Unit
   protected def logInfo(msg:String):Unit
@@ -32,50 +34,28 @@ trait X5AgentEssentials {
 
 }
 
-object EclipseX5AgentEssentials {
+trait EclipseX5AgentEssentials extends X5AgentEssentials {
+  this: EclipseX5AgentEssentials with Plugin =>
 
-  private val workspace = ResourcesPlugin.getWorkspace()
-  protected val x5dirName = workspace.getRoot.getLocation.toFile.getPath.toString + "/.x5agent/"
-
-  private val x5dir:File =
-    x5dirName match {
-      case null => null
-      case name => new File(name)
-    }
-
-  val x5DirFound = 
-    try { x5dir match {
-      case null => false
-      case f => { f.mkdirs(); true }
-    } } catch {
-      case t => { println("Can't create X5 Agent directory. Reason:"); t.printStackTrace(); false }
-    }
-
-  protected val userName:String = {
+  override protected def x5dirName = getStateLocation().toFile.getPath.toString
+  private val _userName:String = {
     val r = java.lang.System.getProperty("user.name")
     if (r == null) "unknown_user"
     else r.toLowerCase.replace("\\s+","_")
   }
+  override protected def userName = _userName
+  override protected def userHome = java.lang.System.getProperty("user.home")
 
-  protected val userHome:String = java.lang.System.getProperty("user.home")
-
-  private val x5logFileName = x5dirName + userName + ".log"
-
-  private val logLayout = new PatternLayout("%d{ISO8601} %-5p %C[%t]: %m%n")
-  private val rootLogger = Logger.getRootLogger()
-  rootLogger.setLevel( Level.INFO )
-  rootLogger.addAppender(
-    if (x5DirFound) {
-      val appender = new RollingFileAppender(logLayout, x5logFileName, true)
-      appender.setMaxBackupIndex( 10 ) 
-      appender.setMaxFileSize( "10MB" ) 
-      appender
-    } else new ConsoleAppender(logLayout)
-  )
-
-}
-
-trait EclipseX5AgentEssentials extends X5AgentEssentials {
+  override protected def onStart = {
+    val x5logFileName = x5dirName + "/" + userName + ".log"
+    val logLayout = new PatternLayout("%d{ISO8601} %-5p %C[%t]: %m%n")
+    val rootLogger = Logger.getRootLogger()
+    rootLogger.setLevel( Level.INFO )
+    val appender = new RollingFileAppender(logLayout, x5logFileName, true)
+    appender.setMaxBackupIndex( 10 ) 
+    appender.setMaxFileSize( "10MB" ) 
+    rootLogger.addAppender(appender) 
+  }
 
   private val log = Logger.getLogger(this.getClass())
 
@@ -91,9 +71,5 @@ trait EclipseX5AgentEssentials extends X5AgentEssentials {
   override protected def logInfo(msg:String) = logWrap(msg, ()=>{ log.info(msg) })
   override protected def logError(msg:String) = logWrap(msg, ()=>{ log.error(msg) })
   override protected def logError(msg:String, t:Throwable) = logWrap(msg, ()=>{ log.error(msg,t) })
-
-  override protected def x5dirName = EclipseX5AgentEssentials.x5dirName
-  override protected def userName = EclipseX5AgentEssentials.userName
-  override protected def userHome = EclipseX5AgentEssentials.userHome
 
 }

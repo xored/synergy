@@ -11,6 +11,7 @@ object TestX5AgentEssentials {
 } 
 
 trait TestX5AgentEssentials extends X5AgentEssentials {
+  override protected def onStart = {}
 
   override protected def logDebug(msg:String) = println(msg)
   override protected def logInfo(msg:String) = println(msg)

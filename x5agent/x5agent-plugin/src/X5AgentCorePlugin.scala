@@ -33,6 +33,7 @@ class X5AgentCorePlugin
     X5AgentCorePlugin.plugin = this
 
     wrapExceptions {
+      onStart
       x5storage.start
       /* IStatusFilter IPluginFilter */
       SherlockCore.addLogListener(x5listener, null, null)

@@ -16,7 +16,7 @@ trait JDBCHelpers {
   implicit def rps2ps(rps:RichPreparedStatement) = rps.ps
   implicit def rrs2rs(rrs:RichResultSet) = rrs.rs
 
-  protected val connectionString:String
+  protected def connectionString:String
   
   protected def withConnection[A](fn : Connection=>A):A = {
     val c = DriverManager.getConnection(connectionString)

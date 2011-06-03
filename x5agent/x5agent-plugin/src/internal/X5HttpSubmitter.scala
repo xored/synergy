@@ -86,8 +86,8 @@ trait X5HttpSubmitterComponentImpl extends X5HttpSubmitterComponent {
     import scala.collection.JavaConversions._
     def submitReports(url:String, source:String, instance:String, reports:List[Report]) = {
       val bodies = reports.map(_.content)
-      logInfo("bodies size: "+bodies.size)
-      logInfo("bodies: "+bodies)
+//      logInfo("bodies size: "+bodies.size)
+//      logInfo("bodies: "+bodies)
       val jsonPayload = bodies.mkString("{ \"facts\":[",",","] }")
       val reqUrl = url+"/api/bulk?source="+encode(source)+"&clientId="+encode(instance)+"&appId="+encode(APP_ID)
       postJson(reqUrl, jsonPayload) fold (

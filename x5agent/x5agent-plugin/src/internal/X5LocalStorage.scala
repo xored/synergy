@@ -37,17 +37,11 @@ trait X5LocalStorageComponentImpl extends X5LocalStorageComponent with Component
     extends X5LocalStorage
     with JDBCHelpers {
 
-    val x5dbFileName = 
-      x5dirName match {
-        case null => { logError("Local storage is disabled because of previous errors"); null }
-        case x => x + userName + ".derby"
-      }
+    def x5dbFileName = x5dirName + "/" + userName + ".derby"
 
-    val enabled = (x5dbFileName!=null)
+    override protected def connectionString = "jdbc:derby:"+x5dbFileName+";create=true"
 
-    override protected val connectionString = "jdbc:derby:"+x5dbFileName+";create=true"
-
-    def start = if (enabled) {
+    def start = {
       val p = System.getProperties
       p.put("derby.stream.error.method", "com.xored.x5agent.core.DerbyUtil.errorStream")
 
@@ -60,10 +54,9 @@ trait X5LocalStorageComponentImpl extends X5LocalStorageComponent with Component
       }
 
       logInfo("X5 agent storage is started")
-    } else 
-      logError("Local storage cannot be started, because it is disabled.")
+    } 
 
-    def stop = if (enabled) {
+    def stop = {
       //TRICKY: A clean shutdown always throws SQL exception XJ015, which can be ignored.
       try {
         DriverManager.getConnection("jdbc:derby:"+x5dbFileName+";shutdown=true")
@@ -71,47 +64,39 @@ trait X5LocalStorageComponentImpl extends X5LocalStorageComponent with Component
         case _ => {}
       }
       logInfo("X5 agent storage is shutted down")
-    } else 
-      logError("Local storage cannot be started, because it is disabled.")
+    } 
 
     def databaseVersion:Option[String] =
-      if (enabled) 
-        withConnection (c=>{
-          // TRICKY: table name patterns are case sensitive and Derby thinks it is uppercase
-          withResultSet(c.meta.tables(tableNamePattern=Some("VERSION")), trs=>{
-            val exists = trs.foldLeft(false)((_,_)=>true)
-            logDebug("exists "+exists)
-            if (!exists) None
-            else executeQuery(c<<"SELECT VALUE FROM VERSION", rs=>rs.foldLeft(None:Option[String])((_,_)=>rs.nextString))
-          })
+      withConnection (c=>{
+        // TRICKY: table name patterns are case sensitive and Derby thinks it is uppercase
+        withResultSet(c.meta.tables(tableNamePattern=Some("VERSION")), trs=>{
+          val exists = trs.foldLeft(false)((_,_)=>true)
+          logDebug("exists "+exists)
+          if (!exists) None
+          else executeQuery(c<<"SELECT VALUE FROM VERSION", rs=>rs.foldLeft(None:Option[String])((_,_)=>rs.nextString))
         })
-      else None
+      })
 
     def save(r:Report):Unit = 
-      if (enabled)
-        withConnection (c=>{
-          execute( c << "INSERT INTO REPORTS (CONTENT, CREATED_AT, SUBMITTED_AT, REMOTE_ID) values (?,?,?,?)" << 
-                  r.content << r.createdAt << r.submittedAt << r.remoteId )
+      withConnection (c=>{
+        execute( c << "INSERT INTO REPORTS (CONTENT, CREATED_AT, SUBMITTED_AT, REMOTE_ID) values (?,?,?,?)" << 
+                r.content << r.createdAt << r.submittedAt << r.remoteId )
         })
 
     def unsent(maxNumber:Int):List[Report] =
-      if (enabled) 
-        withConnection (c=>{
-          executeQuery( c << 
-            "SELECT ID, CONTENT, CREATED_AT, SUBMITTED_AT, REMOTE_ID "+
-            "FROM REPORTS WHERE submitted_at IS NULL" max(maxNumber)
-            ,rs => { rs.map( r=>Report(r,r.nextString.get,r.nextDate.get,r,r) ) } )
-          })
-      else Nil
+      withConnection (c=>{
+        executeQuery( c << 
+          "SELECT ID, CONTENT, CREATED_AT, SUBMITTED_AT, REMOTE_ID "+
+          "FROM REPORTS WHERE submitted_at IS NULL" max(maxNumber)
+          ,rs => { rs.map( r=>Report(r,r.nextString.get,r.nextDate.get,r,r) ) } )
+        })
 
     def markAsSent(id:Int, at:Date, remoteId:String):Unit =
-      if (enabled)
-        withConnection (c=>{
-          execute( c <<
-            "UPDATE REPORTS SET SUBMITTED_AT=?, REMOTE_ID=? WHERE ID=?"<< at << remoteId << id
-          )
-        })
-      else Nil
+      withConnection (c=>{
+        execute( c <<
+          "UPDATE REPORTS SET SUBMITTED_AT=?, REMOTE_ID=? WHERE ID=?"<< at << remoteId << id
+        )
+      })
     
     private def createDb:Unit = executeScript( resource("/init.sql") )
 
