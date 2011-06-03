@@ -12,7 +12,10 @@ import org.eclipse.core.runtime.IBundleGroupProvider;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProduct;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.preferences.IPreferencesService;
+
 import org.osgi.framework.Bundle;
+import org.osgi.service.prefs.Preferences;
 
 import com.xored.sherlock.core.SherlockCore;
 
@@ -73,4 +76,9 @@ public class EclipseInfoProvider {
 
 		return features;
 	}
+
+        public static Preferences getPreferencesRoot() {
+          IPreferencesService service = Platform.getPreferencesService();
+          return service.getRootNode();
+        }
 }

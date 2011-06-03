@@ -9,6 +9,7 @@ package com.xored.sherlock.core.model.sherlock.impl;
 import com.xored.sherlock.core.model.sherlock.EclipseFeature;
 import com.xored.sherlock.core.model.sherlock.EclipseInfo;
 import com.xored.sherlock.core.model.sherlock.EclipsePlugin;
+import com.xored.sherlock.core.model.sherlock.EclipsePreference;
 import com.xored.sherlock.core.model.sherlock.EclipseStatus;
 import com.xored.sherlock.core.model.sherlock.JavaException;
 import com.xored.sherlock.core.model.sherlock.JavaInfo;
@@ -102,6 +103,13 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 	 * @generated
 	 */
 	private EClass eclipseStatusEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eclipsePreferenceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -457,6 +465,15 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEclipseInfo_Preferences() {
+		return (EReference)eclipseInfoEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEclipsePlugin() {
 		return eclipsePluginEClass;
 	}
@@ -718,6 +735,42 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEclipsePreference() {
+		return eclipsePreferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEclipsePreference_Name() {
+		return (EAttribute)eclipsePreferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEclipsePreference_Value() {
+		return (EAttribute)eclipsePreferenceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEclipsePreference_Path() {
+		return (EAttribute)eclipsePreferenceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SherlockFactory getSherlockFactory() {
 		return (SherlockFactory)getEFactoryInstance();
 	}
@@ -777,6 +830,7 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 		createEAttribute(eclipseInfoEClass, ECLIPSE_INFO__WORKSPACE_PARTITION_TOTAL_DISKSPACE);
 		createEAttribute(eclipseInfoEClass, ECLIPSE_INFO__WORKSPACE_PARTITION_USABLE_DISKSPACE);
 		createEAttribute(eclipseInfoEClass, ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE);
+		createEReference(eclipseInfoEClass, ECLIPSE_INFO__PREFERENCES);
 
 		eclipsePluginEClass = createEClass(ECLIPSE_PLUGIN);
 		createEAttribute(eclipsePluginEClass, ECLIPSE_PLUGIN__ID);
@@ -811,6 +865,11 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__SEVIRITY);
 		createEReference(eclipseStatusEClass, ECLIPSE_STATUS__EXCEPTION);
 		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__FEATURE_GUESS);
+
+		eclipsePreferenceEClass = createEClass(ECLIPSE_PREFERENCE);
+		createEAttribute(eclipsePreferenceEClass, ECLIPSE_PREFERENCE__NAME);
+		createEAttribute(eclipsePreferenceEClass, ECLIPSE_PREFERENCE__VALUE);
+		createEAttribute(eclipsePreferenceEClass, ECLIPSE_PREFERENCE__PATH);
 	}
 
 	/**
@@ -879,6 +938,7 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 		initEAttribute(getEclipseInfo_WorkspacePartitionTotalDiskspace(), ecorePackage.getELong(), "workspacePartitionTotalDiskspace", null, 0, 1, EclipseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEclipseInfo_WorkspacePartitionUsableDiskspace(), ecorePackage.getELong(), "workspacePartitionUsableDiskspace", null, 0, 1, EclipseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEclipseInfo_WorkspacePartitionFreeDiskspace(), ecorePackage.getELong(), "workspacePartitionFreeDiskspace", null, 0, 1, EclipseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEclipseInfo_Preferences(), this.getEclipsePreference(), null, "preferences", null, 0, -1, EclipseInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eclipsePluginEClass, EclipsePlugin.class, "EclipsePlugin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEclipsePlugin_Id(), ecorePackage.getEString(), "id", null, 0, 1, EclipsePlugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -913,6 +973,11 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 		initEAttribute(getEclipseStatus_Sevirity(), ecorePackage.getEInt(), "sevirity", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEclipseStatus_Exception(), this.getJavaException(), null, "exception", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEclipseStatus_FeatureGuess(), ecorePackage.getEString(), "featureGuess", null, 0, -1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eclipsePreferenceEClass, EclipsePreference.class, "EclipsePreference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEclipsePreference_Name(), ecorePackage.getEString(), "name", null, 0, 1, EclipsePreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEclipsePreference_Value(), ecorePackage.getEString(), "value", null, 0, 1, EclipsePreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEclipsePreference_Path(), ecorePackage.getEString(), "path", null, 0, 1, EclipsePreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

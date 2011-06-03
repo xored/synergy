@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionTotalDiskspace <em>Workspace Partition Total Diskspace</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionUsableDiskspace <em>Workspace Partition Usable Diskspace</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getWorkspacePartitionFreeDiskspace <em>Workspace Partition Free Diskspace</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getPreferences <em>Preferences</em>}</li>
  * </ul>
  * </p>
  *
@@ -292,5 +293,21 @@ public interface EclipseInfo extends EObject {
 	 * @generated
 	 */
 	void setWorkspacePartitionFreeDiskspace(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Preferences</b></em>' containment reference list.
+	 * The list contents are of type {@link com.xored.sherlock.core.model.sherlock.EclipsePreference}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Preferences</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Preferences</em>' containment reference list.
+	 * @see com.xored.sherlock.core.model.sherlock.SherlockPackage#getEclipseInfo_Preferences()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<EclipsePreference> getPreferences();
 
 } // EclipseInfo

@@ -3,16 +3,19 @@ package com.xored.sherlock.core.info;
 import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
 import java.io.File;
 
 import org.eclipse.core.runtime.IBundleGroup;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
+import org.osgi.service.prefs.Preferences;
 
 import com.xored.sherlock.core.model.sherlock.EclipseFeature;
 import com.xored.sherlock.core.model.sherlock.EclipseInfo;
 import com.xored.sherlock.core.model.sherlock.EclipsePlugin;
+import com.xored.sherlock.core.model.sherlock.EclipsePreference;
 import com.xored.sherlock.core.model.sherlock.JavaInfo;
 import com.xored.sherlock.core.model.sherlock.JavaProperty;
 import com.xored.sherlock.core.model.sherlock.SherlockFactory;
@@ -102,6 +105,26 @@ public final class Info {
 
 			info.getPlugins().add(plugin);
 		}
+
+                List<Preferences> unprocessed = new LinkedList<Preferences>();
+                unprocessed.add(EclipseInfoProvider.getPreferencesRoot());
+
+                try { while (unprocessed.size()>0) {
+                  Preferences p = unprocessed.get(0);
+                  unprocessed.remove(0);
+
+                  String absolutePath = p.absolutePath();
+                  for (String childName: p.childrenNames()) {
+                    unprocessed.add(0, p.node(childName));
+                  }
+                  for (String key : p.keys()) {
+                    final EclipsePreference pref = SherlockFactory.eINSTANCE.createEclipsePreference();
+                    pref.setName(key);
+                    pref.setValue(p.get(key,""));
+                    pref.setPath(absolutePath);
+                    info.getPreferences().add(pref);
+                  }
+                } } catch (Throwable t) {}
 
 		return info;
 	}

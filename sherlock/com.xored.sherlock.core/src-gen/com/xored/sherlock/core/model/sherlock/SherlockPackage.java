@@ -389,13 +389,22 @@ public interface SherlockPackage extends EPackage {
 	int ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE = 10;
 
 	/**
+	 * The feature id for the '<em><b>Preferences</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_INFO__PREFERENCES = 11;
+
+	/**
 	 * The number of structural features of the '<em>Eclipse Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ECLIPSE_INFO_FEATURE_COUNT = 11;
+	int ECLIPSE_INFO_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.impl.EclipsePluginImpl <em>Eclipse Plugin</em>}' class.
@@ -708,6 +717,53 @@ public interface SherlockPackage extends EPackage {
 	 * @ordered
 	 */
 	int ECLIPSE_STATUS_FEATURE_COUNT = 7;
+
+
+	/**
+	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.impl.EclipsePreferenceImpl <em>Eclipse Preference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.core.model.sherlock.impl.EclipsePreferenceImpl
+	 * @see com.xored.sherlock.core.model.sherlock.impl.SherlockPackageImpl#getEclipsePreference()
+	 * @generated
+	 */
+	int ECLIPSE_PREFERENCE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_PREFERENCE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_PREFERENCE__VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_PREFERENCE__PATH = 2;
+
+	/**
+	 * The number of structural features of the '<em>Eclipse Preference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_PREFERENCE_FEATURE_COUNT = 3;
 
 
 	/**
@@ -1058,6 +1114,17 @@ public interface SherlockPackage extends EPackage {
 	EAttribute getEclipseInfo_WorkspacePartitionFreeDiskspace();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link com.xored.sherlock.core.model.sherlock.EclipseInfo#getPreferences <em>Preferences</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Preferences</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipseInfo#getPreferences()
+	 * @see #getEclipseInfo()
+	 * @generated
+	 */
+	EReference getEclipseInfo_Preferences();
+
+	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.EclipsePlugin <em>Eclipse Plugin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1372,6 +1439,49 @@ public interface SherlockPackage extends EPackage {
 	EAttribute getEclipseStatus_FeatureGuess();
 
 	/**
+	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.EclipsePreference <em>Eclipse Preference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Eclipse Preference</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipsePreference
+	 * @generated
+	 */
+	EClass getEclipsePreference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipsePreference#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipsePreference#getName()
+	 * @see #getEclipsePreference()
+	 * @generated
+	 */
+	EAttribute getEclipsePreference_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipsePreference#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipsePreference#getValue()
+	 * @see #getEclipsePreference()
+	 * @generated
+	 */
+	EAttribute getEclipsePreference_Value();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipsePreference#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipsePreference#getPath()
+	 * @see #getEclipsePreference()
+	 * @generated
+	 */
+	EAttribute getEclipsePreference_Path();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1660,6 +1770,14 @@ public interface SherlockPackage extends EPackage {
 		EAttribute ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE = eINSTANCE.getEclipseInfo_WorkspacePartitionFreeDiskspace();
 
 		/**
+		 * The meta object literal for the '<em><b>Preferences</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ECLIPSE_INFO__PREFERENCES = eINSTANCE.getEclipseInfo_Preferences();
+
+		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.impl.EclipsePluginImpl <em>Eclipse Plugin</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1900,6 +2018,40 @@ public interface SherlockPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ECLIPSE_STATUS__FEATURE_GUESS = eINSTANCE.getEclipseStatus_FeatureGuess();
+
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.impl.EclipsePreferenceImpl <em>Eclipse Preference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.core.model.sherlock.impl.EclipsePreferenceImpl
+		 * @see com.xored.sherlock.core.model.sherlock.impl.SherlockPackageImpl#getEclipsePreference()
+		 * @generated
+		 */
+		EClass ECLIPSE_PREFERENCE = eINSTANCE.getEclipsePreference();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ECLIPSE_PREFERENCE__NAME = eINSTANCE.getEclipsePreference_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ECLIPSE_PREFERENCE__VALUE = eINSTANCE.getEclipsePreference_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ECLIPSE_PREFERENCE__PATH = eINSTANCE.getEclipsePreference_Path();
 
 	}
 

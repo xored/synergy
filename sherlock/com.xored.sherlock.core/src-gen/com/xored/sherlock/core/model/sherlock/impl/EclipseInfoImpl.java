@@ -9,6 +9,7 @@ package com.xored.sherlock.core.model.sherlock.impl;
 import com.xored.sherlock.core.model.sherlock.EclipseFeature;
 import com.xored.sherlock.core.model.sherlock.EclipseInfo;
 import com.xored.sherlock.core.model.sherlock.EclipsePlugin;
+import com.xored.sherlock.core.model.sherlock.EclipsePreference;
 import com.xored.sherlock.core.model.sherlock.SherlockPackage;
 
 import java.util.Collection;
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -46,6 +48,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getWorkspacePartitionTotalDiskspace <em>Workspace Partition Total Diskspace</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getWorkspacePartitionUsableDiskspace <em>Workspace Partition Usable Diskspace</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getWorkspacePartitionFreeDiskspace <em>Workspace Partition Free Diskspace</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseInfoImpl#getPreferences <em>Preferences</em>}</li>
  * </ul>
  * </p>
  *
@@ -241,6 +244,16 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 	 * @ordered
 	 */
 	protected long workspacePartitionFreeDiskspace = WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPreferences() <em>Preferences</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EclipsePreference> preferences;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -470,6 +483,18 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<EclipsePreference> getPreferences() {
+		if (preferences == null) {
+			preferences = new EObjectContainmentEList<EclipsePreference>(EclipsePreference.class, this, SherlockPackage.ECLIPSE_INFO__PREFERENCES);
+		}
+		return preferences;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -477,6 +502,8 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 				return ((InternalEList<?>)getPlugins()).basicRemove(otherEnd, msgs);
 			case SherlockPackage.ECLIPSE_INFO__FEATURES:
 				return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
+			case SherlockPackage.ECLIPSE_INFO__PREFERENCES:
+				return ((InternalEList<?>)getPreferences()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -511,6 +538,8 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 				return getWorkspacePartitionUsableDiskspace();
 			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE:
 				return getWorkspacePartitionFreeDiskspace();
+			case SherlockPackage.ECLIPSE_INFO__PREFERENCES:
+				return getPreferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -560,6 +589,10 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE:
 				setWorkspacePartitionFreeDiskspace((Long)newValue);
 				return;
+			case SherlockPackage.ECLIPSE_INFO__PREFERENCES:
+				getPreferences().clear();
+				getPreferences().addAll((Collection<? extends EclipsePreference>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -605,6 +638,9 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE:
 				setWorkspacePartitionFreeDiskspace(WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT);
 				return;
+			case SherlockPackage.ECLIPSE_INFO__PREFERENCES:
+				getPreferences().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -639,6 +675,8 @@ public class EclipseInfoImpl extends EObjectImpl implements EclipseInfo {
 				return workspacePartitionUsableDiskspace != WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT;
 			case SherlockPackage.ECLIPSE_INFO__WORKSPACE_PARTITION_FREE_DISKSPACE:
 				return workspacePartitionFreeDiskspace != WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT;
+			case SherlockPackage.ECLIPSE_INFO__PREFERENCES:
+				return preferences != null && !preferences.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -70,6 +70,7 @@ public class SherlockFactoryImpl extends EFactoryImpl implements SherlockFactory
 			case SherlockPackage.JAVA_EXCEPTION: return createJavaException();
 			case SherlockPackage.JAVA_STACK_TRACE_ENTRY: return createJavaStackTraceEntry();
 			case SherlockPackage.ECLIPSE_STATUS: return createEclipseStatus();
+			case SherlockPackage.ECLIPSE_PREFERENCE: return createEclipsePreference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -173,6 +174,16 @@ public class SherlockFactoryImpl extends EFactoryImpl implements SherlockFactory
 	public EclipseStatus createEclipseStatus() {
 		EclipseStatusImpl eclipseStatus = new EclipseStatusImpl();
 		return eclipseStatus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EclipsePreference createEclipsePreference() {
+		EclipsePreferenceImpl eclipsePreference = new EclipsePreferenceImpl();
+		return eclipsePreference;
 	}
 
 	/**

@@ -112,6 +112,10 @@ public class SherlockAdapterFactory extends AdapterFactoryImpl {
 				return createEclipseStatusAdapter();
 			}
 			@Override
+			public Adapter caseEclipsePreference(EclipsePreference object) {
+				return createEclipsePreferenceAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -268,6 +272,20 @@ public class SherlockAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEclipseStatusAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.core.model.sherlock.EclipsePreference <em>Eclipse Preference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipsePreference
+	 * @generated
+	 */
+	public Adapter createEclipsePreferenceAdapter() {
 		return null;
 	}
 

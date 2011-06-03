@@ -147,6 +147,12 @@ public class SherlockSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SherlockPackage.ECLIPSE_PREFERENCE: {
+				EclipsePreference eclipsePreference = (EclipsePreference)theEObject;
+				T result = caseEclipsePreference(eclipsePreference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -298,6 +304,21 @@ public class SherlockSwitch<T> {
 	 * @generated
 	 */
 	public T caseEclipseStatus(EclipseStatus object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Eclipse Preference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Eclipse Preference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEclipsePreference(EclipsePreference object) {
 		return null;
 	}
 
