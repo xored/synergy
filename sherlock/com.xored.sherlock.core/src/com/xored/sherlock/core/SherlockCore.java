@@ -4,6 +4,7 @@ import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
 
 import org.eclipse.core.runtime.IBundleGroup;
@@ -46,8 +47,10 @@ public class SherlockCore extends Plugin {
 	// ILogListener
 	private final SherlockLogListener logListener = new SherlockLogListener();
 
-	public static void addLogListener(ILogListener listener, IStatusFilter statusFilter, IPluginFilter pluginFilter) {
-		getDefault().logListener.addLogListener(listener, statusFilter, pluginFilter);
+	public static void addLogListener(ILogListener listener,
+			IStatusFilter statusFilter, IPluginFilter pluginFilter) {
+		getDefault().logListener.addLogListener(listener, statusFilter,
+				pluginFilter);
 	}
 
 	public static void removeLogListener(ILogListener listener) {
@@ -56,29 +59,32 @@ public class SherlockCore extends Plugin {
 
 	// Converters
 	public static EclipseStatus convert(IStatus status) {
-                return convert(status, null);
-        }
+		return convert(status, null);
+	}
 
-	public static EclipseStatus convert(IStatus status, List<IBundleGroup> features) {
-		final EclipseStatus eclipseStatus = SherlockFactory.eINSTANCE.createEclipseStatus();
+	public static EclipseStatus convert(IStatus status,
+			List<IBundleGroup> features) {
+		final EclipseStatus eclipseStatus = SherlockFactory.eINSTANCE
+				.createEclipseStatus();
 		eclipseStatus.setCode(status.getCode());
 		eclipseStatus.setMessage(status.getMessage());
 
-                String plugin = status.getPlugin();
+		String plugin = status.getPlugin();
 		eclipseStatus.setPlugin(plugin);
 
-                if (features != null) {
-                  for (IBundleGroup feature: features) {
+		if (features != null) {
+			for (IBundleGroup feature : features) {
 
-                    for (Bundle bundle : feature.getBundles()) {
-                      if (bundle.getSymbolicName().equals(plugin)) {
-                        eclipseStatus.getFeatureGuess().add(feature.getIdentifier());
-                        break;
-                      }
-                    }
+				for (Bundle bundle : feature.getBundles()) {
+					if (bundle.getSymbolicName().equals(plugin)) {
+						eclipseStatus.getFeatureGuess().add(
+								feature.getIdentifier());
+						break;
+					}
+				}
 
-                  }
-                }
+			}
+		}
 
 		eclipseStatus.setSevirity(status.getSeverity());
 
@@ -95,7 +101,8 @@ public class SherlockCore extends Plugin {
 	}
 
 	public static JavaException convert(Throwable th) {
-		final JavaException javaException = SherlockFactory.eINSTANCE.createJavaException();
+		final JavaException javaException = SherlockFactory.eINSTANCE
+				.createJavaException();
 
 		javaException.setClassName(th.getClass().getName());
 		javaException.setMessage(th.getMessage());
@@ -113,12 +120,27 @@ public class SherlockCore extends Plugin {
 	}
 
 	public static JavaStackTraceEntry convert(StackTraceElement element) {
-		final JavaStackTraceEntry entry = SherlockFactory.eINSTANCE.createJavaStackTraceEntry();
+		final JavaStackTraceEntry entry = SherlockFactory.eINSTANCE
+				.createJavaStackTraceEntry();
 		entry.setClassName(element.getClassName());
 		entry.setFileName(element.getFileName());
 		entry.setLineNumber(element.getLineNumber());
 		entry.setMethodName(element.getMethodName());
 		entry.setNativeMethod(element.isNativeMethod());
 		return entry;
+	}
+
+	public static void log(String msg) {
+		getDefault().getLog().log(
+				new Status(IStatus.ERROR, PLUGIN_ID, msg, null));
+	}
+
+	public static void log(Throwable e) {
+		getDefault().getLog().log(
+				new Status(IStatus.ERROR, PLUGIN_ID, e.getMessage(), e));
+	}
+
+	public static void log(String msg, Throwable e) {
+		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, msg, e));
 	}
 }

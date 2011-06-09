@@ -31,8 +31,10 @@ public final class Info {
 		info.setUsername(SystemInfoProvider.getUsername());
 
 		final List<SystemVariable> vars = info.getVariables();
-		for (Map.Entry<String, String> entry : SystemInfoProvider.getVariables().entrySet()) {
-			final SystemVariable var = SherlockFactory.eINSTANCE.createSystemVariable();
+		for (Map.Entry<String, String> entry : SystemInfoProvider
+				.getVariables().entrySet()) {
+			final SystemVariable var = SherlockFactory.eINSTANCE
+					.createSystemVariable();
 			var.setName(entry.getKey());
 			var.setValue(entry.getValue());
 			vars.add(var);
@@ -50,8 +52,10 @@ public final class Info {
 		info.setTotalMemory(JavaInfoProvider.getTotalMemory());
 
 		final List<JavaProperty> props = info.getProperties();
-		for (Map.Entry<String, String> entry : JavaInfoProvider.getProperties().entrySet()) {
-			final JavaProperty prop = SherlockFactory.eINSTANCE.createJavaProperty();
+		for (Map.Entry<String, String> entry : JavaInfoProvider.getProperties()
+				.entrySet()) {
+			final JavaProperty prop = SherlockFactory.eINSTANCE
+					.createJavaProperty();
 			prop.setName(entry.getKey());
 			prop.setValue(entry.getValue());
 			props.add(prop);
@@ -61,30 +65,38 @@ public final class Info {
 	}
 
 	public static EclipseInfo getEclipse() {
-          return getEclipse(EclipseInfoProvider.getFeatures());
-        }
+		return getEclipse(EclipseInfoProvider.getFeatures());
+	}
 
 	public static EclipseInfo getEclipse(List<IBundleGroup> features) {
 		final EclipseInfo info = SherlockFactory.eINSTANCE.createEclipseInfo();
 
 		info.setBuildId(EclipseInfoProvider.getBuildId());
-                String workspace = EclipseInfoProvider.getWorkspaceLocation();
+		String workspace = EclipseInfoProvider.getWorkspaceLocation();
 		info.setWorkspaceLocation(workspace);
 
-                if (workspace!=null) { try {
-                  File workspaceDir = new File(workspace);
-                  info.setWorkspacePartitionTotalDiskspace( workspaceDir.getTotalSpace() );
-                  info.setWorkspacePartitionUsableDiskspace( workspaceDir.getUsableSpace() );
-                  info.setWorkspacePartitionFreeDiskspace( workspaceDir.getFreeSpace() );
-                } catch (Throwable t) {} }
+		if (workspace != null) {
+			try {
+				File workspaceDir = new File(workspace);
+				info.setWorkspacePartitionTotalDiskspace(workspaceDir
+						.getTotalSpace());
+				info.setWorkspacePartitionUsableDiskspace(workspaceDir
+						.getUsableSpace());
+				info.setWorkspacePartitionFreeDiskspace(workspaceDir
+						.getFreeSpace());
+			} catch (Throwable t) {
+			}
+		}
 
 		info.setUptime(EclipseInfoProvider.getUptime());
 		info.setProductId(EclipseInfoProvider.getProductId());
 		info.setApplicationId(EclipseInfoProvider.getApplicationId());
-		info.getApplicationArgs().addAll(Arrays.asList(EclipseInfoProvider.getApplicationArgs()));
+		info.getApplicationArgs().addAll(
+				Arrays.asList(EclipseInfoProvider.getApplicationArgs()));
 
 		for (IBundleGroup group : features) {
-			final EclipseFeature feature = SherlockFactory.eINSTANCE.createEclipseFeature();
+			final EclipseFeature feature = SherlockFactory.eINSTANCE
+					.createEclipseFeature();
 			feature.setId(group.getIdentifier());
 			feature.setVersion(group.getVersion());
 			feature.setProvider(group.getProviderName());
@@ -97,7 +109,8 @@ public final class Info {
 			@SuppressWarnings("unchecked")
 			final Dictionary<String, String> headers = bundle.getHeaders();
 
-			final EclipsePlugin plugin = SherlockFactory.eINSTANCE.createEclipsePlugin();
+			final EclipsePlugin plugin = SherlockFactory.eINSTANCE
+					.createEclipsePlugin();
 			plugin.setName(headers.get(Constants.BUNDLE_NAME));
 			plugin.setProvider(headers.get(Constants.BUNDLE_VENDOR));
 			plugin.setId(bundle.getSymbolicName());
@@ -106,25 +119,29 @@ public final class Info {
 			info.getPlugins().add(plugin);
 		}
 
-                List<Preferences> unprocessed = new LinkedList<Preferences>();
-                unprocessed.add(EclipseInfoProvider.getPreferencesRoot());
+		List<Preferences> unprocessed = new LinkedList<Preferences>();
+		unprocessed.add(EclipseInfoProvider.getPreferencesRoot());
 
-                try { while (unprocessed.size()>0) {
-                  Preferences p = unprocessed.get(0);
-                  unprocessed.remove(0);
+		try {
+			while (unprocessed.size() > 0) {
+				Preferences p = unprocessed.get(0);
+				unprocessed.remove(0);
 
-                  String absolutePath = p.absolutePath();
-                  for (String childName: p.childrenNames()) {
-                    unprocessed.add(0, p.node(childName));
-                  }
-                  for (String key : p.keys()) {
-                    final EclipsePreference pref = SherlockFactory.eINSTANCE.createEclipsePreference();
-                    pref.setName(key);
-                    pref.setValue(p.get(key,""));
-                    pref.setPath(absolutePath);
-                    info.getPreferences().add(pref);
-                  }
-                } } catch (Throwable t) {}
+				String absolutePath = p.absolutePath();
+				for (String childName : p.childrenNames()) {
+					unprocessed.add(0, p.node(childName));
+				}
+				for (String key : p.keys()) {
+					final EclipsePreference pref = SherlockFactory.eINSTANCE
+							.createEclipsePreference();
+					pref.setName(key);
+					pref.setValue(p.get(key, ""));
+					pref.setPath(absolutePath);
+					info.getPreferences().add(pref);
+				}
+			}
+		} catch (Throwable t) {
+		}
 
 		return info;
 	}
