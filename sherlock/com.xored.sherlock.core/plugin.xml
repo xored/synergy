@@ -17,5 +17,12 @@
             class="com.xored.sherlock.core.model.sherlock.SherlockPackage"
             genModel="model/sherlock.genmodel"/>
    </extension>
+   <extension
+         point="com.xored.sherlock.core.eventProvider">
+      <provider
+            class="com.xored.sherlock.core.reporting.internal.EventLogEventProvider"
+            id="com.xored.sherlock.core.log.provider">
+      </provider>
+   </extension>
 
 </plugin>

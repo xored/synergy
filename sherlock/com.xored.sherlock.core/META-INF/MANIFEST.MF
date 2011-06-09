@@ -9,9 +9,15 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.xored.sherlock.core,
  com.xored.sherlock.core.info,
+ com.xored.sherlock.core.internal,
  com.xored.sherlock.core.model.sherlock,
  com.xored.sherlock.core.model.sherlock.impl,
- com.xored.sherlock.core.model.sherlock.util
+ com.xored.sherlock.core.model.sherlock.report,
+ com.xored.sherlock.core.model.sherlock.report.impl,
+ com.xored.sherlock.core.model.sherlock.report.util,
+ com.xored.sherlock.core.model.sherlock.util,
+ com.xored.sherlock.core.reporting,
+ com.xored.sherlock.core.reporting.internal
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.core.resources;bundle-version="3.6.0"

@@ -47,7 +47,6 @@ public class ReportBuilder implements IReportBuilder {
 	public Node beginTask(String name) {
 		Node nde = ReportFactory.eINSTANCE.createNode();
 		nde.setName(name);
-		nde.setReport(report);
 		nde.setStartTime(getTimeConverter().getTime());
 		synchronized (this.currentNode) {
 			this.currentNode.getChildren().add(nde);
@@ -120,7 +119,34 @@ public class ReportBuilder implements IReportBuilder {
 	}
 
 	@Override
-	public void storeSnapshot(String id, String type) {
-		EventProviderManager.getInstance().storeSnapshot(this, id, type);
+	public void storeSnapshot(String type, String... id) {
+		if (id.length == 0) {
+			EventProviderManager.getInstance().storeSnapshot(this, null, type);
+		} else {
+			for (String lid : id) {
+				EventProviderManager.getInstance().storeSnapshot(this, lid,
+						type);
+			}
+		}
+	}
+
+	public void registerProviders(String... id) {
+		if (id.length == 0) {
+			EventProviderManager.getInstance().register(this, null);
+		} else {
+			for (String lid : id) {
+				EventProviderManager.getInstance().register(this, lid);
+			}
+		}
+	}
+
+	public void unregisterProviders(String... id) {
+		if (id.length == 0) {
+			EventProviderManager.getInstance().unregister(this, null);
+		} else {
+			for (String lid : id) {
+				EventProviderManager.getInstance().unregister(this, lid);
+			}
+		}
 	}
 }

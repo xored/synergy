@@ -62,6 +62,7 @@ public class EventProviderManager {
 	 * if id == null
 	 */
 	public synchronized void register(IReportBuilder reportBuilder, String id) {
+		initialize();
 		for (Map.Entry<String, IEventProvider> provider : managers.entrySet()) {
 			if (id == null || provider.getKey().startsWith(id)) {
 				provider.getValue().addListener(reportBuilder);
@@ -70,6 +71,7 @@ public class EventProviderManager {
 	}
 
 	public synchronized void unregister(IReportBuilder reportBuilder, String id) {
+		initialize();
 		for (Map.Entry<String, IEventProvider> provider : managers.entrySet()) {
 			if (id == null || provider.getKey().startsWith(id)) {
 				provider.getValue().removeListener(reportBuilder);
@@ -85,6 +87,7 @@ public class EventProviderManager {
 	 */
 	public void storeSnapshot(ReportBuilder reportBuilder, String id,
 			String type) {
+		initialize();
 		for (Map.Entry<String, IEventProvider> provider : managers.entrySet()) {
 			if (id == null || provider.getKey().startsWith(id)) {
 				provider.getValue().storeSnapshot(reportBuilder, type);

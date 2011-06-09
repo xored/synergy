@@ -19,7 +19,7 @@ import com.xored.sherlock.core.model.sherlock.JavaStackTraceEntry;
 import com.xored.sherlock.core.model.sherlock.SherlockFactory;
 
 public class SherlockCore extends Plugin {
-	public static final String PLUGIN_ID = "com.cisco.surf.commons.support.runtime";
+	public static final String PLUGIN_ID = "com.xored.sherlock.core";
 
 	private static SherlockCore plugin;
 

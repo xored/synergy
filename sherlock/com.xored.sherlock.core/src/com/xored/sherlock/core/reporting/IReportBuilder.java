@@ -66,5 +66,6 @@ public interface IReportBuilder {
 	 * 
 	 * 
 	 */
-	public void storeSnapshot(String id, String type);
+	public void storeSnapshot(String type, String... id);
+
 }
