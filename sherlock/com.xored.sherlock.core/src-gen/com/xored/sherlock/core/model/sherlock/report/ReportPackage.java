@@ -41,7 +41,7 @@ public interface ReportPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///com/xored/sherlock/core/model/sherlock/report.ecore";
+	String eNS_URI = "http://xored.com/sherlock/report/1.0";
 
 	/**
 	 * The package namespace name.

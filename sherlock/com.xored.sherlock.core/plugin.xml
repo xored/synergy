@@ -16,6 +16,11 @@
             uri="http://xored.com/sherlock/1.0"
             class="com.xored.sherlock.core.model.sherlock.SherlockPackage"
             genModel="model/sherlock.genmodel"/>
+      <package
+            class="com.xored.sherlock.core.model.sherlock.report.ReportPackage"
+            genModel="model/report.genmodel"
+            uri="http://xored.com/sherlock/report/1.0">
+      </package>
    </extension>
    <extension
          point="com.xored.sherlock.core.eventProvider">

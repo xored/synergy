@@ -21,6 +21,7 @@ public class ReportBuilder implements IReportBuilder {
 		report = ReportFactory.eINSTANCE.createReport();
 		currentNode = ReportFactory.eINSTANCE.createNode();
 		report.setRoot(currentNode);
+		currentNode.setStartTime(getTimeConverter().getTime());
 	}
 
 	@Override
@@ -64,6 +65,7 @@ public class ReportBuilder implements IReportBuilder {
 
 	@Override
 	public Report getReport() {
+		report.getRoot().setEndTime(getTimeConverter().getTime());
 		return report;
 	}
 
@@ -124,8 +126,8 @@ public class ReportBuilder implements IReportBuilder {
 			EventProviderManager.getInstance().takeSnapshot(this, null, type);
 		} else {
 			for (String lid : id) {
-				EventProviderManager.getInstance().takeSnapshot(this, lid,
-						type);
+				EventProviderManager.getInstance()
+						.takeSnapshot(this, lid, type);
 			}
 		}
 	}

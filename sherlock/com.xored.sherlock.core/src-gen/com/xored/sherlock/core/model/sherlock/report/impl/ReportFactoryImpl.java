@@ -33,7 +33,7 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory {
 	 */
 	public static ReportFactory init() {
 		try {
-			ReportFactory theReportFactory = (ReportFactory)EPackage.Registry.INSTANCE.getEFactory("http:///com/xored/sherlock/core/model/sherlock/report.ecore"); 
+			ReportFactory theReportFactory = (ReportFactory)EPackage.Registry.INSTANCE.getEFactory("http://xored.com/sherlock/report/1.0"); 
 			if (theReportFactory != null) {
 				return theReportFactory;
 			}
