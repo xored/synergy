@@ -21,23 +21,24 @@ public class ReportBuilder implements IReportBuilder {
 		report = ReportFactory.eINSTANCE.createReport();
 		currentNode = ReportFactory.eINSTANCE.createNode();
 		report.setRoot(currentNode);
+		currentNode.setName("root");
 		currentNode.setStartTime(getTimeConverter().getTime());
 	}
 
 	@Override
 	public Category registerCategory(String id, String name) {
 		Category category = ReportFactory.eINSTANCE.createCategory();
-		report.getCategories().add(category);
 		category.setId(id);
 		category.setName(name);
+		report.getCategories().add(category);
 		return category;
 	}
 
 	@Override
 	public EventSource registerEventSource(String name) {
 		EventSource source = ReportFactory.eINSTANCE.createEventSource();
-		report.getSources().add(source);
 		source.setName(name);
+		report.getSources().add(source);
 		return source;
 	}
 

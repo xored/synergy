@@ -3,7 +3,7 @@ package com.xored.sherlock.core.reporting;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractEventProvider {
+public abstract class AbstractEventProvider implements IEventProvider {
 
 	private List<IReportBuilder> listeners = new ArrayList<IReportBuilder>();
 
@@ -23,7 +23,13 @@ public abstract class AbstractEventProvider {
 	public void removeListener(IReportBuilder builder) {
 		synchronized (listeners) {
 			listeners.add(builder);
+			if (listeners.isEmpty()) {
+				doneBuilders();
+			}
 		}
+	}
+
+	protected void doneBuilders() {
 	}
 
 	protected IReportBuilder[] getListeners() {
