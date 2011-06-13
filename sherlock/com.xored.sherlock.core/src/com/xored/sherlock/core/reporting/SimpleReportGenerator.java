@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.Node;
 import com.xored.sherlock.core.model.sherlock.report.Report;
+import com.xored.sherlock.core.model.sherlock.report.Snaphot;
 
 public class SimpleReportGenerator {
 	private static final String LINE_SEPARATOR = System
@@ -48,6 +49,10 @@ public class SimpleReportGenerator {
 		for (Event child : infoNode.getEvents()) {
 			printEvent(child, stream, tabs + 2);
 		}
+
+		for (Snaphot child : infoNode.getSnapshots()) {
+			printSnapshot(child, stream, tabs + 2);
+		}
 		appendTabs(stream, tabs).append("}").append(LINE_SEPARATOR);
 	}
 
@@ -63,6 +68,20 @@ public class SimpleReportGenerator {
 					.append(list.get(key)).append(LINE_SEPARATOR);
 		}
 		appendTabs(stream, tabs).append(">").append(LINE_SEPARATOR);
+	}
+
+	private void printSnapshot(Snaphot child, StringBuilder stream, int tabs) {
+		appendTabs(stream, tabs);
+		stream.append(" %");
+		stream.append(" object:").append(toString(child.getData()))
+				.append(LINE_SEPARATOR);
+
+		EMap<String, String> list = child.getProperties();
+		for (String key : list.keySet()) {
+			appendTabs(stream, tabs + 1).append(key).append("=")
+					.append(list.get(key)).append(LINE_SEPARATOR);
+		}
+		appendTabs(stream, tabs).append("%").append(LINE_SEPARATOR);
 	}
 
 	private StringBuilder appendTabs(StringBuilder stream, int tabs) {

@@ -119,12 +119,12 @@ public class ReportBuilder implements IReportBuilder {
 	}
 
 	@Override
-	public void storeSnapshot(String type, String... id) {
+	public void takeSnapshot(String type, String... id) {
 		if (id.length == 0) {
-			EventProviderManager.getInstance().storeSnapshot(this, null, type);
+			EventProviderManager.getInstance().takeSnapshot(this, null, type);
 		} else {
 			for (String lid : id) {
-				EventProviderManager.getInstance().storeSnapshot(this, lid,
+				EventProviderManager.getInstance().takeSnapshot(this, lid,
 						type);
 			}
 		}

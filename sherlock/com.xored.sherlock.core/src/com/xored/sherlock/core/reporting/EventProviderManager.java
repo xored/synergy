@@ -85,7 +85,7 @@ public class EventProviderManager {
 	 * @param reportBuilder
 	 * @param id
 	 */
-	public void storeSnapshot(ReportBuilder reportBuilder, String id,
+	public void takeSnapshot(ReportBuilder reportBuilder, String id,
 			String type) {
 		initialize();
 		for (Map.Entry<String, IEventProvider> provider : managers.entrySet()) {
