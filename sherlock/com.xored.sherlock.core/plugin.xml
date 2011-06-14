@@ -28,6 +28,10 @@
             class="com.xored.sherlock.core.reporting.internal.EventLogEventProvider"
             id="com.xored.sherlock.core.log.provider">
       </provider>
+      <provider
+            class="com.xored.sherlock.core.reporting.internal.CoreSnaphotsProvider"
+            id="com.xored.sherlock.core.core.snaphots">
+      </provider>
    </extension>
 
 </plugin>

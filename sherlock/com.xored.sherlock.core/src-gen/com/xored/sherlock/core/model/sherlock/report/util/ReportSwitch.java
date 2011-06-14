@@ -94,6 +94,12 @@ public class ReportSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ReportPackage.REPORT_CONTAINER: {
+				ReportContainer reportContainer = (ReportContainer)theEObject;
+				T result = caseReportContainer(reportContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ReportPackage.NODE: {
 				Node node = (Node)theEObject;
 				T result = caseNode(node);
@@ -146,6 +152,21 @@ public class ReportSwitch<T> {
 	 * @generated
 	 */
 	public T caseReport(Report object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReportContainer(ReportContainer object) {
 		return null;
 	}
 

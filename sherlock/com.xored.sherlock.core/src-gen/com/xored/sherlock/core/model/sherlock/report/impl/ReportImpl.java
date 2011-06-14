@@ -42,7 +42,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportImpl#getRoot <em>Root</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportImpl#getCategories <em>Categories</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportImpl#getSources <em>Sources</em>}</li>
  * </ul>
  * </p>
@@ -69,16 +68,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 	 * @ordered
 	 */
 	protected EList<Category> categories;
-
-	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProperties()
-	 * @generated
-	 * @ordered
-	 */
-	protected EMap<String, String> properties;
 
 	/**
 	 * The cached value of the '{@link #getSources() <em>Sources</em>}' containment reference list.
@@ -169,19 +158,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EMap<String, String> getProperties() {
-		if (properties == null) {
-			properties = new EcoreEMap<String,String>(ReportPackage.Literals.PROPERTY_MAP, PropertyMapImpl.class, this, ReportPackage.REPORT__PROPERTIES);
-		}
-		return properties;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<EventSource> getSources() {
 		if (sources == null) {
 			sources = new EObjectContainmentEList<EventSource>(EventSource.class, this, ReportPackage.REPORT__SOURCES);
@@ -217,8 +193,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 				return basicSetRoot(null, msgs);
 			case ReportPackage.REPORT__CATEGORIES:
 				return ((InternalEList<?>)getCategories()).basicRemove(otherEnd, msgs);
-			case ReportPackage.REPORT__PROPERTIES:
-				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 			case ReportPackage.REPORT__SOURCES:
 				return ((InternalEList<?>)getSources()).basicRemove(otherEnd, msgs);
 		}
@@ -237,9 +211,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 				return getRoot();
 			case ReportPackage.REPORT__CATEGORIES:
 				return getCategories();
-			case ReportPackage.REPORT__PROPERTIES:
-				if (coreType) return getProperties();
-				else return getProperties().map();
 			case ReportPackage.REPORT__SOURCES:
 				return getSources();
 		}
@@ -261,9 +232,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 			case ReportPackage.REPORT__CATEGORIES:
 				getCategories().clear();
 				getCategories().addAll((Collection<? extends Category>)newValue);
-				return;
-			case ReportPackage.REPORT__PROPERTIES:
-				((EStructuralFeature.Setting)getProperties()).set(newValue);
 				return;
 			case ReportPackage.REPORT__SOURCES:
 				getSources().clear();
@@ -287,9 +255,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 			case ReportPackage.REPORT__CATEGORIES:
 				getCategories().clear();
 				return;
-			case ReportPackage.REPORT__PROPERTIES:
-				getProperties().clear();
-				return;
 			case ReportPackage.REPORT__SOURCES:
 				getSources().clear();
 				return;
@@ -309,8 +274,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 				return root != null;
 			case ReportPackage.REPORT__CATEGORIES:
 				return categories != null && !categories.isEmpty();
-			case ReportPackage.REPORT__PROPERTIES:
-				return properties != null && !properties.isEmpty();
 			case ReportPackage.REPORT__SOURCES:
 				return sources != null && !sources.isEmpty();
 		}

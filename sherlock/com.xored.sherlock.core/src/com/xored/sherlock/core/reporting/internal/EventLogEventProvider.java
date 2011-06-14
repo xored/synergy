@@ -36,6 +36,6 @@ public class EventLogEventProvider extends AbstractEventProvider implements
 
 	@Override
 	protected void initializeBuilder(IReportBuilder builder) {
-		builder.registerCategory(LOG_CATEGORY, "Log Event Provider");
+		builder.registerCategory(LOG_CATEGORY, "Log Events");
 	}
 }

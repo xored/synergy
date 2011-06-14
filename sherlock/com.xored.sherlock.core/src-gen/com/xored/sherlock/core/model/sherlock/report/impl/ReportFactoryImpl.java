@@ -63,6 +63,7 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ReportPackage.REPORT: return createReport();
+			case ReportPackage.REPORT_CONTAINER: return createReportContainer();
 			case ReportPackage.NODE: return createNode();
 			case ReportPackage.EVENT: return createEvent();
 			case ReportPackage.CATEGORY: return createCategory();
@@ -82,6 +83,16 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory {
 	public Report createReport() {
 		ReportImpl report = new ReportImpl();
 		return report;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReportContainer createReportContainer() {
+		ReportContainerImpl reportContainer = new ReportContainerImpl();
+		return reportContainer;
 	}
 
 	/**

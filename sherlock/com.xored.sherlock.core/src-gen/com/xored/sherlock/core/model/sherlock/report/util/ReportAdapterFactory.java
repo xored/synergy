@@ -78,6 +78,10 @@ public class ReportAdapterFactory extends AdapterFactoryImpl {
 				return createReportAdapter();
 			}
 			@Override
+			public Adapter caseReportContainer(ReportContainer object) {
+				return createReportContainerAdapter();
+			}
+			@Override
 			public Adapter caseNode(Node object) {
 				return createNodeAdapter();
 			}
@@ -132,6 +136,20 @@ public class ReportAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.core.model.sherlock.report.ReportContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.xored.sherlock.core.model.sherlock.report.ReportContainer
+	 * @generated
+	 */
+	public Adapter createReportContainerAdapter() {
 		return null;
 	}
 

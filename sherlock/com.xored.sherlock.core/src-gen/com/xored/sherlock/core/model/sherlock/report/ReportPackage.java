@@ -88,22 +88,13 @@ public interface ReportPackage extends EPackage {
 	int REPORT__CATEGORIES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Properties</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPORT__PROPERTIES = 2;
-
-	/**
 	 * The feature id for the '<em><b>Sources</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPORT__SOURCES = 3;
+	int REPORT__SOURCES = 2;
 
 	/**
 	 * The number of structural features of the '<em>Report</em>' class.
@@ -112,7 +103,35 @@ public interface ReportPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPORT_FEATURE_COUNT = 4;
+	int REPORT_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportContainerImpl <em>Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportContainerImpl
+	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getReportContainer()
+	 * @generated
+	 */
+	int REPORT_CONTAINER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Content</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPORT_CONTAINER__CONTENT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPORT_CONTAINER_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.NodeImpl <em>Node</em>}' class.
@@ -122,7 +141,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getNode()
 	 * @generated
 	 */
-	int NODE = 1;
+	int NODE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Start Time</b></em>' attribute.
@@ -222,7 +241,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getEvent()
 	 * @generated
 	 */
-	int EVENT = 2;
+	int EVENT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -286,7 +305,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getCategory()
 	 * @generated
 	 */
-	int CATEGORY = 3;
+	int CATEGORY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -332,7 +351,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getEventSource()
 	 * @generated
 	 */
-	int EVENT_SOURCE = 4;
+	int EVENT_SOURCE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -378,7 +397,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getPropertyMap()
 	 * @generated
 	 */
-	int PROPERTY_MAP = 5;
+	int PROPERTY_MAP = 6;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -416,7 +435,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getSnaphot()
 	 * @generated
 	 */
-	int SNAPHOT = 6;
+	int SNAPHOT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -497,17 +516,6 @@ public interface ReportPackage extends EPackage {
 	EReference getReport_Categories();
 
 	/**
-	 * Returns the meta object for the map '{@link com.xored.sherlock.core.model.sherlock.report.Report#getProperties <em>Properties</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Properties</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.report.Report#getProperties()
-	 * @see #getReport()
-	 * @generated
-	 */
-	EReference getReport_Properties();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link com.xored.sherlock.core.model.sherlock.report.Report#getSources <em>Sources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -517,6 +525,27 @@ public interface ReportPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getReport_Sources();
+
+	/**
+	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.report.ReportContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Container</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.report.ReportContainer
+	 * @generated
+	 */
+	EClass getReportContainer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.report.ReportContainer#getContent <em>Content</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Content</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.report.ReportContainer#getContent()
+	 * @see #getReportContainer()
+	 * @generated
+	 */
+	EAttribute getReportContainer_Content();
 
 	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.report.Node <em>Node</em>}'.
@@ -915,20 +944,30 @@ public interface ReportPackage extends EPackage {
 		EReference REPORT__CATEGORIES = eINSTANCE.getReport_Categories();
 
 		/**
-		 * The meta object literal for the '<em><b>Properties</b></em>' map feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REPORT__PROPERTIES = eINSTANCE.getReport_Properties();
-
-		/**
 		 * The meta object literal for the '<em><b>Sources</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference REPORT__SOURCES = eINSTANCE.getReport_Sources();
+
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportContainerImpl <em>Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportContainerImpl
+		 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getReportContainer()
+		 * @generated
+		 */
+		EClass REPORT_CONTAINER = eINSTANCE.getReportContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Content</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REPORT_CONTAINER__CONTENT = eINSTANCE.getReportContainer_Content();
 
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.NodeImpl <em>Node</em>}' class.

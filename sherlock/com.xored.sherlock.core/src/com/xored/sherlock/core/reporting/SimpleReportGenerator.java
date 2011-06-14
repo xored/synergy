@@ -28,13 +28,6 @@ public class SimpleReportGenerator {
 			appendTabs(builder, 0).append("Category:" + category.getName())
 					.append(LINE_SEPARATOR);
 		}
-
-		EMap<String, String> list = report.getProperties();
-		for (String key : list.keySet()) {
-			appendTabs(builder, 0).append(key).append("=")
-					.append(list.get(key)).append(LINE_SEPARATOR);
-		}
-
 		printNode(nodes, builder, 1);
 		return builder.toString();
 	}
@@ -74,8 +67,9 @@ public class SimpleReportGenerator {
 		stream.append(" <" + child.getTime() + " ");
 		boolean needPre = true;
 		if (child.getData() != null) {
-			stream.append("object:");
-			toString(stream, tabs + 1, child.getData()).append(LINE_SEPARATOR);
+			stream.append("object:%").append(LINE_SEPARATOR);
+			toString(stream, tabs + 1, child.getData()).append("%").append(
+					LINE_SEPARATOR);
 		} else {
 			needPre = false;
 		}
@@ -137,25 +131,28 @@ public class SimpleReportGenerator {
 			if (eGet != null && needArg) {
 				appendTabs(builder, tabs).append(f.getName()).append('=');
 				if (eGet instanceof EObject) {
-					builder.append('{');
+					builder.append('{').append(LINE_SEPARATOR);
 					toString(builder, tabs + 1, (EObject) eGet,
 							"eFactoryInstance").append('}');
 				} else if (eGet instanceof EList) {
 					EList l = (EList) eGet;
+					builder.append('[');
 					for (int i = 0; i < l.size(); i++) {
 						Object va = l.get(i);
 						if (va instanceof EObject) {
-							appendTabs(builder, tabs).append('{').append(
-									LINE_SEPARATOR);
-							toString(builder, tabs + 1, (EObject) va,
+							if (i != 0) {
+								appendTabs(builder, tabs + 2);
+							}
+							builder.append('{').append(LINE_SEPARATOR);
+							toString(builder, tabs + 4, (EObject) va,
 									"eFactoryInstance");
-							appendTabs(builder, tabs).append('}').append(
+							appendTabs(builder, tabs + 2).append('}').append(
 									LINE_SEPARATOR);
 						}
 					}
+					builder.append(']');
 				} else {
-					builder.append('{').append(eGet).append('}')
-							.append(LINE_SEPARATOR);
+					builder.append(eGet).append(LINE_SEPARATOR);
 				}
 			}
 		}

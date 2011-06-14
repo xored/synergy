@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Report#getRoot <em>Root</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Report#getCategories <em>Categories</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Report#getProperties <em>Properties</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Report#getSources <em>Sources</em>}</li>
  * </ul>
  * </p>
@@ -76,23 +75,6 @@ public interface Report extends EObject {
 	 * @generated
 	 */
 	EList<Category> getCategories();
-
-	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' map.
-	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link java.lang.String},
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Properties</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Properties</em>' map.
-	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getReport_Properties()
-	 * @model mapType="com.xored.sherlock.core.model.sherlock.report.PropertyMap<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>"
-	 * @generated
-	 */
-	EMap<String, String> getProperties();
 
 	/**
 	 * Returns the value of the '<em><b>Sources</b></em>' containment reference list.
