@@ -54,6 +54,7 @@ public class ReportBuilder implements IReportBuilder {
 			this.currentNode.getChildren().add(nde);
 			this.currentNode = nde;
 		}
+		doSave();
 		return nde;
 	}
 
@@ -92,6 +93,7 @@ public class ReportBuilder implements IReportBuilder {
 				currentNode = currentNode.getParent();
 			}
 		}
+		doSave();
 	}
 
 	// / Customization
@@ -107,8 +109,13 @@ public class ReportBuilder implements IReportBuilder {
 		synchronized (currentNode) {
 			currentNode.getEvents().add(event);
 		}
-
+		doSave();
 		return event;
+	}
+
+	public void doSave() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -118,6 +125,7 @@ public class ReportBuilder implements IReportBuilder {
 		synchronized (currentNode) {
 			currentNode.getSnapshots().add(snapshot);
 		}
+		doSave();
 		return snapshot;
 	}
 
@@ -131,6 +139,7 @@ public class ReportBuilder implements IReportBuilder {
 						.takeSnapshot(this, lid, type);
 			}
 		}
+		doSave();
 	}
 
 	public void registerProviders(String... id) {

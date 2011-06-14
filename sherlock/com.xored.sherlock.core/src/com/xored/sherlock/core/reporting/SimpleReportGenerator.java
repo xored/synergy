@@ -111,6 +111,9 @@ public class SimpleReportGenerator {
 
 	public StringBuilder toString(StringBuilder builder, int tabs, EObject obj,
 			String... ignores) {
+		if(obj == null) {
+			return builder;
+		}
 		EClass eClass = obj.eClass();
 		EList<EStructuralFeature> features = eClass.getEAllStructuralFeatures();
 		for (EStructuralFeature f : features) {
