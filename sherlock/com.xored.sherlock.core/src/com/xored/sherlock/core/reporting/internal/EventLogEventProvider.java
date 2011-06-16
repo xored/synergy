@@ -3,6 +3,7 @@ package com.xored.sherlock.core.reporting.internal;
 import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
 
+import com.xored.sherlock.core.IEventProviders;
 import com.xored.sherlock.core.SherlockCore;
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.reporting.AbstractEventProvider;
@@ -11,7 +12,7 @@ import com.xored.sherlock.core.reporting.IReportBuilder;
 
 public class EventLogEventProvider extends AbstractEventProvider implements
 		IEventProvider, ILogListener {
-	private static final String LOG_CATEGORY = "com.xored.sherlock.core.event.provider";
+	private static final String LOG_CATEGORY = IEventProviders.EVENT_CATEGORY;
 
 	public EventLogEventProvider() {
 		SherlockCore.addLogListener(this, null, null);
