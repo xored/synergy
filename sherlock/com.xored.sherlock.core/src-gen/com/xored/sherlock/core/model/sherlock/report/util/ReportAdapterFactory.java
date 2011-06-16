@@ -106,6 +106,10 @@ public class ReportAdapterFactory extends AdapterFactoryImpl {
 				return createSnaphotAdapter();
 			}
 			@Override
+			public Adapter caseReportBuilderStore(ReportBuilderStore object) {
+				return createReportBuilderStoreAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -234,6 +238,20 @@ public class ReportAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSnaphotAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore <em>Builder Store</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore
+	 * @generated
+	 */
+	public Adapter createReportBuilderStoreAdapter() {
 		return null;
 	}
 

@@ -484,6 +484,44 @@ public interface ReportPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportBuilderStoreImpl <em>Builder Store</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportBuilderStoreImpl
+	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getReportBuilderStore()
+	 * @generated
+	 */
+	int REPORT_BUILDER_STORE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Report</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPORT_BUILDER_STORE__REPORT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Current Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPORT_BUILDER_STORE__CURRENT_NODE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Builder Store</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPORT_BUILDER_STORE_FEATURE_COUNT = 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.report.Report <em>Report</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -896,6 +934,38 @@ public interface ReportPackage extends EPackage {
 	EReference getSnaphot_Data();
 
 	/**
+	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore <em>Builder Store</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Builder Store</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore
+	 * @generated
+	 */
+	EClass getReportBuilderStore();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore#getReport <em>Report</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Report</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore#getReport()
+	 * @see #getReportBuilderStore()
+	 * @generated
+	 */
+	EReference getReportBuilderStore_Report();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore#getCurrentNode <em>Current Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Current Node</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore#getCurrentNode()
+	 * @see #getReportBuilderStore()
+	 * @generated
+	 */
+	EReference getReportBuilderStore_CurrentNode();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1236,6 +1306,32 @@ public interface ReportPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SNAPHOT__DATA = eINSTANCE.getSnaphot_Data();
+
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportBuilderStoreImpl <em>Builder Store</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportBuilderStoreImpl
+		 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getReportBuilderStore()
+		 * @generated
+		 */
+		EClass REPORT_BUILDER_STORE = eINSTANCE.getReportBuilderStore();
+
+		/**
+		 * The meta object literal for the '<em><b>Report</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPORT_BUILDER_STORE__REPORT = eINSTANCE.getReportBuilderStore_Report();
+
+		/**
+		 * The meta object literal for the '<em><b>Current Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPORT_BUILDER_STORE__CURRENT_NODE = eINSTANCE.getReportBuilderStore_CurrentNode();
 
 	}
 

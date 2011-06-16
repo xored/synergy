@@ -114,8 +114,6 @@ public class ReportBuilder implements IReportBuilder {
 	}
 
 	public void doSave() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -160,5 +158,10 @@ public class ReportBuilder implements IReportBuilder {
 				EventProviderManager.getInstance().unregister(this, lid);
 			}
 		}
+	}
+
+	public void setReport(Report eObject, Node node) {
+		this.report = eObject;
+		this.currentNode = node;
 	}
 }

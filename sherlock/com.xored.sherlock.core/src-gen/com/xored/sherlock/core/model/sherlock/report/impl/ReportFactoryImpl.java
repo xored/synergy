@@ -70,6 +70,7 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory {
 			case ReportPackage.EVENT_SOURCE: return createEventSource();
 			case ReportPackage.PROPERTY_MAP: return (EObject)createPropertyMap();
 			case ReportPackage.SNAPHOT: return createSnaphot();
+			case ReportPackage.REPORT_BUILDER_STORE: return createReportBuilderStore();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -153,6 +154,16 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory {
 	public Snaphot createSnaphot() {
 		SnaphotImpl snaphot = new SnaphotImpl();
 		return snaphot;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReportBuilderStore createReportBuilderStore() {
+		ReportBuilderStoreImpl reportBuilderStore = new ReportBuilderStoreImpl();
+		return reportBuilderStore;
 	}
 
 	/**

@@ -90,6 +90,15 @@ public interface ReportFactory extends EFactory {
 	Snaphot createSnaphot();
 
 	/**
+	 * Returns a new object of class '<em>Builder Store</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Builder Store</em>'.
+	 * @generated
+	 */
+	ReportBuilderStore createReportBuilderStore();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

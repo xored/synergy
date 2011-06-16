@@ -66,4 +66,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReportBuilderStore">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="report" eType="#//Report"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentNode" eType="#//Node"/>
+  </eClassifiers>
 </ecore:EPackage>

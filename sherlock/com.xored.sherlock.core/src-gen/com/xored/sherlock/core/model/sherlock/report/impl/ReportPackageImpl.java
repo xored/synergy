@@ -11,6 +11,7 @@ import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.EventSource;
 import com.xored.sherlock.core.model.sherlock.report.Node;
 import com.xored.sherlock.core.model.sherlock.report.Report;
+import com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore;
 import com.xored.sherlock.core.model.sherlock.report.ReportContainer;
 import com.xored.sherlock.core.model.sherlock.report.ReportFactory;
 import com.xored.sherlock.core.model.sherlock.report.ReportPackage;
@@ -87,6 +88,13 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * @generated
 	 */
 	private EClass snaphotEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass reportBuilderStoreEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -496,6 +504,33 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getReportBuilderStore() {
+		return reportBuilderStoreEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReportBuilderStore_Report() {
+		return (EReference)reportBuilderStoreEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReportBuilderStore_CurrentNode() {
+		return (EReference)reportBuilderStoreEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ReportFactory getReportFactory() {
 		return (ReportFactory)getEFactoryInstance();
 	}
@@ -564,6 +599,10 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 		createEReference(snaphotEClass, SNAPHOT__CATEGORY);
 		createEReference(snaphotEClass, SNAPHOT__PROPERTIES);
 		createEReference(snaphotEClass, SNAPHOT__DATA);
+
+		reportBuilderStoreEClass = createEClass(REPORT_BUILDER_STORE);
+		createEReference(reportBuilderStoreEClass, REPORT_BUILDER_STORE__REPORT);
+		createEReference(reportBuilderStoreEClass, REPORT_BUILDER_STORE__CURRENT_NODE);
 	}
 
 	/**
@@ -641,6 +680,10 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 		initEReference(getSnaphot_Category(), this.getCategory(), null, "category", null, 0, 1, Snaphot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSnaphot_Properties(), this.getPropertyMap(), null, "properties", null, 0, -1, Snaphot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSnaphot_Data(), ecorePackage.getEObject(), null, "data", null, 0, 1, Snaphot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(reportBuilderStoreEClass, ReportBuilderStore.class, "ReportBuilderStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReportBuilderStore_Report(), this.getReport(), null, "report", null, 0, 1, ReportBuilderStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReportBuilderStore_CurrentNode(), this.getNode(), null, "currentNode", null, 0, 1, ReportBuilderStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -136,6 +136,12 @@ public class ReportSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ReportPackage.REPORT_BUILDER_STORE: {
+				ReportBuilderStore reportBuilderStore = (ReportBuilderStore)theEObject;
+				T result = caseReportBuilderStore(reportBuilderStore);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -257,6 +263,21 @@ public class ReportSwitch<T> {
 	 * @generated
 	 */
 	public T caseSnaphot(Snaphot object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Builder Store</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Builder Store</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReportBuilderStore(ReportBuilderStore object) {
 		return null;
 	}
 
