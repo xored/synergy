@@ -81,7 +81,7 @@ public class SnaphotImpl extends EObjectImpl implements Snaphot {
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, String> properties;
+	protected EMap<String, EObject> properties;
 
 	/**
 	 * The cached value of the '{@link #getData() <em>Data</em>}' containment reference.
@@ -176,9 +176,9 @@ public class SnaphotImpl extends EObjectImpl implements Snaphot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, String> getProperties() {
+	public EMap<String, EObject> getProperties() {
 		if (properties == null) {
-			properties = new EcoreEMap<String,String>(ReportPackage.Literals.PROPERTY_MAP, PropertyMapImpl.class, this, ReportPackage.SNAPHOT__PROPERTIES);
+			properties = new EcoreEMap<String,EObject>(ReportPackage.Literals.PROPERTY_MAP, PropertyMapImpl.class, this, ReportPackage.SNAPHOT__PROPERTIES);
 		}
 		return properties;
 	}

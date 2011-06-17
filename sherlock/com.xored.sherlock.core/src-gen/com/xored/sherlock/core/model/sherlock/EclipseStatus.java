@@ -21,9 +21,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getCode <em>Code</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getMessage <em>Message</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getPlugin <em>Plugin</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getSevirity <em>Sevirity</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getSeverity <em>Severity</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getException <em>Exception</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getFeatureGuess <em>Feature Guess</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getThreadName <em>Thread Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -127,30 +128,30 @@ public interface EclipseStatus extends EObject {
 	void setPlugin(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Sevirity</b></em>' attribute.
+	 * Returns the value of the '<em><b>Severity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sevirity</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Severity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sevirity</em>' attribute.
-	 * @see #setSevirity(int)
-	 * @see com.xored.sherlock.core.model.sherlock.SherlockPackage#getEclipseStatus_Sevirity()
+	 * @return the value of the '<em>Severity</em>' attribute.
+	 * @see #setSeverity(int)
+	 * @see com.xored.sherlock.core.model.sherlock.SherlockPackage#getEclipseStatus_Severity()
 	 * @model
 	 * @generated
 	 */
-	int getSevirity();
+	int getSeverity();
 
 	/**
-	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getSevirity <em>Sevirity</em>}' attribute.
+	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getSeverity <em>Severity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sevirity</em>' attribute.
-	 * @see #getSevirity()
+	 * @param value the new value of the '<em>Severity</em>' attribute.
+	 * @see #getSeverity()
 	 * @generated
 	 */
-	void setSevirity(int value);
+	void setSeverity(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Exception</b></em>' containment reference.
@@ -193,5 +194,31 @@ public interface EclipseStatus extends EObject {
 	 * @generated
 	 */
 	EList<String> getFeatureGuess();
+
+	/**
+	 * Returns the value of the '<em><b>Thread Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Thread Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Thread Name</em>' attribute.
+	 * @see #setThreadName(String)
+	 * @see com.xored.sherlock.core.model.sherlock.SherlockPackage#getEclipseStatus_ThreadName()
+	 * @model
+	 * @generated
+	 */
+	String getThreadName();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getThreadName <em>Thread Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Thread Name</em>' attribute.
+	 * @see #getThreadName()
+	 * @generated
+	 */
+	void setThreadName(String value);
 
 } // EclipseStatus

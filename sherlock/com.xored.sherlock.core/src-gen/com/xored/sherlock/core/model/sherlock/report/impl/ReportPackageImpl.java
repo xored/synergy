@@ -450,8 +450,8 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPropertyMap_Value() {
-		return (EAttribute)propertyMapEClass.getEStructuralFeatures().get(1);
+	public EReference getPropertyMap_Value() {
+		return (EReference)propertyMapEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -592,7 +592,7 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 
 		propertyMapEClass = createEClass(PROPERTY_MAP);
 		createEAttribute(propertyMapEClass, PROPERTY_MAP__KEY);
-		createEAttribute(propertyMapEClass, PROPERTY_MAP__VALUE);
+		createEReference(propertyMapEClass, PROPERTY_MAP__VALUE);
 
 		snaphotEClass = createEClass(SNAPHOT);
 		createEAttribute(snaphotEClass, SNAPHOT__TIME);
@@ -673,7 +673,7 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 
 		initEClass(propertyMapEClass, Map.Entry.class, "PropertyMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPropertyMap_Key(), ecorePackage.getEString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPropertyMap_Value(), ecorePackage.getEString(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyMap_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(snaphotEClass, Snaphot.class, "Snaphot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSnaphot_Time(), ecorePackage.getELong(), "time", null, 0, 1, Snaphot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

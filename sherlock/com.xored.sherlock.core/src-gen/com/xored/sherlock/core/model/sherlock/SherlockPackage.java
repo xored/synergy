@@ -683,13 +683,13 @@ public interface SherlockPackage extends EPackage {
 	int ECLIPSE_STATUS__PLUGIN = 3;
 
 	/**
-	 * The feature id for the '<em><b>Sevirity</b></em>' attribute.
+	 * The feature id for the '<em><b>Severity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ECLIPSE_STATUS__SEVIRITY = 4;
+	int ECLIPSE_STATUS__SEVERITY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Exception</b></em>' containment reference.
@@ -710,13 +710,22 @@ public interface SherlockPackage extends EPackage {
 	int ECLIPSE_STATUS__FEATURE_GUESS = 6;
 
 	/**
+	 * The feature id for the '<em><b>Thread Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_STATUS__THREAD_NAME = 7;
+
+	/**
 	 * The number of structural features of the '<em>Eclipse Status</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ECLIPSE_STATUS_FEATURE_COUNT = 7;
+	int ECLIPSE_STATUS_FEATURE_COUNT = 8;
 
 
 	/**
@@ -1406,15 +1415,15 @@ public interface SherlockPackage extends EPackage {
 	EAttribute getEclipseStatus_Plugin();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getSevirity <em>Sevirity</em>}'.
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getSeverity <em>Severity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Sevirity</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.EclipseStatus#getSevirity()
+	 * @return the meta object for the attribute '<em>Severity</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipseStatus#getSeverity()
 	 * @see #getEclipseStatus()
 	 * @generated
 	 */
-	EAttribute getEclipseStatus_Sevirity();
+	EAttribute getEclipseStatus_Severity();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getException <em>Exception</em>}'.
@@ -1437,6 +1446,17 @@ public interface SherlockPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEclipseStatus_FeatureGuess();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getThreadName <em>Thread Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Thread Name</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipseStatus#getThreadName()
+	 * @see #getEclipseStatus()
+	 * @generated
+	 */
+	EAttribute getEclipseStatus_ThreadName();
 
 	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.EclipsePreference <em>Eclipse Preference</em>}'.
@@ -1996,12 +2016,12 @@ public interface SherlockPackage extends EPackage {
 		EAttribute ECLIPSE_STATUS__PLUGIN = eINSTANCE.getEclipseStatus_Plugin();
 
 		/**
-		 * The meta object literal for the '<em><b>Sevirity</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Severity</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ECLIPSE_STATUS__SEVIRITY = eINSTANCE.getEclipseStatus_Sevirity();
+		EAttribute ECLIPSE_STATUS__SEVERITY = eINSTANCE.getEclipseStatus_Severity();
 
 		/**
 		 * The meta object literal for the '<em><b>Exception</b></em>' containment reference feature.
@@ -2018,6 +2038,14 @@ public interface SherlockPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ECLIPSE_STATUS__FEATURE_GUESS = eINSTANCE.getEclipseStatus_FeatureGuess();
+
+		/**
+		 * The meta object literal for the '<em><b>Thread Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ECLIPSE_STATUS__THREAD_NAME = eINSTANCE.getEclipseStatus_ThreadName();
 
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.impl.EclipsePreferenceImpl <em>Eclipse Preference</em>}' class.

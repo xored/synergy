@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<String,String> {
+public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<String,EObject> {
 	/**
 	 * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -58,24 +58,14 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 	protected String key = KEY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
+	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTypedValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTypedValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String value = VALUE_EDEFAULT;
+	protected EObject value;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,7 +112,7 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getTypedValue() {
+	public EObject getTypedValue() {
 		return value;
 	}
 
@@ -131,11 +121,47 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypedValue(String newValue) {
-		String oldValue = value;
+	public NotificationChain basicSetTypedValue(EObject newValue, NotificationChain msgs) {
+		EObject oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.PROPERTY_MAP__VALUE, oldValue, value));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReportPackage.PROPERTY_MAP__VALUE, oldValue, newValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTypedValue(EObject newValue) {
+		if (newValue != value) {
+			NotificationChain msgs = null;
+			if (value != null)
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReportPackage.PROPERTY_MAP__VALUE, null, msgs);
+			if (newValue != null)
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReportPackage.PROPERTY_MAP__VALUE, null, msgs);
+			msgs = basicSetTypedValue(newValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.PROPERTY_MAP__VALUE, newValue, newValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ReportPackage.PROPERTY_MAP__VALUE:
+				return basicSetTypedValue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -166,7 +192,7 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 				setTypedKey((String)newValue);
 				return;
 			case ReportPackage.PROPERTY_MAP__VALUE:
-				setTypedValue((String)newValue);
+				setTypedValue((EObject)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -184,7 +210,7 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 				setTypedKey(KEY_EDEFAULT);
 				return;
 			case ReportPackage.PROPERTY_MAP__VALUE:
-				setTypedValue(VALUE_EDEFAULT);
+				setTypedValue((EObject)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -201,7 +227,7 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 			case ReportPackage.PROPERTY_MAP__KEY:
 				return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
 			case ReportPackage.PROPERTY_MAP__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+				return value != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -218,8 +244,6 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (key: ");
 		result.append(key);
-		result.append(", value: ");
-		result.append(value);
 		result.append(')');
 		return result.toString();
 	}
@@ -276,7 +300,7 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
+	public EObject getValue() {
 		return getTypedValue();
 	}
 
@@ -285,8 +309,8 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String setValue(String value) {
-		String oldValue = getValue();
+	public EObject setValue(EObject value) {
+		EObject oldValue = getValue();
 		setTypedValue(value);
 		return oldValue;
 	}
@@ -297,9 +321,9 @@ public class PropertyMapImpl extends EObjectImpl implements BasicEMap.Entry<Stri
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EMap<String, String> getEMap() {
+	public EMap<String, EObject> getEMap() {
 		EObject container = eContainer();
-		return container == null ? null : (EMap<String, String>)container.eGet(eContainmentFeature());
+		return container == null ? null : (EMap<String, EObject>)container.eGet(eContainmentFeature());
 	}
 
 } //PropertyMapImpl

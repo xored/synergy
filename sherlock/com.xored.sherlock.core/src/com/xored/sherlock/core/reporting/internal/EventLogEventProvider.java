@@ -5,6 +5,7 @@ import org.eclipse.core.runtime.IStatus;
 
 import com.xored.sherlock.core.IEventProviders;
 import com.xored.sherlock.core.SherlockCore;
+import com.xored.sherlock.core.model.sherlock.EclipseStatus;
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.reporting.AbstractEventProvider;
 import com.xored.sherlock.core.reporting.IEventProvider;
@@ -28,10 +29,9 @@ public class EventLogEventProvider extends AbstractEventProvider implements
 		for (IReportBuilder builder : builders) {
 			Event event = builder.createEvent();
 			event.setCategory(builder.getCategory(LOG_CATEGORY));
-			event.setData(SherlockCore.convert(status));
-			event.getProperties().put("plugin", plugin);
-			event.getProperties().put("thread.name",
-					Thread.currentThread().getName());
+			EclipseStatus data = SherlockCore.convert(status);
+			event.setData(data);
+			data.setThreadName(Thread.currentThread().getName());
 		}
 	}
 

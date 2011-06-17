@@ -148,7 +148,7 @@ public class NodeImpl extends EObjectImpl implements Node {
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, String> properties;
+	protected EMap<String, EObject> properties;
 
 	/**
 	 * The cached value of the '{@link #getSnapshots() <em>Snapshots</em>}' containment reference list.
@@ -271,9 +271,9 @@ public class NodeImpl extends EObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, String> getProperties() {
+	public EMap<String, EObject> getProperties() {
 		if (properties == null) {
-			properties = new EcoreEMap<String,String>(ReportPackage.Literals.PROPERTY_MAP, PropertyMapImpl.class, this, ReportPackage.NODE__PROPERTIES);
+			properties = new EcoreEMap<String,EObject>(ReportPackage.Literals.PROPERTY_MAP, PropertyMapImpl.class, this, ReportPackage.NODE__PROPERTIES);
 		}
 		return properties;
 	}

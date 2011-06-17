@@ -409,7 +409,7 @@ public interface ReportPackage extends EPackage {
 	int PROPERTY_MAP__KEY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -852,7 +852,7 @@ public interface ReportPackage extends EPackage {
 	 * @return the meta object for class '<em>Property Map</em>'.
 	 * @see java.util.Map.Entry
 	 * @model keyDataType="org.eclipse.emf.ecore.EString"
-	 *        valueDataType="org.eclipse.emf.ecore.EString"
+	 *        valueType="org.eclipse.emf.ecore.EObject" valueContainment="true"
 	 * @generated
 	 */
 	EClass getPropertyMap();
@@ -869,15 +869,15 @@ public interface ReportPackage extends EPackage {
 	EAttribute getPropertyMap_Key();
 
 	/**
-	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @return the meta object for the containment reference '<em>Value</em>'.
 	 * @see java.util.Map.Entry
 	 * @see #getPropertyMap()
 	 * @generated
 	 */
-	EAttribute getPropertyMap_Value();
+	EReference getPropertyMap_Value();
 
 	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.report.Snaphot <em>Snaphot</em>}'.
@@ -1258,12 +1258,12 @@ public interface ReportPackage extends EPackage {
 		EAttribute PROPERTY_MAP__KEY = eINSTANCE.getPropertyMap_Key();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PROPERTY_MAP__VALUE = eINSTANCE.getPropertyMap_Value();
+		EReference PROPERTY_MAP__VALUE = eINSTANCE.getPropertyMap_Value();
 
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.SnaphotImpl <em>Snaphot</em>}' class.

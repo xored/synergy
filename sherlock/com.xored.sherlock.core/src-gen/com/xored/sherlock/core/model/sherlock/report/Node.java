@@ -153,7 +153,7 @@ public interface Node extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' map.
 	 * The key is of type {@link java.lang.String},
-	 * and the value is of type {@link java.lang.String},
+	 * and the value is of type {@link org.eclipse.emf.ecore.EObject},
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' reference list isn't clear,
@@ -162,10 +162,10 @@ public interface Node extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Properties</em>' map.
 	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getNode_Properties()
-	 * @model mapType="com.xored.sherlock.core.model.sherlock.report.PropertyMap<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>"
+	 * @model mapType="com.xored.sherlock.core.model.sherlock.report.PropertyMap<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EObject>"
 	 * @generated
 	 */
-	EMap<String, String> getProperties();
+	EMap<String, EObject> getProperties();
 
 	/**
 	 * Returns the value of the '<em><b>Parent</b></em>' container reference.

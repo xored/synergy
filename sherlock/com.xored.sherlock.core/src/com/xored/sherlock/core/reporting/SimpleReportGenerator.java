@@ -40,10 +40,10 @@ public class SimpleReportGenerator {
 						- infoNode.getStartTime()));
 		stream.append(" {").append(LINE_SEPARATOR);
 
-		EMap<String, String> list = infoNode.getProperties();
+		EMap<String, EObject> list = infoNode.getProperties();
 		for (String key : list.keySet()) {
 			appendTabs(stream, tabs + 1).append(key).append("=")
-					.append(list.get(key)).append(LINE_SEPARATOR);
+					.append(asValue(list.get(key))).append(LINE_SEPARATOR);
 		}
 		for (Node child : infoNode.getChildren()) {
 			printNode(child, stream, tabs + 2);
@@ -62,6 +62,12 @@ public class SimpleReportGenerator {
 		appendTabs(stream, tabs).append("}").append(LINE_SEPARATOR);
 	}
 
+	private String asValue(EObject eObject) {
+		StringBuilder b = new StringBuilder();
+		toString(b, 0, eObject);
+		return "(" + b.toString().replace("\n", "\\n") + ")";
+	}
+
 	private void printEvent(Event child, StringBuilder stream, int tabs) {
 		appendTabs(stream, tabs);
 		stream.append(" <" + child.getTime() + " ");
@@ -74,12 +80,12 @@ public class SimpleReportGenerator {
 			needPre = false;
 		}
 
-		EMap<String, String> list = child.getProperties();
+		EMap<String, EObject> list = child.getProperties();
 		String[] set = list.keySet().toArray(new String[list.size()]);
 		for (int i = 0; i < set.length; i++) {
 			String key = set[i];
 			StringBuilder a = needPre ? appendTabs(stream, tabs + 1) : stream;
-			a.append(key).append("=").append(list.get(key));
+			a.append(key).append("=").append(asValue(list.get(key)));
 			if (i != set.length - 1) {
 				stream.append(LINE_SEPARATOR);
 			}
@@ -94,10 +100,10 @@ public class SimpleReportGenerator {
 		stream.append(" object:").append(LINE_SEPARATOR);
 		toString(stream, tabs + 1, child.getData()).append(LINE_SEPARATOR);
 
-		EMap<String, String> list = child.getProperties();
+		EMap<String, EObject> list = child.getProperties();
 		for (String key : list.keySet()) {
 			appendTabs(stream, tabs + 1).append(key).append("=")
-					.append(list.get(key)).append(LINE_SEPARATOR);
+					.append(asValue(list.get(key))).append(LINE_SEPARATOR);
 		}
 		appendTabs(stream, tabs).append("%").append(LINE_SEPARATOR);
 	}
@@ -111,7 +117,7 @@ public class SimpleReportGenerator {
 
 	public StringBuilder toString(StringBuilder builder, int tabs, EObject obj,
 			String... ignores) {
-		if(obj == null) {
+		if (obj == null) {
 			return builder;
 		}
 		EClass eClass = obj.eClass();

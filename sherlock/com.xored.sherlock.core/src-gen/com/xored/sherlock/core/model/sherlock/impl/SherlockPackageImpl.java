@@ -708,7 +708,7 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEclipseStatus_Sevirity() {
+	public EAttribute getEclipseStatus_Severity() {
 		return (EAttribute)eclipseStatusEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -728,6 +728,15 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 	 */
 	public EAttribute getEclipseStatus_FeatureGuess() {
 		return (EAttribute)eclipseStatusEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEclipseStatus_ThreadName() {
+		return (EAttribute)eclipseStatusEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -862,9 +871,10 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__CODE);
 		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__MESSAGE);
 		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__PLUGIN);
-		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__SEVIRITY);
+		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__SEVERITY);
 		createEReference(eclipseStatusEClass, ECLIPSE_STATUS__EXCEPTION);
 		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__FEATURE_GUESS);
+		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__THREAD_NAME);
 
 		eclipsePreferenceEClass = createEClass(ECLIPSE_PREFERENCE);
 		createEAttribute(eclipsePreferenceEClass, ECLIPSE_PREFERENCE__NAME);
@@ -970,9 +980,10 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 		initEAttribute(getEclipseStatus_Code(), ecorePackage.getEInt(), "code", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEclipseStatus_Message(), ecorePackage.getEString(), "message", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEclipseStatus_Plugin(), ecorePackage.getEString(), "plugin", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEclipseStatus_Sevirity(), ecorePackage.getEInt(), "sevirity", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEclipseStatus_Severity(), ecorePackage.getEInt(), "severity", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEclipseStatus_Exception(), this.getJavaException(), null, "exception", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEclipseStatus_FeatureGuess(), ecorePackage.getEString(), "featureGuess", null, 0, -1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEclipseStatus_ThreadName(), ecorePackage.getEString(), "threadName", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eclipsePreferenceEClass, EclipsePreference.class, "EclipsePreference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEclipsePreference_Name(), ecorePackage.getEString(), "name", null, 0, 1, EclipsePreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

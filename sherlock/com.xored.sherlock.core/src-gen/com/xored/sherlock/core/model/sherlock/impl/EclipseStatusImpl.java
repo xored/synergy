@@ -35,9 +35,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getCode <em>Code</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getMessage <em>Message</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getPlugin <em>Plugin</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getSevirity <em>Sevirity</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getSeverity <em>Severity</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getException <em>Exception</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getFeatureGuess <em>Feature Guess</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getThreadName <em>Thread Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,24 +116,24 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 	protected String plugin = PLUGIN_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSevirity() <em>Sevirity</em>}' attribute.
+	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSevirity()
+	 * @see #getSeverity()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SEVIRITY_EDEFAULT = 0;
+	protected static final int SEVERITY_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getSevirity() <em>Sevirity</em>}' attribute.
+	 * The cached value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSevirity()
+	 * @see #getSeverity()
 	 * @generated
 	 * @ordered
 	 */
-	protected int sevirity = SEVIRITY_EDEFAULT;
+	protected int severity = SEVERITY_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getException() <em>Exception</em>}' containment reference.
@@ -153,6 +154,26 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 	 * @ordered
 	 */
 	protected EList<String> featureGuess;
+
+	/**
+	 * The default value of the '{@link #getThreadName() <em>Thread Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThreadName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String THREAD_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getThreadName() <em>Thread Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThreadName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String threadName = THREAD_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -253,8 +274,8 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSevirity() {
-		return sevirity;
+	public int getSeverity() {
+		return severity;
 	}
 
 	/**
@@ -262,11 +283,11 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSevirity(int newSevirity) {
-		int oldSevirity = sevirity;
-		sevirity = newSevirity;
+	public void setSeverity(int newSeverity) {
+		int oldSeverity = severity;
+		severity = newSeverity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SherlockPackage.ECLIPSE_STATUS__SEVIRITY, oldSevirity, sevirity));
+			eNotify(new ENotificationImpl(this, Notification.SET, SherlockPackage.ECLIPSE_STATUS__SEVERITY, oldSeverity, severity));
 	}
 
 	/**
@@ -329,6 +350,27 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getThreadName() {
+		return threadName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setThreadName(String newThreadName) {
+		String oldThreadName = threadName;
+		threadName = newThreadName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SherlockPackage.ECLIPSE_STATUS__THREAD_NAME, oldThreadName, threadName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -356,12 +398,14 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 				return getMessage();
 			case SherlockPackage.ECLIPSE_STATUS__PLUGIN:
 				return getPlugin();
-			case SherlockPackage.ECLIPSE_STATUS__SEVIRITY:
-				return getSevirity();
+			case SherlockPackage.ECLIPSE_STATUS__SEVERITY:
+				return getSeverity();
 			case SherlockPackage.ECLIPSE_STATUS__EXCEPTION:
 				return getException();
 			case SherlockPackage.ECLIPSE_STATUS__FEATURE_GUESS:
 				return getFeatureGuess();
+			case SherlockPackage.ECLIPSE_STATUS__THREAD_NAME:
+				return getThreadName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -388,8 +432,8 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 			case SherlockPackage.ECLIPSE_STATUS__PLUGIN:
 				setPlugin((String)newValue);
 				return;
-			case SherlockPackage.ECLIPSE_STATUS__SEVIRITY:
-				setSevirity((Integer)newValue);
+			case SherlockPackage.ECLIPSE_STATUS__SEVERITY:
+				setSeverity((Integer)newValue);
 				return;
 			case SherlockPackage.ECLIPSE_STATUS__EXCEPTION:
 				setException((JavaException)newValue);
@@ -397,6 +441,9 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 			case SherlockPackage.ECLIPSE_STATUS__FEATURE_GUESS:
 				getFeatureGuess().clear();
 				getFeatureGuess().addAll((Collection<? extends String>)newValue);
+				return;
+			case SherlockPackage.ECLIPSE_STATUS__THREAD_NAME:
+				setThreadName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -422,14 +469,17 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 			case SherlockPackage.ECLIPSE_STATUS__PLUGIN:
 				setPlugin(PLUGIN_EDEFAULT);
 				return;
-			case SherlockPackage.ECLIPSE_STATUS__SEVIRITY:
-				setSevirity(SEVIRITY_EDEFAULT);
+			case SherlockPackage.ECLIPSE_STATUS__SEVERITY:
+				setSeverity(SEVERITY_EDEFAULT);
 				return;
 			case SherlockPackage.ECLIPSE_STATUS__EXCEPTION:
 				setException((JavaException)null);
 				return;
 			case SherlockPackage.ECLIPSE_STATUS__FEATURE_GUESS:
 				getFeatureGuess().clear();
+				return;
+			case SherlockPackage.ECLIPSE_STATUS__THREAD_NAME:
+				setThreadName(THREAD_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -451,12 +501,14 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
 			case SherlockPackage.ECLIPSE_STATUS__PLUGIN:
 				return PLUGIN_EDEFAULT == null ? plugin != null : !PLUGIN_EDEFAULT.equals(plugin);
-			case SherlockPackage.ECLIPSE_STATUS__SEVIRITY:
-				return sevirity != SEVIRITY_EDEFAULT;
+			case SherlockPackage.ECLIPSE_STATUS__SEVERITY:
+				return severity != SEVERITY_EDEFAULT;
 			case SherlockPackage.ECLIPSE_STATUS__EXCEPTION:
 				return exception != null;
 			case SherlockPackage.ECLIPSE_STATUS__FEATURE_GUESS:
 				return featureGuess != null && !featureGuess.isEmpty();
+			case SherlockPackage.ECLIPSE_STATUS__THREAD_NAME:
+				return THREAD_NAME_EDEFAULT == null ? threadName != null : !THREAD_NAME_EDEFAULT.equals(threadName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -477,10 +529,12 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 		result.append(message);
 		result.append(", plugin: ");
 		result.append(plugin);
-		result.append(", sevirity: ");
-		result.append(sevirity);
+		result.append(", severity: ");
+		result.append(severity);
 		result.append(", featureGuess: ");
 		result.append(featureGuess);
+		result.append(", threadName: ");
+		result.append(threadName);
 		result.append(')');
 		return result.toString();
 	}

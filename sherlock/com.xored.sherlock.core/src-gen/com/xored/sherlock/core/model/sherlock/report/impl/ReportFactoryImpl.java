@@ -141,7 +141,7 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map.Entry<String, String> createPropertyMap() {
+	public Map.Entry<String, EObject> createPropertyMap() {
 		PropertyMapImpl propertyMap = new PropertyMapImpl();
 		return propertyMap;
 	}

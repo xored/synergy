@@ -125,7 +125,7 @@ public class ReportSwitch<T> {
 				return result;
 			}
 			case ReportPackage.PROPERTY_MAP: {
-				@SuppressWarnings("unchecked") Map.Entry<String, String> propertyMap = (Map.Entry<String, String>)theEObject;
+				@SuppressWarnings("unchecked") Map.Entry<String, EObject> propertyMap = (Map.Entry<String, EObject>)theEObject;
 				T result = casePropertyMap(propertyMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -247,7 +247,7 @@ public class ReportSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePropertyMap(Map.Entry<String, String> object) {
+	public T casePropertyMap(Map.Entry<String, EObject> object) {
 		return null;
 	}
 

@@ -87,7 +87,7 @@ public class CategoryImpl extends EObjectImpl implements Category {
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, String> properties;
+	protected EMap<String, EObject> properties;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,9 +155,9 @@ public class CategoryImpl extends EObjectImpl implements Category {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, String> getProperties() {
+	public EMap<String, EObject> getProperties() {
 		if (properties == null) {
-			properties = new EcoreEMap<String,String>(ReportPackage.Literals.PROPERTY_MAP, PropertyMapImpl.class, this, ReportPackage.CATEGORY__PROPERTIES);
+			properties = new EcoreEMap<String,EObject>(ReportPackage.Literals.PROPERTY_MAP, PropertyMapImpl.class, this, ReportPackage.CATEGORY__PROPERTIES);
 		}
 		return properties;
 	}

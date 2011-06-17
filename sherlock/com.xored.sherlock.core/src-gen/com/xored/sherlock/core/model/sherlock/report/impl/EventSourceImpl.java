@@ -70,7 +70,7 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 	 * @generated
 	 * @ordered
 	 */
-	protected EMap<String, String> properties;
+	protected EMap<String, EObject> properties;
 
 	/**
 	 * The cached value of the '{@link #getEvents() <em>Events</em>}' reference.
@@ -127,9 +127,9 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EMap<String, String> getProperties() {
+	public EMap<String, EObject> getProperties() {
 		if (properties == null) {
-			properties = new EcoreEMap<String,String>(ReportPackage.Literals.PROPERTY_MAP, PropertyMapImpl.class, this, ReportPackage.EVENT_SOURCE__PROPERTIES);
+			properties = new EcoreEMap<String,EObject>(ReportPackage.Literals.PROPERTY_MAP, PropertyMapImpl.class, this, ReportPackage.EVENT_SOURCE__PROPERTIES);
 		}
 		return properties;
 	}

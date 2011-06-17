@@ -86,7 +86,7 @@ public class SherlockCore extends Plugin {
 			}
 		}
 
-		eclipseStatus.setSevirity(status.getSeverity());
+		eclipseStatus.setSeverity(status.getSeverity());
 
 		final Throwable exception = status.getException();
 		if (exception != null) {

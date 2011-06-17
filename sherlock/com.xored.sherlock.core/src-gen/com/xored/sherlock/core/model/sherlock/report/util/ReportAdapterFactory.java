@@ -98,7 +98,7 @@ public class ReportAdapterFactory extends AdapterFactoryImpl {
 				return createEventSourceAdapter();
 			}
 			@Override
-			public Adapter casePropertyMap(Map.Entry<String, String> object) {
+			public Adapter casePropertyMap(Map.Entry<String, EObject> object) {
 				return createPropertyMapAdapter();
 			}
 			@Override
