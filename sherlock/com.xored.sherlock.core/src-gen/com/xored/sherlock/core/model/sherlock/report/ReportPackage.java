@@ -372,7 +372,7 @@ public interface ReportPackage extends EPackage {
 	int EVENT_SOURCE__PROPERTIES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Events</b></em>' reference.
+	 * The feature id for the '<em><b>Events</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -835,10 +835,10 @@ public interface ReportPackage extends EPackage {
 	EReference getEventSource_Properties();
 
 	/**
-	 * Returns the meta object for the reference '{@link com.xored.sherlock.core.model.sherlock.report.EventSource#getEvents <em>Events</em>}'.
+	 * Returns the meta object for the reference list '{@link com.xored.sherlock.core.model.sherlock.report.EventSource#getEvents <em>Events</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Events</em>'.
+	 * @return the meta object for the reference list '<em>Events</em>'.
 	 * @see com.xored.sherlock.core.model.sherlock.report.EventSource#getEvents()
 	 * @see #getEventSource()
 	 * @generated
@@ -1232,7 +1232,7 @@ public interface ReportPackage extends EPackage {
 		EReference EVENT_SOURCE__PROPERTIES = eINSTANCE.getEventSource_Properties();
 
 		/**
-		 * The meta object literal for the '<em><b>Events</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Events</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -10,9 +10,11 @@ import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.EventSource;
 import com.xored.sherlock.core.model.sherlock.report.ReportPackage;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 import org.eclipse.emf.ecore.EClass;
@@ -23,6 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -73,14 +76,14 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 	protected EMap<String, EObject> properties;
 
 	/**
-	 * The cached value of the '{@link #getEvents() <em>Events</em>}' reference.
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEvents()
 	 * @generated
 	 * @ordered
 	 */
-	protected Event events;
+	protected EList<Event> events;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,14 +142,9 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Event getEvents() {
-		if (events != null && events.eIsProxy()) {
-			InternalEObject oldEvents = (InternalEObject)events;
-			events = (Event)eResolveProxy(oldEvents);
-			if (events != oldEvents) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReportPackage.EVENT_SOURCE__EVENTS, oldEvents, events));
-			}
+	public EList<Event> getEvents() {
+		if (events == null) {
+			events = new EObjectWithInverseResolvingEList<Event>(Event.class, this, ReportPackage.EVENT_SOURCE__EVENTS, ReportPackage.EVENT__SOURCE);
 		}
 		return events;
 	}
@@ -156,56 +154,12 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Event basicGetEvents() {
-		return events;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetEvents(Event newEvents, NotificationChain msgs) {
-		Event oldEvents = events;
-		events = newEvents;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReportPackage.EVENT_SOURCE__EVENTS, oldEvents, newEvents);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEvents(Event newEvents) {
-		if (newEvents != events) {
-			NotificationChain msgs = null;
-			if (events != null)
-				msgs = ((InternalEObject)events).eInverseRemove(this, ReportPackage.EVENT__SOURCE, Event.class, msgs);
-			if (newEvents != null)
-				msgs = ((InternalEObject)newEvents).eInverseAdd(this, ReportPackage.EVENT__SOURCE, Event.class, msgs);
-			msgs = basicSetEvents(newEvents, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.EVENT_SOURCE__EVENTS, newEvents, newEvents));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ReportPackage.EVENT_SOURCE__EVENTS:
-				if (events != null)
-					msgs = ((InternalEObject)events).eInverseRemove(this, ReportPackage.EVENT__SOURCE, Event.class, msgs);
-				return basicSetEvents((Event)otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEvents()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -221,7 +175,7 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 			case ReportPackage.EVENT_SOURCE__PROPERTIES:
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 			case ReportPackage.EVENT_SOURCE__EVENTS:
-				return basicSetEvents(null, msgs);
+				return ((InternalEList<?>)getEvents()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -240,8 +194,7 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 				if (coreType) return getProperties();
 				else return getProperties().map();
 			case ReportPackage.EVENT_SOURCE__EVENTS:
-				if (resolve) return getEvents();
-				return basicGetEvents();
+				return getEvents();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -251,6 +204,7 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -261,7 +215,8 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 				((EStructuralFeature.Setting)getProperties()).set(newValue);
 				return;
 			case ReportPackage.EVENT_SOURCE__EVENTS:
-				setEvents((Event)newValue);
+				getEvents().clear();
+				getEvents().addAll((Collection<? extends Event>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -282,7 +237,7 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 				getProperties().clear();
 				return;
 			case ReportPackage.EVENT_SOURCE__EVENTS:
-				setEvents((Event)null);
+				getEvents().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -301,7 +256,7 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 			case ReportPackage.EVENT_SOURCE__PROPERTIES:
 				return properties != null && !properties.isEmpty();
 			case ReportPackage.EVENT_SOURCE__EVENTS:
-				return events != null;
+				return events != null && !events.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

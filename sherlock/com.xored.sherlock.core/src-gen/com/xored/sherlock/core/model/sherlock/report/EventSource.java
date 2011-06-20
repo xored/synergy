@@ -6,6 +6,7 @@
  */
 package com.xored.sherlock.core.model.sherlock.report;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 
 import org.eclipse.emf.ecore.EObject;
@@ -73,7 +74,8 @@ public interface EventSource extends EObject {
 	EMap<String, EObject> getProperties();
 
 	/**
-	 * Returns the value of the '<em><b>Events</b></em>' reference.
+	 * Returns the value of the '<em><b>Events</b></em>' reference list.
+	 * The list contents are of type {@link com.xored.sherlock.core.model.sherlock.report.Event}.
 	 * It is bidirectional and its opposite is '{@link com.xored.sherlock.core.model.sherlock.report.Event#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -81,23 +83,12 @@ public interface EventSource extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Events</em>' reference.
-	 * @see #setEvents(Event)
+	 * @return the value of the '<em>Events</em>' reference list.
 	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getEventSource_Events()
 	 * @see com.xored.sherlock.core.model.sherlock.report.Event#getSource
 	 * @model opposite="source"
 	 * @generated
 	 */
-	Event getEvents();
-
-	/**
-	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.report.EventSource#getEvents <em>Events</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Events</em>' reference.
-	 * @see #getEvents()
-	 * @generated
-	 */
-	void setEvents(Event value);
+	EList<Event> getEvents();
 
 } // EventSource

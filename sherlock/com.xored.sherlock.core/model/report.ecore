@@ -51,8 +51,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//PropertyMap" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="events" eType="#//Event"
-        eOpposite="#//Event/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+        eType="#//Event" eOpposite="#//Event/source"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
