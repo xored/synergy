@@ -130,7 +130,6 @@ public interface Event extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link com.xored.sherlock.core.model.sherlock.report.EventSource#getEvents <em>Events</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear,
@@ -140,8 +139,7 @@ public interface Event extends EObject {
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(EventSource)
 	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getEvent_Source()
-	 * @see com.xored.sherlock.core.model.sherlock.report.EventSource#getEvents
-	 * @model opposite="events"
+	 * @model
 	 * @generated
 	 */
 	EventSource getSource();

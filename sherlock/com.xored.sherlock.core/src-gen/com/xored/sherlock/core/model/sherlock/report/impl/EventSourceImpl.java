@@ -38,7 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventSourceImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventSourceImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventSourceImpl#getEvents <em>Events</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,16 +73,6 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 	 * @ordered
 	 */
 	protected EMap<String, EObject> properties;
-
-	/**
-	 * The cached value of the '{@link #getEvents() <em>Events</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEvents()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Event> events;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,40 +131,11 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Event> getEvents() {
-		if (events == null) {
-			events = new EObjectWithInverseResolvingEList<Event>(Event.class, this, ReportPackage.EVENT_SOURCE__EVENTS, ReportPackage.EVENT__SOURCE);
-		}
-		return events;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ReportPackage.EVENT_SOURCE__EVENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEvents()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ReportPackage.EVENT_SOURCE__PROPERTIES:
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
-			case ReportPackage.EVENT_SOURCE__EVENTS:
-				return ((InternalEList<?>)getEvents()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -193,8 +153,6 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 			case ReportPackage.EVENT_SOURCE__PROPERTIES:
 				if (coreType) return getProperties();
 				else return getProperties().map();
-			case ReportPackage.EVENT_SOURCE__EVENTS:
-				return getEvents();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -214,10 +172,6 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 			case ReportPackage.EVENT_SOURCE__PROPERTIES:
 				((EStructuralFeature.Setting)getProperties()).set(newValue);
 				return;
-			case ReportPackage.EVENT_SOURCE__EVENTS:
-				getEvents().clear();
-				getEvents().addAll((Collection<? extends Event>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -236,9 +190,6 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 			case ReportPackage.EVENT_SOURCE__PROPERTIES:
 				getProperties().clear();
 				return;
-			case ReportPackage.EVENT_SOURCE__EVENTS:
-				getEvents().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -255,8 +206,6 @@ public class EventSourceImpl extends EObjectImpl implements EventSource {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ReportPackage.EVENT_SOURCE__PROPERTIES:
 				return properties != null && !properties.isEmpty();
-			case ReportPackage.EVENT_SOURCE__EVENTS:
-				return events != null && !events.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

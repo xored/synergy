@@ -276,49 +276,11 @@ public class EventImpl extends EObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(EventSource newSource, NotificationChain msgs) {
+	public void setSource(EventSource newSource) {
 		EventSource oldSource = source;
 		source = newSource;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReportPackage.EVENT__SOURCE, oldSource, newSource);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(EventSource newSource) {
-		if (newSource != source) {
-			NotificationChain msgs = null;
-			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, ReportPackage.EVENT_SOURCE__EVENTS, EventSource.class, msgs);
-			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, ReportPackage.EVENT_SOURCE__EVENTS, EventSource.class, msgs);
-			msgs = basicSetSource(newSource, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.EVENT__SOURCE, newSource, newSource));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ReportPackage.EVENT__SOURCE:
-				if (source != null)
-					msgs = ((InternalEObject)source).eInverseRemove(this, ReportPackage.EVENT_SOURCE__EVENTS, EventSource.class, msgs);
-				return basicSetSource((EventSource)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.EVENT__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -333,8 +295,6 @@ public class EventImpl extends EObjectImpl implements Event {
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 			case ReportPackage.EVENT__DATA:
 				return basicSetData(null, msgs);
-			case ReportPackage.EVENT__SOURCE:
-				return basicSetSource(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

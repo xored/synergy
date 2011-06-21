@@ -372,22 +372,13 @@ public interface ReportPackage extends EPackage {
 	int EVENT_SOURCE__PROPERTIES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Events</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT_SOURCE__EVENTS = 2;
-
-	/**
 	 * The number of structural features of the '<em>Event Source</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_SOURCE_FEATURE_COUNT = 3;
+	int EVENT_SOURCE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.PropertyMapImpl <em>Property Map</em>}' class.
@@ -835,17 +826,6 @@ public interface ReportPackage extends EPackage {
 	EReference getEventSource_Properties();
 
 	/**
-	 * Returns the meta object for the reference list '{@link com.xored.sherlock.core.model.sherlock.report.EventSource#getEvents <em>Events</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Events</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.report.EventSource#getEvents()
-	 * @see #getEventSource()
-	 * @generated
-	 */
-	EReference getEventSource_Events();
-
-	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Property Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1230,14 +1210,6 @@ public interface ReportPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EVENT_SOURCE__PROPERTIES = eINSTANCE.getEventSource_Properties();
-
-		/**
-		 * The meta object literal for the '<em><b>Events</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EVENT_SOURCE__EVENTS = eINSTANCE.getEventSource_Events();
 
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.PropertyMapImpl <em>Property Map</em>}' class.

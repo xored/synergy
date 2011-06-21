@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.EventSource#getName <em>Name</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.EventSource#getProperties <em>Properties</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.EventSource#getEvents <em>Events</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,23 +71,5 @@ public interface EventSource extends EObject {
 	 * @generated
 	 */
 	EMap<String, EObject> getProperties();
-
-	/**
-	 * Returns the value of the '<em><b>Events</b></em>' reference list.
-	 * The list contents are of type {@link com.xored.sherlock.core.model.sherlock.report.Event}.
-	 * It is bidirectional and its opposite is '{@link com.xored.sherlock.core.model.sherlock.report.Event#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Events</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Events</em>' reference list.
-	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getEventSource_Events()
-	 * @see com.xored.sherlock.core.model.sherlock.report.Event#getSource
-	 * @model opposite="source"
-	 * @generated
-	 */
-	EList<Event> getEvents();
 
 } // EventSource
