@@ -40,7 +40,7 @@ public class SherlockLogListener implements ILogListener {
 		synchronized (listeners) {
 			for (Object obj : listeners.getListeners()) {
 				if (((ListenerEntry) obj).listener == listener) {
-					listeners.remove(listener);
+					listeners.remove(obj);
 					break;
 				}
 			}

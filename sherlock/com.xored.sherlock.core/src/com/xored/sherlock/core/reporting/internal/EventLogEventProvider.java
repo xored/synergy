@@ -16,11 +16,15 @@ public class EventLogEventProvider extends AbstractEventProvider implements
 	private static final String LOG_CATEGORY = IEventProviders.EVENT_CATEGORY;
 
 	public EventLogEventProvider() {
-		SherlockCore.addLogListener(this, null, null);
 	}
 
 	@Override
 	public void storeSnapshot(IReportBuilder builder, String id) {
+	}
+
+	@Override
+	protected void doneBuilders() {
+		SherlockCore.removeLogListener(this);
 	}
 
 	@Override
@@ -38,5 +42,6 @@ public class EventLogEventProvider extends AbstractEventProvider implements
 	@Override
 	protected void initializeBuilder(IReportBuilder builder) {
 		builder.registerCategory(LOG_CATEGORY, "Log Events");
+		SherlockCore.addLogListener(this, null, null);
 	}
 }
