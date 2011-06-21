@@ -52,9 +52,9 @@ public class SimpleReportGenerator {
 			appendTabs(stream, tabs + 1).append("events:").append(
 					LINE_SEPARATOR);
 		}
-		for (Event child : infoNode.getEvents()) {
-			printEvent(child, stream, tabs + 2);
-		}
+		// for (Event child : infoNode.getEvents()) {
+		// printEvent(child, stream, tabs + 2);
+		// }
 
 		for (Snaphot child : infoNode.getSnapshots()) {
 			printSnapshot(child, stream, tabs + 2);

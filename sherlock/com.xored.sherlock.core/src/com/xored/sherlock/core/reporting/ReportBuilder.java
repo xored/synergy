@@ -1,6 +1,8 @@
 package com.xored.sherlock.core.reporting;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.xored.sherlock.core.model.sherlock.report.Category;
 import com.xored.sherlock.core.model.sherlock.report.Event;
@@ -30,7 +32,9 @@ public class ReportBuilder implements IReportBuilder {
 		Category category = ReportFactory.eINSTANCE.createCategory();
 		category.setId(id);
 		category.setName(name);
-		report.getCategories().add(category);
+		synchronized (report) {
+			report.getCategories().add(category);
+		}
 		return category;
 	}
 
@@ -38,7 +42,9 @@ public class ReportBuilder implements IReportBuilder {
 	public EventSource registerEventSource(String name) {
 		EventSource source = ReportFactory.eINSTANCE.createEventSource();
 		source.setName(name);
-		report.getSources().add(source);
+		synchronized (report) {
+			report.getSources().add(source);
+		}
 		return source;
 	}
 
@@ -52,6 +58,8 @@ public class ReportBuilder implements IReportBuilder {
 		nde.setStartTime(getTimeConverter().getTime());
 		synchronized (this.currentNode) {
 			this.currentNode.getChildren().add(nde);
+		}
+		synchronized (report) {
 			this.currentNode = nde;
 		}
 		doSave();
@@ -60,23 +68,27 @@ public class ReportBuilder implements IReportBuilder {
 
 	@Override
 	public Node getCurrentNode() {
-		synchronized (currentNode) {
+		synchronized (report) {
 			return currentNode;
 		}
 	}
 
 	@Override
 	public Report getReport() {
-		report.getRoot().setEndTime(getTimeConverter().getTime());
+		synchronized (report) {
+			report.getRoot().setEndTime(getTimeConverter().getTime());
+		}
 		return report;
 	}
 
 	@Override
 	public Category getCategory(String logCategory) {
-		EList<Category> categories = report.getCategories();
-		for (Category category : categories) {
-			if (category.getId().equals(logCategory)) {
-				return category;
+		synchronized (report) {
+			EList<Category> categories = report.getCategories();
+			for (Category category : categories) {
+				if (category.getId().equals(logCategory)) {
+					return category;
+				}
 			}
 		}
 		return null;
@@ -89,6 +101,8 @@ public class ReportBuilder implements IReportBuilder {
 	public void endTask() {
 		synchronized (currentNode) {
 			currentNode.setEndTime(getTimeConverter().getTime());
+		}
+		synchronized (report) {
 			if (!report.getRoot().equals(currentNode)) {
 				currentNode = currentNode.getParent();
 			}
@@ -163,5 +177,21 @@ public class ReportBuilder implements IReportBuilder {
 	public void setReport(Report eObject, Node node) {
 		this.report = eObject;
 		this.currentNode = node;
+	}
+
+	/**
+	 * Search for event source with equals eobject specified in property
+	 */
+	public EventSource findSource(String attr, EObject info) {
+		synchronized (this.report) {
+			EList<EventSource> sources = this.report.getSources();
+			for (EventSource eventSource : sources) {
+				EObject object = eventSource.getProperties().get(attr);
+				if (object != null && EcoreUtil.equals(object, info)) {
+					return eventSource;
+				}
+			}
+		}
+		return null;
 	}
 }

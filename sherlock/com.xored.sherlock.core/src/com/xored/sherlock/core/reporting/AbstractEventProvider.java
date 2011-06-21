@@ -22,7 +22,7 @@ public abstract class AbstractEventProvider implements IEventProvider {
 
 	public void removeListener(IReportBuilder builder) {
 		synchronized (listeners) {
-			listeners.add(builder);
+			listeners.remove(builder);
 			if (listeners.isEmpty()) {
 				doneBuilders();
 			}
