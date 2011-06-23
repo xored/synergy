@@ -2,12 +2,16 @@ package com.xored.sherlock.core.reporting;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.xored.sherlock.core.model.sherlock.EclipseStatus;
+import com.xored.sherlock.core.model.sherlock.JavaException;
+import com.xored.sherlock.core.model.sherlock.JavaStackTraceEntry;
 import com.xored.sherlock.core.model.sherlock.report.Category;
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.Node;
@@ -115,8 +119,53 @@ public class SimpleReportGenerator {
 		return stream;
 	}
 
+	private StringBuilder printStatus(EclipseStatus s, int tabs,
+			StringBuilder builder) {
+		int severity = s.getSeverity();
+		if (severity == IStatus.ERROR) {
+			appendTabs(builder, tabs).append("Error");
+		}
+		if (severity == IStatus.INFO) {
+			appendTabs(builder, tabs).append("Info");
+		}
+		if (severity == IStatus.WARNING) {
+			appendTabs(builder, tabs).append("Warning");
+		}
+		builder.append(" in plugin: ").append(s.getPlugin())
+				.append(LINE_SEPARATOR);
+		appendTabs(builder, tabs).append("message: ").append(s.getMessage())
+				.append(LINE_SEPARATOR);
+		if (s.getException() != null) {
+			appendTabs(builder, tabs).append("exception: ").append(
+					LINE_SEPARATOR);
+			printJavaException(s.getException(), tabs + 2, builder);
+		}
+		return builder;
+	}
+
+	private StringBuilder printJavaException(JavaException e, int tabs,
+			StringBuilder builder) {
+		appendTabs(builder, tabs).append(e.getClassName());
+		if (e.getMessage() != null && e.getMessage().length() > 0) {
+			builder.append(":").append(e.getMessage());
+		}
+		builder.append(LINE_SEPARATOR);
+		for (JavaStackTraceEntry st : e.getStackTrace()) {
+			appendTabs(builder, tabs + 2).append("at ")
+					.append(st.getClassName()).append(".")
+					.append(st.getMethodName()).append("(")
+					.append(st.getFileName()).append(":")
+					.append(st.getLineNumber()).append(")")
+					.append(LINE_SEPARATOR);
+		}
+		return builder;
+	}
+
 	public StringBuilder toString(StringBuilder builder, int tabs, EObject obj,
 			String... ignores) {
+		if (obj instanceof EclipseStatus) {
+			return printStatus((EclipseStatus) obj, tabs, builder);
+		}
 		if (obj == null) {
 			return builder;
 		}
