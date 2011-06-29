@@ -46,7 +46,7 @@ public class SherlockReportIterator {
 			Report report = SherlockReportFormat.loadReport(zin, false);
 			currentEntry = zin.getNextEntry();
 			return report;
-		} catch (IOException e) {
+		} catch (Throwable e) {
 			SherlockCore.log(e);
 		}
 		return null;
