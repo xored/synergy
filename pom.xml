@@ -13,8 +13,8 @@
 		<module>emfjson</module>
 		<module>sherlock</module>
 		<module>google-libs</module>		
-		<module>scala-library</module>
-		<module>x5agent</module>
+		<!--module>scala-library</module>
+		<module>x5agent</module-->
 		<module>p2repository</module>
 	</modules>
   
@@ -66,6 +66,11 @@
 			<layout>p2</layout>
 			<url>http://download.xored.com/mirrors/updates36/</url>
 		</repository>
+		<repository>
+      		<id>ajdt36</id>
+      		<layout>p2</layout>
+      		<url>http://download.xored.com/mirrors/ajdt36/</url>
+    	</repository>
 	</repositories>
 	
 	<build>

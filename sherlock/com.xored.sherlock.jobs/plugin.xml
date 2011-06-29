@@ -14,7 +14,7 @@
       <package
             uri="http://xored.com/sherlock/jobs/1.0"
             class="com.xored.sherlock.jobs.jobs.JobsPackage"
-            genModel="models/profiling.genmodel"/>
+            genModel="models/jobs.genmodel"/>
    </extension>
    <extension
          point="com.xored.sherlock.core.eventProvider">
