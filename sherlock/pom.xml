@@ -21,6 +21,7 @@
 	  <module>com.xored.sherlock.jobs</module>
 	  <module>com.xored.sherlock.aspects.swt</module>
 	  <module>com.xored.sherlock.aspects.jobs</module>
+	  <module>com.xored.sherlock.jface</module>
 	</modules>
   </project>
 

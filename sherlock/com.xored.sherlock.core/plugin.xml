@@ -32,10 +32,6 @@
             class="com.xored.sherlock.core.reporting.internal.CoreSnaphotsProvider"
             id="com.xored.sherlock.core.core.snaphots">
       </provider>
-      <provider
-            class="com.xored.sherlock.core.reporting.internal.JfacePolicyEventProvider"
-            id="com.xored.sherlock.core.jface.log.provider">
-      </provider>
    </extension>
 
 </plugin>

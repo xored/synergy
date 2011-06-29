@@ -1,4 +1,4 @@
-package com.xored.sherlock.core.reporting.internal;
+package com.xored.sherlock.jface;
 
 import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
@@ -11,6 +11,7 @@ import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.reporting.AbstractEventProvider;
 import com.xored.sherlock.core.reporting.IEventProvider;
 import com.xored.sherlock.core.reporting.IReportBuilder;
+import com.xored.sherlock.core.reporting.internal.EventLogEventProvider;
 
 public class JfacePolicyEventProvider extends AbstractEventProvider implements
 		IEventProvider, ILogListener {
