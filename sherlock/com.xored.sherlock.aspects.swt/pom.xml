@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>tesla</artifactId>
-    <groupId>com.xored.tesla</groupId>
+ <parent>
+    <artifactId>sherlock</artifactId>
+    <groupId>com.xored.synergy</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.xored.tesla</groupId>
-  <artifactId>com.xored.tesla.swt.aspects</artifactId>
+
+  <groupId>com.xored.synergy</groupId>
+  <artifactId>com.xored.sherlock.aspects.swt</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
   <dependencies>
