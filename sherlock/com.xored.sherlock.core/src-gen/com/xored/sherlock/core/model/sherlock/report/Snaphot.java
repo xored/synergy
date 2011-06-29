@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Snaphot#getTime <em>Time</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Snaphot#getCategory <em>Category</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Snaphot#getProperties <em>Properties</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Snaphot#getData <em>Data</em>}</li>
  * </ul>
@@ -55,32 +54,6 @@ public interface Snaphot extends EObject {
 	 * @generated
 	 */
 	void setTime(long value);
-
-	/**
-	 * Returns the value of the '<em><b>Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Category</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Category</em>' reference.
-	 * @see #setCategory(Category)
-	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getSnaphot_Category()
-	 * @model
-	 * @generated
-	 */
-	Category getCategory();
-
-	/**
-	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.report.Snaphot#getCategory <em>Category</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Category</em>' reference.
-	 * @see #getCategory()
-	 * @generated
-	 */
-	void setCategory(Category value);
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' map.

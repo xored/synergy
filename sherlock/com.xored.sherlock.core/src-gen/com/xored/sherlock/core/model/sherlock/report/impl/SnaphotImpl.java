@@ -6,25 +6,20 @@
  */
 package com.xored.sherlock.core.model.sherlock.report.impl;
 
-import com.xored.sherlock.core.model.sherlock.report.Category;
-import com.xored.sherlock.core.model.sherlock.report.ReportPackage;
-import com.xored.sherlock.core.model.sherlock.report.Snaphot;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import com.xored.sherlock.core.model.sherlock.report.ReportPackage;
+import com.xored.sherlock.core.model.sherlock.report.Snaphot;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +29,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.SnaphotImpl#getTime <em>Time</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.SnaphotImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.SnaphotImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.SnaphotImpl#getData <em>Data</em>}</li>
  * </ul>
@@ -62,16 +56,6 @@ public class SnaphotImpl extends EObjectImpl implements Snaphot {
 	 * @ordered
 	 */
 	protected long time = TIME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getCategory() <em>Category</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCategory()
-	 * @generated
-	 * @ordered
-	 */
-	protected Category category;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' map.
@@ -131,44 +115,6 @@ public class SnaphotImpl extends EObjectImpl implements Snaphot {
 		time = newTime;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.SNAPHOT__TIME, oldTime, time));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Category getCategory() {
-		if (category != null && category.eIsProxy()) {
-			InternalEObject oldCategory = (InternalEObject)category;
-			category = (Category)eResolveProxy(oldCategory);
-			if (category != oldCategory) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReportPackage.SNAPHOT__CATEGORY, oldCategory, category));
-			}
-		}
-		return category;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Category basicGetCategory() {
-		return category;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCategory(Category newCategory) {
-		Category oldCategory = category;
-		category = newCategory;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.SNAPHOT__CATEGORY, oldCategory, category));
 	}
 
 	/**
@@ -252,9 +198,6 @@ public class SnaphotImpl extends EObjectImpl implements Snaphot {
 		switch (featureID) {
 			case ReportPackage.SNAPHOT__TIME:
 				return getTime();
-			case ReportPackage.SNAPHOT__CATEGORY:
-				if (resolve) return getCategory();
-				return basicGetCategory();
 			case ReportPackage.SNAPHOT__PROPERTIES:
 				if (coreType) return getProperties();
 				else return getProperties().map();
@@ -274,9 +217,6 @@ public class SnaphotImpl extends EObjectImpl implements Snaphot {
 		switch (featureID) {
 			case ReportPackage.SNAPHOT__TIME:
 				setTime((Long)newValue);
-				return;
-			case ReportPackage.SNAPHOT__CATEGORY:
-				setCategory((Category)newValue);
 				return;
 			case ReportPackage.SNAPHOT__PROPERTIES:
 				((EStructuralFeature.Setting)getProperties()).set(newValue);
@@ -299,9 +239,6 @@ public class SnaphotImpl extends EObjectImpl implements Snaphot {
 			case ReportPackage.SNAPHOT__TIME:
 				setTime(TIME_EDEFAULT);
 				return;
-			case ReportPackage.SNAPHOT__CATEGORY:
-				setCategory((Category)null);
-				return;
 			case ReportPackage.SNAPHOT__PROPERTIES:
 				getProperties().clear();
 				return;
@@ -322,8 +259,6 @@ public class SnaphotImpl extends EObjectImpl implements Snaphot {
 		switch (featureID) {
 			case ReportPackage.SNAPHOT__TIME:
 				return time != TIME_EDEFAULT;
-			case ReportPackage.SNAPHOT__CATEGORY:
-				return category != null;
 			case ReportPackage.SNAPHOT__PROPERTIES:
 				return properties != null && !properties.isEmpty();
 			case ReportPackage.SNAPHOT__DATA:

@@ -143,4 +143,18 @@ public class SherlockCore extends Plugin {
 	public static void log(String msg, Throwable e) {
 		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, msg, e));
 	}
+	public static String getID(String value) {
+		if (value == null) {
+			return null;
+		}
+		String textResult = "";
+		for (char c : value.toCharArray()) {
+			if (!Character.isLetterOrDigit(c)) {
+				textResult += '_';
+			} else {
+				textResult += c;
+			}
+		}
+		return textResult;
+	}
 }

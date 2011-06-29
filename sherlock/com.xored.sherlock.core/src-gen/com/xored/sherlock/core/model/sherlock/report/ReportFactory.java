@@ -63,15 +63,6 @@ public interface ReportFactory extends EFactory {
 	Event createEvent();
 
 	/**
-	 * Returns a new object of class '<em>Category</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Category</em>'.
-	 * @generated
-	 */
-	Category createCategory();
-
-	/**
 	 * Returns a new object of class '<em>Event Source</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

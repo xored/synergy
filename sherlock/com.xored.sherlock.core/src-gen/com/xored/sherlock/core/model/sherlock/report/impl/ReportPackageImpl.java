@@ -6,8 +6,17 @@
  */
 package com.xored.sherlock.core.model.sherlock.report.impl;
 
-import com.xored.sherlock.core.model.sherlock.report.Category;
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import com.xored.sherlock.core.model.sherlock.report.Event;
+import com.xored.sherlock.core.model.sherlock.report.EventKind;
 import com.xored.sherlock.core.model.sherlock.report.EventSource;
 import com.xored.sherlock.core.model.sherlock.report.Node;
 import com.xored.sherlock.core.model.sherlock.report.Report;
@@ -15,16 +24,7 @@ import com.xored.sherlock.core.model.sherlock.report.ReportBuilderStore;
 import com.xored.sherlock.core.model.sherlock.report.ReportContainer;
 import com.xored.sherlock.core.model.sherlock.report.ReportFactory;
 import com.xored.sherlock.core.model.sherlock.report.ReportPackage;
-
 import com.xored.sherlock.core.model.sherlock.report.Snaphot;
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,13 +66,6 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass categoryEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass eventSourceEClass = null;
 
 	/**
@@ -95,6 +88,13 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * @generated
 	 */
 	private EClass reportBuilderStoreEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eventKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -180,17 +180,8 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReport_Categories() {
-		return (EReference)reportEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getReport_Sources() {
-		return (EReference)reportEClass.getEStructuralFeatures().get(2);
+		return (EReference)reportEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -324,7 +315,7 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEvent_Category() {
+	public EReference getEvent_Properties() {
 		return (EReference)eventEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -333,7 +324,7 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEvent_Properties() {
+	public EReference getEvent_Data() {
 		return (EReference)eventEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -342,7 +333,7 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEvent_Data() {
+	public EReference getEvent_Source() {
 		return (EReference)eventEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -351,8 +342,8 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEvent_Source() {
-		return (EReference)eventEClass.getEStructuralFeatures().get(4);
+	public EAttribute getEvent_Kind() {
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -360,35 +351,8 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCategory() {
-		return categoryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCategory_Name() {
-		return (EAttribute)categoryEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCategory_Id() {
-		return (EAttribute)categoryEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCategory_Properties() {
-		return (EReference)categoryEClass.getEStructuralFeatures().get(2);
+	public EAttribute getEvent_Color() {
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -468,7 +432,7 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSnaphot_Category() {
+	public EReference getSnaphot_Properties() {
 		return (EReference)snaphotEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -477,17 +441,8 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSnaphot_Properties() {
-		return (EReference)snaphotEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSnaphot_Data() {
-		return (EReference)snaphotEClass.getEStructuralFeatures().get(3);
+		return (EReference)snaphotEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -522,6 +477,15 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getEventKind() {
+		return eventKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ReportFactory getReportFactory() {
 		return (ReportFactory)getEFactoryInstance();
 	}
@@ -547,7 +511,6 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 		// Create classes and their features
 		reportEClass = createEClass(REPORT);
 		createEReference(reportEClass, REPORT__ROOT);
-		createEReference(reportEClass, REPORT__CATEGORIES);
 		createEReference(reportEClass, REPORT__SOURCES);
 
 		reportContainerEClass = createEClass(REPORT_CONTAINER);
@@ -566,15 +529,11 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 
 		eventEClass = createEClass(EVENT);
 		createEAttribute(eventEClass, EVENT__TIME);
-		createEReference(eventEClass, EVENT__CATEGORY);
 		createEReference(eventEClass, EVENT__PROPERTIES);
 		createEReference(eventEClass, EVENT__DATA);
 		createEReference(eventEClass, EVENT__SOURCE);
-
-		categoryEClass = createEClass(CATEGORY);
-		createEAttribute(categoryEClass, CATEGORY__NAME);
-		createEAttribute(categoryEClass, CATEGORY__ID);
-		createEReference(categoryEClass, CATEGORY__PROPERTIES);
+		createEAttribute(eventEClass, EVENT__KIND);
+		createEAttribute(eventEClass, EVENT__COLOR);
 
 		eventSourceEClass = createEClass(EVENT_SOURCE);
 		createEAttribute(eventSourceEClass, EVENT_SOURCE__NAME);
@@ -586,13 +545,15 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 
 		snaphotEClass = createEClass(SNAPHOT);
 		createEAttribute(snaphotEClass, SNAPHOT__TIME);
-		createEReference(snaphotEClass, SNAPHOT__CATEGORY);
 		createEReference(snaphotEClass, SNAPHOT__PROPERTIES);
 		createEReference(snaphotEClass, SNAPHOT__DATA);
 
 		reportBuilderStoreEClass = createEClass(REPORT_BUILDER_STORE);
 		createEReference(reportBuilderStoreEClass, REPORT_BUILDER_STORE__REPORT);
 		createEReference(reportBuilderStoreEClass, REPORT_BUILDER_STORE__CURRENT_NODE);
+
+		// Create enums
+		eventKindEEnum = createEEnum(EVENT_KIND);
 	}
 
 	/**
@@ -627,7 +588,6 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(reportEClass, Report.class, "Report", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReport_Root(), this.getNode(), this.getNode_Report(), "root", null, 0, 1, Report.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReport_Categories(), this.getCategory(), null, "categories", null, 0, -1, Report.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReport_Sources(), this.getEventSource(), null, "sources", null, 0, -1, Report.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(reportContainerEClass, ReportContainer.class, "ReportContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -646,15 +606,11 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 
 		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEvent_Time(), ecorePackage.getELong(), "time", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEvent_Category(), this.getCategory(), null, "category", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEvent_Properties(), this.getPropertyMap(), null, "properties", null, 0, -1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEvent_Data(), ecorePackage.getEObject(), null, "data", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEvent_Source(), this.getEventSource(), null, "source", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(categoryEClass, Category.class, "Category", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCategory_Name(), ecorePackage.getEString(), "name", null, 0, 1, Category.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCategory_Id(), ecorePackage.getEString(), "id", null, 0, 1, Category.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCategory_Properties(), this.getPropertyMap(), null, "properties", null, 0, -1, Category.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvent_Kind(), this.getEventKind(), "kind", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEvent_Color(), ecorePackage.getEString(), "color", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eventSourceEClass, EventSource.class, "EventSource", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEventSource_Name(), ecorePackage.getEString(), "name", null, 0, 1, EventSource.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -666,13 +622,18 @@ public class ReportPackageImpl extends EPackageImpl implements ReportPackage {
 
 		initEClass(snaphotEClass, Snaphot.class, "Snaphot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSnaphot_Time(), ecorePackage.getELong(), "time", null, 0, 1, Snaphot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSnaphot_Category(), this.getCategory(), null, "category", null, 0, 1, Snaphot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSnaphot_Properties(), this.getPropertyMap(), null, "properties", null, 0, -1, Snaphot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSnaphot_Data(), ecorePackage.getEObject(), null, "data", null, 0, 1, Snaphot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(reportBuilderStoreEClass, ReportBuilderStore.class, "ReportBuilderStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReportBuilderStore_Report(), this.getReport(), null, "report", null, 0, 1, ReportBuilderStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReportBuilderStore_CurrentNode(), this.getNode(), null, "currentNode", null, 0, 1, ReportBuilderStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(eventKindEEnum, EventKind.class, "EventKind");
+		addEEnumLiteral(eventKindEEnum, EventKind.INFO);
+		addEEnumLiteral(eventKindEEnum, EventKind.BEGIN);
+		addEEnumLiteral(eventKindEEnum, EventKind.END);
 
 		// Create resource
 		createResource(eNS_URI);

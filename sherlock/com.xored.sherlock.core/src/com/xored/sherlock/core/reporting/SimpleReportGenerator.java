@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import com.xored.sherlock.core.model.sherlock.EclipseStatus;
 import com.xored.sherlock.core.model.sherlock.JavaException;
 import com.xored.sherlock.core.model.sherlock.JavaStackTraceEntry;
-import com.xored.sherlock.core.model.sherlock.report.Category;
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.Node;
 import com.xored.sherlock.core.model.sherlock.report.Report;
@@ -26,12 +25,6 @@ public class SimpleReportGenerator {
 		StringBuilder builder = new StringBuilder();
 		Node nodes = report.getRoot();
 		builder.append("Report:").append(LINE_SEPARATOR);
-
-		EList<Category> categories = report.getCategories();
-		for (Category category : categories) {
-			appendTabs(builder, 0).append("Category:" + category.getName())
-					.append(LINE_SEPARATOR);
-		}
 		printNode(nodes, builder, 1);
 		return builder.toString();
 	}

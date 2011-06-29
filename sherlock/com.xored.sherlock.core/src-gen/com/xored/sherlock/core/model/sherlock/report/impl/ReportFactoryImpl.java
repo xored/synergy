@@ -11,6 +11,7 @@ import com.xored.sherlock.core.model.sherlock.report.*;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -66,13 +67,42 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory {
 			case ReportPackage.REPORT_CONTAINER: return createReportContainer();
 			case ReportPackage.NODE: return createNode();
 			case ReportPackage.EVENT: return createEvent();
-			case ReportPackage.CATEGORY: return createCategory();
 			case ReportPackage.EVENT_SOURCE: return createEventSource();
 			case ReportPackage.PROPERTY_MAP: return (EObject)createPropertyMap();
 			case ReportPackage.SNAPHOT: return createSnaphot();
 			case ReportPackage.REPORT_BUILDER_STORE: return createReportBuilderStore();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case ReportPackage.EVENT_KIND:
+				return createEventKindFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case ReportPackage.EVENT_KIND:
+				return convertEventKindToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -121,16 +151,6 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Category createCategory() {
-		CategoryImpl category = new CategoryImpl();
-		return category;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EventSource createEventSource() {
 		EventSourceImpl eventSource = new EventSourceImpl();
 		return eventSource;
@@ -164,6 +184,26 @@ public class ReportFactoryImpl extends EFactoryImpl implements ReportFactory {
 	public ReportBuilderStore createReportBuilderStore() {
 		ReportBuilderStoreImpl reportBuilderStore = new ReportBuilderStoreImpl();
 		return reportBuilderStore;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EventKind createEventKindFromString(EDataType eDataType, String initialValue) {
+		EventKind result = EventKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEventKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

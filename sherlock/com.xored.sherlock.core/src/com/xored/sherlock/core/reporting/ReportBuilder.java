@@ -4,7 +4,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.xored.sherlock.core.model.sherlock.report.Category;
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.EventSource;
 import com.xored.sherlock.core.model.sherlock.report.Node;
@@ -25,17 +24,6 @@ public class ReportBuilder implements IReportBuilder {
 		report.setRoot(currentNode);
 		currentNode.setName("root");
 		currentNode.setStartTime(getTimeConverter().getTime());
-	}
-
-	@Override
-	public Category registerCategory(String id, String name) {
-		Category category = ReportFactory.eINSTANCE.createCategory();
-		category.setId(id);
-		category.setName(name);
-		synchronized (report) {
-			report.getCategories().add(category);
-		}
-		return category;
 	}
 
 	@Override
@@ -79,19 +67,6 @@ public class ReportBuilder implements IReportBuilder {
 			report.getRoot().setEndTime(getTimeConverter().getTime());
 		}
 		return report;
-	}
-
-	@Override
-	public Category getCategory(String logCategory) {
-		synchronized (report) {
-			EList<Category> categories = report.getCategories();
-			for (Category category : categories) {
-				if (category.getId().equals(logCategory)) {
-					return category;
-				}
-			}
-		}
-		return null;
 	}
 
 	/**

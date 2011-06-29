@@ -21,10 +21,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Event#getTime <em>Time</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Event#getCategory <em>Category</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Event#getProperties <em>Properties</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Event#getData <em>Data</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Event#getSource <em>Source</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Event#getKind <em>Kind</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Event#getColor <em>Color</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,32 +59,6 @@ public interface Event extends EObject {
 	 * @generated
 	 */
 	void setTime(long value);
-
-	/**
-	 * Returns the value of the '<em><b>Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Category</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Category</em>' reference.
-	 * @see #setCategory(Category)
-	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getEvent_Category()
-	 * @model
-	 * @generated
-	 */
-	Category getCategory();
-
-	/**
-	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.report.Event#getCategory <em>Category</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Category</em>' reference.
-	 * @see #getCategory()
-	 * @generated
-	 */
-	void setCategory(Category value);
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' map.
@@ -153,5 +128,60 @@ public interface Event extends EObject {
 	 * @generated
 	 */
 	void setSource(EventSource value);
+
+	/**
+	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.xored.sherlock.core.model.sherlock.report.EventKind}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Kind</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Kind</em>' attribute.
+	 * @see com.xored.sherlock.core.model.sherlock.report.EventKind
+	 * @see #setKind(EventKind)
+	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getEvent_Kind()
+	 * @model
+	 * @generated
+	 */
+	EventKind getKind();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.report.Event#getKind <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Kind</em>' attribute.
+	 * @see com.xored.sherlock.core.model.sherlock.report.EventKind
+	 * @see #getKind()
+	 * @generated
+	 */
+	void setKind(EventKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Color</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Color</em>' attribute.
+	 * @see #setColor(String)
+	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getEvent_Color()
+	 * @model
+	 * @generated
+	 */
+	String getColor();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.report.Event#getColor <em>Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Color</em>' attribute.
+	 * @see #getColor()
+	 * @generated
+	 */
+	void setColor(String value);
 
 } // Event

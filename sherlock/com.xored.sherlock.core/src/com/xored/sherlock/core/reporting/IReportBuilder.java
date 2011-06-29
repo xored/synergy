@@ -1,6 +1,7 @@
 package com.xored.sherlock.core.reporting;
 
-import com.xored.sherlock.core.model.sherlock.report.Category;
+import org.eclipse.emf.ecore.EObject;
+
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.EventSource;
 import com.xored.sherlock.core.model.sherlock.report.Node;
@@ -8,16 +9,6 @@ import com.xored.sherlock.core.model.sherlock.report.Report;
 import com.xored.sherlock.core.model.sherlock.report.Snaphot;
 
 public interface IReportBuilder {
-
-	/**
-	 * Register new category
-	 */
-	public Category registerCategory(String id, String name);
-
-	/**
-	 * Return category identified by ID.
-	 */
-	public Category getCategory(String logCategory);
 
 	/**
 	 * Register new event source
@@ -68,4 +59,6 @@ public interface IReportBuilder {
 	 */
 	public void takeSnapshot(String type, String... id);
 
+	
+	public EventSource findSource(String attr, EObject info);
 }

@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Q7 Runtime Eclipse Core Jobs Support Aspects
+Bundle-SymbolicName: com.xored.sherlock.aspects.jobs;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: xored software, Inc.
+Require-Bundle: org.aspectj.runtime;resolution:=optional;visibility:=reexport,
+ org.eclipse.core.jobs,
+ org.eclipse.core.runtime
+onEnvironment: J2SE-1.5
+Import-Package: org.osgi.framework
+Eclipse-SupplementBundle: org.eclipse.core.jobs
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: com.xored.sherlock.aspects.jobs.internal.JobsActivator
+Export-Package: com.xored.sherlock.aspects.jobs,
+ com.xored.sherlock.aspects.jobs.internal

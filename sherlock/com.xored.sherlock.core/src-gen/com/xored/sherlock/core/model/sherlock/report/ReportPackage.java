@@ -8,6 +8,7 @@ package com.xored.sherlock.core.model.sherlock.report;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -79,22 +80,13 @@ public interface ReportPackage extends EPackage {
 	int REPORT__ROOT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Categories</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPORT__CATEGORIES = 1;
-
-	/**
 	 * The feature id for the '<em><b>Sources</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPORT__SOURCES = 2;
+	int REPORT__SOURCES = 1;
 
 	/**
 	 * The number of structural features of the '<em>Report</em>' class.
@@ -103,7 +95,7 @@ public interface ReportPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPORT_FEATURE_COUNT = 3;
+	int REPORT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportContainerImpl <em>Container</em>}' class.
@@ -253,22 +245,13 @@ public interface ReportPackage extends EPackage {
 	int EVENT__TIME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT__CATEGORY = 1;
-
-	/**
 	 * The feature id for the '<em><b>Properties</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__PROPERTIES = 2;
+	int EVENT__PROPERTIES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' containment reference.
@@ -277,7 +260,7 @@ public interface ReportPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__DATA = 3;
+	int EVENT__DATA = 2;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -286,7 +269,25 @@ public interface ReportPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT__SOURCE = 4;
+	int EVENT__SOURCE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__KIND = 4;
+
+	/**
+	 * The feature id for the '<em><b>Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__COLOR = 5;
 
 	/**
 	 * The number of structural features of the '<em>Event</em>' class.
@@ -295,53 +296,7 @@ public interface ReportPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_FEATURE_COUNT = 5;
-
-	/**
-	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.CategoryImpl <em>Category</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.xored.sherlock.core.model.sherlock.report.impl.CategoryImpl
-	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getCategory()
-	 * @generated
-	 */
-	int CATEGORY = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CATEGORY__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CATEGORY__ID = 1;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' map.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CATEGORY__PROPERTIES = 2;
-
-	/**
-	 * The number of structural features of the '<em>Category</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CATEGORY_FEATURE_COUNT = 3;
+	int EVENT_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.EventSourceImpl <em>Event Source</em>}' class.
@@ -351,7 +306,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getEventSource()
 	 * @generated
 	 */
-	int EVENT_SOURCE = 5;
+	int EVENT_SOURCE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -388,7 +343,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getPropertyMap()
 	 * @generated
 	 */
-	int PROPERTY_MAP = 6;
+	int PROPERTY_MAP = 5;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -426,7 +381,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getSnaphot()
 	 * @generated
 	 */
-	int SNAPHOT = 7;
+	int SNAPHOT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Time</b></em>' attribute.
@@ -438,22 +393,13 @@ public interface ReportPackage extends EPackage {
 	int SNAPHOT__TIME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Category</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPHOT__CATEGORY = 1;
-
-	/**
 	 * The feature id for the '<em><b>Properties</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPHOT__PROPERTIES = 2;
+	int SNAPHOT__PROPERTIES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' containment reference.
@@ -462,7 +408,7 @@ public interface ReportPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPHOT__DATA = 3;
+	int SNAPHOT__DATA = 2;
 
 	/**
 	 * The number of structural features of the '<em>Snaphot</em>' class.
@@ -471,7 +417,7 @@ public interface ReportPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPHOT_FEATURE_COUNT = 4;
+	int SNAPHOT_FEATURE_COUNT = 3;
 
 
 	/**
@@ -482,7 +428,7 @@ public interface ReportPackage extends EPackage {
 	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getReportBuilderStore()
 	 * @generated
 	 */
-	int REPORT_BUILDER_STORE = 8;
+	int REPORT_BUILDER_STORE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Report</b></em>' containment reference.
@@ -513,6 +459,17 @@ public interface ReportPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.EventKind <em>Event Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.core.model.sherlock.report.EventKind
+	 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getEventKind()
+	 * @generated
+	 */
+	int EVENT_KIND = 8;
+
+
+	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.report.Report <em>Report</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -532,17 +489,6 @@ public interface ReportPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getReport_Root();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.xored.sherlock.core.model.sherlock.report.Report#getCategories <em>Categories</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Categories</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.report.Report#getCategories()
-	 * @see #getReport()
-	 * @generated
-	 */
-	EReference getReport_Categories();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link com.xored.sherlock.core.model.sherlock.report.Report#getSources <em>Sources</em>}'.
@@ -707,17 +653,6 @@ public interface ReportPackage extends EPackage {
 	EAttribute getEvent_Time();
 
 	/**
-	 * Returns the meta object for the reference '{@link com.xored.sherlock.core.model.sherlock.report.Event#getCategory <em>Category</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Category</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.report.Event#getCategory()
-	 * @see #getEvent()
-	 * @generated
-	 */
-	EReference getEvent_Category();
-
-	/**
 	 * Returns the meta object for the map '{@link com.xored.sherlock.core.model.sherlock.report.Event#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -751,47 +686,26 @@ public interface ReportPackage extends EPackage {
 	EReference getEvent_Source();
 
 	/**
-	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.report.Category <em>Category</em>}'.
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.report.Event#getKind <em>Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Category</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.report.Category
+	 * @return the meta object for the attribute '<em>Kind</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.report.Event#getKind()
+	 * @see #getEvent()
 	 * @generated
 	 */
-	EClass getCategory();
+	EAttribute getEvent_Kind();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.report.Category#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.report.Event#getColor <em>Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.report.Category#getName()
-	 * @see #getCategory()
+	 * @return the meta object for the attribute '<em>Color</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.report.Event#getColor()
+	 * @see #getEvent()
 	 * @generated
 	 */
-	EAttribute getCategory_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.report.Category#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.report.Category#getId()
-	 * @see #getCategory()
-	 * @generated
-	 */
-	EAttribute getCategory_Id();
-
-	/**
-	 * Returns the meta object for the map '{@link com.xored.sherlock.core.model.sherlock.report.Category#getProperties <em>Properties</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the map '<em>Properties</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.report.Category#getProperties()
-	 * @see #getCategory()
-	 * @generated
-	 */
-	EReference getCategory_Properties();
+	EAttribute getEvent_Color();
 
 	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.core.model.sherlock.report.EventSource <em>Event Source</em>}'.
@@ -881,17 +795,6 @@ public interface ReportPackage extends EPackage {
 	EAttribute getSnaphot_Time();
 
 	/**
-	 * Returns the meta object for the reference '{@link com.xored.sherlock.core.model.sherlock.report.Snaphot#getCategory <em>Category</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Category</em>'.
-	 * @see com.xored.sherlock.core.model.sherlock.report.Snaphot#getCategory()
-	 * @see #getSnaphot()
-	 * @generated
-	 */
-	EReference getSnaphot_Category();
-
-	/**
 	 * Returns the meta object for the map '{@link com.xored.sherlock.core.model.sherlock.report.Snaphot#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -946,6 +849,16 @@ public interface ReportPackage extends EPackage {
 	EReference getReportBuilderStore_CurrentNode();
 
 	/**
+	 * Returns the meta object for enum '{@link com.xored.sherlock.core.model.sherlock.report.EventKind <em>Event Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Event Kind</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.report.EventKind
+	 * @generated
+	 */
+	EEnum getEventKind();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -984,14 +897,6 @@ public interface ReportPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REPORT__ROOT = eINSTANCE.getReport_Root();
-
-		/**
-		 * The meta object literal for the '<em><b>Categories</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REPORT__CATEGORIES = eINSTANCE.getReport_Categories();
 
 		/**
 		 * The meta object literal for the '<em><b>Sources</b></em>' containment reference list feature.
@@ -1120,14 +1025,6 @@ public interface ReportPackage extends EPackage {
 		EAttribute EVENT__TIME = eINSTANCE.getEvent_Time();
 
 		/**
-		 * The meta object literal for the '<em><b>Category</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EVENT__CATEGORY = eINSTANCE.getEvent_Category();
-
-		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1152,38 +1049,20 @@ public interface ReportPackage extends EPackage {
 		EReference EVENT__SOURCE = eINSTANCE.getEvent_Source();
 
 		/**
-		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.CategoryImpl <em>Category</em>}' class.
+		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see com.xored.sherlock.core.model.sherlock.report.impl.CategoryImpl
-		 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getCategory()
 		 * @generated
 		 */
-		EClass CATEGORY = eINSTANCE.getCategory();
+		EAttribute EVENT__KIND = eINSTANCE.getEvent_Kind();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CATEGORY__NAME = eINSTANCE.getCategory_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CATEGORY__ID = eINSTANCE.getCategory_Id();
-
-		/**
-		 * The meta object literal for the '<em><b>Properties</b></em>' map feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CATEGORY__PROPERTIES = eINSTANCE.getCategory_Properties();
+		EAttribute EVENT__COLOR = eINSTANCE.getEvent_Color();
 
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.EventSourceImpl <em>Event Source</em>}' class.
@@ -1256,14 +1135,6 @@ public interface ReportPackage extends EPackage {
 		EAttribute SNAPHOT__TIME = eINSTANCE.getSnaphot_Time();
 
 		/**
-		 * The meta object literal for the '<em><b>Category</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SNAPHOT__CATEGORY = eINSTANCE.getSnaphot_Category();
-
-		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' map feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1304,6 +1175,16 @@ public interface ReportPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REPORT_BUILDER_STORE__CURRENT_NODE = eINSTANCE.getReportBuilderStore_CurrentNode();
+
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.report.EventKind <em>Event Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.core.model.sherlock.report.EventKind
+		 * @see com.xored.sherlock.core.model.sherlock.report.impl.ReportPackageImpl#getEventKind()
+		 * @generated
+		 */
+		EEnum EVENT_KIND = eINSTANCE.getEventKind();
 
 	}
 

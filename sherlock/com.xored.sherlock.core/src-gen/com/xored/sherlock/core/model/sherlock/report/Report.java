@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Report#getRoot <em>Root</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Report#getCategories <em>Categories</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.Report#getSources <em>Sources</em>}</li>
  * </ul>
  * </p>
@@ -59,22 +58,6 @@ public interface Report extends EObject {
 	 * @generated
 	 */
 	void setRoot(Node value);
-
-	/**
-	 * Returns the value of the '<em><b>Categories</b></em>' containment reference list.
-	 * The list contents are of type {@link com.xored.sherlock.core.model.sherlock.report.Category}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Categories</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Categories</em>' containment reference list.
-	 * @see com.xored.sherlock.core.model.sherlock.report.ReportPackage#getReport_Categories()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Category> getCategories();
 
 	/**
 	 * Returns the value of the '<em><b>Sources</b></em>' containment reference list.

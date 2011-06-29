@@ -90,10 +90,6 @@ public class ReportAdapterFactory extends AdapterFactoryImpl {
 				return createEventAdapter();
 			}
 			@Override
-			public Adapter caseCategory(Category object) {
-				return createCategoryAdapter();
-			}
-			@Override
 			public Adapter caseEventSource(EventSource object) {
 				return createEventSourceAdapter();
 			}
@@ -182,20 +178,6 @@ public class ReportAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.core.model.sherlock.report.Category <em>Category</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.xored.sherlock.core.model.sherlock.report.Category
-	 * @generated
-	 */
-	public Adapter createCategoryAdapter() {
 		return null;
 	}
 

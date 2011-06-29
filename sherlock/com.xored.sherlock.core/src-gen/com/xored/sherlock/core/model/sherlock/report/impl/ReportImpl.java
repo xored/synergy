@@ -6,32 +6,22 @@
  */
 package com.xored.sherlock.core.model.sherlock.report.impl;
 
-import com.xored.sherlock.core.model.sherlock.report.Category;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import com.xored.sherlock.core.model.sherlock.report.EventSource;
 import com.xored.sherlock.core.model.sherlock.report.Node;
 import com.xored.sherlock.core.model.sherlock.report.Report;
 import com.xored.sherlock.core.model.sherlock.report.ReportPackage;
-
-import java.util.Collection;
-import java.util.Map;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreEMap;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportImpl#getRoot <em>Root</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportImpl#getCategories <em>Categories</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportImpl#getSources <em>Sources</em>}</li>
  * </ul>
  * </p>
@@ -58,16 +47,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 	 * @ordered
 	 */
 	protected Node root;
-
-	/**
-	 * The cached value of the '{@link #getCategories() <em>Categories</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCategories()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Category> categories;
 
 	/**
 	 * The cached value of the '{@link #getSources() <em>Sources</em>}' containment reference list.
@@ -146,18 +125,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Category> getCategories() {
-		if (categories == null) {
-			categories = new EObjectContainmentEList<Category>(Category.class, this, ReportPackage.REPORT__CATEGORIES);
-		}
-		return categories;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<EventSource> getSources() {
 		if (sources == null) {
 			sources = new EObjectContainmentEList<EventSource>(EventSource.class, this, ReportPackage.REPORT__SOURCES);
@@ -191,8 +158,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 		switch (featureID) {
 			case ReportPackage.REPORT__ROOT:
 				return basicSetRoot(null, msgs);
-			case ReportPackage.REPORT__CATEGORIES:
-				return ((InternalEList<?>)getCategories()).basicRemove(otherEnd, msgs);
 			case ReportPackage.REPORT__SOURCES:
 				return ((InternalEList<?>)getSources()).basicRemove(otherEnd, msgs);
 		}
@@ -209,8 +174,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 		switch (featureID) {
 			case ReportPackage.REPORT__ROOT:
 				return getRoot();
-			case ReportPackage.REPORT__CATEGORIES:
-				return getCategories();
 			case ReportPackage.REPORT__SOURCES:
 				return getSources();
 		}
@@ -228,10 +191,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 		switch (featureID) {
 			case ReportPackage.REPORT__ROOT:
 				setRoot((Node)newValue);
-				return;
-			case ReportPackage.REPORT__CATEGORIES:
-				getCategories().clear();
-				getCategories().addAll((Collection<? extends Category>)newValue);
 				return;
 			case ReportPackage.REPORT__SOURCES:
 				getSources().clear();
@@ -252,9 +211,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 			case ReportPackage.REPORT__ROOT:
 				setRoot((Node)null);
 				return;
-			case ReportPackage.REPORT__CATEGORIES:
-				getCategories().clear();
-				return;
 			case ReportPackage.REPORT__SOURCES:
 				getSources().clear();
 				return;
@@ -272,8 +228,6 @@ public class ReportImpl extends EObjectImpl implements Report {
 		switch (featureID) {
 			case ReportPackage.REPORT__ROOT:
 				return root != null;
-			case ReportPackage.REPORT__CATEGORIES:
-				return categories != null && !categories.isEmpty();
 			case ReportPackage.REPORT__SOURCES:
 				return sources != null && !sources.isEmpty();
 		}

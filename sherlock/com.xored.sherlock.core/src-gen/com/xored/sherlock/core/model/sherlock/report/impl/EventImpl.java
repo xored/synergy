@@ -6,33 +6,22 @@
  */
 package com.xored.sherlock.core.model.sherlock.report.impl;
 
-import com.xored.sherlock.core.model.sherlock.report.Category;
-import com.xored.sherlock.core.model.sherlock.report.Event;
-import com.xored.sherlock.core.model.sherlock.report.EventSource;
-import com.xored.sherlock.core.model.sherlock.report.Node;
-import com.xored.sherlock.core.model.sherlock.report.ReportPackage;
-
-import java.util.Collection;
-import java.util.Map;
-
-import java.util.Map.Entry;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import com.xored.sherlock.core.model.sherlock.report.Event;
+import com.xored.sherlock.core.model.sherlock.report.EventKind;
+import com.xored.sherlock.core.model.sherlock.report.EventSource;
+import com.xored.sherlock.core.model.sherlock.report.ReportPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,10 +31,11 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventImpl#getTime <em>Time</em>}</li>
- *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventImpl#getData <em>Data</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventImpl#getKind <em>Kind</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.report.impl.EventImpl#getColor <em>Color</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,16 +61,6 @@ public class EventImpl extends EObjectImpl implements Event {
 	 * @ordered
 	 */
 	protected long time = TIME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getCategory() <em>Category</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCategory()
-	 * @generated
-	 * @ordered
-	 */
-	protected Category category;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' map.
@@ -111,6 +91,46 @@ public class EventImpl extends EObjectImpl implements Event {
 	 * @ordered
 	 */
 	protected EventSource source;
+
+	/**
+	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EventKind KIND_EDEFAULT = EventKind.INFO;
+
+	/**
+	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected EventKind kind = KIND_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getColor() <em>Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COLOR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getColor() <em>Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected String color = COLOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,44 +170,6 @@ public class EventImpl extends EObjectImpl implements Event {
 		time = newTime;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.EVENT__TIME, oldTime, time));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Category getCategory() {
-		if (category != null && category.eIsProxy()) {
-			InternalEObject oldCategory = (InternalEObject)category;
-			category = (Category)eResolveProxy(oldCategory);
-			if (category != oldCategory) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReportPackage.EVENT__CATEGORY, oldCategory, category));
-			}
-		}
-		return category;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Category basicGetCategory() {
-		return category;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCategory(Category newCategory) {
-		Category oldCategory = category;
-		category = newCategory;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.EVENT__CATEGORY, oldCategory, category));
 	}
 
 	/**
@@ -288,6 +270,48 @@ public class EventImpl extends EObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EventKind getKind() {
+		return kind;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setKind(EventKind newKind) {
+		EventKind oldKind = kind;
+		kind = newKind == null ? KIND_EDEFAULT : newKind;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.EVENT__KIND, oldKind, kind));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getColor() {
+		return color;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setColor(String newColor) {
+		String oldColor = color;
+		color = newColor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ReportPackage.EVENT__COLOR, oldColor, color));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -309,9 +333,6 @@ public class EventImpl extends EObjectImpl implements Event {
 		switch (featureID) {
 			case ReportPackage.EVENT__TIME:
 				return getTime();
-			case ReportPackage.EVENT__CATEGORY:
-				if (resolve) return getCategory();
-				return basicGetCategory();
 			case ReportPackage.EVENT__PROPERTIES:
 				if (coreType) return getProperties();
 				else return getProperties().map();
@@ -320,6 +341,10 @@ public class EventImpl extends EObjectImpl implements Event {
 			case ReportPackage.EVENT__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case ReportPackage.EVENT__KIND:
+				return getKind();
+			case ReportPackage.EVENT__COLOR:
+				return getColor();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -336,9 +361,6 @@ public class EventImpl extends EObjectImpl implements Event {
 			case ReportPackage.EVENT__TIME:
 				setTime((Long)newValue);
 				return;
-			case ReportPackage.EVENT__CATEGORY:
-				setCategory((Category)newValue);
-				return;
 			case ReportPackage.EVENT__PROPERTIES:
 				((EStructuralFeature.Setting)getProperties()).set(newValue);
 				return;
@@ -347,6 +369,12 @@ public class EventImpl extends EObjectImpl implements Event {
 				return;
 			case ReportPackage.EVENT__SOURCE:
 				setSource((EventSource)newValue);
+				return;
+			case ReportPackage.EVENT__KIND:
+				setKind((EventKind)newValue);
+				return;
+			case ReportPackage.EVENT__COLOR:
+				setColor((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -363,9 +391,6 @@ public class EventImpl extends EObjectImpl implements Event {
 			case ReportPackage.EVENT__TIME:
 				setTime(TIME_EDEFAULT);
 				return;
-			case ReportPackage.EVENT__CATEGORY:
-				setCategory((Category)null);
-				return;
 			case ReportPackage.EVENT__PROPERTIES:
 				getProperties().clear();
 				return;
@@ -374,6 +399,12 @@ public class EventImpl extends EObjectImpl implements Event {
 				return;
 			case ReportPackage.EVENT__SOURCE:
 				setSource((EventSource)null);
+				return;
+			case ReportPackage.EVENT__KIND:
+				setKind(KIND_EDEFAULT);
+				return;
+			case ReportPackage.EVENT__COLOR:
+				setColor(COLOR_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -389,14 +420,16 @@ public class EventImpl extends EObjectImpl implements Event {
 		switch (featureID) {
 			case ReportPackage.EVENT__TIME:
 				return time != TIME_EDEFAULT;
-			case ReportPackage.EVENT__CATEGORY:
-				return category != null;
 			case ReportPackage.EVENT__PROPERTIES:
 				return properties != null && !properties.isEmpty();
 			case ReportPackage.EVENT__DATA:
 				return data != null;
 			case ReportPackage.EVENT__SOURCE:
 				return source != null;
+			case ReportPackage.EVENT__KIND:
+				return kind != KIND_EDEFAULT;
+			case ReportPackage.EVENT__COLOR:
+				return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -413,6 +446,10 @@ public class EventImpl extends EObjectImpl implements Event {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (time: ");
 		result.append(time);
+		result.append(", kind: ");
+		result.append(kind);
+		result.append(", color: ");
+		result.append(color);
 		result.append(')');
 		return result.toString();
 	}
