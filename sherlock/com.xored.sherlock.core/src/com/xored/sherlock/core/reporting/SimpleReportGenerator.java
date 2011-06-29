@@ -29,7 +29,7 @@ public class SimpleReportGenerator {
 		return builder.toString();
 	}
 
-	private void printNode(Node infoNode, StringBuilder stream, int tabs) {
+	public void printNode(Node infoNode, StringBuilder stream, int tabs) {
 		appendTabs(stream, tabs);
 		stream.append(infoNode.getName())
 				.append(" ")
@@ -45,10 +45,10 @@ public class SimpleReportGenerator {
 		for (Node child : infoNode.getChildren()) {
 			printNode(child, stream, tabs + 2);
 		}
-		if (!infoNode.getEvents().isEmpty()) {
-			appendTabs(stream, tabs + 1).append("events:").append(
-					LINE_SEPARATOR);
-		}
+		// if (!infoNode.getEvents().isEmpty()) {
+		// appendTabs(stream, tabs + 1).append("events:").append(
+		// LINE_SEPARATOR);
+		// }
 		// for (Event child : infoNode.getEvents()) {
 		// printEvent(child, stream, tabs + 2);
 		// }
@@ -65,7 +65,7 @@ public class SimpleReportGenerator {
 		return "(" + b.toString().replace("\n", "\\n") + ")";
 	}
 
-	private void printEvent(Event child, StringBuilder stream, int tabs) {
+	public void printEvent(Event child, StringBuilder stream, int tabs) {
 		appendTabs(stream, tabs);
 		stream.append(" <" + child.getTime() + " ");
 		boolean needPre = true;
@@ -156,6 +156,11 @@ public class SimpleReportGenerator {
 
 	public StringBuilder toString(StringBuilder builder, int tabs, EObject obj,
 			String... ignores) {
+		return toString(builder, tabs, obj, true, ignores);
+	}
+
+	public StringBuilder toString(StringBuilder builder, int tabs, EObject obj,
+			boolean skipDefaults, String... ignores) {
 		if (obj instanceof EclipseStatus) {
 			return printStatus((EclipseStatus) obj, tabs, builder);
 		}
@@ -172,6 +177,9 @@ public class SimpleReportGenerator {
 
 			if (eGet instanceof List && ((List<?>) eGet).size() == 0) {
 				needArg = false;
+			}
+			if (!skipDefaults) {
+				needArg = true;
 			}
 			for (String ignore : ignores) {
 				if (ignore.equals(f.getName())) {

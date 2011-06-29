@@ -15,6 +15,9 @@ import com.xored.sherlock.jobs.jobs.AsyncInfo;
 import com.xored.sherlock.jobs.jobs.JobsFactory;
 
 final class AsyncProfilingSupport implements IAsyncEventListener {
+	private static final String ASYNC_RUNNING_COLOR = "#00BB00";
+	private static final String ASYNC_ADDED_COLOR = "#AAAAAA";
+	
 	private Map<IReportBuilder, Map<Runnable, EventSource>> sources = new HashMap<IReportBuilder, Map<Runnable, EventSource>>();
 	private JobsEventProvider provider;
 
@@ -31,12 +34,20 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 			if (getSources(builder).get(async) == null) {
 				return;
 			}
+
+			// End for sheduled pair
 			Event event = builder.createEvent();
 			event.setSource(getSources(builder).get(async));
+			event.setKind(EventKind.END);
+
+			event = builder.createEvent();
+			event.setSource(getSources(builder).get(async));
+
 			AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
 					.createAsyncEventInfo();
 			event.setData(eventInfo);
 			event.setKind(EventKind.BEGIN);
+			event.setColor(ASYNC_RUNNING_COLOR);
 			eventInfo.setKind(AsyncEventKind.RUNNING);
 		}
 	}
@@ -61,6 +72,7 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 			Event event = builder.createEvent();
 			event.setKind(EventKind.END);
 			event.setSource(getSources(builder).get(async));
+
 			AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
 					.createAsyncEventInfo();
 			event.setData(eventInfo);
@@ -139,12 +151,15 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 			}
 			getSources(builder).put(async, source);
 
-			Event event = builder.createEvent();
-			event.setSource(source);
 			AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
 					.createAsyncEventInfo();
-			event.setData(eventInfo);
 			eventInfo.setKind(AsyncEventKind.STARTING);
+
+			Event event = builder.createEvent();
+			event.setSource(source);
+			event.setData(eventInfo);
+			event.setKind(EventKind.BEGIN);
+			event.setColor(ASYNC_ADDED_COLOR);
 		}
 	}
 

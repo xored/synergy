@@ -23,6 +23,12 @@ import com.xored.sherlock.jobs.jobs.JobsFactory;
 public class JobsProfilingSupport implements IJobsEventListener,
 		IJobChangeListener {
 
+	private static final String JOBS_SLEEPING_COLOR = "#505050";
+
+	private static final String JOBS_RUNNING_COLOR = "#00BB00";
+
+	private static final String JOBS_WAITING_COLOR = "#AAAAAA";
+
 	private Map<IReportBuilder, Map<Object, EventSource>> sources = new HashMap<IReportBuilder, Map<Object, EventSource>>();
 
 	private JobsEventProvider provider;
@@ -114,8 +120,9 @@ public class JobsProfilingSupport implements IJobsEventListener,
 
 			Event event = builder.createEvent();
 			event.setSource(source);
-			JobEventInfo eventInfo = JobsFactory.eINSTANCE
-					.createJobEventInfo();
+			event.setKind(EventKind.BEGIN);
+			event.setColor(JOBS_WAITING_COLOR);
+			JobEventInfo eventInfo = JobsFactory.eINSTANCE.createJobEventInfo();
 			event.setData(eventInfo);
 			// eventInfo.
 			eventInfo.setKind(JobEventKind.SHEDULED);
@@ -128,19 +135,27 @@ public class JobsProfilingSupport implements IJobsEventListener,
 			if (getSources(builder).get(job) == null) {
 				return;
 			}
-			Event event = builder.createEvent();
-			event.setSource(getSources(builder).get(job));
-			JobEventInfo eventInfo = JobsFactory.eINSTANCE
-					.createJobEventInfo();
-			event.setData(eventInfo);
-			if (newState == Job.RUNNING || newState == 0x10) {
-				eventInfo.setKind(JobEventKind.RUNNING);
+			if (newState != 0) {
+				// Close old event
+				Event event = builder.createEvent();
+				event.setSource(getSources(builder).get(job));
+				JobEventInfo eventInfo = JobsFactory.eINSTANCE
+						.createJobEventInfo();
+				event.setData(eventInfo);
 				event.setKind(EventKind.BEGIN);
-			} else if (newState == Job.SLEEPING) {
-				eventInfo.setKind(JobEventKind.SLEPPING);
-			} else if (newState == Job.WAITING || newState == 0x08
-					|| newState == 0x40 || newState == 0x20) {
-				eventInfo.setKind(JobEventKind.WAITING);
+				if (newState == Job.RUNNING || newState == 0x10) {
+					eventInfo.setKind(JobEventKind.RUNNING);
+					event.setColor(JOBS_RUNNING_COLOR);
+				} else if (newState == Job.SLEEPING) {
+					event.setColor(JOBS_SLEEPING_COLOR);
+					eventInfo.setKind(JobEventKind.SLEPPING);
+				} else if (newState == Job.WAITING || newState == 0x08
+						|| newState == 0x40 || newState == 0x20) {
+					eventInfo.setKind(JobEventKind.WAITING);
+					event.setColor(JOBS_WAITING_COLOR);
+				} else {
+					event.setColor(JOBS_WAITING_COLOR);
+				}
 			}
 		}
 	}
@@ -153,21 +168,11 @@ public class JobsProfilingSupport implements IJobsEventListener,
 			}
 			Event event = builder.createEvent();
 			event.setSource(getSources(builder).get(job));
-			JobEventInfo eventInfo = JobsFactory.eINSTANCE
-					.createJobEventInfo();
+			JobEventInfo eventInfo = JobsFactory.eINSTANCE.createJobEventInfo();
 			event.setData(eventInfo);
 			if (status != null && Job.ASYNC_FINISH.equals(status)) {
-				event.setKind(EventKind.END);
+				event.setKind(EventKind.BEGIN);
 				eventInfo.setKind(JobEventKind.ASYNC_FINISH);
-
-				// Add async wait pair
-				Event event2 = builder.createEvent();
-				event2.setSource(getSources(builder).get(job));
-				JobEventInfo eventInfo2 = JobsFactory.eINSTANCE
-						.createJobEventInfo();
-				eventInfo2.setKind(JobEventKind.ASYNC_FINISH);
-				event2.setKind(EventKind.BEGIN);
-				event2.setData(eventInfo2);
 			} else {
 				event.setKind(EventKind.END);
 				eventInfo.setKind(JobEventKind.FINISHED);
@@ -209,8 +214,7 @@ public class JobsProfilingSupport implements IJobsEventListener,
 			}
 			Event event = builder.createEvent();
 			event.setSource(getSources(builder).get(job));
-			JobEventInfo eventInfo = JobsFactory.eINSTANCE
-					.createJobEventInfo();
+			JobEventInfo eventInfo = JobsFactory.eINSTANCE.createJobEventInfo();
 			event.setData(eventInfo);
 			eventInfo.setKind(JobEventKind.CANCELED);
 			event.setKind(EventKind.END);
