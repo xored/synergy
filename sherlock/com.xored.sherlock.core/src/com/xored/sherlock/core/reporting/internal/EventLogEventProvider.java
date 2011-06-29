@@ -12,6 +12,9 @@ import com.xored.sherlock.core.reporting.IReportBuilder;
 
 public class EventLogEventProvider extends AbstractEventProvider implements
 		IEventProvider, ILogListener {
+
+	public static IStatus handledStatus;
+
 	public EventLogEventProvider() {
 	}
 
@@ -26,12 +29,14 @@ public class EventLogEventProvider extends AbstractEventProvider implements
 
 	@Override
 	public void logging(IStatus status, String plugin) {
-		IReportBuilder[] builders = getListeners();
-		for (IReportBuilder builder : builders) {
-			Event event = builder.createEvent();
-			EclipseStatus data = SherlockCore.convert(status);
-			event.setData(data);
-			data.setThreadName(Thread.currentThread().getName());
+		if (!status.equals(handledStatus)) {
+			IReportBuilder[] builders = getListeners();
+			for (IReportBuilder builder : builders) {
+				Event event = builder.createEvent();
+				EclipseStatus data = SherlockCore.convert(status);
+				event.setData(data);
+				data.setThreadName(Thread.currentThread().getName());
+			}
 		}
 	}
 
