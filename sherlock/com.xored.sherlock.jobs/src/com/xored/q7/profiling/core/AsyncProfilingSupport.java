@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.Base64;
+
 import com.xored.sherlock.aspects.asyncs.IAsyncEventListener;
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.EventKind;
@@ -17,7 +19,7 @@ import com.xored.sherlock.jobs.jobs.JobsFactory;
 final class AsyncProfilingSupport implements IAsyncEventListener {
 	private static final String ASYNC_RUNNING_COLOR = "#00BB00";
 	private static final String ASYNC_ADDED_COLOR = "#AAAAAA";
-	
+
 	private Map<IReportBuilder, Map<Runnable, EventSource>> sources = new HashMap<IReportBuilder, Map<Runnable, EventSource>>();
 	private JobsEventProvider provider;
 
@@ -35,16 +37,12 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 				return;
 			}
 
-			// End for sheduled pair
 			Event event = builder.createEvent();
-			event.setSource(getSources(builder).get(async));
-			event.setKind(EventKind.END);
-
-			event = builder.createEvent();
 			event.setSource(getSources(builder).get(async));
 
 			AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
 					.createAsyncEventInfo();
+			eventInfo.setId(JobsEventProvider.getID(async));
 			event.setData(eventInfo);
 			event.setKind(EventKind.BEGIN);
 			event.setColor(ASYNC_RUNNING_COLOR);
@@ -76,6 +74,7 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 			AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
 					.createAsyncEventInfo();
 			event.setData(eventInfo);
+			eventInfo.setId(JobsEventProvider.getID(async));
 			eventInfo.setKind(AsyncEventKind.DONE);
 			getSources(builder).remove(async);
 		}
@@ -154,12 +153,18 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 			AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
 					.createAsyncEventInfo();
 			eventInfo.setKind(AsyncEventKind.STARTING);
+			eventInfo.setId(JobsEventProvider.getID(async));
 
 			Event event = builder.createEvent();
 			event.setSource(source);
 			event.setData(eventInfo);
 			event.setKind(EventKind.BEGIN);
-			event.setColor(ASYNC_ADDED_COLOR);
+			if (!sync) {
+				event.setColor(ASYNC_ADDED_COLOR);
+			} else {
+				event.setColor(ASYNC_RUNNING_COLOR);
+				eventInfo.setKind(AsyncEventKind.RUNNING);
+			}
 		}
 	}
 

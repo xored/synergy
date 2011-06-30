@@ -30,7 +30,7 @@ public class JobsProfilingSupport implements IJobsEventListener,
 	private static final String JOBS_WAITING_COLOR = "#AAAAAA";
 
 	private Map<IReportBuilder, Map<Object, EventSource>> sources = new HashMap<IReportBuilder, Map<Object, EventSource>>();
-
+	private Map<InternalJob, JobEventKind> currentStates = new WeakHashMap<InternalJob, JobEventKind>();
 	private JobsEventProvider provider;
 
 	public JobsProfilingSupport(JobsEventProvider jobsEventProvider) {
@@ -126,6 +126,8 @@ public class JobsProfilingSupport implements IJobsEventListener,
 			event.setData(eventInfo);
 			// eventInfo.
 			eventInfo.setKind(JobEventKind.SHEDULED);
+			eventInfo.setId(JobsEventProvider.getID(job));
+			currentStates.put(job, JobEventKind.SHEDULED);
 		}
 	}
 
@@ -136,11 +138,30 @@ public class JobsProfilingSupport implements IJobsEventListener,
 				return;
 			}
 			if (newState != 0) {
+				JobEventKind kind = currentStates.get(job);
+				if (kind != null) {
+					if (newState == Job.RUNNING || newState == 0x10) {
+						if (kind.equals(JobEventKind.RUNNING)) {
+							return;
+						}
+					} else if (newState == Job.SLEEPING) {
+						if (kind.equals(JobEventKind.SLEPPING)) {
+							return;
+						}
+					} else {
+						if (kind.equals(JobEventKind.WAITING)) {
+							return;
+						}
+					}
+				}
+
 				// Close old event
-				Event event = builder.createEvent();
-				event.setSource(getSources(builder).get(job));
 				JobEventInfo eventInfo = JobsFactory.eINSTANCE
 						.createJobEventInfo();
+				eventInfo.setId(JobsEventProvider.getID(job));
+
+				Event event = builder.createEvent();
+				event.setSource(getSources(builder).get(job));
 				event.setData(eventInfo);
 				event.setKind(EventKind.BEGIN);
 				if (newState == Job.RUNNING || newState == 0x10) {
@@ -149,13 +170,14 @@ public class JobsProfilingSupport implements IJobsEventListener,
 				} else if (newState == Job.SLEEPING) {
 					event.setColor(JOBS_SLEEPING_COLOR);
 					eventInfo.setKind(JobEventKind.SLEPPING);
-				} else if (newState == Job.WAITING || newState == 0x08
-						|| newState == 0x40 || newState == 0x20) {
+				} else /*
+						 * if (newState == Job.WAITING || newState == 0x08 ||
+						 * newState == 0x40 || newState == 0x20)
+						 */{
 					eventInfo.setKind(JobEventKind.WAITING);
 					event.setColor(JOBS_WAITING_COLOR);
-				} else {
-					event.setColor(JOBS_WAITING_COLOR);
 				}
+				currentStates.put(job, eventInfo.getKind());
 			}
 		}
 	}
@@ -169,6 +191,7 @@ public class JobsProfilingSupport implements IJobsEventListener,
 			Event event = builder.createEvent();
 			event.setSource(getSources(builder).get(job));
 			JobEventInfo eventInfo = JobsFactory.eINSTANCE.createJobEventInfo();
+			eventInfo.setId(JobsEventProvider.getID(job));
 			event.setData(eventInfo);
 			if (status != null && Job.ASYNC_FINISH.equals(status)) {
 				event.setKind(EventKind.BEGIN);
@@ -176,6 +199,7 @@ public class JobsProfilingSupport implements IJobsEventListener,
 			} else {
 				event.setKind(EventKind.END);
 				eventInfo.setKind(JobEventKind.FINISHED);
+				currentStates.remove(job);
 			}
 		}
 	}
@@ -217,10 +241,13 @@ public class JobsProfilingSupport implements IJobsEventListener,
 			JobEventInfo eventInfo = JobsFactory.eINSTANCE.createJobEventInfo();
 			event.setData(eventInfo);
 			eventInfo.setKind(JobEventKind.CANCELED);
+			eventInfo.setId(JobsEventProvider.getID(job));
 			event.setKind(EventKind.END);
+			currentStates.remove(job);
 		}
 	}
 
 	public void clear() {
+		currentStates.clear();
 	}
 }

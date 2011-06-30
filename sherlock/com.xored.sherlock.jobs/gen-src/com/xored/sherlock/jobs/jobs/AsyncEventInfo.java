@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link com.xored.sherlock.jobs.jobs.AsyncEventInfo#getKind <em>Kind</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.AsyncEventInfo#getDelay <em>Delay</em>}</li>
+ *   <li>{@link com.xored.sherlock.jobs.jobs.AsyncEventInfo#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,5 +81,31 @@ public interface AsyncEventInfo extends EObject {
 	 * @generated
 	 */
 	void setDelay(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see com.xored.sherlock.jobs.jobs.JobsPackage#getAsyncEventInfo_Id()
+	 * @model
+	 * @generated
+	 */
+	String getId();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.jobs.jobs.AsyncEventInfo#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(String value);
 
 } // AsyncEventInfo

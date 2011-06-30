@@ -161,13 +161,22 @@ public interface JobsPackage extends EPackage {
 	int ASYNC_EVENT_INFO__DELAY = 1;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASYNC_EVENT_INFO__ID = 2;
+
+	/**
 	 * The number of structural features of the '<em>Async Event Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASYNC_EVENT_INFO_FEATURE_COUNT = 2;
+	int ASYNC_EVENT_INFO_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.jobs.jobs.impl.JobInfoImpl <em>Job Info</em>}' class.
@@ -271,13 +280,22 @@ public interface JobsPackage extends EPackage {
 	int JOB_EVENT_INFO__KIND = 0;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOB_EVENT_INFO__ID = 1;
+
+	/**
 	 * The number of structural features of the '<em>Job Event Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOB_EVENT_INFO_FEATURE_COUNT = 1;
+	int JOB_EVENT_INFO_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.jobs.jobs.AsyncEventKind <em>Async Event Kind</em>}' enum.
@@ -409,6 +427,17 @@ public interface JobsPackage extends EPackage {
 	EAttribute getAsyncEventInfo_Delay();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.jobs.jobs.AsyncEventInfo#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see com.xored.sherlock.jobs.jobs.AsyncEventInfo#getId()
+	 * @see #getAsyncEventInfo()
+	 * @generated
+	 */
+	EAttribute getAsyncEventInfo_Id();
+
+	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.jobs.jobs.JobInfo <em>Job Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -515,6 +544,17 @@ public interface JobsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getJobEventInfo_Kind();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.jobs.jobs.JobEventInfo#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see com.xored.sherlock.jobs.jobs.JobEventInfo#getId()
+	 * @see #getJobEventInfo()
+	 * @generated
+	 */
+	EAttribute getJobEventInfo_Id();
 
 	/**
 	 * Returns the meta object for enum '{@link com.xored.sherlock.jobs.jobs.AsyncEventKind <em>Async Event Kind</em>}'.
@@ -643,6 +683,14 @@ public interface JobsPackage extends EPackage {
 		EAttribute ASYNC_EVENT_INFO__DELAY = eINSTANCE.getAsyncEventInfo_Delay();
 
 		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASYNC_EVENT_INFO__ID = eINSTANCE.getAsyncEventInfo_Id();
+
+		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.jobs.jobs.impl.JobInfoImpl <em>Job Info</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -725,6 +773,14 @@ public interface JobsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JOB_EVENT_INFO__KIND = eINSTANCE.getJobEventInfo_Kind();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JOB_EVENT_INFO__ID = eINSTANCE.getJobEventInfo_Id();
 
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.jobs.jobs.AsyncEventKind <em>Async Event Kind</em>}' enum.

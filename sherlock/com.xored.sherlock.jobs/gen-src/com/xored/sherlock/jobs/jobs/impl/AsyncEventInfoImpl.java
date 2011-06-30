@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link com.xored.sherlock.jobs.jobs.impl.AsyncEventInfoImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.impl.AsyncEventInfoImpl#getDelay <em>Delay</em>}</li>
+ *   <li>{@link com.xored.sherlock.jobs.jobs.impl.AsyncEventInfoImpl#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,6 +72,26 @@ public class AsyncEventInfoImpl extends EObjectImpl implements AsyncEventInfo {
 	 * @ordered
 	 */
 	protected int delay = DELAY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -138,6 +159,27 @@ public class AsyncEventInfoImpl extends EObjectImpl implements AsyncEventInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, JobsPackage.ASYNC_EVENT_INFO__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -145,6 +187,8 @@ public class AsyncEventInfoImpl extends EObjectImpl implements AsyncEventInfo {
 				return getKind();
 			case JobsPackage.ASYNC_EVENT_INFO__DELAY:
 				return getDelay();
+			case JobsPackage.ASYNC_EVENT_INFO__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,6 +206,9 @@ public class AsyncEventInfoImpl extends EObjectImpl implements AsyncEventInfo {
 				return;
 			case JobsPackage.ASYNC_EVENT_INFO__DELAY:
 				setDelay((Integer)newValue);
+				return;
+			case JobsPackage.ASYNC_EVENT_INFO__ID:
+				setId((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -181,6 +228,9 @@ public class AsyncEventInfoImpl extends EObjectImpl implements AsyncEventInfo {
 			case JobsPackage.ASYNC_EVENT_INFO__DELAY:
 				setDelay(DELAY_EDEFAULT);
 				return;
+			case JobsPackage.ASYNC_EVENT_INFO__ID:
+				setId(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -197,6 +247,8 @@ public class AsyncEventInfoImpl extends EObjectImpl implements AsyncEventInfo {
 				return kind != KIND_EDEFAULT;
 			case JobsPackage.ASYNC_EVENT_INFO__DELAY:
 				return delay != DELAY_EDEFAULT;
+			case JobsPackage.ASYNC_EVENT_INFO__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -215,6 +267,8 @@ public class AsyncEventInfoImpl extends EObjectImpl implements AsyncEventInfo {
 		result.append(kind);
 		result.append(", delay: ");
 		result.append(delay);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}

@@ -36,4 +36,8 @@ public class JobsEventProvider extends AbstractEventProvider {
 
 		profilingJobListener.unregister();
 	}
+
+	public static String getID(Object async) {
+		return Integer.toString(async.hashCode(), 16);
+	}
 }

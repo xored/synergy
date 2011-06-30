@@ -227,6 +227,15 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAsyncEventInfo_Id() {
+		return (EAttribute)asyncEventInfoEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getJobInfo() {
 		return jobInfoEClass;
 	}
@@ -317,6 +326,15 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getJobEventInfo_Id() {
+		return (EAttribute)jobEventInfoEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAsyncEventKind() {
 		return asyncEventKindEEnum;
 	}
@@ -369,6 +387,7 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 		asyncEventInfoEClass = createEClass(ASYNC_EVENT_INFO);
 		createEAttribute(asyncEventInfoEClass, ASYNC_EVENT_INFO__KIND);
 		createEAttribute(asyncEventInfoEClass, ASYNC_EVENT_INFO__DELAY);
+		createEAttribute(asyncEventInfoEClass, ASYNC_EVENT_INFO__ID);
 
 		jobInfoEClass = createEClass(JOB_INFO);
 		createEAttribute(jobInfoEClass, JOB_INFO__JOB_CLASS_NAME);
@@ -381,6 +400,7 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 
 		jobEventInfoEClass = createEClass(JOB_EVENT_INFO);
 		createEAttribute(jobEventInfoEClass, JOB_EVENT_INFO__KIND);
+		createEAttribute(jobEventInfoEClass, JOB_EVENT_INFO__ID);
 
 		// Create enums
 		asyncEventKindEEnum = createEEnum(ASYNC_EVENT_KIND);
@@ -428,6 +448,7 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 		initEClass(asyncEventInfoEClass, AsyncEventInfo.class, "AsyncEventInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAsyncEventInfo_Kind(), this.getAsyncEventKind(), "kind", null, 0, 1, AsyncEventInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAsyncEventInfo_Delay(), ecorePackage.getEInt(), "delay", null, 0, 1, AsyncEventInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAsyncEventInfo_Id(), ecorePackage.getEString(), "id", null, 0, 1, AsyncEventInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(jobInfoEClass, JobInfo.class, "JobInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getJobInfo_JobClassName(), ecorePackage.getEString(), "jobClassName", null, 0, 1, JobInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -440,6 +461,7 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 
 		initEClass(jobEventInfoEClass, JobEventInfo.class, "JobEventInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getJobEventInfo_Kind(), this.getJobEventKind(), "kind", null, 0, 1, JobEventInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJobEventInfo_Id(), ecorePackage.getEString(), "id", null, 0, 1, JobEventInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(asyncEventKindEEnum, AsyncEventKind.class, "AsyncEventKind");

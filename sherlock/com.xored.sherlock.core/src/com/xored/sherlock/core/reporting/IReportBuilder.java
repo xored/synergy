@@ -59,6 +59,5 @@ public interface IReportBuilder {
 	 */
 	public void takeSnapshot(String type, String... id);
 
-	
 	public EventSource findSource(String attr, EObject info);
 }

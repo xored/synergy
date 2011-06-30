@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.xored.sherlock.jobs.jobs.JobEventInfo#getKind <em>Kind</em>}</li>
+ *   <li>{@link com.xored.sherlock.jobs.jobs.JobEventInfo#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,5 +54,31 @@ public interface JobEventInfo extends EObject {
 	 * @generated
 	 */
 	void setKind(JobEventKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see com.xored.sherlock.jobs.jobs.JobsPackage#getJobEventInfo_Id()
+	 * @model
+	 * @generated
+	 */
+	String getId();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.jobs.jobs.JobEventInfo#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(String value);
 
 } // JobEventInfo
