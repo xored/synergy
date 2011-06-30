@@ -44,11 +44,9 @@ public class ReportBuilder implements IReportBuilder {
 		Node nde = ReportFactory.eINSTANCE.createNode();
 		nde.setName(name);
 		nde.setStartTime(getTimeConverter().getTime());
-		synchronized (this.currentNode) {
-			this.currentNode.getChildren().add(nde);
-		}
 		synchronized (report) {
-			this.currentNode = nde;
+			currentNode.getChildren().add(nde);
+			currentNode = nde;
 		}
 		doSave();
 		return nde;
@@ -69,15 +67,22 @@ public class ReportBuilder implements IReportBuilder {
 		return report;
 	}
 
+	public Report getReportCopy() {
+		synchronized (report) {
+			Report reportCopy = EcoreUtil.copy(report);
+			reportCopy.getRoot().setEndTime(getTimeConverter().getTime());
+
+			return reportCopy;
+		}
+	}
+
 	/**
 	 * Will go one level up.
 	 */
 	@Override
 	public void endTask() {
-		synchronized (currentNode) {
-			currentNode.setEndTime(getTimeConverter().getTime());
-		}
 		synchronized (report) {
+			currentNode.setEndTime(getTimeConverter().getTime());
 			if (!report.getRoot().equals(currentNode)) {
 				currentNode = currentNode.getParent();
 			}
@@ -95,7 +100,7 @@ public class ReportBuilder implements IReportBuilder {
 		Event event = ReportFactory.eINSTANCE.createEvent();
 		event.setTime(getTimeConverter().getTime());
 
-		synchronized (currentNode) {
+		synchronized (report) {
 			currentNode.getEvents().add(event);
 		}
 		doSave();
@@ -109,7 +114,7 @@ public class ReportBuilder implements IReportBuilder {
 	public Snaphot createSnapshot() {
 		Snaphot snapshot = ReportFactory.eINSTANCE.createSnaphot();
 		snapshot.setTime(getTimeConverter().getTime());
-		synchronized (currentNode) {
+		synchronized (report) {
 			currentNode.getSnapshots().add(snapshot);
 		}
 		doSave();
@@ -150,16 +155,16 @@ public class ReportBuilder implements IReportBuilder {
 	}
 
 	public void setReport(Report eObject, Node node) {
-		this.report = eObject;
-		this.currentNode = node;
+		report = eObject;
+		currentNode = node;
 	}
 
 	/**
 	 * Search for event source with equals eobject specified in property
 	 */
 	public EventSource findSource(String attr, EObject info) {
-		synchronized (this.report) {
-			EList<EventSource> sources = this.report.getSources();
+		synchronized (report) {
+			EList<EventSource> sources = report.getSources();
 			for (EventSource eventSource : sources) {
 				EObject object = eventSource.getProperties().get(attr);
 				if (object != null && EcoreUtil.equals(object, info)) {
