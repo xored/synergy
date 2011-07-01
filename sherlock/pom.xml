@@ -18,6 +18,7 @@
 	  <module>com.xored.sherlock.core</module>
 	  <module>com.xored.sherlock.test.ui</module>
 	  <module>com.xored.sherlock-feature</module> 
+	  <module>com.xored.sherlock.ui-feature</module> 	  
 	  <module>com.xored.sherlock.jobs</module>
 	  <module>com.xored.sherlock.aspects.swt</module>
 	  <module>com.xored.sherlock.aspects.jobs</module>
