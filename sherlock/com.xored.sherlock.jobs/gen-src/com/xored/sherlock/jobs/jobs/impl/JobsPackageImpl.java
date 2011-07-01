@@ -200,6 +200,24 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAsyncInfo_ThreadName() {
+		return (EAttribute)asyncInfoEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAsyncInfo_Timer() {
+		return (EAttribute)asyncInfoEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAsyncEventInfo() {
 		return asyncEventInfoEClass;
 	}
@@ -308,6 +326,15 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getJobInfo_ThreadName() {
+		return (EAttribute)jobInfoEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getJobEventInfo() {
 		return jobEventInfoEClass;
 	}
@@ -383,6 +410,8 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 		createEAttribute(asyncInfoEClass, ASYNC_INFO__SOURCE_METHOD);
 		createEAttribute(asyncInfoEClass, ASYNC_INFO__SOURCE_FILE);
 		createEAttribute(asyncInfoEClass, ASYNC_INFO__THIS_CLASS_NAME);
+		createEAttribute(asyncInfoEClass, ASYNC_INFO__THREAD_NAME);
+		createEAttribute(asyncInfoEClass, ASYNC_INFO__TIMER);
 
 		asyncEventInfoEClass = createEClass(ASYNC_EVENT_INFO);
 		createEAttribute(asyncEventInfoEClass, ASYNC_EVENT_INFO__KIND);
@@ -397,6 +426,7 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 		createEAttribute(jobInfoEClass, JOB_INFO__USER);
 		createEAttribute(jobInfoEClass, JOB_INFO__SOURCE_FILE);
 		createEAttribute(jobInfoEClass, JOB_INFO__THIS_CLASS_NAME);
+		createEAttribute(jobInfoEClass, JOB_INFO__THREAD_NAME);
 
 		jobEventInfoEClass = createEClass(JOB_EVENT_INFO);
 		createEAttribute(jobEventInfoEClass, JOB_EVENT_INFO__KIND);
@@ -444,6 +474,8 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 		initEAttribute(getAsyncInfo_SourceMethod(), ecorePackage.getEString(), "sourceMethod", null, 0, 1, AsyncInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAsyncInfo_SourceFile(), ecorePackage.getEString(), "sourceFile", null, 0, 1, AsyncInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAsyncInfo_ThisClassName(), ecorePackage.getEString(), "thisClassName", null, 0, 1, AsyncInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAsyncInfo_ThreadName(), ecorePackage.getEString(), "threadName", null, 0, 1, AsyncInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAsyncInfo_Timer(), ecorePackage.getEBoolean(), "timer", "false", 0, 1, AsyncInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(asyncEventInfoEClass, AsyncEventInfo.class, "AsyncEventInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAsyncEventInfo_Kind(), this.getAsyncEventKind(), "kind", null, 0, 1, AsyncEventInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -458,6 +490,7 @@ public class JobsPackageImpl extends EPackageImpl implements JobsPackage {
 		initEAttribute(getJobInfo_User(), ecorePackage.getEBoolean(), "user", null, 0, 1, JobInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJobInfo_SourceFile(), ecorePackage.getEString(), "sourceFile", null, 0, 1, JobInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getJobInfo_ThisClassName(), ecorePackage.getEString(), "thisClassName", null, 0, 1, JobInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJobInfo_ThreadName(), ecorePackage.getEString(), "threadName", null, 0, 1, JobInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(jobEventInfoEClass, JobEventInfo.class, "JobEventInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getJobEventInfo_Kind(), this.getJobEventKind(), "kind", null, 0, 1, JobEventInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

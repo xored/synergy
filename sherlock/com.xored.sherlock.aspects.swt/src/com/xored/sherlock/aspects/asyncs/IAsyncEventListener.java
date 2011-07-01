@@ -10,4 +10,6 @@ public interface IAsyncEventListener {
 
 	void asyncDone(Runnable async);
 
+	Runnable processTimerProc(Runnable newRunnable);
+
 }

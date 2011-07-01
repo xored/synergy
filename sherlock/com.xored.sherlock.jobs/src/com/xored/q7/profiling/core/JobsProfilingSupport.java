@@ -64,6 +64,7 @@ public class JobsProfilingSupport implements IJobsEventListener,
 				if (!t.equals(Thread.currentThread())) {
 					continue;
 				}
+				jobInfo.setThreadName(t.getName());
 				// Out thread
 				StackTraceElement[] traceElements = stackTraces.get(t);
 				boolean next = false;
@@ -91,13 +92,6 @@ public class JobsProfilingSupport implements IJobsEventListener,
 						.getSourceClass().equals(tname))) {
 					jobInfo.setThisClassName(tname);
 				}
-				// if (tname
-				// .contains("org.eclipse.ui.internal.progress.AnimationManager")
-				// ||
-				// tname.contains("org.eclipse.ui.internal.progress.ProgressViewUpdater"))
-				// {
-				// return;
-				// }
 			}
 			if (jobInfo.getJobClassName() != null
 					&& jobInfo.getSourceClass() != null) {

@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.xored.sherlock.jobs/gen-src"
     modelPluginID="com.xored.sherlock.jobs" modelName="Jobs" importerID="org.eclipse.emf.importer.java"
-    complianceLevel="5.0" copyrightFields="false">
+    complianceLevel="5.0" copyrightFields="false" runtimeVersion="2.5">
   <foreignModel>@model</foreignModel>
   <genPackages prefix="Jobs" basePackage="com.xored.sherlock.jobs" disposableProviderFactory="true"
       ecorePackage="jobs.ecore#/">
@@ -30,10 +30,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//AsyncInfo/sourceMethod"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//AsyncInfo/sourceFile"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//AsyncInfo/thisClassName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//AsyncInfo/threadName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//AsyncInfo/timer"/>
     </genClasses>
     <genClasses ecoreClass="jobs.ecore#//AsyncEventInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//AsyncEventInfo/kind"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//AsyncEventInfo/delay"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//AsyncEventInfo/id"/>
     </genClasses>
     <genClasses ecoreClass="jobs.ecore#//JobInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//JobInfo/jobClassName"/>
@@ -43,9 +46,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//JobInfo/user"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//JobInfo/sourceFile"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//JobInfo/thisClassName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//JobInfo/threadName"/>
     </genClasses>
     <genClasses ecoreClass="jobs.ecore#//JobEventInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//JobEventInfo/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jobs.ecore#//JobEventInfo/id"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

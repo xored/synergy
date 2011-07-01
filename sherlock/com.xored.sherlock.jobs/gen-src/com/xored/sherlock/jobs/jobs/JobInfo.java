@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.sherlock.jobs.jobs.JobInfo#isUser <em>User</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.JobInfo#getSourceFile <em>Source File</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.JobInfo#getThisClassName <em>This Class Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.jobs.jobs.JobInfo#getThreadName <em>Thread Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -212,5 +213,31 @@ public interface JobInfo extends EObject {
 	 * @generated
 	 */
 	void setThisClassName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Thread Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Thread Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Thread Name</em>' attribute.
+	 * @see #setThreadName(String)
+	 * @see com.xored.sherlock.jobs.jobs.JobsPackage#getJobInfo_ThreadName()
+	 * @model
+	 * @generated
+	 */
+	String getThreadName();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.jobs.jobs.JobInfo#getThreadName <em>Thread Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Thread Name</em>' attribute.
+	 * @see #getThreadName()
+	 * @generated
+	 */
+	void setThreadName(String value);
 
 } // JobInfo

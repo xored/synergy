@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link com.xored.sherlock.jobs.jobs.impl.AsyncInfoImpl#getSourceMethod <em>Source Method</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.impl.AsyncInfoImpl#getSourceFile <em>Source File</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.impl.AsyncInfoImpl#getThisClassName <em>This Class Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.jobs.jobs.impl.AsyncInfoImpl#getThreadName <em>Thread Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.jobs.jobs.impl.AsyncInfoImpl#isTimer <em>Timer</em>}</li>
  * </ul>
  * </p>
  *
@@ -154,6 +156,46 @@ public class AsyncInfoImpl extends EObjectImpl implements AsyncInfo {
 	 * @ordered
 	 */
 	protected String thisClassName = THIS_CLASS_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getThreadName() <em>Thread Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThreadName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String THREAD_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getThreadName() <em>Thread Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThreadName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String threadName = THREAD_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isTimer() <em>Timer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTimer()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean TIMER_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isTimer() <em>Timer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTimer()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean timer = TIMER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -305,6 +347,48 @@ public class AsyncInfoImpl extends EObjectImpl implements AsyncInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getThreadName() {
+		return threadName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setThreadName(String newThreadName) {
+		String oldThreadName = threadName;
+		threadName = newThreadName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, JobsPackage.ASYNC_INFO__THREAD_NAME, oldThreadName, threadName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isTimer() {
+		return timer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimer(boolean newTimer) {
+		boolean oldTimer = timer;
+		timer = newTimer;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, JobsPackage.ASYNC_INFO__TIMER, oldTimer, timer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -320,6 +404,10 @@ public class AsyncInfoImpl extends EObjectImpl implements AsyncInfo {
 				return getSourceFile();
 			case JobsPackage.ASYNC_INFO__THIS_CLASS_NAME:
 				return getThisClassName();
+			case JobsPackage.ASYNC_INFO__THREAD_NAME:
+				return getThreadName();
+			case JobsPackage.ASYNC_INFO__TIMER:
+				return isTimer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -349,6 +437,12 @@ public class AsyncInfoImpl extends EObjectImpl implements AsyncInfo {
 				return;
 			case JobsPackage.ASYNC_INFO__THIS_CLASS_NAME:
 				setThisClassName((String)newValue);
+				return;
+			case JobsPackage.ASYNC_INFO__THREAD_NAME:
+				setThreadName((String)newValue);
+				return;
+			case JobsPackage.ASYNC_INFO__TIMER:
+				setTimer((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -380,6 +474,12 @@ public class AsyncInfoImpl extends EObjectImpl implements AsyncInfo {
 			case JobsPackage.ASYNC_INFO__THIS_CLASS_NAME:
 				setThisClassName(THIS_CLASS_NAME_EDEFAULT);
 				return;
+			case JobsPackage.ASYNC_INFO__THREAD_NAME:
+				setThreadName(THREAD_NAME_EDEFAULT);
+				return;
+			case JobsPackage.ASYNC_INFO__TIMER:
+				setTimer(TIMER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -404,6 +504,10 @@ public class AsyncInfoImpl extends EObjectImpl implements AsyncInfo {
 				return SOURCE_FILE_EDEFAULT == null ? sourceFile != null : !SOURCE_FILE_EDEFAULT.equals(sourceFile);
 			case JobsPackage.ASYNC_INFO__THIS_CLASS_NAME:
 				return THIS_CLASS_NAME_EDEFAULT == null ? thisClassName != null : !THIS_CLASS_NAME_EDEFAULT.equals(thisClassName);
+			case JobsPackage.ASYNC_INFO__THREAD_NAME:
+				return THREAD_NAME_EDEFAULT == null ? threadName != null : !THREAD_NAME_EDEFAULT.equals(threadName);
+			case JobsPackage.ASYNC_INFO__TIMER:
+				return timer != TIMER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -430,6 +534,10 @@ public class AsyncInfoImpl extends EObjectImpl implements AsyncInfo {
 		result.append(sourceFile);
 		result.append(", thisClassName: ");
 		result.append(thisClassName);
+		result.append(", threadName: ");
+		result.append(threadName);
+		result.append(", timer: ");
+		result.append(timer);
 		result.append(')');
 		return result.toString();
 	}

@@ -207,16 +207,16 @@ public class ReportTimelineComposite {
 					for (List<Event> list : gvalues) {
 						makeSmallGroups(smallGroups, list);
 					}
-					// Collections.sort(smallGroups,
-					// new Comparator<List<Event>>() {
-					// public int compare(List<Event> o1,
-					// List<Event> o2) {
-					// long minTime1 = calcMinTime(o1);
-					// long minTime2 = calcMinTime(o2);
-					//
-					// return (int) (minTime1 - minTime2);
-					// }
-					// });
+					Collections.sort(smallGroups,
+							new Comparator<List<Event>>() {
+								public int compare(List<Event> o1,
+										List<Event> o2) {
+									long minTime1 = calcMinTime(o1);
+									long minTime2 = calcMinTime(o2);
+
+									return (int) (minTime1 - minTime2);
+								}
+							});
 
 					// Match non finished groups
 					for (List<Event> list : smallGroups) {
@@ -454,14 +454,14 @@ public class ReportTimelineComposite {
 			topGroup.addAll(infoEvents);
 		}
 
-		// Collections.sort(results, new Comparator<List<Event>>() {
-		// public int compare(List<Event> o1, List<Event> o2) {
-		// long minTime1 = calcMinTime(o1);
-		// long minTime2 = calcMinTime(o2);
-		//
-		// return (int) (minTime1 - minTime2);
-		// }
-		// });
+		Collections.sort(results, new Comparator<List<Event>>() {
+			public int compare(List<Event> o1, List<Event> o2) {
+				long minTime1 = calcMinTime(o1);
+				long minTime2 = calcMinTime(o2);
+
+				return (int) (minTime1 - minTime2);
+			}
+		});
 
 		return results;
 	}
@@ -971,6 +971,9 @@ public class ReportTimelineComposite {
 				cName = info.getSourceClass() + cName;
 			}
 			int pos = cName.lastIndexOf('.');
+			if (info.isTimer()) {
+				return "\t" + "timer:" + cName.substring(pos + 1);
+			}
 			return "\t" + (info.isSync() ? "sync: " : "async: ")
 					+ cName.substring(pos + 1);
 		} else if (eobject != null && eobject instanceof JobInfo) {

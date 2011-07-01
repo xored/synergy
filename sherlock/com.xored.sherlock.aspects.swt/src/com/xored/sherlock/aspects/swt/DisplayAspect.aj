@@ -70,9 +70,11 @@ public aspect DisplayAspect {
 	Object around(int time, Runnable run):execution(void org.eclipse.swt.widgets.Display.timerExec(int, Runnable)) && args(time,run) {
 		IAsyncEventListener[] listeners = AsyncEventManager.getDefault()
 				.getListeners();
+		Runnable newRunnable = run;
 		for (IAsyncEventListener l : listeners) {
-			l.timerAdded(run);
+			l.timerAdded(newRunnable);
+			newRunnable = l.processTimerProc(newRunnable);
 		}
-		return proceed(time, run);
+		return proceed(time, newRunnable);
 	}
 }

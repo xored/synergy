@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.Base64;
-
 import com.xored.sherlock.aspects.asyncs.IAsyncEventListener;
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.EventKind;
@@ -28,6 +26,78 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 	}
 
 	public synchronized void timerAdded(Runnable async) {
+		IReportBuilder[] builders = provider.getListeners();
+		for (IReportBuilder builder : builders) {
+			AsyncInfo info = JobsFactory.eINSTANCE.createAsyncInfo();
+			info.setRunnableClass(async.getClass().getName());
+			info.setSync(false);
+			info.setTimer(true);
+			fillStackInfo(async, info);
+
+			EventSource source = builder
+					.findSource(SherlockJobsCore.JOBS, info);
+
+			if (source == null) {
+				source = builder.registerEventSource("timer exec:"
+						+ async.getClass().getSimpleName());
+				source.getProperties().put(SherlockJobsCore.JOBS, info);
+			}
+			getSources(builder).put(async, source);
+
+			AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
+					.createAsyncEventInfo();
+			eventInfo.setKind(AsyncEventKind.TIMER_EXEC);
+			eventInfo.setId(JobsEventProvider.getID(async));
+
+			Event event = builder.createEvent();
+			event.setSource(source);
+			event.setData(eventInfo);
+			event.setKind(EventKind.BEGIN);
+
+			event.setColor(ASYNC_ADDED_COLOR);
+		}
+	}
+
+	public Runnable processTimerProc(final Runnable newRunnable) {
+		return new Runnable() {
+			public void run() {
+				IReportBuilder[] builders = provider.getListeners();
+				for (IReportBuilder builder : builders) {
+					if (getSources(builder).get(newRunnable) == null) {
+						continue;
+					}
+
+					Event event = builder.createEvent();
+					event.setSource(getSources(builder).get(newRunnable));
+
+					AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
+							.createAsyncEventInfo();
+					eventInfo.setId(JobsEventProvider.getID(newRunnable));
+					event.setData(eventInfo);
+					event.setKind(EventKind.BEGIN);
+					event.setColor(ASYNC_RUNNING_COLOR);
+					eventInfo.setKind(AsyncEventKind.RUNNING);
+				}
+				newRunnable.run();
+				builders = provider.getListeners();
+				for (IReportBuilder builder : builders) {
+					if (getSources(builder).get(newRunnable) == null) {
+						continue;
+					}
+
+					Event event = builder.createEvent();
+					event.setSource(getSources(builder).get(newRunnable));
+
+					AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
+							.createAsyncEventInfo();
+					eventInfo.setId(JobsEventProvider.getID(newRunnable));
+					event.setData(eventInfo);
+					event.setKind(EventKind.END);
+					event.setColor(ASYNC_RUNNING_COLOR);
+					eventInfo.setKind(AsyncEventKind.DONE);
+				}
+			}
+		};
 	}
 
 	public synchronized void asyncRunning(Runnable async) {
@@ -84,62 +154,11 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 	public synchronized void asyncAdded(Runnable async, boolean sync) {
 		IReportBuilder[] builders = provider.getListeners();
 		for (IReportBuilder builder : builders) {
-			String cName = async.getClass().getName();
-			// if (cName.contains("com.xored.q7")
-			// || cName.contains("com.xored.tesla")) {
-			// return;
-			// }
 			AsyncInfo info = JobsFactory.eINSTANCE.createAsyncInfo();
 			info.setRunnableClass(async.getClass().getName());
 			info.setSync(sync);
-			Map<Thread, StackTraceElement[]> stackTraces = Thread
-					.getAllStackTraces();
-			Object object = ReflectionUtils.getThis(async);
-			for (Thread t : stackTraces.keySet()) {
-				if (!t.equals(Thread.currentThread())) {
-					continue;
-				}
-				// Out thread
-				StackTraceElement[] traceElements = stackTraces.get(t);
-				boolean next = false;
-				for (StackTraceElement stackTraceElement : traceElements) {
-					if (next) {
-						info.setSourceMethod(stackTraceElement.getMethodName());
-						info.setSourceClass(stackTraceElement.getClassName());
-						String fName = stackTraceElement.getFileName();
-						if (fName != null) {
-							info.setSourceFile(fName + ":"
-									+ stackTraceElement.getLineNumber());
-						}
-						break;
-					}
-					if (stackTraceElement.getClassName().equals(
-							"org.eclipse.swt.widgets.Display")) {
-						next = true;
-					}
-				}
-			}
-			if (object != null) {
-				String tname = object.getClass().getName();
-				if (!(info.getSourceClass() != null && info.getSourceClass()
-						.equals(tname))) {
-					info.setThisClassName(tname);
-				}
-				// if (tname
-				// .contains("org.eclipse.ui.internal.progress.AnimationManager")
-				// ||
-				// tname.contains("org.eclipse.ui.internal.progress.ProgressViewUpdater"))
-				// {
-				// return;
-				// }
-			}
-			if (info.getRunnableClass() != null
-					&& info.getSourceClass() != null) {
-				if (info.getRunnableClass().startsWith(info.getSourceClass())) {
-					info.setRunnableClass(info.getRunnableClass().substring(
-							info.getSourceClass().length()));
-				}
-			}
+			info.setTimer(false);
+			fillStackInfo(async, info);
 
 			EventSource source = builder
 					.findSource(SherlockJobsCore.JOBS, info);
@@ -165,6 +184,50 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 			} else {
 				event.setColor(ASYNC_RUNNING_COLOR);
 				eventInfo.setKind(AsyncEventKind.RUNNING);
+			}
+		}
+	}
+
+	private void fillStackInfo(Runnable async, AsyncInfo info) {
+		Map<Thread, StackTraceElement[]> stackTraces = Thread
+				.getAllStackTraces();
+		Object object = ReflectionUtils.getThis(async);
+		for (Thread t : stackTraces.keySet()) {
+			if (!t.equals(Thread.currentThread())) {
+				continue;
+			}
+			info.setThreadName(t.getName());
+			// Out thread
+			StackTraceElement[] traceElements = stackTraces.get(t);
+			boolean next = false;
+			for (StackTraceElement stackTraceElement : traceElements) {
+				if (next) {
+					info.setSourceMethod(stackTraceElement.getMethodName());
+					info.setSourceClass(stackTraceElement.getClassName());
+					String fName = stackTraceElement.getFileName();
+					if (fName != null) {
+						info.setSourceFile(fName + ":"
+								+ stackTraceElement.getLineNumber());
+					}
+					break;
+				}
+				if (stackTraceElement.getClassName().equals(
+						"org.eclipse.swt.widgets.Display")) {
+					next = true;
+				}
+			}
+		}
+		if (object != null) {
+			String tname = object.getClass().getName();
+			if (!(info.getSourceClass() != null && info.getSourceClass()
+					.equals(tname))) {
+				info.setThisClassName(tname);
+			}
+		}
+		if (info.getRunnableClass() != null && info.getSourceClass() != null) {
+			if (info.getRunnableClass().startsWith(info.getSourceClass())) {
+				info.setRunnableClass(info.getRunnableClass().substring(
+						info.getSourceClass().length()));
 			}
 		}
 	}

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link com.xored.sherlock.jobs.jobs.impl.JobInfoImpl#isUser <em>User</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.impl.JobInfoImpl#getSourceFile <em>Source File</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.impl.JobInfoImpl#getThisClassName <em>This Class Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.jobs.jobs.impl.JobInfoImpl#getThreadName <em>Thread Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -175,6 +176,26 @@ public class JobInfoImpl extends EObjectImpl implements JobInfo {
 	 * @ordered
 	 */
 	protected String thisClassName = THIS_CLASS_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getThreadName() <em>Thread Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThreadName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String THREAD_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getThreadName() <em>Thread Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThreadName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String threadName = THREAD_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -347,6 +368,27 @@ public class JobInfoImpl extends EObjectImpl implements JobInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getThreadName() {
+		return threadName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setThreadName(String newThreadName) {
+		String oldThreadName = threadName;
+		threadName = newThreadName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, JobsPackage.JOB_INFO__THREAD_NAME, oldThreadName, threadName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -364,6 +406,8 @@ public class JobInfoImpl extends EObjectImpl implements JobInfo {
 				return getSourceFile();
 			case JobsPackage.JOB_INFO__THIS_CLASS_NAME:
 				return getThisClassName();
+			case JobsPackage.JOB_INFO__THREAD_NAME:
+				return getThreadName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -396,6 +440,9 @@ public class JobInfoImpl extends EObjectImpl implements JobInfo {
 				return;
 			case JobsPackage.JOB_INFO__THIS_CLASS_NAME:
 				setThisClassName((String)newValue);
+				return;
+			case JobsPackage.JOB_INFO__THREAD_NAME:
+				setThreadName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -430,6 +477,9 @@ public class JobInfoImpl extends EObjectImpl implements JobInfo {
 			case JobsPackage.JOB_INFO__THIS_CLASS_NAME:
 				setThisClassName(THIS_CLASS_NAME_EDEFAULT);
 				return;
+			case JobsPackage.JOB_INFO__THREAD_NAME:
+				setThreadName(THREAD_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -456,6 +506,8 @@ public class JobInfoImpl extends EObjectImpl implements JobInfo {
 				return SOURCE_FILE_EDEFAULT == null ? sourceFile != null : !SOURCE_FILE_EDEFAULT.equals(sourceFile);
 			case JobsPackage.JOB_INFO__THIS_CLASS_NAME:
 				return THIS_CLASS_NAME_EDEFAULT == null ? thisClassName != null : !THIS_CLASS_NAME_EDEFAULT.equals(thisClassName);
+			case JobsPackage.JOB_INFO__THREAD_NAME:
+				return THREAD_NAME_EDEFAULT == null ? threadName != null : !THREAD_NAME_EDEFAULT.equals(threadName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -484,6 +536,8 @@ public class JobInfoImpl extends EObjectImpl implements JobInfo {
 		result.append(sourceFile);
 		result.append(", thisClassName: ");
 		result.append(thisClassName);
+		result.append(", threadName: ");
+		result.append(threadName);
 		result.append(')');
 		return result.toString();
 	}

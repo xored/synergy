@@ -124,13 +124,31 @@ public interface JobsPackage extends EPackage {
 	int ASYNC_INFO__THIS_CLASS_NAME = 5;
 
 	/**
+	 * The feature id for the '<em><b>Thread Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASYNC_INFO__THREAD_NAME = 6;
+
+	/**
+	 * The feature id for the '<em><b>Timer</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASYNC_INFO__TIMER = 7;
+
+	/**
 	 * The number of structural features of the '<em>Async Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASYNC_INFO_FEATURE_COUNT = 6;
+	int ASYNC_INFO_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.jobs.jobs.impl.AsyncEventInfoImpl <em>Async Event Info</em>}' class.
@@ -252,13 +270,22 @@ public interface JobsPackage extends EPackage {
 	int JOB_INFO__THIS_CLASS_NAME = 6;
 
 	/**
+	 * The feature id for the '<em><b>Thread Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOB_INFO__THREAD_NAME = 7;
+
+	/**
 	 * The number of structural features of the '<em>Job Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOB_INFO_FEATURE_COUNT = 7;
+	int JOB_INFO_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.jobs.jobs.impl.JobEventInfoImpl <em>Job Event Info</em>}' class.
@@ -395,6 +422,28 @@ public interface JobsPackage extends EPackage {
 	EAttribute getAsyncInfo_ThisClassName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.jobs.jobs.AsyncInfo#getThreadName <em>Thread Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Thread Name</em>'.
+	 * @see com.xored.sherlock.jobs.jobs.AsyncInfo#getThreadName()
+	 * @see #getAsyncInfo()
+	 * @generated
+	 */
+	EAttribute getAsyncInfo_ThreadName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.jobs.jobs.AsyncInfo#isTimer <em>Timer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Timer</em>'.
+	 * @see com.xored.sherlock.jobs.jobs.AsyncInfo#isTimer()
+	 * @see #getAsyncInfo()
+	 * @generated
+	 */
+	EAttribute getAsyncInfo_Timer();
+
+	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.jobs.jobs.AsyncEventInfo <em>Async Event Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -523,6 +572,17 @@ public interface JobsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getJobInfo_ThisClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.jobs.jobs.JobInfo#getThreadName <em>Thread Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Thread Name</em>'.
+	 * @see com.xored.sherlock.jobs.jobs.JobInfo#getThreadName()
+	 * @see #getJobInfo()
+	 * @generated
+	 */
+	EAttribute getJobInfo_ThreadName();
 
 	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.jobs.jobs.JobEventInfo <em>Job Event Info</em>}'.
@@ -657,6 +717,22 @@ public interface JobsPackage extends EPackage {
 		EAttribute ASYNC_INFO__THIS_CLASS_NAME = eINSTANCE.getAsyncInfo_ThisClassName();
 
 		/**
+		 * The meta object literal for the '<em><b>Thread Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASYNC_INFO__THREAD_NAME = eINSTANCE.getAsyncInfo_ThreadName();
+
+		/**
+		 * The meta object literal for the '<em><b>Timer</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASYNC_INFO__TIMER = eINSTANCE.getAsyncInfo_Timer();
+
+		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.jobs.jobs.impl.AsyncEventInfoImpl <em>Async Event Info</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -755,6 +831,14 @@ public interface JobsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JOB_INFO__THIS_CLASS_NAME = eINSTANCE.getJobInfo_ThisClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Thread Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JOB_INFO__THREAD_NAME = eINSTANCE.getJobInfo_ThreadName();
 
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.jobs.jobs.impl.JobEventInfoImpl <em>Job Event Info</em>}' class.

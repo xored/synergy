@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.sherlock.jobs.jobs.AsyncInfo#getSourceMethod <em>Source Method</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.AsyncInfo#getSourceFile <em>Source File</em>}</li>
  *   <li>{@link com.xored.sherlock.jobs.jobs.AsyncInfo#getThisClassName <em>This Class Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.jobs.jobs.AsyncInfo#getThreadName <em>Thread Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.jobs.jobs.AsyncInfo#isTimer <em>Timer</em>}</li>
  * </ul>
  * </p>
  *
@@ -186,5 +188,58 @@ public interface AsyncInfo extends EObject {
 	 * @generated
 	 */
 	void setThisClassName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Thread Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Thread Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Thread Name</em>' attribute.
+	 * @see #setThreadName(String)
+	 * @see com.xored.sherlock.jobs.jobs.JobsPackage#getAsyncInfo_ThreadName()
+	 * @model
+	 * @generated
+	 */
+	String getThreadName();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.jobs.jobs.AsyncInfo#getThreadName <em>Thread Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Thread Name</em>' attribute.
+	 * @see #getThreadName()
+	 * @generated
+	 */
+	void setThreadName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Timer</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Timer</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Timer</em>' attribute.
+	 * @see #setTimer(boolean)
+	 * @see com.xored.sherlock.jobs.jobs.JobsPackage#getAsyncInfo_Timer()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isTimer();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.jobs.jobs.AsyncInfo#isTimer <em>Timer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Timer</em>' attribute.
+	 * @see #isTimer()
+	 * @generated
+	 */
+	void setTimer(boolean value);
 
 } // AsyncInfo
