@@ -70,7 +70,7 @@ public class ReportTimelineComposite {
 	private boolean showBegined = true;
 
 	public ReportTimelineComposite(Report report2, Composite control) {
-		SashForm sform = new SashForm(control, SWT.VERTICAL);
+		SashForm sform = new SashForm(control, SWT.VERTICAL | SWT.SMOOTH);
 		sform.setLayout(new org.eclipse.swt.layout.GridLayout(1, false));
 		GridDataFactory.fillDefaults().hint(200, 100).grab(true, true)
 				.applyTo(sform);
