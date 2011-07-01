@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.xored.sherlock.ui
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.xored.sherlock.ui.Activator
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.xored.sherlock.core;bundle-version="1.0.0",
+ com.xored.sherlock.jobs;bundle-version="1.0.0",
+ org.eclipse.draw2d;bundle-version="3.7.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: com.xored.sherlock.ui,
+ com.xored.sherlock.ui.reportdetails,
+ com.xored.sherlock.ui.reportdetails.figures

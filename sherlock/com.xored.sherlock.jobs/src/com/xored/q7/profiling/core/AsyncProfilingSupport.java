@@ -69,6 +69,7 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 			}
 			Event event = builder.createEvent();
 			event.setKind(EventKind.END);
+			event.setColor(ASYNC_RUNNING_COLOR);
 			event.setSource(getSources(builder).get(async));
 
 			AsyncEventInfo eventInfo = JobsFactory.eINSTANCE
