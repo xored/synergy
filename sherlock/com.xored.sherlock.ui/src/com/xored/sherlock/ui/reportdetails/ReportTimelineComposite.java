@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
@@ -69,10 +70,14 @@ public class ReportTimelineComposite {
 	private boolean showBegined = true;
 
 	public ReportTimelineComposite(Report report2, Composite control) {
-		sc = new ScrolledComposite(control, SWT.H_SCROLL | SWT.V_SCROLL
+		SashForm sform = new SashForm(control, SWT.VERTICAL);
+		sform.setLayout(new org.eclipse.swt.layout.GridLayout(1, false));
+		GridDataFactory.fillDefaults().hint(200, 100).grab(true, true)
+				.applyTo(sform);
+		sc = new ScrolledComposite(sform, SWT.H_SCROLL | SWT.V_SCROLL
 				| SWT.BORDER);
 
-		imageCanvas = new Canvas(sc, SWT.NONE);
+		imageCanvas = new Canvas(sc, SWT.DOUBLE_BUFFERED);
 		sc.setContent(imageCanvas);
 		final Color color = imageCanvas.getDisplay().getSystemColor(
 				SWT.COLOR_WHITE);
@@ -90,13 +95,15 @@ public class ReportTimelineComposite {
 		figureParent.setLayoutManager(gl);
 		lws.setContents(figureParent);
 
-		Composite g = new Composite(control, SWT.BORDER);
+		Composite g = new Composite(sform, SWT.BORDER);
 		// g.setText("Details");
 		infoText = new StyledText(g, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		GridDataFactory.fillDefaults().hint(SWT.DEFAULT, 150).grab(true, false)
 				.applyTo(g);
 		GridLayoutFactory.swtDefaults().applyTo(g);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(infoText);
+
+		sform.setWeights(new int[] { 80, 20 });
 	}
 
 	public void doZoomOut() {
@@ -180,7 +187,7 @@ public class ReportTimelineComposite {
 			// We need to collect also events started in all previous and parent
 			// nodes and not finished here.
 			Map<EventSource, List<Event>> nonFinishedGroups = new HashMap<EventSource, List<Event>>();
-			if (showBegined && newNodes.size() < 25) {
+			if (showBegined && newNodes.size() < 10) {
 				List<Event> priorEvents = collectPriorEvents(node);
 				final Map<EventSource, List<Event>> priorEventsSources = new HashMap<EventSource, List<Event>>();
 				groupBySources(priorEvents, priorEventsSources);
