@@ -8,6 +8,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.swt.SWT;
 
 import com.xored.sherlock.core.model.sherlock.report.EventSource;
 
@@ -26,6 +27,9 @@ public class SourceFigure extends RectangleFigure {
 
 		title = new Label(" " + name);
 		GridData gd = new GridData(300, 20);
+		// gd.grabExcessVerticalSpace = true;
+		gd.verticalAlignment = SWT.TOP;
+		gd.horizontalAlignment = SWT.LEFT;
 		add(title);
 		title.setLabelAlignment(PositionConstants.LEFT);
 		gl.setConstraint(title, gd);

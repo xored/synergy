@@ -180,7 +180,7 @@ public class ReportTimelineComposite {
 			// We need to collect also events started in all previous and parent
 			// nodes and not finished here.
 			Map<EventSource, List<Event>> nonFinishedGroups = new HashMap<EventSource, List<Event>>();
-			if (showBegined && newNodes.size() < 5) {
+			if (showBegined && newNodes.size() < 25) {
 				List<Event> priorEvents = collectPriorEvents(node);
 				final Map<EventSource, List<Event>> priorEventsSources = new HashMap<EventSource, List<Event>>();
 				groupBySources(priorEvents, priorEventsSources);
@@ -386,8 +386,32 @@ public class ReportTimelineComposite {
 
 		figureParent.add(sourceRoot);
 		for (List<Event> list : instances) {
-			addEventsTo(minTime, allTime, list, sourceRoot, st, ed,
-					instances.indexOf(list));
+			int level = instances.indexOf(list);
+			Set<Event> processed = new HashSet<Event>();
+			int len = list.size();
+			for (int i = 0; i < len; i++) {
+				Event event = list.get(i);
+				if (processed.contains(event)) {
+					continue;
+				}
+				if (event.getKind().equals(EventKind.BEGIN)) {
+					// Check for end node
+					EventFigure childFig = createEventFigure();
+					childFig.setEvent(event);
+					childFig.setFill(true);
+					if (event.getColor() == null) {
+						childFig.setBackgroundColor(colors.getColor(new RGB(0,
+								0, 0)));
+					} else {
+						Color color = colors.getColor(parseColor(event
+								.getColor()));
+						childFig.setBackgroundColor(color);
+					}
+					sourceRoot.addToContainer(childFig, st, 0, (int) ed, 20,
+							level);
+				}
+
+			}
 		}
 	}
 
