@@ -822,8 +822,7 @@ public class ReportTimelineComposite {
 							+ TimeFormatHelper.format(endEvent.getTime()
 									- event.getTime())).append("\n");
 
-		}
-		{
+		} else {
 			builder.append(
 					"Time:"
 							+ TimeFormatHelper.format(event.getTime() - minTime))
