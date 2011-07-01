@@ -18,8 +18,7 @@ import com.xored.sherlock.core.model.sherlock.report.Report;
 import com.xored.sherlock.core.model.sherlock.report.Snaphot;
 
 public class SimpleReportGenerator {
-	private static final String LINE_SEPARATOR = System
-			.getProperty("line.separator");
+	private static final String LINE_SEPARATOR = "\n";
 
 	public String generateContent(Report report) {
 		StringBuilder builder = new StringBuilder();
@@ -62,7 +61,7 @@ public class SimpleReportGenerator {
 	private String asValue(EObject eObject) {
 		StringBuilder b = new StringBuilder();
 		toString(b, 0, eObject);
-		return "(" + b.toString().replace("\n", "\\n") + ")";
+		return "(" + b.toString().replace("\n", " ") + ")";
 	}
 
 	public void printEvent(Event child, StringBuilder stream, int tabs) {
@@ -91,7 +90,7 @@ public class SimpleReportGenerator {
 		stream.append(">").append(LINE_SEPARATOR);
 	}
 
-	private void printSnapshot(Snaphot child, StringBuilder stream, int tabs) {
+	protected void printSnapshot(Snaphot child, StringBuilder stream, int tabs) {
 		appendTabs(stream, tabs);
 		stream.append(" %");
 		stream.append(" object:").append(LINE_SEPARATOR);
@@ -105,14 +104,14 @@ public class SimpleReportGenerator {
 		appendTabs(stream, tabs).append("%").append(LINE_SEPARATOR);
 	}
 
-	private StringBuilder appendTabs(StringBuilder stream, int tabs) {
+	protected StringBuilder appendTabs(StringBuilder stream, int tabs) {
 		for (int i = 0; i < tabs; ++i) {
 			stream.append("  ");
 		}
 		return stream;
 	}
 
-	private StringBuilder printStatus(EclipseStatus s, int tabs,
+	protected StringBuilder printStatus(EclipseStatus s, int tabs,
 			StringBuilder builder) {
 		int severity = s.getSeverity();
 		if (severity == IStatus.ERROR) {
@@ -150,6 +149,12 @@ public class SimpleReportGenerator {
 					.append(st.getFileName()).append(":")
 					.append(st.getLineNumber()).append(")")
 					.append(LINE_SEPARATOR);
+		}
+		JavaException cause = e.getCause();
+		if (cause != null) {
+			appendTabs(builder, tabs + 2).append("Caused by:").append(
+					LINE_SEPARATOR);
+			printJavaException(cause, tabs + 4, builder);
 		}
 		return builder;
 	}
