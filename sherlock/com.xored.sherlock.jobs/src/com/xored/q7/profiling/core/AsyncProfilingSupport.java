@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 import com.xored.sherlock.aspects.asyncs.IAsyncEventListener;
+import com.xored.sherlock.core.SherlockTimerRunnable;
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.EventKind;
 import com.xored.sherlock.core.model.sherlock.report.EventSource;
@@ -59,8 +60,9 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 	}
 
 	public Runnable processTimerProc(final Runnable newRunnable) {
-		return new Runnable() {
-			public void run() {
+		return new SherlockTimerRunnable(newRunnable) {
+			@Override
+			protected void preExecute() {
 				IReportBuilder[] builders = provider.getListeners();
 				for (IReportBuilder builder : builders) {
 					if (getSources(builder).get(newRunnable) == null) {
@@ -78,8 +80,10 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 					event.setColor(ASYNC_RUNNING_COLOR);
 					eventInfo.setKind(AsyncEventKind.RUNNING);
 				}
-				newRunnable.run();
-				builders = provider.getListeners();
+			}
+
+			public void postExecute() {
+				IReportBuilder[] builders = provider.getListeners();
 				for (IReportBuilder builder : builders) {
 					if (getSources(builder).get(newRunnable) == null) {
 						continue;
