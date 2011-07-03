@@ -18,6 +18,7 @@ import com.xored.sherlock.jobs.jobs.JobsFactory;
 final class AsyncProfilingSupport implements IAsyncEventListener {
 	private static final String ASYNC_RUNNING_COLOR = "#00BB00";
 	private static final String ASYNC_ADDED_COLOR = "#AAAAAA";
+	private boolean collectTimerExecs = false;
 
 	private Map<IReportBuilder, Map<Runnable, EventSource>> sources = new HashMap<IReportBuilder, Map<Runnable, EventSource>>();
 	private JobsEventProvider provider;
@@ -27,6 +28,9 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 	}
 
 	public synchronized void timerAdded(Runnable async) {
+		if( !collectTimerExecs) {
+			return;
+		}
 		IReportBuilder[] builders = provider.getListeners();
 		for (IReportBuilder builder : builders) {
 			AsyncInfo info = JobsFactory.eINSTANCE.createAsyncInfo();
@@ -60,6 +64,9 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 	}
 
 	public Runnable processTimerProc(final Runnable newRunnable) {
+		if( !collectTimerExecs) {
+			return newRunnable;
+		}
 		return new SherlockTimerRunnable(newRunnable) {
 			@Override
 			protected void preExecute() {
