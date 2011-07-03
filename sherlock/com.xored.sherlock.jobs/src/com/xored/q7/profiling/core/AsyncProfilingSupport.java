@@ -95,6 +95,7 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 					event.setKind(EventKind.END);
 					event.setColor(ASYNC_RUNNING_COLOR);
 					eventInfo.setKind(AsyncEventKind.DONE);
+					getSources(builder).remove(newRunnable);
 				}
 				sources.remove(newRunnable);
 			}

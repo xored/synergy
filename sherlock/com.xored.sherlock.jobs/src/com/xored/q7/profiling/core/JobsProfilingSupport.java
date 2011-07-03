@@ -194,6 +194,7 @@ public class JobsProfilingSupport implements IJobsEventListener,
 				event.setKind(EventKind.END);
 				eventInfo.setKind(JobEventKind.FINISHED);
 				currentStates.remove(job);
+				getSources(builder).remove(job);
 			}
 		}
 	}
