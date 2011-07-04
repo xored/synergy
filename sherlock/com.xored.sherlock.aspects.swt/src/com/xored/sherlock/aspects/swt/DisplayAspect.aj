@@ -73,8 +73,11 @@ public aspect DisplayAspect {
 		Runnable newRunnable = run;
 		for (IAsyncEventListener l : listeners) {
 			l.timerAdded(newRunnable);
+		}
+		for (IAsyncEventListener l : listeners) {
 			newRunnable = l.processTimerProc(newRunnable);
 		}
+
 		return proceed(time, newRunnable);
 	}
 }

@@ -18,7 +18,7 @@ import com.xored.sherlock.jobs.jobs.JobsFactory;
 final class AsyncProfilingSupport implements IAsyncEventListener {
 	private static final String ASYNC_RUNNING_COLOR = "#00BB00";
 	private static final String ASYNC_ADDED_COLOR = "#AAAAAA";
-	private boolean collectTimerExecs = false;
+	private boolean collectTimerExecs = true;
 
 	private Map<IReportBuilder, Map<Runnable, EventSource>> sources = new HashMap<IReportBuilder, Map<Runnable, EventSource>>();
 	private JobsEventProvider provider;
@@ -28,10 +28,27 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 	}
 
 	public synchronized void timerAdded(Runnable async) {
-		if( !collectTimerExecs) {
+		if (!collectTimerExecs) {
 			return;
 		}
-		IReportBuilder[] builders = provider.getListeners();
+		if (async instanceof SherlockTimerRunnable) {
+			async = (Runnable) ((SherlockTimerRunnable) async).getRunnable();
+		}
+
+		final IReportBuilder[] builders = provider.getListeners();
+		for (IReportBuilder builder : builders) {
+			EventSource source = getSources(builder).get(async);
+			if (source != null) {
+				// Re timer exec, skip it.
+				getSources(builder).remove(async);
+				return;
+			}
+		}
+		// String name = async.getClass().getName();
+		// if (name.contains("org.eclipse.swt.ole.win32.OleFrame")) {
+		// return;
+		// }
+
 		for (IReportBuilder builder : builders) {
 			AsyncInfo info = JobsFactory.eINSTANCE.createAsyncInfo();
 			info.setRunnableClass(async.getClass().getName());
@@ -64,15 +81,22 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 	}
 
 	public Runnable processTimerProc(final Runnable newRunnable) {
-		if( !collectTimerExecs) {
+		if (!collectTimerExecs) {
 			return newRunnable;
+		}
+		final IReportBuilder[] builders = provider.getListeners();
+		final Map<IReportBuilder, EventSource> localSources = new HashMap<IReportBuilder, EventSource>();
+		for (IReportBuilder builder : builders) {
+			if (getSources(builder).get(newRunnable) == null) {
+				return newRunnable;
+			}
+			localSources.put(builder, getSources(builder).get(newRunnable));
 		}
 		return new SherlockTimerRunnable(newRunnable) {
 			@Override
 			protected void preExecute() {
-				IReportBuilder[] builders = provider.getListeners();
-				for (IReportBuilder builder : builders) {
-					if (getSources(builder).get(newRunnable) == null) {
+				for (IReportBuilder builder : localSources.keySet()) {
+					if (localSources.get(builder) == null) {
 						continue;
 					}
 
@@ -90,9 +114,8 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 			}
 
 			public void postExecute() {
-				IReportBuilder[] builders = provider.getListeners();
-				for (IReportBuilder builder : builders) {
-					if (getSources(builder).get(newRunnable) == null) {
+				for (IReportBuilder builder : localSources.keySet()) {
+					if (localSources.get(builder) == null) {
 						continue;
 					}
 
@@ -108,7 +131,6 @@ final class AsyncProfilingSupport implements IAsyncEventListener {
 					eventInfo.setKind(AsyncEventKind.DONE);
 					getSources(builder).remove(newRunnable);
 				}
-				sources.remove(newRunnable);
 			}
 		};
 	}

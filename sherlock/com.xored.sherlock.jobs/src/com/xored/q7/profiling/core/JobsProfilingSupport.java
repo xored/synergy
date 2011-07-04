@@ -244,5 +244,6 @@ public class JobsProfilingSupport implements IJobsEventListener,
 
 	public void clear() {
 		currentStates.clear();
+		sources.clear();
 	}
 }

@@ -28,7 +28,7 @@ public class SherlockTimerRunnable implements Runnable {
 
 	}
 
-	public Object getRunnable() {
+	public Runnable getRunnable() {
 		return runnable;
 	}
 }
