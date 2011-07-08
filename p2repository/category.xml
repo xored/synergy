@@ -9,11 +9,11 @@
    <feature url="features/com.xored.sherlock.ui_1.0.0.qualifier.jar" id="com.xored.sherlock.ui" version="1.0.0.qualifier">
       <category name="com.xored.sherlock"/>
    </feature>   
-   <!--feature url="features/com.xored.x5agent_1.0.0.qualifier.jar" id="com.xored.x5agent" version="1.0.0.qualifier">
+   <feature url="features/com.xored.x5agent_1.0.0.qualifier.jar" id="com.xored.x5agent" version="1.0.0.qualifier">
       <category name="com.xored.x5"/>
-   </feature-->
+   </feature>
    <feature url="features/com.google.libs_1.0.0.qualifier.jar" id="com.google.libs" version="1.0.0.qualifier"/>
    <category-def name="com.xored.emfjson" label="EMF/JSON conversion"/>
    <category-def name="com.xored.sherlock" label="Eclipse Sherlock"/>
-   <!--category-def name="com.xored.x5" label="X5 Agent"/-->
+   <!category-def name="com.xored.x5" label="X5 Agent"/>
 </site>
