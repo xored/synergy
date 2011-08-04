@@ -57,8 +57,8 @@ public class Emf2Json {
 		EClass eClass = object.eClass();
 		JsonObject jsonObject = new JsonObject();
 		if (saveClass) {
-			jsonObject.addProperty(CLASS_ATTRIBUTE, eClass.getEPackage().getName()
-					+ "." + eClass.getName());
+			jsonObject.addProperty(CLASS_ATTRIBUTE, eClass.getInstanceClass()
+					.getName());
 		}
 
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
@@ -73,12 +73,16 @@ public class Emf2Json {
 				if (value != null) {
 					List<?> list = (List<?>) value;
 					for (Object item : list) {
-						jsonArray.add(handleFeature(feature, item));
+						JsonElement e = handleFeature(feature, item);
+						if (e != JSON_NULL)
+							jsonArray.add(e);
 					}
 					jsonObject.add(feature.getName(), jsonArray);
 				}
 			} else {
-				jsonObject.add(feature.getName(), handleFeature(feature, value));
+				JsonElement e = handleFeature(feature, value);
+				if (e != JSON_NULL)
+					jsonObject.add(feature.getName(), e);
 			}
 		}
 		return jsonObject;
