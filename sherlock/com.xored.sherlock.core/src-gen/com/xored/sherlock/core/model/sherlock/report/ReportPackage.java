@@ -372,7 +372,6 @@ public interface ReportPackage extends EPackage {
 	 */
 	int PROPERTY_MAP_FEATURE_COUNT = 2;
 
-
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.SnaphotImpl <em>Snaphot</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -419,7 +418,6 @@ public interface ReportPackage extends EPackage {
 	 */
 	int SNAPHOT_FEATURE_COUNT = 3;
 
-
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.impl.ReportBuilderStoreImpl <em>Builder Store</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -456,7 +454,6 @@ public interface ReportPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPORT_BUILDER_STORE_FEATURE_COUNT = 2;
-
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.report.EventKind <em>Event Kind</em>}' enum.

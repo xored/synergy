@@ -7,9 +7,7 @@
 package com.xored.sherlock.core.model.sherlock.report;
 
 import org.eclipse.emf.common.util.EMap;
-import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -66,7 +64,7 @@ public interface Event extends EObject {
 	 * and the value is of type {@link org.eclipse.emf.ecore.EObject},
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Properties</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Properties</em>' map isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

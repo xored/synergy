@@ -1,26 +1,23 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: Sherlock
 Bundle-SymbolicName: com.xored.sherlock.core;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
+Bundle-Vendor: xored
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.xored.sherlock.core,
  com.xored.sherlock.core.info,
  com.xored.sherlock.core.internal,
- com.xored.sherlock.core.model.sherlock,
- com.xored.sherlock.core.model.sherlock.impl,
  com.xored.sherlock.core.model.sherlock.report,
  com.xored.sherlock.core.model.sherlock.report.impl,
  com.xored.sherlock.core.model.sherlock.report.util,
- com.xored.sherlock.core.model.sherlock.util,
  com.xored.sherlock.core.reporting,
  com.xored.sherlock.core.reporting.internal,
  com.xored.sherlock.core.streams
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.core.resources
+ org.eclipse.core.resources,
+ com.xored.sherlock.model;bundle-version="1.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: com.xored.sherlock.core.SherlockCore

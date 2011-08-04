@@ -1,11 +1,10 @@
 package com.xored.sherlock.core.info;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Dictionary;
-import java.util.List;
 import java.util.LinkedList;
-import java.util.Map;
-import java.io.File;
+import java.util.List;
 
 import org.eclipse.core.runtime.IBundleGroup;
 import org.osgi.framework.Bundle;
@@ -17,10 +16,8 @@ import com.xored.sherlock.core.model.sherlock.EclipseInfo;
 import com.xored.sherlock.core.model.sherlock.EclipsePlugin;
 import com.xored.sherlock.core.model.sherlock.EclipsePreference;
 import com.xored.sherlock.core.model.sherlock.JavaInfo;
-import com.xored.sherlock.core.model.sherlock.JavaProperty;
 import com.xored.sherlock.core.model.sherlock.SherlockFactory;
 import com.xored.sherlock.core.model.sherlock.SystemInfo;
-import com.xored.sherlock.core.model.sherlock.SystemVariable;
 
 public final class Info {
 	public static SystemInfo getSystem() {
@@ -29,17 +26,7 @@ public final class Info {
 		info.setOsArch(SystemInfoProvider.getOSArch());
 		info.setOsVersion(SystemInfoProvider.getOSVersion());
 		info.setUsername(SystemInfoProvider.getUsername());
-
-		final List<SystemVariable> vars = info.getVariables();
-		for (Map.Entry<String, String> entry : SystemInfoProvider
-				.getVariables().entrySet()) {
-			final SystemVariable var = SherlockFactory.eINSTANCE
-					.createSystemVariable();
-			var.setName(entry.getKey());
-			var.setValue(entry.getValue());
-			vars.add(var);
-		}
-
+		info.getVariables().putAll(SystemInfoProvider.getVariables());
 		return info;
 	}
 
@@ -50,17 +37,7 @@ public final class Info {
 		info.setFreeMemory(JavaInfoProvider.getFreeMemory());
 		info.setMaxMemory(JavaInfoProvider.getMaxMemory());
 		info.setTotalMemory(JavaInfoProvider.getTotalMemory());
-
-		final List<JavaProperty> props = info.getProperties();
-		for (Map.Entry<String, String> entry : JavaInfoProvider.getProperties()
-				.entrySet()) {
-			final JavaProperty prop = SherlockFactory.eINSTANCE
-					.createJavaProperty();
-			prop.setName(entry.getKey());
-			prop.setValue(entry.getValue());
-			props.add(prop);
-		}
-
+		info.getProperties().putAll(JavaInfoProvider.getProperties());
 		return info;
 	}
 

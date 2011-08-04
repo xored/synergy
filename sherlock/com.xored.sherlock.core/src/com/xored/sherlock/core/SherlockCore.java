@@ -1,16 +1,15 @@
 package com.xored.sherlock.core;
 
+import java.util.List;
+
+import org.eclipse.core.runtime.IBundleGroup;
 import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
-import org.osgi.framework.BundleContext;
-
-import org.eclipse.core.runtime.IBundleGroup;
 import org.osgi.framework.Bundle;
-
-import java.util.List;
+import org.osgi.framework.BundleContext;
 
 import com.xored.sherlock.core.internal.SherlockLogListener;
 import com.xored.sherlock.core.model.sherlock.EclipseStatus;
@@ -108,25 +107,25 @@ public class SherlockCore extends Plugin {
 		javaException.setMessage(th.getMessage());
 
 		final Throwable cause = th.getCause();
-		if (cause != null) {
+		if (cause != null && cause != th) {
 			javaException.setCause(convert(cause));
 		}
 
 		for (StackTraceElement element : th.getStackTrace()) {
-			javaException.getStackTrace().add(convert(element));
+			javaException.getStacktrace().add(convert(element));
 		}
 
 		return javaException;
 	}
 
 	public static JavaStackTraceEntry convert(StackTraceElement element) {
-		final JavaStackTraceEntry entry = SherlockFactory.eINSTANCE
+		JavaStackTraceEntry entry = SherlockFactory.eINSTANCE
 				.createJavaStackTraceEntry();
-		entry.setClassName(element.getClassName());
 		entry.setFileName(element.getFileName());
-		entry.setLineNumber(element.getLineNumber());
+		entry.setClassName(element.getClassName());
 		entry.setMethodName(element.getMethodName());
-		entry.setNativeMethod(element.isNativeMethod());
+		entry.setLineNumber(element.getLineNumber());
+		entry.setNative(element.isNativeMethod());
 		return entry;
 	}
 
@@ -143,6 +142,7 @@ public class SherlockCore extends Plugin {
 	public static void log(String msg, Throwable e) {
 		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, msg, e));
 	}
+
 	public static String getID(String value) {
 		if (value == null) {
 			return null;

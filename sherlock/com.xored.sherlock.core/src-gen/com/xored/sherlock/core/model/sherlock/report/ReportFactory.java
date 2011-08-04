@@ -6,7 +6,6 @@
  */
 package com.xored.sherlock.core.model.sherlock.report;
 
-import java.util.Map;
 import org.eclipse.emf.ecore.EFactory;
 
 /**

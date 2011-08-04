@@ -142,7 +142,7 @@ public class SimpleReportGenerator {
 			builder.append(":").append(e.getMessage());
 		}
 		builder.append(LINE_SEPARATOR);
-		for (JavaStackTraceEntry st : e.getStackTrace()) {
+		for (JavaStackTraceEntry st : e.getStacktrace()) {
 			appendTabs(builder, tabs + 2).append("at ")
 					.append(st.getClassName()).append(".")
 					.append(st.getMethodName()).append("(")
@@ -199,7 +199,7 @@ public class SimpleReportGenerator {
 					toString(builder, tabs + 1, (EObject) eGet,
 							"eFactoryInstance").append('}');
 				} else if (eGet instanceof EList) {
-					EList l = (EList) eGet;
+					EList<?> l = (EList<?>) eGet;
 					builder.append('[');
 					for (int i = 0; i < l.size(); i++) {
 						Object va = l.get(i);

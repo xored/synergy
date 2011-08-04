@@ -6,11 +6,8 @@
  */
 package com.xored.sherlock.core.model.sherlock.report;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -64,7 +61,7 @@ public interface Report extends EObject {
 	 * The list contents are of type {@link com.xored.sherlock.core.model.sherlock.report.EventSource}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sources</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Sources</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

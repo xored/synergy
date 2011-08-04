@@ -6,15 +6,6 @@
  */
 package com.xored.sherlock.core.model.sherlock.report.impl;
 
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import com.xored.sherlock.core.model.sherlock.report.Event;
 import com.xored.sherlock.core.model.sherlock.report.EventKind;
 import com.xored.sherlock.core.model.sherlock.report.EventSource;
@@ -25,6 +16,16 @@ import com.xored.sherlock.core.model.sherlock.report.ReportContainer;
 import com.xored.sherlock.core.model.sherlock.report.ReportFactory;
 import com.xored.sherlock.core.model.sherlock.report.ReportPackage;
 import com.xored.sherlock.core.model.sherlock.report.Snaphot;
+
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
