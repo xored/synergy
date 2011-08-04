@@ -3,13 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Emf to Json conversion core plugin
 Bundle-SymbolicName: com.xored.emfjson
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: com.xored.emfjson.internal.EmfJsonPlugin
 Bundle-Vendor: xored software, Inc.
 Export-Package: com.xored.emfjson
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;bundle-version="2.6.1",
- org.junit,
- com.google.gson;bundle-version="1.6.0"
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.6.1",
+ com.google.gson;bundle-version="1.6.0";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
