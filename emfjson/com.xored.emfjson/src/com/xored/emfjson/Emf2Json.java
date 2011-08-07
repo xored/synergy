@@ -2,15 +2,12 @@ package com.xored.emfjson;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
@@ -28,21 +25,11 @@ import com.google.gson.JsonPrimitive;
 
 public class Emf2Json {
 
-	private final String CLASS_ATTRIBUTE = EClass.class.getName();
-	private final Map<String, EClass> classNamesToEClass = new HashMap<String, EClass>();
-	private final List<DefferedLinkInfo> defferedLinks = new ArrayList<Emf2Json.DefferedLinkInfo>();
+	private final String NS_URI_ATTRIBUTE = EPackage.class.getName() + ".nsURI";
+	private final String CLASS_NAME_ATTRIBUTE = EClass.class.getName()
+			+ ".name";
 
-	public Emf2Json(EPackage... packages) {
-		for (EPackage ePackage : packages) {
-			for (EClassifier classifier : ePackage.getEClassifiers()) {
-				if (classifier instanceof EClass) {
-					((EClass) classifier).getName();
-					classNamesToEClass.put(classifier.getInstanceClass()
-							.getName(), (EClass) classifier);
-				}
-			}
-		}
-	}
+	private final List<DefferedLinkInfo> defferedLinks = new ArrayList<Emf2Json.DefferedLinkInfo>();
 
 	public JsonObject serialize(EObject object) {
 		return toJsonObject(object, true);
@@ -57,8 +44,9 @@ public class Emf2Json {
 		EClass eClass = object.eClass();
 		JsonObject jsonObject = new JsonObject();
 		if (saveClass) {
-			jsonObject.addProperty(CLASS_ATTRIBUTE, eClass.getInstanceClass()
-					.getName());
+			jsonObject.addProperty(NS_URI_ATTRIBUTE, eClass.getEPackage()
+					.getNsURI());
+			jsonObject.addProperty(CLASS_NAME_ATTRIBUTE, eClass.getName());
 		}
 
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
@@ -156,32 +144,20 @@ public class Emf2Json {
 		if (useStringConvertation(dataType)) {
 			return new JsonPrimitive(EcoreUtil.convertToString(dataType, value));
 		}
-                if (value instanceof Boolean) {
-                  return new JsonPrimitive((Boolean)value);
-                } else if (value instanceof Number) {
-                  return new JsonPrimitive((Number)value);
-                } else if (value instanceof String) {
-                  return new JsonPrimitive((String)value);
-                } else if (value instanceof Character) {
-                  return new JsonPrimitive((Character)value);
-                } else 
-		  return new JsonPrimitive(value.toString());
+		if (value instanceof Boolean) {
+			return new JsonPrimitive((Boolean) value);
+		} else if (value instanceof Number) {
+			return new JsonPrimitive((Number) value);
+		} else if (value instanceof String) {
+			return new JsonPrimitive((String) value);
+		} else if (value instanceof Character) {
+			return new JsonPrimitive((Character) value);
+		} else
+			return new JsonPrimitive(value.toString());
 	}
 
 	public EObject deserialize(JsonObject jsonObject) {
 		return deserialize(jsonObject, (EClass) null);
-	}
-
-	public <T extends EObject> T deserialize(JsonObject jsonObject,
-			Class<T> instanceClass) {
-		EClass eClass = classNamesToEClass.get(instanceClass.getName());
-		if (eClass == null) {
-			throw new RuntimeException(
-					String.format(
-							"Can't find EMF class for instance class '%s'. Please register EMF package",
-							instanceClass.getName()));
-		}
-		return instanceClass.cast(deserialize(jsonObject, eClass));
 	}
 
 	public EObject deserialize(JsonObject jsonObject, EClass eClass) {
@@ -192,9 +168,19 @@ public class Emf2Json {
 	}
 
 	private EObject fromJsonObject(JsonObject jsonObject, EClass eClass) {
-		if (jsonObject.has(CLASS_ATTRIBUTE)) {
-			String explicitClassName = jsonObject.getAsJsonPrimitive(CLASS_ATTRIBUTE).getAsString();
-			EClass eClassExplicit = classNamesToEClass.get(explicitClassName);
+		if (jsonObject.has(NS_URI_ATTRIBUTE)
+				&& jsonObject.has(CLASS_NAME_ATTRIBUTE)) {
+			String nsURI = jsonObject.getAsJsonPrimitive(NS_URI_ATTRIBUTE)
+					.getAsString();
+			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
+			if (ePackage == null) {
+				throw new IllegalArgumentException(
+						"Cannot find package in registry: " + nsURI);
+			}
+			String explicitClassName = jsonObject.getAsJsonPrimitive(
+					CLASS_NAME_ATTRIBUTE).getAsString();
+			EClass eClassExplicit = (EClass) ePackage
+					.getEClassifier(explicitClassName);
 			if (eClassExplicit != null) {
 				eClass = eClassExplicit;
 			} else {
@@ -244,7 +230,8 @@ public class Emf2Json {
 					JsonArray jsonArray = jsonObject.getAsJsonArray(feature
 							.getName());
 					for (Object jsonValue : jsonArray) {
-						if (!jsonValue.equals( JSON_NULL )) { // TODO: is it always JsonNull?
+						if (!jsonValue.equals(JSON_NULL)) { // TODO: is it
+															// always JsonNull?
 							list.add(handleJson(feature, jsonValue));
 						}
 					}
@@ -270,8 +257,10 @@ public class Emf2Json {
 
 			if (di.value.equals(JSON_NULL)) { // TODO: is it always JsonNull?
 				di.eOject.eSet(di.reference, null);
-			} else if (di.value instanceof JsonPrimitive && ((JsonPrimitive)di.value).isString() ) {
-				EObject toSet = linkCache.get( ((JsonPrimitive)di.value).getAsString() );
+			} else if (di.value instanceof JsonPrimitive
+					&& ((JsonPrimitive) di.value).isString()) {
+				EObject toSet = linkCache.get(((JsonPrimitive) di.value)
+						.getAsString());
 				di.eOject.eSet(di.reference, toSet);
 			} else if (di.value instanceof JsonArray) {
 				JsonArray array = (JsonArray) di.value;
@@ -390,9 +379,10 @@ public class Emf2Json {
 		}
 		EDataType dataType = attr.getEAttributeType();
 		if (useStringConvertation(dataType)) {
-			return EcoreUtil.createFromString(dataType, ((JsonPrimitive)value).getAsString());
+			return EcoreUtil.createFromString(dataType,
+					((JsonPrimitive) value).getAsString());
 		}
-                return Coercer.coerce(dataType.getInstanceClass(), value);
+		return Coercer.coerce(dataType.getInstanceClass(), value);
 	}
 
 	private boolean useStringConvertation(EDataType dataType) {
