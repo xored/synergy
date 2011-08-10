@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getException <em>Exception</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getFeatureGuess <em>Feature Guess</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getThreadName <em>Thread Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getPluginVersion <em>Plugin Version</em>}</li>
  * </ul>
  * </p>
  *
@@ -221,5 +222,31 @@ public interface EclipseStatus extends EObject {
 	 * @generated
 	 */
 	void setThreadName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Plugin Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Plugin Version</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Plugin Version</em>' attribute.
+	 * @see #setPluginVersion(String)
+	 * @see com.xored.sherlock.core.model.sherlock.SherlockPackage#getEclipseStatus_PluginVersion()
+	 * @model
+	 * @generated
+	 */
+	String getPluginVersion();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getPluginVersion <em>Plugin Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Plugin Version</em>' attribute.
+	 * @see #getPluginVersion()
+	 * @generated
+	 */
+	void setPluginVersion(String value);
 
 } // EclipseStatus

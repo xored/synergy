@@ -580,13 +580,22 @@ public interface SherlockPackage extends EPackage {
 	int ECLIPSE_STATUS__THREAD_NAME = 7;
 
 	/**
+	 * The feature id for the '<em><b>Plugin Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLIPSE_STATUS__PLUGIN_VERSION = 8;
+
+	/**
 	 * The number of structural features of the '<em>Eclipse Status</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ECLIPSE_STATUS_FEATURE_COUNT = 8;
+	int ECLIPSE_STATUS_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.core.model.sherlock.impl.EStringToEStringMapEntryImpl <em>EString To EString Map Entry</em>}' class.
@@ -1291,6 +1300,17 @@ public interface SherlockPackage extends EPackage {
 	EAttribute getEclipseStatus_ThreadName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.core.model.sherlock.EclipseStatus#getPluginVersion <em>Plugin Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plugin Version</em>'.
+	 * @see com.xored.sherlock.core.model.sherlock.EclipseStatus#getPluginVersion()
+	 * @see #getEclipseStatus()
+	 * @generated
+	 */
+	EAttribute getEclipseStatus_PluginVersion();
+
+	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>EString To EString Map Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1875,6 +1895,14 @@ public interface SherlockPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ECLIPSE_STATUS__THREAD_NAME = eINSTANCE.getEclipseStatus_ThreadName();
+
+		/**
+		 * The meta object literal for the '<em><b>Plugin Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ECLIPSE_STATUS__PLUGIN_VERSION = eINSTANCE.getEclipseStatus_PluginVersion();
 
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.core.model.sherlock.impl.EStringToEStringMapEntryImpl <em>EString To EString Map Entry</em>}' class.

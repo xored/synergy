@@ -629,6 +629,15 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEclipseStatus_PluginVersion() {
+		return (EAttribute)eclipseStatusEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEStringToEStringMapEntry() {
 		return eStringToEStringMapEntryEClass;
 	}
@@ -826,6 +835,7 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 		createEReference(eclipseStatusEClass, ECLIPSE_STATUS__EXCEPTION);
 		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__FEATURE_GUESS);
 		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__THREAD_NAME);
+		createEAttribute(eclipseStatusEClass, ECLIPSE_STATUS__PLUGIN_VERSION);
 
 		eStringToEStringMapEntryEClass = createEClass(ESTRING_TO_ESTRING_MAP_ENTRY);
 		createEAttribute(eStringToEStringMapEntryEClass, ESTRING_TO_ESTRING_MAP_ENTRY__KEY);
@@ -931,6 +941,7 @@ public class SherlockPackageImpl extends EPackageImpl implements SherlockPackage
 		initEReference(getEclipseStatus_Exception(), this.getJavaException(), null, "exception", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEclipseStatus_FeatureGuess(), ecorePackage.getEString(), "featureGuess", null, 0, -1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEclipseStatus_ThreadName(), ecorePackage.getEString(), "threadName", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEclipseStatus_PluginVersion(), ecorePackage.getEString(), "pluginVersion", null, 0, 1, EclipseStatus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eStringToEStringMapEntryEClass, Map.Entry.class, "EStringToEStringMapEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEStringToEStringMapEntry_Key(), ecorePackage.getEString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

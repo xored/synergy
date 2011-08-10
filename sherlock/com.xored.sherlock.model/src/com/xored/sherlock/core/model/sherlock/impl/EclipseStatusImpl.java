@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getException <em>Exception</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getFeatureGuess <em>Feature Guess</em>}</li>
  *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getThreadName <em>Thread Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.core.model.sherlock.impl.EclipseStatusImpl#getPluginVersion <em>Plugin Version</em>}</li>
  * </ul>
  * </p>
  *
@@ -177,6 +178,26 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 	 * @ordered
 	 */
 	protected String threadName = THREAD_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPluginVersion() <em>Plugin Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPluginVersion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PLUGIN_VERSION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPluginVersion() <em>Plugin Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPluginVersion()
+	 * @generated
+	 * @ordered
+	 */
+	protected String pluginVersion = PLUGIN_VERSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -374,6 +395,27 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getPluginVersion() {
+		return pluginVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPluginVersion(String newPluginVersion) {
+		String oldPluginVersion = pluginVersion;
+		pluginVersion = newPluginVersion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SherlockPackage.ECLIPSE_STATUS__PLUGIN_VERSION, oldPluginVersion, pluginVersion));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -409,6 +451,8 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 				return getFeatureGuess();
 			case SherlockPackage.ECLIPSE_STATUS__THREAD_NAME:
 				return getThreadName();
+			case SherlockPackage.ECLIPSE_STATUS__PLUGIN_VERSION:
+				return getPluginVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -448,6 +492,9 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 			case SherlockPackage.ECLIPSE_STATUS__THREAD_NAME:
 				setThreadName((String)newValue);
 				return;
+			case SherlockPackage.ECLIPSE_STATUS__PLUGIN_VERSION:
+				setPluginVersion((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -484,6 +531,9 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 			case SherlockPackage.ECLIPSE_STATUS__THREAD_NAME:
 				setThreadName(THREAD_NAME_EDEFAULT);
 				return;
+			case SherlockPackage.ECLIPSE_STATUS__PLUGIN_VERSION:
+				setPluginVersion(PLUGIN_VERSION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -512,6 +562,8 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 				return featureGuess != null && !featureGuess.isEmpty();
 			case SherlockPackage.ECLIPSE_STATUS__THREAD_NAME:
 				return THREAD_NAME_EDEFAULT == null ? threadName != null : !THREAD_NAME_EDEFAULT.equals(threadName);
+			case SherlockPackage.ECLIPSE_STATUS__PLUGIN_VERSION:
+				return PLUGIN_VERSION_EDEFAULT == null ? pluginVersion != null : !PLUGIN_VERSION_EDEFAULT.equals(pluginVersion);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -538,6 +590,8 @@ public class EclipseStatusImpl extends EObjectImpl implements EclipseStatus {
 		result.append(featureGuess);
 		result.append(", threadName: ");
 		result.append(threadName);
+		result.append(", pluginVersion: ");
+		result.append(pluginVersion);
 		result.append(')');
 		return result.toString();
 	}

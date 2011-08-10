@@ -1,5 +1,6 @@
 package com.xored.sherlock.core;
 
+import java.util.Dictionary;
 import java.util.List;
 
 import org.eclipse.core.runtime.IBundleGroup;
@@ -10,6 +11,7 @@ import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Constants;
 
 import com.xored.sherlock.core.internal.SherlockLogListener;
 import com.xored.sherlock.core.model.sherlock.EclipseStatus;
@@ -68,14 +70,20 @@ public class SherlockCore extends Plugin {
 		eclipseStatus.setCode(status.getCode());
 		eclipseStatus.setMessage(status.getMessage());
 
-		String plugin = status.getPlugin();
-		eclipseStatus.setPlugin(plugin);
+		eclipseStatus.setPlugin(status.getPlugin());
+		Bundle bundle = Platform.getBundle(status.getPlugin());
+		if (bundle != null) {
+			@SuppressWarnings("unchecked")
+			final Dictionary<String, String> headers = bundle.getHeaders();
+			eclipseStatus.setPluginVersion(headers
+					.get(Constants.BUNDLE_VERSION));
+		}
 
 		if (features != null) {
 			for (IBundleGroup feature : features) {
 
-				for (Bundle bundle : feature.getBundles()) {
-					if (bundle.getSymbolicName().equals(plugin)) {
+				for (Bundle b : feature.getBundles()) {
+					if (b.getSymbolicName().equals(plugin)) {
 						eclipseStatus.getFeatureGuess().add(
 								feature.getIdentifier());
 						break;
