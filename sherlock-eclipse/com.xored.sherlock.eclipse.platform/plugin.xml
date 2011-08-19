@@ -33,6 +33,13 @@
    <extension
          point="com.xored.sherlock.eclipse.core.sources">
       <source
+            class="com.xored.sherlock.system.JavaSource"
+            id="com.xored.sherlock.java">
+      </source>
+   </extension>
+   <extension
+         point="com.xored.sherlock.eclipse.core.sources">
+      <source
             class="com.xored.sherlock.eclipse.platform.EclipsePlatformSource"
             id="com.xored.sherlock.eclipse.platform">
       </source>

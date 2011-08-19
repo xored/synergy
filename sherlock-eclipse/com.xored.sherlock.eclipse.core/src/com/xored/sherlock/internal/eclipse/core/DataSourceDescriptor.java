@@ -1,4 +1,4 @@
-package com.xored.sherlock.internal.eclipse;
+package com.xored.sherlock.internal.eclipse.core;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;

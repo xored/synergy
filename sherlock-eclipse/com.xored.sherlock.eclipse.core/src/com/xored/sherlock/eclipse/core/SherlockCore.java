@@ -1,4 +1,4 @@
-package com.xored.sherlock.eclipse;
+package com.xored.sherlock.eclipse.core;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -8,7 +8,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
 import com.xored.sherlock.core.DataSourceManager;
-import com.xored.sherlock.internal.eclipse.DataSourceDescriptor;
+import com.xored.sherlock.internal.eclipse.core.DataSourceDescriptor;
 
 public class SherlockCore {
 
