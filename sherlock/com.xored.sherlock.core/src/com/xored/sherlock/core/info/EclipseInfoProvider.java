@@ -21,15 +21,20 @@ import com.xored.sherlock.core.SherlockCore;
 
 public class EclipseInfoProvider {
 	public static String getWorkspaceLocation() {
-		final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		final IPath path = root.getLocation();
-		if (path != null) {
-			return path.toFile().getAbsolutePath();
-		} else {
-			final URI uri = root.getLocationURI();
-			if (uri != null) {
-				return uri.toString();
+		try {
+			final IWorkspaceRoot root = ResourcesPlugin.getWorkspace()
+					.getRoot();
+			final IPath path = root.getLocation();
+			if (path != null) {
+				return path.toFile().getAbsolutePath();
+			} else {
+				final URI uri = root.getLocationURI();
+				if (uri != null) {
+					return uri.toString();
+				}
 			}
+		} catch (Throwable e) {
+			// ignore
 		}
 
 		return null;
@@ -58,11 +63,14 @@ public class EclipseInfoProvider {
 	private static final String PROPERTY_ECLIPSE_START_TIME = "eclipse.startTime";
 
 	public static long getUptime() {
-		return System.currentTimeMillis() - Long.parseLong(System.getProperty(PROPERTY_ECLIPSE_START_TIME));
+		return System.currentTimeMillis()
+				- Long.parseLong(System
+						.getProperty(PROPERTY_ECLIPSE_START_TIME));
 	}
 
 	public static List<Bundle> getPlugins() {
-		return Arrays.asList(SherlockCore.getDefault().getBundle().getBundleContext().getBundles());
+		return Arrays.asList(SherlockCore.getDefault().getBundle()
+				.getBundleContext().getBundles());
 	}
 
 	public static List<IBundleGroup> getFeatures() {
@@ -77,8 +85,8 @@ public class EclipseInfoProvider {
 		return features;
 	}
 
-        public static Preferences getPreferencesRoot() {
-          IPreferencesService service = Platform.getPreferencesService();
-          return service.getRootNode();
-        }
+	public static Preferences getPreferencesRoot() {
+		IPreferencesService service = Platform.getPreferencesService();
+		return service.getRootNode();
+	}
 }
