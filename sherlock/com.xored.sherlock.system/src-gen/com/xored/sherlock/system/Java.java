@@ -6,9 +6,7 @@
  */
 package com.xored.sherlock.system;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -24,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.sherlock.system.Java#getMaxMemory <em>Max Memory</em>}</li>
  *   <li>{@link com.xored.sherlock.system.Java#getFreeMemory <em>Free Memory</em>}</li>
  *   <li>{@link com.xored.sherlock.system.Java#getTotalMemory <em>Total Memory</em>}</li>
- *   <li>{@link com.xored.sherlock.system.Java#getArgs <em>Args</em>}</li>
  *   <li>{@link com.xored.sherlock.system.Java#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
@@ -163,22 +160,6 @@ public interface Java extends EObject {
 	 * @generated
 	 */
 	void setTotalMemory(long value);
-
-	/**
-	 * Returns the value of the '<em><b>Args</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Args</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Args</em>' attribute list.
-	 * @see com.xored.sherlock.system.SystemPackage#getJava_Args()
-	 * @model
-	 * @generated
-	 */
-	EList<String> getArgs();
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' map.

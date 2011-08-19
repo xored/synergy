@@ -106,13 +106,49 @@ public interface SystemPackage extends EPackage {
 	int SYSTEM__USERNAME = 3;
 
 	/**
-	 * The feature id for the '<em><b>Locale</b></em>' attribute.
+	 * The feature id for the '<em><b>User Home</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM__LOCALE = 4;
+	int SYSTEM__USER_HOME = 4;
+
+	/**
+	 * The feature id for the '<em><b>Work Dir</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__WORK_DIR = 5;
+
+	/**
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__LANGUAGE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Region</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__REGION = 7;
+
+	/**
+	 * The feature id for the '<em><b>Timezone</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__TIMEZONE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' map.
@@ -121,7 +157,7 @@ public interface SystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM__VARIABLES = 5;
+	int SYSTEM__VARIABLES = 9;
 
 	/**
 	 * The number of structural features of the '<em>System</em>' class.
@@ -130,7 +166,7 @@ public interface SystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FEATURE_COUNT = 6;
+	int SYSTEM_FEATURE_COUNT = 10;
 
 
 	/**
@@ -189,22 +225,13 @@ public interface SystemPackage extends EPackage {
 	int JAVA__TOTAL_MEMORY = 4;
 
 	/**
-	 * The feature id for the '<em><b>Args</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JAVA__ARGS = 5;
-
-	/**
 	 * The feature id for the '<em><b>Properties</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA__PROPERTIES = 6;
+	int JAVA__PROPERTIES = 5;
 
 	/**
 	 * The number of structural features of the '<em>Java</em>' class.
@@ -213,7 +240,7 @@ public interface SystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JAVA_FEATURE_COUNT = 7;
+	int JAVA_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.system.impl.EntryImpl <em>Entry</em>}' class.
@@ -308,15 +335,59 @@ public interface SystemPackage extends EPackage {
 	EAttribute getSystem_Username();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.System#getLocale <em>Locale</em>}'.
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.System#getUserHome <em>User Home</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Locale</em>'.
-	 * @see com.xored.sherlock.system.System#getLocale()
+	 * @return the meta object for the attribute '<em>User Home</em>'.
+	 * @see com.xored.sherlock.system.System#getUserHome()
 	 * @see #getSystem()
 	 * @generated
 	 */
-	EAttribute getSystem_Locale();
+	EAttribute getSystem_UserHome();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.System#getWorkDir <em>Work Dir</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Work Dir</em>'.
+	 * @see com.xored.sherlock.system.System#getWorkDir()
+	 * @see #getSystem()
+	 * @generated
+	 */
+	EAttribute getSystem_WorkDir();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.System#getLanguage <em>Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Language</em>'.
+	 * @see com.xored.sherlock.system.System#getLanguage()
+	 * @see #getSystem()
+	 * @generated
+	 */
+	EAttribute getSystem_Language();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.System#getRegion <em>Region</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Region</em>'.
+	 * @see com.xored.sherlock.system.System#getRegion()
+	 * @see #getSystem()
+	 * @generated
+	 */
+	EAttribute getSystem_Region();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.System#getTimezone <em>Timezone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Timezone</em>'.
+	 * @see com.xored.sherlock.system.System#getTimezone()
+	 * @see #getSystem()
+	 * @generated
+	 */
+	EAttribute getSystem_Timezone();
 
 	/**
 	 * Returns the meta object for the map '{@link com.xored.sherlock.system.System#getVariables <em>Variables</em>}'.
@@ -393,17 +464,6 @@ public interface SystemPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getJava_TotalMemory();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link com.xored.sherlock.system.Java#getArgs <em>Args</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Args</em>'.
-	 * @see com.xored.sherlock.system.Java#getArgs()
-	 * @see #getJava()
-	 * @generated
-	 */
-	EAttribute getJava_Args();
 
 	/**
 	 * Returns the meta object for the map '{@link com.xored.sherlock.system.Java#getProperties <em>Properties</em>}'.
@@ -510,12 +570,40 @@ public interface SystemPackage extends EPackage {
 		 */
 		EAttribute SYSTEM__USERNAME = eINSTANCE.getSystem_Username();
 		/**
-		 * The meta object literal for the '<em><b>Locale</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>User Home</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SYSTEM__LOCALE = eINSTANCE.getSystem_Locale();
+		EAttribute SYSTEM__USER_HOME = eINSTANCE.getSystem_UserHome();
+		/**
+		 * The meta object literal for the '<em><b>Work Dir</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM__WORK_DIR = eINSTANCE.getSystem_WorkDir();
+		/**
+		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM__LANGUAGE = eINSTANCE.getSystem_Language();
+		/**
+		 * The meta object literal for the '<em><b>Region</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM__REGION = eINSTANCE.getSystem_Region();
+		/**
+		 * The meta object literal for the '<em><b>Timezone</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SYSTEM__TIMEZONE = eINSTANCE.getSystem_Timezone();
 		/**
 		 * The meta object literal for the '<em><b>Variables</b></em>' map feature.
 		 * <!-- begin-user-doc -->
@@ -567,13 +655,6 @@ public interface SystemPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JAVA__TOTAL_MEMORY = eINSTANCE.getJava_TotalMemory();
-		/**
-		 * The meta object literal for the '<em><b>Args</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute JAVA__ARGS = eINSTANCE.getJava_Args();
 		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' map feature.
 		 * <!-- begin-user-doc -->

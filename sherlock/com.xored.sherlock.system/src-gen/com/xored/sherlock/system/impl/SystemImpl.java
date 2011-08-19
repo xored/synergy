@@ -32,7 +32,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getOsVersion <em>Os Version</em>}</li>
  *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getOsArch <em>Os Arch</em>}</li>
  *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getUsername <em>Username</em>}</li>
- *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getLocale <em>Locale</em>}</li>
+ *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getUserHome <em>User Home</em>}</li>
+ *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getWorkDir <em>Work Dir</em>}</li>
+ *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getRegion <em>Region</em>}</li>
+ *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getTimezone <em>Timezone</em>}</li>
  *   <li>{@link com.xored.sherlock.system.impl.SystemImpl#getVariables <em>Variables</em>}</li>
  * </ul>
  * </p>
@@ -121,24 +125,104 @@ public class SystemImpl extends EObjectImpl implements com.xored.sherlock.system
 	protected String username = USERNAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLocale() <em>Locale</em>}' attribute.
+	 * The default value of the '{@link #getUserHome() <em>User Home</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLocale()
+	 * @see #getUserHome()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String LOCALE_EDEFAULT = null;
+	protected static final String USER_HOME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLocale() <em>Locale</em>}' attribute.
+	 * The cached value of the '{@link #getUserHome() <em>User Home</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLocale()
+	 * @see #getUserHome()
 	 * @generated
 	 * @ordered
 	 */
-	protected String locale = LOCALE_EDEFAULT;
+	protected String userHome = USER_HOME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getWorkDir() <em>Work Dir</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkDir()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String WORK_DIR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getWorkDir() <em>Work Dir</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkDir()
+	 * @generated
+	 * @ordered
+	 */
+	protected String workDir = WORK_DIR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLanguage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LANGUAGE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLanguage()
+	 * @generated
+	 * @ordered
+	 */
+	protected String language = LANGUAGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRegion() <em>Region</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRegion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String REGION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getRegion() <em>Region</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRegion()
+	 * @generated
+	 * @ordered
+	 */
+	protected String region = REGION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTimezone() <em>Timezone</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimezone()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TIMEZONE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTimezone() <em>Timezone</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimezone()
+	 * @generated
+	 * @ordered
+	 */
+	protected String timezone = TIMEZONE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' map.
@@ -258,8 +342,8 @@ public class SystemImpl extends EObjectImpl implements com.xored.sherlock.system
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLocale() {
-		return locale;
+	public String getUserHome() {
+		return userHome;
 	}
 
 	/**
@@ -267,11 +351,95 @@ public class SystemImpl extends EObjectImpl implements com.xored.sherlock.system
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLocale(String newLocale) {
-		String oldLocale = locale;
-		locale = newLocale;
+	public void setUserHome(String newUserHome) {
+		String oldUserHome = userHome;
+		userHome = newUserHome;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SystemPackage.SYSTEM__LOCALE, oldLocale, locale));
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemPackage.SYSTEM__USER_HOME, oldUserHome, userHome));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getWorkDir() {
+		return workDir;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWorkDir(String newWorkDir) {
+		String oldWorkDir = workDir;
+		workDir = newWorkDir;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemPackage.SYSTEM__WORK_DIR, oldWorkDir, workDir));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLanguage() {
+		return language;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLanguage(String newLanguage) {
+		String oldLanguage = language;
+		language = newLanguage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemPackage.SYSTEM__LANGUAGE, oldLanguage, language));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRegion() {
+		return region;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRegion(String newRegion) {
+		String oldRegion = region;
+		region = newRegion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemPackage.SYSTEM__REGION, oldRegion, region));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTimezone() {
+		return timezone;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimezone(String newTimezone) {
+		String oldTimezone = timezone;
+		timezone = newTimezone;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SystemPackage.SYSTEM__TIMEZONE, oldTimezone, timezone));
 	}
 
 	/**
@@ -316,8 +484,16 @@ public class SystemImpl extends EObjectImpl implements com.xored.sherlock.system
 				return getOsArch();
 			case SystemPackage.SYSTEM__USERNAME:
 				return getUsername();
-			case SystemPackage.SYSTEM__LOCALE:
-				return getLocale();
+			case SystemPackage.SYSTEM__USER_HOME:
+				return getUserHome();
+			case SystemPackage.SYSTEM__WORK_DIR:
+				return getWorkDir();
+			case SystemPackage.SYSTEM__LANGUAGE:
+				return getLanguage();
+			case SystemPackage.SYSTEM__REGION:
+				return getRegion();
+			case SystemPackage.SYSTEM__TIMEZONE:
+				return getTimezone();
 			case SystemPackage.SYSTEM__VARIABLES:
 				if (coreType) return getVariables();
 				else return getVariables().map();
@@ -345,8 +521,20 @@ public class SystemImpl extends EObjectImpl implements com.xored.sherlock.system
 			case SystemPackage.SYSTEM__USERNAME:
 				setUsername((String)newValue);
 				return;
-			case SystemPackage.SYSTEM__LOCALE:
-				setLocale((String)newValue);
+			case SystemPackage.SYSTEM__USER_HOME:
+				setUserHome((String)newValue);
+				return;
+			case SystemPackage.SYSTEM__WORK_DIR:
+				setWorkDir((String)newValue);
+				return;
+			case SystemPackage.SYSTEM__LANGUAGE:
+				setLanguage((String)newValue);
+				return;
+			case SystemPackage.SYSTEM__REGION:
+				setRegion((String)newValue);
+				return;
+			case SystemPackage.SYSTEM__TIMEZONE:
+				setTimezone((String)newValue);
 				return;
 			case SystemPackage.SYSTEM__VARIABLES:
 				((EStructuralFeature.Setting)getVariables()).set(newValue);
@@ -375,8 +563,20 @@ public class SystemImpl extends EObjectImpl implements com.xored.sherlock.system
 			case SystemPackage.SYSTEM__USERNAME:
 				setUsername(USERNAME_EDEFAULT);
 				return;
-			case SystemPackage.SYSTEM__LOCALE:
-				setLocale(LOCALE_EDEFAULT);
+			case SystemPackage.SYSTEM__USER_HOME:
+				setUserHome(USER_HOME_EDEFAULT);
+				return;
+			case SystemPackage.SYSTEM__WORK_DIR:
+				setWorkDir(WORK_DIR_EDEFAULT);
+				return;
+			case SystemPackage.SYSTEM__LANGUAGE:
+				setLanguage(LANGUAGE_EDEFAULT);
+				return;
+			case SystemPackage.SYSTEM__REGION:
+				setRegion(REGION_EDEFAULT);
+				return;
+			case SystemPackage.SYSTEM__TIMEZONE:
+				setTimezone(TIMEZONE_EDEFAULT);
 				return;
 			case SystemPackage.SYSTEM__VARIABLES:
 				getVariables().clear();
@@ -401,8 +601,16 @@ public class SystemImpl extends EObjectImpl implements com.xored.sherlock.system
 				return OS_ARCH_EDEFAULT == null ? osArch != null : !OS_ARCH_EDEFAULT.equals(osArch);
 			case SystemPackage.SYSTEM__USERNAME:
 				return USERNAME_EDEFAULT == null ? username != null : !USERNAME_EDEFAULT.equals(username);
-			case SystemPackage.SYSTEM__LOCALE:
-				return LOCALE_EDEFAULT == null ? locale != null : !LOCALE_EDEFAULT.equals(locale);
+			case SystemPackage.SYSTEM__USER_HOME:
+				return USER_HOME_EDEFAULT == null ? userHome != null : !USER_HOME_EDEFAULT.equals(userHome);
+			case SystemPackage.SYSTEM__WORK_DIR:
+				return WORK_DIR_EDEFAULT == null ? workDir != null : !WORK_DIR_EDEFAULT.equals(workDir);
+			case SystemPackage.SYSTEM__LANGUAGE:
+				return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
+			case SystemPackage.SYSTEM__REGION:
+				return REGION_EDEFAULT == null ? region != null : !REGION_EDEFAULT.equals(region);
+			case SystemPackage.SYSTEM__TIMEZONE:
+				return TIMEZONE_EDEFAULT == null ? timezone != null : !TIMEZONE_EDEFAULT.equals(timezone);
 			case SystemPackage.SYSTEM__VARIABLES:
 				return variables != null && !variables.isEmpty();
 		}
@@ -427,8 +635,16 @@ public class SystemImpl extends EObjectImpl implements com.xored.sherlock.system
 		result.append(osArch);
 		result.append(", username: ");
 		result.append(username);
-		result.append(", locale: ");
-		result.append(locale);
+		result.append(", userHome: ");
+		result.append(userHome);
+		result.append(", workDir: ");
+		result.append(workDir);
+		result.append(", language: ");
+		result.append(language);
+		result.append(", region: ");
+		result.append(region);
+		result.append(", timezone: ");
+		result.append(timezone);
 		result.append(')');
 		return result.toString();
 	}

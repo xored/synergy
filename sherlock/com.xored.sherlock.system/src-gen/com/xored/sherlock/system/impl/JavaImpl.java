@@ -6,27 +6,19 @@
  */
 package com.xored.sherlock.system.impl;
 
-import com.xored.sherlock.system.Java;
-import com.xored.sherlock.system.SystemPackage;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import com.xored.sherlock.system.Java;
+import com.xored.sherlock.system.SystemPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +32,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.xored.sherlock.system.impl.JavaImpl#getMaxMemory <em>Max Memory</em>}</li>
  *   <li>{@link com.xored.sherlock.system.impl.JavaImpl#getFreeMemory <em>Free Memory</em>}</li>
  *   <li>{@link com.xored.sherlock.system.impl.JavaImpl#getTotalMemory <em>Total Memory</em>}</li>
- *   <li>{@link com.xored.sherlock.system.impl.JavaImpl#getArgs <em>Args</em>}</li>
  *   <li>{@link com.xored.sherlock.system.impl.JavaImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
@@ -147,16 +138,6 @@ public class JavaImpl extends EObjectImpl implements Java {
 	 * @ordered
 	 */
 	protected long totalMemory = TOTAL_MEMORY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getArgs() <em>Args</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getArgs()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> args;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' map.
@@ -297,18 +278,6 @@ public class JavaImpl extends EObjectImpl implements Java {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getArgs() {
-		if (args == null) {
-			args = new EDataTypeUniqueEList<String>(String.class, this, SystemPackage.JAVA__ARGS);
-		}
-		return args;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EMap<String, String> getProperties() {
 		if (properties == null) {
 			properties = new EcoreEMap<String,String>(SystemPackage.Literals.ENTRY, EntryImpl.class, this, SystemPackage.JAVA__PROPERTIES);
@@ -348,8 +317,6 @@ public class JavaImpl extends EObjectImpl implements Java {
 				return getFreeMemory();
 			case SystemPackage.JAVA__TOTAL_MEMORY:
 				return getTotalMemory();
-			case SystemPackage.JAVA__ARGS:
-				return getArgs();
 			case SystemPackage.JAVA__PROPERTIES:
 				if (coreType) return getProperties();
 				else return getProperties().map();
@@ -362,7 +329,6 @@ public class JavaImpl extends EObjectImpl implements Java {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -380,10 +346,6 @@ public class JavaImpl extends EObjectImpl implements Java {
 				return;
 			case SystemPackage.JAVA__TOTAL_MEMORY:
 				setTotalMemory((Long)newValue);
-				return;
-			case SystemPackage.JAVA__ARGS:
-				getArgs().clear();
-				getArgs().addAll((Collection<? extends String>)newValue);
 				return;
 			case SystemPackage.JAVA__PROPERTIES:
 				((EStructuralFeature.Setting)getProperties()).set(newValue);
@@ -415,9 +377,6 @@ public class JavaImpl extends EObjectImpl implements Java {
 			case SystemPackage.JAVA__TOTAL_MEMORY:
 				setTotalMemory(TOTAL_MEMORY_EDEFAULT);
 				return;
-			case SystemPackage.JAVA__ARGS:
-				getArgs().clear();
-				return;
 			case SystemPackage.JAVA__PROPERTIES:
 				getProperties().clear();
 				return;
@@ -443,8 +402,6 @@ public class JavaImpl extends EObjectImpl implements Java {
 				return freeMemory != FREE_MEMORY_EDEFAULT;
 			case SystemPackage.JAVA__TOTAL_MEMORY:
 				return totalMemory != TOTAL_MEMORY_EDEFAULT;
-			case SystemPackage.JAVA__ARGS:
-				return args != null && !args.isEmpty();
 			case SystemPackage.JAVA__PROPERTIES:
 				return properties != null && !properties.isEmpty();
 		}
@@ -471,8 +428,6 @@ public class JavaImpl extends EObjectImpl implements Java {
 		result.append(freeMemory);
 		result.append(", totalMemory: ");
 		result.append(totalMemory);
-		result.append(", args: ");
-		result.append(args);
 		result.append(')');
 		return result.toString();
 	}
