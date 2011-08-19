@@ -13,6 +13,7 @@
 		<module>emfjson</module>
 		<module>google-libs</module>		
 		<module>p2repository</module>
+		<module>sherlock</module>
 	</modules>
   
 	<properties>

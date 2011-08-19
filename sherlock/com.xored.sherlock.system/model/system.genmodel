@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.xored.sherlock.system/src-gen"
+    modelPluginID="com.xored.sherlock.system" modelName="System" importerID="org.eclipse.emf.importer.java"
+    bundleManifest="false" complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>@model</foreignModel>
+  <genPackages prefix="System" basePackage="com.xored.sherlock" disposableProviderFactory="true"
+      ecorePackage="system.ecore#/">
+    <genClasses ecoreClass="system.ecore#//System">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/osName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/osVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/osArch"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/locale"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference system.ecore#//System/variables"/>
+    </genClasses>
+    <genClasses ecoreClass="system.ecore#//EStringToEStringMapEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//EStringToEStringMapEntry/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//EStringToEStringMapEntry/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
