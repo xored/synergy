@@ -11,9 +11,10 @@
   
 	<modules>
 		<module>emfjson</module>
-		<module>google-libs</module>		
+		<module>google-libs</module>
 		<module>p2repository</module>
 		<module>sherlock</module>
+		<module>sherlock-eclipse</module>
 	</modules>
   
 	<properties>

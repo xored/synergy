@@ -3,6 +3,12 @@
    <feature url="features/com.xored.emfjson_1.0.0.qualifier.jar" id="com.xored.emfjson" version="1.0.0.qualifier">
       <category name="com.xored.emfjson"/>
    </feature>
-   <feature url="features/com.google.libs_1.0.0.qualifier.jar" id="com.google.libs" version="1.0.0.qualifier"/>
+   <feature url="features/com.google.libs_1.0.0.qualifier.jar" id="com.google.libs" version="1.0.0.qualifier">
+      <category name="com.xored.emfjson"/>
+   </feature>
+   <feature url="features/com.xored.sherlock_1.0.0.qualifier.jar" id="com.xored.sherlock" version="1.0.0.qualifier">
+      <category name="com.xored.sherlock"/>
+   </feature>
    <category-def name="com.xored.emfjson" label="EMF/JSON conversion"/>
+   <category-def name="com.xored.sherlock" label="Sherlock"/>
 </site>
