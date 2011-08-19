@@ -11,9 +11,7 @@
   
 	<modules>
 		<module>emfjson</module>
-		<module>sherlock</module>
 		<module>google-libs</module>		
-		<module>scala-library</module>
 		<module>p2repository</module>
 	</modules>
   
