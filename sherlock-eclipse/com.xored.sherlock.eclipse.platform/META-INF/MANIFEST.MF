@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sherlock Eclipse Sources
+Bundle-SymbolicName: com.xored.sherlock.eclipse.platform;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: xored software, Inc.
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.xored.sherlock.eclipse.platform,
+ com.xored.sherlock.eclipse.platform.impl,
+ com.xored.sherlock.eclipse.platform.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ com.xored.sherlock.core,
+ com.xored.sherlock.system,
+ com.xored.sherlock.eclipse.core
+Bundle-ActivationPolicy: lazy

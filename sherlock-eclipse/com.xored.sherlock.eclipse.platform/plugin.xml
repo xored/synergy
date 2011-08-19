@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://xored.com/sherlock/system.ecore"
+            class="com.xored.sherlock.system.SystemPackage"
+            genModel="platform://com.xored.sherlock.system/model/system.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://xored.com/sherlock/eclipse/platform.ecore"
+            class="com.xored.sherlock.eclipse.platform.PlatformPackage"
+            genModel="model/platform.genmodel"/>
+   </extension>
+   <extension
+         point="com.xored.sherlock.eclipse.core.sources">
+      <source
+            class="com.xored.sherlock.system.SystemSource"
+            id="com.xored.sherlock.system">
+      </source>
+   </extension>
+   <extension
+         point="com.xored.sherlock.eclipse.core.sources">
+      <source
+            class="com.xored.sherlock.eclipse.platform.EclipsePlatformSource"
+            id="com.xored.sherlock.eclipse.platform">
+      </source>
+   </extension>
+
+</plugin>

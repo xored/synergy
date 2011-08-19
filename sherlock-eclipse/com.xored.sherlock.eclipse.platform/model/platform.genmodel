@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.xored.sherlock.eclipse.platform/src-gen"
+    modelPluginID="com.xored.sherlock.eclipse.platform" modelName="Platform" importerID="org.eclipse.emf.importer.java"
+    complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.6">
+  <foreignModel>@model</foreignModel>
+  <genPackages prefix="Platform" basePackage="com.xored.sherlock.eclipse" disposableProviderFactory="true"
+      ecorePackage="platform.ecore#/">
+    <genClasses ecoreClass="platform.ecore#//Platform">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Platform/workspaceLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Platform/productId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Platform/applicationId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Platform/applicationArgs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Platform/buildId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Platform/uptime"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform.ecore#//Platform/plugins"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform.ecore#//Platform/features"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Platform/workspacePartitionTotalDiskspace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Platform/workspacePartitionUsableDiskspace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Platform/workspacePartitionFreeDiskspace"/>
+    </genClasses>
+    <genClasses ecoreClass="platform.ecore#//Plugin">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Plugin/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Plugin/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Plugin/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Plugin/provider"/>
+    </genClasses>
+    <genClasses ecoreClass="platform.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Feature/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Feature/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Feature/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform.ecore#//Feature/provider"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
