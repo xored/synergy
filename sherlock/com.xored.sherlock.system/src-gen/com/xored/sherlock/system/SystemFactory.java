@@ -35,6 +35,15 @@ public interface SystemFactory extends EFactory {
 	System createSystem();
 
 	/**
+	 * Returns a new object of class '<em>Java</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java</em>'.
+	 * @generated
+	 */
+	Java createJava();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

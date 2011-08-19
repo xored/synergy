@@ -6,6 +6,7 @@
  */
 package com.xored.sherlock.system.impl;
 
+import com.xored.sherlock.system.Java;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -61,6 +62,7 @@ public class SystemFactoryImpl extends EFactoryImpl implements SystemFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SystemPackage.SYSTEM: return createSystem();
+			case SystemPackage.JAVA: return createJava();
 			case SystemPackage.ENTRY: return (EObject)createEntry();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -75,6 +77,16 @@ public class SystemFactoryImpl extends EFactoryImpl implements SystemFactory {
 	public com.xored.sherlock.system.System createSystem() {
 		SystemImpl system = new SystemImpl();
 		return system;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Java createJava() {
+		JavaImpl java = new JavaImpl();
+		return java;
 	}
 
 	/**

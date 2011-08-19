@@ -6,6 +6,7 @@
  */
 package com.xored.sherlock.system.util;
 
+import com.xored.sherlock.system.Java;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -75,6 +76,10 @@ public class SystemAdapterFactory extends AdapterFactoryImpl {
 				return createSystemAdapter();
 			}
 			@Override
+			public Adapter caseJava(Java object) {
+				return createJavaAdapter();
+			}
+			@Override
 			public Adapter caseEntry(Map.Entry<String, String> object) {
 				return createEntryAdapter();
 			}
@@ -109,6 +114,20 @@ public class SystemAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSystemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.system.Java <em>Java</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.xored.sherlock.system.Java
+	 * @generated
+	 */
+	public Adapter createJavaAdapter() {
 		return null;
 	}
 

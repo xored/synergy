@@ -134,6 +134,88 @@ public interface SystemPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link com.xored.sherlock.system.impl.JavaImpl <em>Java</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.system.impl.JavaImpl
+	 * @see com.xored.sherlock.system.impl.SystemPackageImpl#getJava()
+	 * @generated
+	 */
+	int JAVA = 1;
+
+	/**
+	 * The feature id for the '<em><b>Runtime Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA__RUNTIME_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Runtime Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA__RUNTIME_VERSION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Max Memory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA__MAX_MEMORY = 2;
+
+	/**
+	 * The feature id for the '<em><b>Free Memory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA__FREE_MEMORY = 3;
+
+	/**
+	 * The feature id for the '<em><b>Total Memory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA__TOTAL_MEMORY = 4;
+
+	/**
+	 * The feature id for the '<em><b>Args</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA__ARGS = 5;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA__PROPERTIES = 6;
+
+	/**
+	 * The number of structural features of the '<em>Java</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_FEATURE_COUNT = 7;
+
+	/**
 	 * The meta object id for the '{@link com.xored.sherlock.system.impl.EntryImpl <em>Entry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -141,7 +223,7 @@ public interface SystemPackage extends EPackage {
 	 * @see com.xored.sherlock.system.impl.SystemPackageImpl#getEntry()
 	 * @generated
 	 */
-	int ENTRY = 1;
+	int ENTRY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -246,6 +328,93 @@ public interface SystemPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSystem_Variables();
+
+	/**
+	 * Returns the meta object for class '{@link com.xored.sherlock.system.Java <em>Java</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java</em>'.
+	 * @see com.xored.sherlock.system.Java
+	 * @generated
+	 */
+	EClass getJava();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.Java#getRuntimeName <em>Runtime Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Runtime Name</em>'.
+	 * @see com.xored.sherlock.system.Java#getRuntimeName()
+	 * @see #getJava()
+	 * @generated
+	 */
+	EAttribute getJava_RuntimeName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.Java#getRuntimeVersion <em>Runtime Version</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Runtime Version</em>'.
+	 * @see com.xored.sherlock.system.Java#getRuntimeVersion()
+	 * @see #getJava()
+	 * @generated
+	 */
+	EAttribute getJava_RuntimeVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.Java#getMaxMemory <em>Max Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Max Memory</em>'.
+	 * @see com.xored.sherlock.system.Java#getMaxMemory()
+	 * @see #getJava()
+	 * @generated
+	 */
+	EAttribute getJava_MaxMemory();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.Java#getFreeMemory <em>Free Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Free Memory</em>'.
+	 * @see com.xored.sherlock.system.Java#getFreeMemory()
+	 * @see #getJava()
+	 * @generated
+	 */
+	EAttribute getJava_FreeMemory();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.system.Java#getTotalMemory <em>Total Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Total Memory</em>'.
+	 * @see com.xored.sherlock.system.Java#getTotalMemory()
+	 * @see #getJava()
+	 * @generated
+	 */
+	EAttribute getJava_TotalMemory();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link com.xored.sherlock.system.Java#getArgs <em>Args</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Args</em>'.
+	 * @see com.xored.sherlock.system.Java#getArgs()
+	 * @see #getJava()
+	 * @generated
+	 */
+	EAttribute getJava_Args();
+
+	/**
+	 * Returns the meta object for the map '{@link com.xored.sherlock.system.Java#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Properties</em>'.
+	 * @see com.xored.sherlock.system.Java#getProperties()
+	 * @see #getJava()
+	 * @generated
+	 */
+	EReference getJava_Properties();
 
 	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Entry</em>}'.
@@ -354,6 +523,64 @@ public interface SystemPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SYSTEM__VARIABLES = eINSTANCE.getSystem_Variables();
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.system.impl.JavaImpl <em>Java</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.system.impl.JavaImpl
+		 * @see com.xored.sherlock.system.impl.SystemPackageImpl#getJava()
+		 * @generated
+		 */
+		EClass JAVA = eINSTANCE.getJava();
+		/**
+		 * The meta object literal for the '<em><b>Runtime Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA__RUNTIME_NAME = eINSTANCE.getJava_RuntimeName();
+		/**
+		 * The meta object literal for the '<em><b>Runtime Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA__RUNTIME_VERSION = eINSTANCE.getJava_RuntimeVersion();
+		/**
+		 * The meta object literal for the '<em><b>Max Memory</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA__MAX_MEMORY = eINSTANCE.getJava_MaxMemory();
+		/**
+		 * The meta object literal for the '<em><b>Free Memory</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA__FREE_MEMORY = eINSTANCE.getJava_FreeMemory();
+		/**
+		 * The meta object literal for the '<em><b>Total Memory</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA__TOTAL_MEMORY = eINSTANCE.getJava_TotalMemory();
+		/**
+		 * The meta object literal for the '<em><b>Args</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA__ARGS = eINSTANCE.getJava_Args();
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JAVA__PROPERTIES = eINSTANCE.getJava_Properties();
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.system.impl.EntryImpl <em>Entry</em>}' class.
 		 * <!-- begin-user-doc -->

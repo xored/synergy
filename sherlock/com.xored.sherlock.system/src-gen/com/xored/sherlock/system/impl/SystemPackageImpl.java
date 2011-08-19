@@ -6,6 +6,7 @@
  */
 package com.xored.sherlock.system.impl;
 
+import com.xored.sherlock.system.Java;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -30,6 +31,12 @@ public class SystemPackageImpl extends EPackageImpl implements SystemPackage {
 	 * @generated
 	 */
 	private EClass systemEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass javaEClass = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,6 +175,78 @@ public class SystemPackageImpl extends EPackageImpl implements SystemPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getJava() {
+		return javaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJava_RuntimeName() {
+		return (EAttribute)javaEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJava_RuntimeVersion() {
+		return (EAttribute)javaEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJava_MaxMemory() {
+		return (EAttribute)javaEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJava_FreeMemory() {
+		return (EAttribute)javaEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJava_TotalMemory() {
+		return (EAttribute)javaEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJava_Args() {
+		return (EAttribute)javaEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getJava_Properties() {
+		return (EReference)javaEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getEntry() {
 		return entryEClass;
 	}
@@ -226,6 +305,15 @@ public class SystemPackageImpl extends EPackageImpl implements SystemPackage {
 		createEAttribute(systemEClass, SYSTEM__LOCALE);
 		createEReference(systemEClass, SYSTEM__VARIABLES);
 
+		javaEClass = createEClass(JAVA);
+		createEAttribute(javaEClass, JAVA__RUNTIME_NAME);
+		createEAttribute(javaEClass, JAVA__RUNTIME_VERSION);
+		createEAttribute(javaEClass, JAVA__MAX_MEMORY);
+		createEAttribute(javaEClass, JAVA__FREE_MEMORY);
+		createEAttribute(javaEClass, JAVA__TOTAL_MEMORY);
+		createEAttribute(javaEClass, JAVA__ARGS);
+		createEReference(javaEClass, JAVA__PROPERTIES);
+
 		entryEClass = createEClass(ENTRY);
 		createEAttribute(entryEClass, ENTRY__KEY);
 		createEAttribute(entryEClass, ENTRY__VALUE);
@@ -271,6 +359,15 @@ public class SystemPackageImpl extends EPackageImpl implements SystemPackage {
 		initEAttribute(getSystem_Username(), ecorePackage.getEString(), "username", null, 0, 1, com.xored.sherlock.system.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSystem_Locale(), ecorePackage.getEString(), "locale", null, 0, 1, com.xored.sherlock.system.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSystem_Variables(), this.getEntry(), null, "variables", null, 0, -1, com.xored.sherlock.system.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(javaEClass, Java.class, "Java", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getJava_RuntimeName(), ecorePackage.getEString(), "runtimeName", null, 0, 1, Java.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJava_RuntimeVersion(), ecorePackage.getEString(), "runtimeVersion", null, 0, 1, Java.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJava_MaxMemory(), ecorePackage.getELong(), "maxMemory", null, 0, 1, Java.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJava_FreeMemory(), ecorePackage.getELong(), "freeMemory", null, 0, 1, Java.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJava_TotalMemory(), ecorePackage.getELong(), "totalMemory", null, 0, 1, Java.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJava_Args(), ecorePackage.getEString(), "args", null, 0, -1, Java.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJava_Properties(), this.getEntry(), null, "properties", null, 0, -1, Java.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(entryEClass, Map.Entry.class, "Entry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEntry_Key(), theEcorePackage.getEString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
