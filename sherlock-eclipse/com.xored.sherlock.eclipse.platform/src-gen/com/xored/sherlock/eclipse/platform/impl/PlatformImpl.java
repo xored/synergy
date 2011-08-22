@@ -11,6 +11,7 @@ import com.xored.sherlock.eclipse.platform.Platform;
 import com.xored.sherlock.eclipse.platform.PlatformPackage;
 
 import com.xored.sherlock.eclipse.platform.Plugin;
+import com.xored.sherlock.eclipse.platform.Preference;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -42,6 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getWorkspacePartitionTotalDiskspace <em>Workspace Partition Total Diskspace</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getWorkspacePartitionUsableDiskspace <em>Workspace Partition Usable Diskspace</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getWorkspacePartitionFreeDiskspace <em>Workspace Partition Free Diskspace</em>}</li>
+ *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getPreferences <em>Preferences</em>}</li>
  * </ul>
  * </p>
  *
@@ -219,6 +221,16 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 	 * @ordered
 	 */
 	protected long workspacePartitionFreeDiskspace = WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPreferences() <em>Preferences</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPreferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Preference> preferences;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -448,6 +460,18 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Preference> getPreferences() {
+		if (preferences == null) {
+			preferences = new EObjectContainmentEList<Preference>(Preference.class, this, PlatformPackage.PLATFORM__PREFERENCES);
+		}
+		return preferences;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -455,6 +479,8 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 				return ((InternalEList<?>)getPlugins()).basicRemove(otherEnd, msgs);
 			case PlatformPackage.PLATFORM__FEATURES:
 				return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
+			case PlatformPackage.PLATFORM__PREFERENCES:
+				return ((InternalEList<?>)getPreferences()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -489,6 +515,8 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 				return getWorkspacePartitionUsableDiskspace();
 			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE:
 				return getWorkspacePartitionFreeDiskspace();
+			case PlatformPackage.PLATFORM__PREFERENCES:
+				return getPreferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -538,6 +566,10 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE:
 				setWorkspacePartitionFreeDiskspace((Long)newValue);
 				return;
+			case PlatformPackage.PLATFORM__PREFERENCES:
+				getPreferences().clear();
+				getPreferences().addAll((Collection<? extends Preference>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -583,6 +615,9 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE:
 				setWorkspacePartitionFreeDiskspace(WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT);
 				return;
+			case PlatformPackage.PLATFORM__PREFERENCES:
+				getPreferences().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -617,6 +652,8 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 				return workspacePartitionUsableDiskspace != WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT;
 			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE:
 				return workspacePartitionFreeDiskspace != WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT;
+			case PlatformPackage.PLATFORM__PREFERENCES:
+				return preferences != null && !preferences.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

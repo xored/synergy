@@ -53,6 +53,42 @@ public interface PlatformFactory extends EFactory {
 	Feature createFeature();
 
 	/**
+	 * Returns a new object of class '<em>Status</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Status</em>'.
+	 * @generated
+	 */
+	Status createStatus();
+
+	/**
+	 * Returns a new object of class '<em>Java Exception</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Exception</em>'.
+	 * @generated
+	 */
+	JavaException createJavaException();
+
+	/**
+	 * Returns a new object of class '<em>Java Stack Trace Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Stack Trace Entry</em>'.
+	 * @generated
+	 */
+	JavaStackTraceEntry createJavaStackTraceEntry();
+
+	/**
+	 * Returns a new object of class '<em>Preference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Preference</em>'.
+	 * @generated
+	 */
+	Preference createPreference();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

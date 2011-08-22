@@ -169,13 +169,22 @@ public interface PlatformPackage extends EPackage {
 	int PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE = 10;
 
 	/**
+	 * The feature id for the '<em><b>Preferences</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLATFORM__PREFERENCES = 11;
+
+	/**
 	 * The number of structural features of the '<em>Platform</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM_FEATURE_COUNT = 11;
+	int PLATFORM_FEATURE_COUNT = 12;
 
 
 	/**
@@ -287,6 +296,246 @@ public interface PlatformPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_FEATURE_COUNT = 4;
+
+
+	/**
+	 * The meta object id for the '{@link com.xored.sherlock.eclipse.platform.impl.StatusImpl <em>Status</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.eclipse.platform.impl.StatusImpl
+	 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getStatus()
+	 * @generated
+	 */
+	int STATUS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS__CHILDREN = 0;
+
+	/**
+	 * The feature id for the '<em><b>Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS__CODE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS__MESSAGE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Plugin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS__PLUGIN = 3;
+
+	/**
+	 * The feature id for the '<em><b>Severity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS__SEVERITY = 4;
+
+	/**
+	 * The feature id for the '<em><b>Exception</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS__EXCEPTION = 5;
+
+	/**
+	 * The number of structural features of the '<em>Status</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS_FEATURE_COUNT = 6;
+
+	/**
+	 * The meta object id for the '{@link com.xored.sherlock.eclipse.platform.impl.JavaExceptionImpl <em>Java Exception</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.eclipse.platform.impl.JavaExceptionImpl
+	 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getJavaException()
+	 * @generated
+	 */
+	int JAVA_EXCEPTION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_EXCEPTION__CLASS_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Cause</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_EXCEPTION__CAUSE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_EXCEPTION__MESSAGE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Stacktrace</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_EXCEPTION__STACKTRACE = 3;
+
+	/**
+	 * The number of structural features of the '<em>Java Exception</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_EXCEPTION_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link com.xored.sherlock.eclipse.platform.impl.JavaStackTraceEntryImpl <em>Java Stack Trace Entry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.eclipse.platform.impl.JavaStackTraceEntryImpl
+	 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getJavaStackTraceEntry()
+	 * @generated
+	 */
+	int JAVA_STACK_TRACE_ENTRY = 5;
+
+	/**
+	 * The feature id for the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_STACK_TRACE_ENTRY__FILE_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_STACK_TRACE_ENTRY__CLASS_NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Method Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_STACK_TRACE_ENTRY__METHOD_NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Line Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_STACK_TRACE_ENTRY__LINE_NUMBER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_STACK_TRACE_ENTRY__NATIVE = 4;
+
+	/**
+	 * The number of structural features of the '<em>Java Stack Trace Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_STACK_TRACE_ENTRY_FEATURE_COUNT = 5;
+
+
+	/**
+	 * The meta object id for the '{@link com.xored.sherlock.eclipse.platform.impl.PreferenceImpl <em>Preference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.eclipse.platform.impl.PreferenceImpl
+	 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getPreference()
+	 * @generated
+	 */
+	int PREFERENCE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFERENCE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFERENCE__VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFERENCE__PATH = 2;
+
+	/**
+	 * The number of structural features of the '<em>Preference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFERENCE_FEATURE_COUNT = 3;
 
 
 	/**
@@ -421,6 +670,17 @@ public interface PlatformPackage extends EPackage {
 	EAttribute getPlatform_WorkspacePartitionFreeDiskspace();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link com.xored.sherlock.eclipse.platform.Platform#getPreferences <em>Preferences</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Preferences</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Platform#getPreferences()
+	 * @see #getPlatform()
+	 * @generated
+	 */
+	EReference getPlatform_Preferences();
+
+	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.eclipse.platform.Plugin <em>Plugin</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -527,6 +787,244 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFeature_Provider();
+
+	/**
+	 * Returns the meta object for class '{@link com.xored.sherlock.eclipse.platform.Status <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Status</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Status
+	 * @generated
+	 */
+	EClass getStatus();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.xored.sherlock.eclipse.platform.Status#getChildren <em>Children</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Status#getChildren()
+	 * @see #getStatus()
+	 * @generated
+	 */
+	EReference getStatus_Children();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Status#getCode <em>Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Code</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Status#getCode()
+	 * @see #getStatus()
+	 * @generated
+	 */
+	EAttribute getStatus_Code();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Status#getMessage <em>Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Message</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Status#getMessage()
+	 * @see #getStatus()
+	 * @generated
+	 */
+	EAttribute getStatus_Message();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Status#getPlugin <em>Plugin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Plugin</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Status#getPlugin()
+	 * @see #getStatus()
+	 * @generated
+	 */
+	EAttribute getStatus_Plugin();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Status#getSeverity <em>Severity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Severity</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Status#getSeverity()
+	 * @see #getStatus()
+	 * @generated
+	 */
+	EAttribute getStatus_Severity();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link com.xored.sherlock.eclipse.platform.Status#getException <em>Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Exception</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Status#getException()
+	 * @see #getStatus()
+	 * @generated
+	 */
+	EReference getStatus_Exception();
+
+	/**
+	 * Returns the meta object for class '{@link com.xored.sherlock.eclipse.platform.JavaException <em>Java Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java Exception</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaException
+	 * @generated
+	 */
+	EClass getJavaException();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.JavaException#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaException#getClassName()
+	 * @see #getJavaException()
+	 * @generated
+	 */
+	EAttribute getJavaException_ClassName();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link com.xored.sherlock.eclipse.platform.JavaException#getCause <em>Cause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Cause</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaException#getCause()
+	 * @see #getJavaException()
+	 * @generated
+	 */
+	EReference getJavaException_Cause();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.JavaException#getMessage <em>Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Message</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaException#getMessage()
+	 * @see #getJavaException()
+	 * @generated
+	 */
+	EAttribute getJavaException_Message();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.xored.sherlock.eclipse.platform.JavaException#getStacktrace <em>Stacktrace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Stacktrace</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaException#getStacktrace()
+	 * @see #getJavaException()
+	 * @generated
+	 */
+	EReference getJavaException_Stacktrace();
+
+	/**
+	 * Returns the meta object for class '{@link com.xored.sherlock.eclipse.platform.JavaStackTraceEntry <em>Java Stack Trace Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java Stack Trace Entry</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaStackTraceEntry
+	 * @generated
+	 */
+	EClass getJavaStackTraceEntry();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#getFileName <em>File Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>File Name</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#getFileName()
+	 * @see #getJavaStackTraceEntry()
+	 * @generated
+	 */
+	EAttribute getJavaStackTraceEntry_FileName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#getClassName()
+	 * @see #getJavaStackTraceEntry()
+	 * @generated
+	 */
+	EAttribute getJavaStackTraceEntry_ClassName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#getMethodName <em>Method Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Method Name</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#getMethodName()
+	 * @see #getJavaStackTraceEntry()
+	 * @generated
+	 */
+	EAttribute getJavaStackTraceEntry_MethodName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#getLineNumber <em>Line Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Line Number</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#getLineNumber()
+	 * @see #getJavaStackTraceEntry()
+	 * @generated
+	 */
+	EAttribute getJavaStackTraceEntry_LineNumber();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#isNative <em>Native</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Native</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.JavaStackTraceEntry#isNative()
+	 * @see #getJavaStackTraceEntry()
+	 * @generated
+	 */
+	EAttribute getJavaStackTraceEntry_Native();
+
+	/**
+	 * Returns the meta object for class '{@link com.xored.sherlock.eclipse.platform.Preference <em>Preference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Preference</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Preference
+	 * @generated
+	 */
+	EClass getPreference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Preference#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Preference#getName()
+	 * @see #getPreference()
+	 * @generated
+	 */
+	EAttribute getPreference_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Preference#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Preference#getValue()
+	 * @see #getPreference()
+	 * @generated
+	 */
+	EAttribute getPreference_Value();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Preference#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Preference#getPath()
+	 * @see #getPreference()
+	 * @generated
+	 */
+	EAttribute getPreference_Path();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -637,6 +1135,13 @@ public interface PlatformPackage extends EPackage {
 		 */
 		EAttribute PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE = eINSTANCE.getPlatform_WorkspacePartitionFreeDiskspace();
 		/**
+		 * The meta object literal for the '<em><b>Preferences</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLATFORM__PREFERENCES = eINSTANCE.getPlatform_Preferences();
+		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.eclipse.platform.impl.PluginImpl <em>Plugin</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -710,6 +1215,168 @@ public interface PlatformPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FEATURE__PROVIDER = eINSTANCE.getFeature_Provider();
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.eclipse.platform.impl.StatusImpl <em>Status</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.eclipse.platform.impl.StatusImpl
+		 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getStatus()
+		 * @generated
+		 */
+		EClass STATUS = eINSTANCE.getStatus();
+		/**
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATUS__CHILDREN = eINSTANCE.getStatus_Children();
+		/**
+		 * The meta object literal for the '<em><b>Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATUS__CODE = eINSTANCE.getStatus_Code();
+		/**
+		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATUS__MESSAGE = eINSTANCE.getStatus_Message();
+		/**
+		 * The meta object literal for the '<em><b>Plugin</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATUS__PLUGIN = eINSTANCE.getStatus_Plugin();
+		/**
+		 * The meta object literal for the '<em><b>Severity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATUS__SEVERITY = eINSTANCE.getStatus_Severity();
+		/**
+		 * The meta object literal for the '<em><b>Exception</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STATUS__EXCEPTION = eINSTANCE.getStatus_Exception();
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.eclipse.platform.impl.JavaExceptionImpl <em>Java Exception</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.eclipse.platform.impl.JavaExceptionImpl
+		 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getJavaException()
+		 * @generated
+		 */
+		EClass JAVA_EXCEPTION = eINSTANCE.getJavaException();
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_EXCEPTION__CLASS_NAME = eINSTANCE.getJavaException_ClassName();
+		/**
+		 * The meta object literal for the '<em><b>Cause</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JAVA_EXCEPTION__CAUSE = eINSTANCE.getJavaException_Cause();
+		/**
+		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_EXCEPTION__MESSAGE = eINSTANCE.getJavaException_Message();
+		/**
+		 * The meta object literal for the '<em><b>Stacktrace</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JAVA_EXCEPTION__STACKTRACE = eINSTANCE.getJavaException_Stacktrace();
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.eclipse.platform.impl.JavaStackTraceEntryImpl <em>Java Stack Trace Entry</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.eclipse.platform.impl.JavaStackTraceEntryImpl
+		 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getJavaStackTraceEntry()
+		 * @generated
+		 */
+		EClass JAVA_STACK_TRACE_ENTRY = eINSTANCE.getJavaStackTraceEntry();
+		/**
+		 * The meta object literal for the '<em><b>File Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_STACK_TRACE_ENTRY__FILE_NAME = eINSTANCE.getJavaStackTraceEntry_FileName();
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_STACK_TRACE_ENTRY__CLASS_NAME = eINSTANCE.getJavaStackTraceEntry_ClassName();
+		/**
+		 * The meta object literal for the '<em><b>Method Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_STACK_TRACE_ENTRY__METHOD_NAME = eINSTANCE.getJavaStackTraceEntry_MethodName();
+		/**
+		 * The meta object literal for the '<em><b>Line Number</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_STACK_TRACE_ENTRY__LINE_NUMBER = eINSTANCE.getJavaStackTraceEntry_LineNumber();
+		/**
+		 * The meta object literal for the '<em><b>Native</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_STACK_TRACE_ENTRY__NATIVE = eINSTANCE.getJavaStackTraceEntry_Native();
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.eclipse.platform.impl.PreferenceImpl <em>Preference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.eclipse.platform.impl.PreferenceImpl
+		 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getPreference()
+		 * @generated
+		 */
+		EClass PREFERENCE = eINSTANCE.getPreference();
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREFERENCE__NAME = eINSTANCE.getPreference_Name();
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREFERENCE__VALUE = eINSTANCE.getPreference_Value();
+		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREFERENCE__PATH = eINSTANCE.getPreference_Path();
 
 	}
 

@@ -63,6 +63,10 @@ public class PlatformFactoryImpl extends EFactoryImpl implements PlatformFactory
 			case PlatformPackage.PLATFORM: return createPlatform();
 			case PlatformPackage.PLUGIN: return createPlugin();
 			case PlatformPackage.FEATURE: return createFeature();
+			case PlatformPackage.STATUS: return createStatus();
+			case PlatformPackage.JAVA_EXCEPTION: return createJavaException();
+			case PlatformPackage.JAVA_STACK_TRACE_ENTRY: return createJavaStackTraceEntry();
+			case PlatformPackage.PREFERENCE: return createPreference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -96,6 +100,46 @@ public class PlatformFactoryImpl extends EFactoryImpl implements PlatformFactory
 	public Feature createFeature() {
 		FeatureImpl feature = new FeatureImpl();
 		return feature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Status createStatus() {
+		StatusImpl status = new StatusImpl();
+		return status;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JavaException createJavaException() {
+		JavaExceptionImpl javaException = new JavaExceptionImpl();
+		return javaException;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JavaStackTraceEntry createJavaStackTraceEntry() {
+		JavaStackTraceEntryImpl javaStackTraceEntry = new JavaStackTraceEntryImpl();
+		return javaStackTraceEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Preference createPreference() {
+		PreferenceImpl preference = new PreferenceImpl();
+		return preference;
 	}
 
 	/**

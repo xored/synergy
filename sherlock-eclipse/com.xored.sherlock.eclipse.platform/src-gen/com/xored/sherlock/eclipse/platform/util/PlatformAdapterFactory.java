@@ -84,6 +84,22 @@ public class PlatformAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureAdapter();
 			}
 			@Override
+			public Adapter caseStatus(Status object) {
+				return createStatusAdapter();
+			}
+			@Override
+			public Adapter caseJavaException(JavaException object) {
+				return createJavaExceptionAdapter();
+			}
+			@Override
+			public Adapter caseJavaStackTraceEntry(JavaStackTraceEntry object) {
+				return createJavaStackTraceEntryAdapter();
+			}
+			@Override
+			public Adapter casePreference(Preference object) {
+				return createPreferenceAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -142,6 +158,62 @@ public class PlatformAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFeatureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.eclipse.platform.Status <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.xored.sherlock.eclipse.platform.Status
+	 * @generated
+	 */
+	public Adapter createStatusAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.eclipse.platform.JavaException <em>Java Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.xored.sherlock.eclipse.platform.JavaException
+	 * @generated
+	 */
+	public Adapter createJavaExceptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.eclipse.platform.JavaStackTraceEntry <em>Java Stack Trace Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.xored.sherlock.eclipse.platform.JavaStackTraceEntry
+	 * @generated
+	 */
+	public Adapter createJavaStackTraceEntryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.eclipse.platform.Preference <em>Preference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.xored.sherlock.eclipse.platform.Preference
+	 * @generated
+	 */
+	public Adapter createPreferenceAdapter() {
 		return null;
 	}
 

@@ -40,8 +40,15 @@
    <extension
          point="com.xored.sherlock.eclipse.core.sources">
       <source
-            class="com.xored.sherlock.eclipse.platform.EclipsePlatformSource"
+            class="com.xored.sherlock.eclipse.platform.PlatformSource"
             id="com.xored.sherlock.eclipse.platform">
+      </source>
+   </extension>
+   <extension
+         point="com.xored.sherlock.eclipse.core.sources">
+      <source
+            class="com.xored.sherlock.eclipse.platform.LogSource"
+            id="com.xored.sherlock.eclipse.log">
       </source>
    </extension>
 
