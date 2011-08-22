@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getWorkspaceLocation <em>Workspace Location</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getProductId <em>Product Id</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getApplicationId <em>Application Id</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getApplicationArgs <em>Application Args</em>}</li>
@@ -40,9 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getUptime <em>Uptime</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getPlugins <em>Plugins</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getFeatures <em>Features</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getWorkspacePartitionTotalDiskspace <em>Workspace Partition Total Diskspace</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getWorkspacePartitionUsableDiskspace <em>Workspace Partition Usable Diskspace</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getWorkspacePartitionFreeDiskspace <em>Workspace Partition Free Diskspace</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PlatformImpl#getPreferences <em>Preferences</em>}</li>
  * </ul>
  * </p>
@@ -50,24 +46,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class PlatformImpl extends EObjectImpl implements Platform {
-	/**
-	 * The default value of the '{@link #getWorkspaceLocation() <em>Workspace Location</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWorkspaceLocation()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String WORKSPACE_LOCATION_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getWorkspaceLocation() <em>Workspace Location</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWorkspaceLocation()
-	 * @generated
-	 * @ordered
-	 */
-	protected String workspaceLocation = WORKSPACE_LOCATION_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getProductId() <em>Product Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -168,61 +146,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 	 */
 	protected EList<Feature> features;
 	/**
-	 * The default value of the '{@link #getWorkspacePartitionTotalDiskspace() <em>Workspace Partition Total Diskspace</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWorkspacePartitionTotalDiskspace()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final long WORKSPACE_PARTITION_TOTAL_DISKSPACE_EDEFAULT = 0L;
-	/**
-	 * The cached value of the '{@link #getWorkspacePartitionTotalDiskspace() <em>Workspace Partition Total Diskspace</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWorkspacePartitionTotalDiskspace()
-	 * @generated
-	 * @ordered
-	 */
-	protected long workspacePartitionTotalDiskspace = WORKSPACE_PARTITION_TOTAL_DISKSPACE_EDEFAULT;
-	/**
-	 * The default value of the '{@link #getWorkspacePartitionUsableDiskspace() <em>Workspace Partition Usable Diskspace</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWorkspacePartitionUsableDiskspace()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final long WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT = 0L;
-	/**
-	 * The cached value of the '{@link #getWorkspacePartitionUsableDiskspace() <em>Workspace Partition Usable Diskspace</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWorkspacePartitionUsableDiskspace()
-	 * @generated
-	 * @ordered
-	 */
-	protected long workspacePartitionUsableDiskspace = WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT;
-	/**
-	 * The default value of the '{@link #getWorkspacePartitionFreeDiskspace() <em>Workspace Partition Free Diskspace</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWorkspacePartitionFreeDiskspace()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final long WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT = 0L;
-	/**
-	 * The cached value of the '{@link #getWorkspacePartitionFreeDiskspace() <em>Workspace Partition Free Diskspace</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getWorkspacePartitionFreeDiskspace()
-	 * @generated
-	 * @ordered
-	 */
-	protected long workspacePartitionFreeDiskspace = WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getPreferences() <em>Preferences</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,27 +172,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 	@Override
 	protected EClass eStaticClass() {
 		return PlatformPackage.Literals.PLATFORM;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getWorkspaceLocation() {
-		return workspaceLocation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setWorkspaceLocation(String newWorkspaceLocation) {
-		String oldWorkspaceLocation = workspaceLocation;
-		workspaceLocation = newWorkspaceLocation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.PLATFORM__WORKSPACE_LOCATION, oldWorkspaceLocation, workspaceLocation));
 	}
 
 	/**
@@ -397,69 +299,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getWorkspacePartitionTotalDiskspace() {
-		return workspacePartitionTotalDiskspace;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setWorkspacePartitionTotalDiskspace(long newWorkspacePartitionTotalDiskspace) {
-		long oldWorkspacePartitionTotalDiskspace = workspacePartitionTotalDiskspace;
-		workspacePartitionTotalDiskspace = newWorkspacePartitionTotalDiskspace;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.PLATFORM__WORKSPACE_PARTITION_TOTAL_DISKSPACE, oldWorkspacePartitionTotalDiskspace, workspacePartitionTotalDiskspace));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public long getWorkspacePartitionUsableDiskspace() {
-		return workspacePartitionUsableDiskspace;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setWorkspacePartitionUsableDiskspace(long newWorkspacePartitionUsableDiskspace) {
-		long oldWorkspacePartitionUsableDiskspace = workspacePartitionUsableDiskspace;
-		workspacePartitionUsableDiskspace = newWorkspacePartitionUsableDiskspace;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.PLATFORM__WORKSPACE_PARTITION_USABLE_DISKSPACE, oldWorkspacePartitionUsableDiskspace, workspacePartitionUsableDiskspace));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public long getWorkspacePartitionFreeDiskspace() {
-		return workspacePartitionFreeDiskspace;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setWorkspacePartitionFreeDiskspace(long newWorkspacePartitionFreeDiskspace) {
-		long oldWorkspacePartitionFreeDiskspace = workspacePartitionFreeDiskspace;
-		workspacePartitionFreeDiskspace = newWorkspacePartitionFreeDiskspace;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE, oldWorkspacePartitionFreeDiskspace, workspacePartitionFreeDiskspace));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Preference> getPreferences() {
 		if (preferences == null) {
 			preferences = new EObjectContainmentEList<Preference>(Preference.class, this, PlatformPackage.PLATFORM__PREFERENCES);
@@ -493,8 +332,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PlatformPackage.PLATFORM__WORKSPACE_LOCATION:
-				return getWorkspaceLocation();
 			case PlatformPackage.PLATFORM__PRODUCT_ID:
 				return getProductId();
 			case PlatformPackage.PLATFORM__APPLICATION_ID:
@@ -509,12 +346,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 				return getPlugins();
 			case PlatformPackage.PLATFORM__FEATURES:
 				return getFeatures();
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_TOTAL_DISKSPACE:
-				return getWorkspacePartitionTotalDiskspace();
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_USABLE_DISKSPACE:
-				return getWorkspacePartitionUsableDiskspace();
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE:
-				return getWorkspacePartitionFreeDiskspace();
 			case PlatformPackage.PLATFORM__PREFERENCES:
 				return getPreferences();
 		}
@@ -530,9 +361,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PlatformPackage.PLATFORM__WORKSPACE_LOCATION:
-				setWorkspaceLocation((String)newValue);
-				return;
 			case PlatformPackage.PLATFORM__PRODUCT_ID:
 				setProductId((String)newValue);
 				return;
@@ -557,15 +385,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 				getFeatures().clear();
 				getFeatures().addAll((Collection<? extends Feature>)newValue);
 				return;
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_TOTAL_DISKSPACE:
-				setWorkspacePartitionTotalDiskspace((Long)newValue);
-				return;
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_USABLE_DISKSPACE:
-				setWorkspacePartitionUsableDiskspace((Long)newValue);
-				return;
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE:
-				setWorkspacePartitionFreeDiskspace((Long)newValue);
-				return;
 			case PlatformPackage.PLATFORM__PREFERENCES:
 				getPreferences().clear();
 				getPreferences().addAll((Collection<? extends Preference>)newValue);
@@ -582,9 +401,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PlatformPackage.PLATFORM__WORKSPACE_LOCATION:
-				setWorkspaceLocation(WORKSPACE_LOCATION_EDEFAULT);
-				return;
 			case PlatformPackage.PLATFORM__PRODUCT_ID:
 				setProductId(PRODUCT_ID_EDEFAULT);
 				return;
@@ -606,15 +422,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 			case PlatformPackage.PLATFORM__FEATURES:
 				getFeatures().clear();
 				return;
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_TOTAL_DISKSPACE:
-				setWorkspacePartitionTotalDiskspace(WORKSPACE_PARTITION_TOTAL_DISKSPACE_EDEFAULT);
-				return;
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_USABLE_DISKSPACE:
-				setWorkspacePartitionUsableDiskspace(WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT);
-				return;
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE:
-				setWorkspacePartitionFreeDiskspace(WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT);
-				return;
 			case PlatformPackage.PLATFORM__PREFERENCES:
 				getPreferences().clear();
 				return;
@@ -630,8 +437,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PlatformPackage.PLATFORM__WORKSPACE_LOCATION:
-				return WORKSPACE_LOCATION_EDEFAULT == null ? workspaceLocation != null : !WORKSPACE_LOCATION_EDEFAULT.equals(workspaceLocation);
 			case PlatformPackage.PLATFORM__PRODUCT_ID:
 				return PRODUCT_ID_EDEFAULT == null ? productId != null : !PRODUCT_ID_EDEFAULT.equals(productId);
 			case PlatformPackage.PLATFORM__APPLICATION_ID:
@@ -646,12 +451,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 				return plugins != null && !plugins.isEmpty();
 			case PlatformPackage.PLATFORM__FEATURES:
 				return features != null && !features.isEmpty();
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_TOTAL_DISKSPACE:
-				return workspacePartitionTotalDiskspace != WORKSPACE_PARTITION_TOTAL_DISKSPACE_EDEFAULT;
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_USABLE_DISKSPACE:
-				return workspacePartitionUsableDiskspace != WORKSPACE_PARTITION_USABLE_DISKSPACE_EDEFAULT;
-			case PlatformPackage.PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE:
-				return workspacePartitionFreeDiskspace != WORKSPACE_PARTITION_FREE_DISKSPACE_EDEFAULT;
 			case PlatformPackage.PLATFORM__PREFERENCES:
 				return preferences != null && !preferences.isEmpty();
 		}
@@ -668,9 +467,7 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (workspaceLocation: ");
-		result.append(workspaceLocation);
-		result.append(", productId: ");
+		result.append(" (productId: ");
 		result.append(productId);
 		result.append(", applicationId: ");
 		result.append(applicationId);
@@ -680,12 +477,6 @@ public class PlatformImpl extends EObjectImpl implements Platform {
 		result.append(buildId);
 		result.append(", uptime: ");
 		result.append(uptime);
-		result.append(", workspacePartitionTotalDiskspace: ");
-		result.append(workspacePartitionTotalDiskspace);
-		result.append(", workspacePartitionUsableDiskspace: ");
-		result.append(workspacePartitionUsableDiskspace);
-		result.append(", workspacePartitionFreeDiskspace: ");
-		result.append(workspacePartitionFreeDiskspace);
 		result.append(')');
 		return result.toString();
 	}

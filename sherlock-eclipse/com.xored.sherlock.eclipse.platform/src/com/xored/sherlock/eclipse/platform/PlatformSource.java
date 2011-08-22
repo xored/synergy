@@ -1,16 +1,11 @@
 package com.xored.sherlock.eclipse.platform;
 
-import java.io.File;
-import java.net.URI;
 import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Map;
 
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IBundleGroup;
 import org.eclipse.core.runtime.IBundleGroupProvider;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProduct;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IPreferenceNodeVisitor;
@@ -38,20 +33,6 @@ public class PlatformSource implements EntityDataSource {
 
 		platform.setUptime(System.currentTimeMillis() - Long.parseLong(System.getProperty(START_TIME)));
 		platform.getApplicationArgs().addAll(Arrays.asList(org.eclipse.core.runtime.Platform.getApplicationArgs()));
-
-		// workspace
-		String workspace = getWorkspaceLocation();
-		platform.setWorkspaceLocation(workspace);
-
-		if (workspace != null) {
-			try {
-				File workspaceDir = new File(workspace);
-				platform.setWorkspacePartitionTotalDiskspace(workspaceDir.getTotalSpace());
-				platform.setWorkspacePartitionUsableDiskspace(workspaceDir.getUsableSpace());
-				platform.setWorkspacePartitionFreeDiskspace(workspaceDir.getFreeSpace());
-			} catch (Throwable t) {
-			}
-		}
 
 		// features
 		IBundleGroupProvider[] providers = org.eclipse.core.runtime.Platform.getBundleGroupProviders();
@@ -106,21 +87,6 @@ public class PlatformSource implements EntityDataSource {
 		}
 
 		return platform;
-	}
-
-	private static String getWorkspaceLocation() {
-		final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		final IPath path = root.getLocation();
-		if (path != null) {
-			return path.toFile().getAbsolutePath();
-		} else {
-			final URI uri = root.getLocationURI();
-			if (uri != null) {
-				return uri.toString();
-			}
-		}
-
-		return null;
 	}
 
 	@Override

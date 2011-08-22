@@ -153,7 +153,7 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlatform_WorkspaceLocation() {
+	public EAttribute getPlatform_ProductId() {
 		return (EAttribute)platformEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -162,7 +162,7 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlatform_ProductId() {
+	public EAttribute getPlatform_ApplicationId() {
 		return (EAttribute)platformEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -171,7 +171,7 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlatform_ApplicationId() {
+	public EAttribute getPlatform_ApplicationArgs() {
 		return (EAttribute)platformEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -180,7 +180,7 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlatform_ApplicationArgs() {
+	public EAttribute getPlatform_BuildId() {
 		return (EAttribute)platformEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -189,7 +189,7 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlatform_BuildId() {
+	public EAttribute getPlatform_Uptime() {
 		return (EAttribute)platformEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -198,17 +198,8 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPlatform_Uptime() {
-		return (EAttribute)platformEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getPlatform_Plugins() {
-		return (EReference)platformEClass.getEStructuralFeatures().get(6);
+		return (EReference)platformEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -217,34 +208,7 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * @generated
 	 */
 	public EReference getPlatform_Features() {
-		return (EReference)platformEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPlatform_WorkspacePartitionTotalDiskspace() {
-		return (EAttribute)platformEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPlatform_WorkspacePartitionUsableDiskspace() {
-		return (EAttribute)platformEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPlatform_WorkspacePartitionFreeDiskspace() {
-		return (EAttribute)platformEClass.getEStructuralFeatures().get(10);
+		return (EReference)platformEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -253,7 +217,7 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * @generated
 	 */
 	public EReference getPlatform_Preferences() {
-		return (EReference)platformEClass.getEStructuralFeatures().get(11);
+		return (EReference)platformEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -573,7 +537,6 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 
 		// Create classes and their features
 		platformEClass = createEClass(PLATFORM);
-		createEAttribute(platformEClass, PLATFORM__WORKSPACE_LOCATION);
 		createEAttribute(platformEClass, PLATFORM__PRODUCT_ID);
 		createEAttribute(platformEClass, PLATFORM__APPLICATION_ID);
 		createEAttribute(platformEClass, PLATFORM__APPLICATION_ARGS);
@@ -581,9 +544,6 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 		createEAttribute(platformEClass, PLATFORM__UPTIME);
 		createEReference(platformEClass, PLATFORM__PLUGINS);
 		createEReference(platformEClass, PLATFORM__FEATURES);
-		createEAttribute(platformEClass, PLATFORM__WORKSPACE_PARTITION_TOTAL_DISKSPACE);
-		createEAttribute(platformEClass, PLATFORM__WORKSPACE_PARTITION_USABLE_DISKSPACE);
-		createEAttribute(platformEClass, PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE);
 		createEReference(platformEClass, PLATFORM__PREFERENCES);
 
 		pluginEClass = createEClass(PLUGIN);
@@ -656,7 +616,6 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(platformEClass, Platform.class, "Platform", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPlatform_WorkspaceLocation(), ecorePackage.getEString(), "workspaceLocation", null, 0, 1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlatform_ProductId(), ecorePackage.getEString(), "productId", null, 0, 1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlatform_ApplicationId(), ecorePackage.getEString(), "applicationId", null, 0, 1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlatform_ApplicationArgs(), ecorePackage.getEString(), "applicationArgs", null, 0, -1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -664,9 +623,6 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 		initEAttribute(getPlatform_Uptime(), ecorePackage.getELong(), "uptime", null, 0, 1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlatform_Plugins(), this.getPlugin(), null, "plugins", null, 0, -1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlatform_Features(), this.getFeature(), null, "features", null, 0, -1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlatform_WorkspacePartitionTotalDiskspace(), ecorePackage.getELong(), "workspacePartitionTotalDiskspace", null, 0, 1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlatform_WorkspacePartitionUsableDiskspace(), ecorePackage.getELong(), "workspacePartitionUsableDiskspace", null, 0, 1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlatform_WorkspacePartitionFreeDiskspace(), ecorePackage.getELong(), "workspacePartitionFreeDiskspace", null, 0, 1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlatform_Preferences(), this.getPreference(), null, "preferences", null, 0, -1, Platform.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pluginEClass, Plugin.class, "Plugin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

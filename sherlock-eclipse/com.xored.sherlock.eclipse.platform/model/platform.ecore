@@ -4,7 +4,6 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="platform"
     nsURI="http://xored.com/sherlock/eclipse/platform.ecore" nsPrefix="com.xored.sherlock.eclipse.platform">
   <eClassifiers xsi:type="ecore:EClass" name="Platform">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workspaceLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="productId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="applicationId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="applicationArgs" upperBound="-1"
@@ -15,12 +14,6 @@
         eType="#//Plugin" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//Feature" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workspacePartitionTotalDiskspace"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workspacePartitionUsableDiskspace"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workspacePartitionFreeDiskspace"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="preferences" upperBound="-1"
         eType="#//Preference" containment="true"/>
   </eClassifiers>

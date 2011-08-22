@@ -70,22 +70,13 @@ public interface PlatformPackage extends EPackage {
 	int PLATFORM = 0;
 
 	/**
-	 * The feature id for the '<em><b>Workspace Location</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLATFORM__WORKSPACE_LOCATION = 0;
-
-	/**
 	 * The feature id for the '<em><b>Product Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM__PRODUCT_ID = 1;
+	int PLATFORM__PRODUCT_ID = 0;
 
 	/**
 	 * The feature id for the '<em><b>Application Id</b></em>' attribute.
@@ -94,7 +85,7 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM__APPLICATION_ID = 2;
+	int PLATFORM__APPLICATION_ID = 1;
 
 	/**
 	 * The feature id for the '<em><b>Application Args</b></em>' attribute list.
@@ -103,7 +94,7 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM__APPLICATION_ARGS = 3;
+	int PLATFORM__APPLICATION_ARGS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Build Id</b></em>' attribute.
@@ -112,7 +103,7 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM__BUILD_ID = 4;
+	int PLATFORM__BUILD_ID = 3;
 
 	/**
 	 * The feature id for the '<em><b>Uptime</b></em>' attribute.
@@ -121,7 +112,7 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM__UPTIME = 5;
+	int PLATFORM__UPTIME = 4;
 
 	/**
 	 * The feature id for the '<em><b>Plugins</b></em>' containment reference list.
@@ -130,7 +121,7 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM__PLUGINS = 6;
+	int PLATFORM__PLUGINS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -139,34 +130,7 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM__FEATURES = 7;
-
-	/**
-	 * The feature id for the '<em><b>Workspace Partition Total Diskspace</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLATFORM__WORKSPACE_PARTITION_TOTAL_DISKSPACE = 8;
-
-	/**
-	 * The feature id for the '<em><b>Workspace Partition Usable Diskspace</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLATFORM__WORKSPACE_PARTITION_USABLE_DISKSPACE = 9;
-
-	/**
-	 * The feature id for the '<em><b>Workspace Partition Free Diskspace</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE = 10;
+	int PLATFORM__FEATURES = 6;
 
 	/**
 	 * The feature id for the '<em><b>Preferences</b></em>' containment reference list.
@@ -175,7 +139,7 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM__PREFERENCES = 11;
+	int PLATFORM__PREFERENCES = 7;
 
 	/**
 	 * The number of structural features of the '<em>Platform</em>' class.
@@ -184,7 +148,7 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLATFORM_FEATURE_COUNT = 12;
+	int PLATFORM_FEATURE_COUNT = 8;
 
 
 	/**
@@ -549,17 +513,6 @@ public interface PlatformPackage extends EPackage {
 	EClass getPlatform();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Platform#getWorkspaceLocation <em>Workspace Location</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Workspace Location</em>'.
-	 * @see com.xored.sherlock.eclipse.platform.Platform#getWorkspaceLocation()
-	 * @see #getPlatform()
-	 * @generated
-	 */
-	EAttribute getPlatform_WorkspaceLocation();
-
-	/**
 	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Platform#getProductId <em>Product Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -635,39 +588,6 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPlatform_Features();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Platform#getWorkspacePartitionTotalDiskspace <em>Workspace Partition Total Diskspace</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Workspace Partition Total Diskspace</em>'.
-	 * @see com.xored.sherlock.eclipse.platform.Platform#getWorkspacePartitionTotalDiskspace()
-	 * @see #getPlatform()
-	 * @generated
-	 */
-	EAttribute getPlatform_WorkspacePartitionTotalDiskspace();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Platform#getWorkspacePartitionUsableDiskspace <em>Workspace Partition Usable Diskspace</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Workspace Partition Usable Diskspace</em>'.
-	 * @see com.xored.sherlock.eclipse.platform.Platform#getWorkspacePartitionUsableDiskspace()
-	 * @see #getPlatform()
-	 * @generated
-	 */
-	EAttribute getPlatform_WorkspacePartitionUsableDiskspace();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Platform#getWorkspacePartitionFreeDiskspace <em>Workspace Partition Free Diskspace</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Workspace Partition Free Diskspace</em>'.
-	 * @see com.xored.sherlock.eclipse.platform.Platform#getWorkspacePartitionFreeDiskspace()
-	 * @see #getPlatform()
-	 * @generated
-	 */
-	EAttribute getPlatform_WorkspacePartitionFreeDiskspace();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link com.xored.sherlock.eclipse.platform.Platform#getPreferences <em>Preferences</em>}'.
@@ -1058,13 +978,6 @@ public interface PlatformPackage extends EPackage {
 		 */
 		EClass PLATFORM = eINSTANCE.getPlatform();
 		/**
-		 * The meta object literal for the '<em><b>Workspace Location</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLATFORM__WORKSPACE_LOCATION = eINSTANCE.getPlatform_WorkspaceLocation();
-		/**
 		 * The meta object literal for the '<em><b>Product Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1113,27 +1026,6 @@ public interface PlatformPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PLATFORM__FEATURES = eINSTANCE.getPlatform_Features();
-		/**
-		 * The meta object literal for the '<em><b>Workspace Partition Total Diskspace</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLATFORM__WORKSPACE_PARTITION_TOTAL_DISKSPACE = eINSTANCE.getPlatform_WorkspacePartitionTotalDiskspace();
-		/**
-		 * The meta object literal for the '<em><b>Workspace Partition Usable Diskspace</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLATFORM__WORKSPACE_PARTITION_USABLE_DISKSPACE = eINSTANCE.getPlatform_WorkspacePartitionUsableDiskspace();
-		/**
-		 * The meta object literal for the '<em><b>Workspace Partition Free Diskspace</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PLATFORM__WORKSPACE_PARTITION_FREE_DISKSPACE = eINSTANCE.getPlatform_WorkspacePartitionFreeDiskspace();
 		/**
 		 * The meta object literal for the '<em><b>Preferences</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
