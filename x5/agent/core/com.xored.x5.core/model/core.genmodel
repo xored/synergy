@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.xored.x5.core/src-gen"
+    modelPluginID="com.xored.x5.core" modelName="X5" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.6">
+  <foreignModel>core.ecore</foreignModel>
+  <genPackages prefix="X5" basePackage="com.xored.x5" disposableProviderFactory="true" ecorePackage="core.ecore#/">
+    <genClasses ecoreClass="core.ecore#//BaseDataSource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute core.ecore#//BaseDataSource/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference core.ecore#//BaseDataSource/options"/>
+    </genClasses>
+    <genClasses ecoreClass="core.ecore#//CompositeDataSource">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute core.ecore#//CompositeDataSource/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference core.ecore#//CompositeDataSource/base"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference core.ecore#//CompositeDataSource/references"/>
+    </genClasses>
+    <genClasses ecoreClass="core.ecore#//Entry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute core.ecore#//Entry/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute core.ecore#//Entry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="core.ecore#//DataSourceReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute core.ecore#//DataSourceReference/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference core.ecore#//DataSourceReference/source"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

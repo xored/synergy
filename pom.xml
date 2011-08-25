@@ -14,6 +14,7 @@
 		<module>google-libs</module>
 		<module>p2repository</module>
 		<module>sherlock</module>
+		<module>x5</module>
 	</modules>
   
 	<properties>

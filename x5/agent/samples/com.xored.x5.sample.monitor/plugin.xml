@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension point="org.eclipse.ui.startup">
+      <startup class="com.xored.x5.sample.monitor.Startup"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://xored.com/x5/core.ecore"
+            class="com.xored.x5.core.X5Package"
+            genModel="platform://com.xored.x5.core/model/core.genmodel"/>
+   </extension>
+
+</plugin>
