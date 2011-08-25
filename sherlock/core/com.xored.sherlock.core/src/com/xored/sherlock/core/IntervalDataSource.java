@@ -8,10 +8,4 @@ public interface IntervalDataSource extends DataSource {
 
 	EObject finish();
 
-	/**
-	 * @throws IllegalStateException
-	 *             if data was requested before source finish
-	 */
-	EObject getData() throws IllegalStateException;
-
 }
