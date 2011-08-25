@@ -3,19 +3,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.xored.synergy</groupId>
-	<artifactId>sherlock</artifactId>
+	<artifactId>sherlock-samples</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<parent>
+  	<parent>
 		<groupId>com.xored.synergy</groupId>
 		<artifactId>synergy</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+  	</parent>
 
 	<modules>
-		<module>core</module>
-		<module>eclipse</module>
-		<module>samples</module>
+		<module>com.xored.sherlock.sample.sources</module> 
+		<module>com.xored.sherlock.sample.sources.ui</module>
+		<module>com.xored.sherlock.sample.ui</module>
 	</modules>
 </project>

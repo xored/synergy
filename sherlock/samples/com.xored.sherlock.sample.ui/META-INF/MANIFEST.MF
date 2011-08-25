@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sherlock Sample UI
+Bundle-SymbolicName: com.xored.sherlock.sample.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: xored software, Inc.
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.xored.sherlock.eclipse.core,
+ com.xored.sherlock.core,
+ org.eclipse.emf.ecore

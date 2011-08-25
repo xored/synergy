@@ -2,20 +2,14 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.xored.synergy</groupId>
-	<artifactId>sherlock</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-
 	<parent>
+		<artifactId>sherlock-samples</artifactId>
 		<groupId>com.xored.synergy</groupId>
-		<artifactId>synergy</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<modules>
-		<module>core</module>
-		<module>eclipse</module>
-		<module>samples</module>
-	</modules>
+	<groupId>com.xored.synergy</groupId>
+	<artifactId>com.xored.sherlock.sample.ui</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>eclipse-plugin</packaging>
 </project>
