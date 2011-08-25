@@ -1,42 +1,26 @@
 package com.xored.sherlock.eclipse.platform;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import org.eclipse.core.runtime.ILogListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 
-import com.xored.sherlock.core.EventDataSource;
-import com.xored.sherlock.core.EventListener;
+import com.xored.sherlock.core.BaseEventDataSource;
 
-public class LogSource implements EventDataSource, ILogListener {
+public class LogSource extends BaseEventDataSource implements ILogListener {
 
 	@Override
-	public void addEventListener(EventListener listener) {
-		listeners.add(listener);
-		if (!listen) {
-			Platform.addLogListener(this);
-			listen = true;
-		}
+	protected void start() {
+		Platform.addLogListener(this);
 	}
 
 	@Override
-	public void removeEventListener(EventListener listener) {
-		listeners.remove(listener);
-		if (listen && listeners.isEmpty()) {
-			Platform.removeLogListener(this);
-			listen = false;
-		}
+	protected void finish() {
+		Platform.removeLogListener(this);
 	}
 
 	@Override
 	public void logging(IStatus s, String plugin) {
-		Status status = createStatus(s);
-		for (EventListener listener : listeners) {
-			listener.handle(status);
-		}
+		fire(createStatus(s));
 	}
 
 	private Status createStatus(IStatus s) {
@@ -84,12 +68,5 @@ public class LogSource implements EventDataSource, ILogListener {
 		entry.setNative(element.isNativeMethod());
 		return entry;
 	}
-
-	@Override
-	public void initialize(Map<String, String> options) {
-	}
-
-	private List<EventListener> listeners = new CopyOnWriteArrayList<EventListener>();
-	private boolean listen = false;
 
 }
