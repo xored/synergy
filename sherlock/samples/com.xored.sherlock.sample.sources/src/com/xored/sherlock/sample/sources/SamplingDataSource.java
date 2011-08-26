@@ -4,12 +4,12 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.xored.sherlock.core.BaseEventDataSource;
+import com.xored.sherlock.core.base.BaseEventDataSource;
 
 public class SamplingDataSource extends BaseEventDataSource {
 
 	@Override
-	protected void start() {
+	protected void attach() {
 		task = new TimerTask() {
 			@Override
 			public void run() {
@@ -20,7 +20,7 @@ public class SamplingDataSource extends BaseEventDataSource {
 	}
 
 	@Override
-	protected void finish() {
+	protected void detach() {
 		task.cancel();
 		timer.purge();
 	}

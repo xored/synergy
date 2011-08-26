@@ -1,19 +1,17 @@
 package com.xored.sherlock.core;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class DataSourceManager {
 
-	public List<String> getSources() {
-		return new ArrayList<String>(sources.keySet());
-	}
-
 	public DataSource getSource(String id) {
-		return getSource(id, null);
+		Map<String, String> options = Collections.emptyMap();
+		return getSource(id, options);
 	}
 
 	public DataSource getSource(String id, Map<String, String> options) {
@@ -22,30 +20,30 @@ public class DataSourceManager {
 			throw new IllegalArgumentException("Data source '" + id + "' is not registered");
 		}
 		try {
-			DataSource source = type.create();
-			if (options != null) {
-				source.initialize(options);
-			}
-			return source;
+			return type.create(options);
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Data source '" + "' can't be instantiated", e);
 		}
 	}
 
+	public List<String> getSourceIds() {
+		return new ArrayList<String>(sources.keySet());
+	}
+
 	public void add(String id, DataSourceFactory source) {
-		if (!sources.containsKey(id)) {
-			sources.put(id, source);
+		if (sources.putIfAbsent(id, source) == null) {
 			for (DataSourceListener listener : listeners) {
-				listener.handleAdd(id, source);
+				listener.handleAdd(id);
 			}
+		} else {
+			throw new IllegalArgumentException("Data source with '" + id + "' id is already registered");
 		}
 	}
 
 	public void remove(String id) {
-		DataSourceFactory source = sources.remove(id);
-		if (source != null) {
+		if (sources.remove(id) != null) {
 			for (DataSourceListener listener : listeners) {
-				listener.handleRemove(id, source);
+				listener.handleRemove(id);
 			}
 		}
 	}
@@ -58,7 +56,7 @@ public class DataSourceManager {
 		listeners.remove(listener);
 	}
 
-	private LinkedHashMap<String, DataSourceFactory> sources = new LinkedHashMap<String, DataSourceFactory>();
+	private ConcurrentSkipListMap<String, DataSourceFactory> sources = new ConcurrentSkipListMap<String, DataSourceFactory>();
 	private CopyOnWriteArrayList<DataSourceListener> listeners = new CopyOnWriteArrayList<DataSourceListener>();
 
 }

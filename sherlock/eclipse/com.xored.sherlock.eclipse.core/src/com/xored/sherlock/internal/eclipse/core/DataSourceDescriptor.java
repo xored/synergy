@@ -1,5 +1,7 @@
 package com.xored.sherlock.internal.eclipse.core;
 
+import java.util.Map;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 
@@ -8,15 +10,16 @@ import com.xored.sherlock.core.DataSourceFactory;
 
 public class DataSourceDescriptor implements DataSourceFactory {
 
-	public static DataSourceDescriptor read(IConfigurationElement config)
-			throws CoreException {
+	public static DataSourceDescriptor read(IConfigurationElement config) throws CoreException {
 		return new DataSourceDescriptor(config);
 	}
 
 	@Override
-	public DataSource create() {
+	public DataSource create(Map<String, String> options) {
 		try {
-			return (DataSource) element.createExecutableExtension(ATTR_CLASS);
+			DataSource source = (DataSource) element.createExecutableExtension(ATTR_CLASS);
+			source.initialize(options);
+			return source;
 		} catch (Exception e) {
 			throw new IllegalStateException(e.getMessage(), e);
 		}
@@ -26,8 +29,7 @@ public class DataSourceDescriptor implements DataSourceFactory {
 		return id;
 	}
 
-	private DataSourceDescriptor(IConfigurationElement element)
-			throws CoreException {
+	private DataSourceDescriptor(IConfigurationElement element) throws CoreException {
 		this.element = element;
 		this.id = element.getAttribute(ATTR_ID);
 	}

@@ -95,8 +95,10 @@ public class X5Locator {
 				if (id != null && !id.isEmpty()) {
 					manager.add(id, new DataSourceFactory() {
 						@Override
-						public DataSource create() {
-							return X5SourceFactory.create(manager, descriptor);
+						public DataSource create(Map<String, String> options) {
+							DataSource source = X5SourceFactory.create(manager, descriptor);
+							source.initialize(options);
+							return source;
 						}
 					});
 					ids.add(id);

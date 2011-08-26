@@ -22,7 +22,6 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 
 import com.xored.sherlock.core.DataSource;
-import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceListener;
 import com.xored.sherlock.core.EntityDataSource;
 import com.xored.sherlock.core.EventDataSource;
@@ -41,16 +40,16 @@ public class SherlockView extends ViewPart {
 
 		SherlockCore.getManager().addListener(new DataSourceListener() {
 			@Override
-			public void handleRemove(String id, DataSourceFactory source) {
+			public void handleRemove(String id) {
 				removeSource(id);
 			}
 
 			@Override
-			public void handleAdd(String id, DataSourceFactory source) {
+			public void handleAdd(String id) {
 				addSource(id, SherlockCore.getManager().getSource(id));
 			}
 		});
-		List<String> sources = SherlockCore.getManager().getSources();
+		List<String> sources = SherlockCore.getManager().getSourceIds();
 		for (String id : sources) {
 			addSource(id, SherlockCore.getManager().getSource(id));
 		}
