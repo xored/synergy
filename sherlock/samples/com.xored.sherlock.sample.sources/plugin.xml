@@ -26,5 +26,10 @@
             class="com.xored.sherlock.sample.sources.DurationDataSource"
             id="com.xored.sherlock.sample.duration"/>
    </extension>
+   <extension point="com.xored.sherlock.eclipse.core.sources">
+      <source
+            class="com.xored.sherlock.sample.sources.SamplingDataSource"
+            id="com.xored.sherlock.sample.sampling"/>
+   </extension>
 
 </plugin>
