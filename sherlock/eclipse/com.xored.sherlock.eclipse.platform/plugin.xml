@@ -27,6 +27,7 @@
          point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.system.SystemSource"
+            eClass="http://xored.com/sherlock/system.ecore#//System"
             id="com.xored.sherlock.system">
       </source>
    </extension>
@@ -34,6 +35,7 @@
          point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.system.JavaSource"
+            eClass="http://xored.com/sherlock/system.ecore#//Java"
             id="com.xored.sherlock.java">
       </source>
    </extension>
@@ -41,6 +43,7 @@
          point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.eclipse.platform.PlatformSource"
+            eClass="http://xored.com/sherlock/eclipse/platform.ecore#//Platform"
             id="com.xored.sherlock.eclipse.platform">
       </source>
    </extension>
@@ -48,6 +51,7 @@
          point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.eclipse.platform.LogSource"
+            eClass="http://xored.com/sherlock/eclipse/platform.ecore#//Status"
             id="com.xored.sherlock.eclipse.log">
       </source>
    </extension>

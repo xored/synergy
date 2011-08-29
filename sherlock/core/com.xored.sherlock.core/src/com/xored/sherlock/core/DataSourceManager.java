@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.eclipse.emf.ecore.EClass;
+
 public class DataSourceManager {
 
 	public DataSource getSource(String id) {
@@ -24,6 +26,14 @@ public class DataSourceManager {
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Data source '" + "' can't be instantiated", e);
 		}
+	}
+
+	public EClass getSourceType(String id) {
+		DataSourceFactory factory = sources.get(id);
+		if (factory == null) {
+			throw new IllegalArgumentException("Data source '" + id + "' is not registered");
+		}
+		return factory.getType();
 	}
 
 	public List<String> getSourceIds() {

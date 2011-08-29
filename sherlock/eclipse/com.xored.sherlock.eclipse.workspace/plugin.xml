@@ -12,7 +12,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http:///com/xored/sherlock/eclipse/workspace.ecore"
+            uri="http://xored.com/sherlock/eclipse/workspace.ecore"
             class="com.xored.sherlock.eclipse.workspace.WorkspacePackage"
             genModel="model/workspace.genmodel"/>
    </extension>
@@ -20,6 +20,7 @@
          point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.eclipse.workspace.WorkspaceSource"
+            eClass="http://xored.com/sherlock/eclipse/workspace.ecore#//Workspace"
             id="com.xored.sherlock.eclipse.workspace">
       </source>
    </extension>

@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 
 public interface IntervalDataSource extends DataSource {
 
-	void start();
+	EObject start();
 
 	EObject finish();
 

@@ -4,14 +4,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
-
 import com.xored.sherlock.core.EntityDataSource;
 
 public class JavaSource implements EntityDataSource {
 
 	@Override
-	public EObject getData() {
+	public Java getData() {
 		Java j = SystemFactory.eINSTANCE.createJava();
 		j.setRuntimeName(java.lang.System.getProperty(PROPERTY_JAVA_NAME));
 		j.setRuntimeVersion(java.lang.System.getProperty(PROPERTY_JAVA_VERSION));

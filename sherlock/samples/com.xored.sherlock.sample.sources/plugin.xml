@@ -19,16 +19,19 @@
    <extension point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.sample.sources.DateDataSource"
+            eClass="http:///com/xored/sherlock/sample/sources.ecore#//Data"
             id="com.xored.sherlock.sample.date"/>
    </extension>
    <extension point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.sample.sources.DurationDataSource"
+            eClass="http:///com/xored/sherlock/sample/sources.ecore#//Duration"
             id="com.xored.sherlock.sample.duration"/>
    </extension>
    <extension point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.sample.sources.SamplingDataSource"
+            eClass="http:///com/xored/sherlock/sample/sources.ecore#//Sampling"
             id="com.xored.sherlock.sample.sampling"/>
    </extension>
 

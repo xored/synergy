@@ -7,14 +7,13 @@ import java.util.Map;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.ecore.EObject;
 
 import com.xored.sherlock.core.EntityDataSource;
 
 public class WorkspaceSource implements EntityDataSource {
 
 	@Override
-	public EObject getData() {
+	public Workspace getData() {
 		final Workspace workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
 		String location = getLocation();
 		if (location != null) {

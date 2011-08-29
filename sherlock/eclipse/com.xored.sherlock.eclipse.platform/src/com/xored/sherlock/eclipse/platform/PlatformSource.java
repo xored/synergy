@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.IBundleGroupProvider;
 import org.eclipse.core.runtime.IProduct;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IPreferenceNodeVisitor;
-import org.eclipse.emf.ecore.EObject;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 import org.osgi.service.prefs.BackingStoreException;
@@ -20,7 +19,7 @@ import com.xored.sherlock.internal.eclipse.platform.Activator;
 public class PlatformSource implements EntityDataSource {
 
 	@Override
-	public EObject getData() {
+	public Platform getData() {
 		final Platform platform = PlatformFactory.eINSTANCE.createPlatform();
 
 		// product

@@ -2,14 +2,12 @@ package com.xored.sherlock.system;
 
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
-
 import com.xored.sherlock.core.EntityDataSource;
 
 public class SystemSource implements EntityDataSource {
 
 	@Override
-	public EObject getData() {
+	public System getData() {
 		System system = SystemFactory.eINSTANCE.createSystem();
 		system.setOsName(java.lang.System.getProperty(PROPERTY_OS_NAME));
 		system.setOsVersion(java.lang.System.getProperty(PROPERTY_OS_VERSION));

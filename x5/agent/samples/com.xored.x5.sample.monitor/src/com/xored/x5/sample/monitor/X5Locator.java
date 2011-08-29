@@ -14,7 +14,9 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -99,6 +101,11 @@ public class X5Locator {
 							DataSource source = X5SourceFactory.create(manager, descriptor);
 							source.initialize(options);
 							return source;
+						}
+
+						@Override
+						public EClass getType() {
+							return EcorePackage.eINSTANCE.getEObject();
 						}
 					});
 					ids.add(id);

@@ -13,8 +13,9 @@ public class DurationDataSource implements IntervalDataSource {
 	}
 
 	@Override
-	public void start() {
+	public EObject start() {
 		start = System.currentTimeMillis();
+		return null;
 	}
 
 	@Override

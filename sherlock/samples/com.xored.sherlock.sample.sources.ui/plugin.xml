@@ -11,11 +11,13 @@
    <extension point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.sample.sources.ui.SampleEventSource"
+            eClass="http:///com/xored/sherlock/sample/sources.ecore#//Sample"
             id="com.xored.sherlock.sample.event"/>
    </extension>
    <extension point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.sample.sources.ui.SampleProcessSource"
+            eClass="http:///com/xored/sherlock/sample/sources.ecore#//Sample"
             id="com.xored.sherlock.sample.process"/>
    </extension>
 
