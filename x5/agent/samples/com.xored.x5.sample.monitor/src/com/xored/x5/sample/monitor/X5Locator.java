@@ -14,19 +14,15 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import com.xored.sherlock.core.DataSource;
-import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceManager;
 import com.xored.sherlock.eclipse.core.SherlockCore;
 import com.xored.x5.core.CompositeDataSource;
-import com.xored.x5.core.X5SourceFactory;
+import com.xored.x5.core.X5DataSourceFactory;
 
 public class X5Locator {
 
@@ -95,19 +91,7 @@ public class X5Locator {
 				final CompositeDataSource descriptor = (CompositeDataSource) object;
 				String id = descriptor.getId();
 				if (id != null && !id.isEmpty()) {
-					manager.add(id, new DataSourceFactory() {
-						@Override
-						public DataSource create(Map<String, String> options) {
-							DataSource source = X5SourceFactory.create(manager, descriptor);
-							source.initialize(options);
-							return source;
-						}
-
-						@Override
-						public EClass getType() {
-							return EcorePackage.eINSTANCE.getEObject();
-						}
-					});
+					manager.add(id, new X5DataSourceFactory(descriptor, manager));
 					ids.add(id);
 				}
 			}

@@ -29,7 +29,7 @@ public class DataSourceDescriptor implements DataSourceFactory {
 	}
 
 	@Override
-	public EClass getType() {
+	public EClass getEClass() {
 		return eClass;
 	}
 

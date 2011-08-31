@@ -33,7 +33,7 @@ public class DataSourceManager {
 		if (factory == null) {
 			throw new IllegalArgumentException("Data source '" + id + "' is not registered");
 		}
-		return factory.getType();
+		return factory.getEClass();
 	}
 
 	public List<String> getSourceIds() {

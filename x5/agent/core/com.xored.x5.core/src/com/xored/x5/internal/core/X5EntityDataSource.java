@@ -1,36 +1,29 @@
 package com.xored.x5.internal.core;
 
-import org.eclipse.emf.ecore.EClass;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 
-import com.xored.sherlock.core.DataSourceManager;
 import com.xored.sherlock.core.EntityDataSource;
-import com.xored.x5.core.CompositeDataSource;
-import com.xored.x5.core.DataSourceReference;
+import com.xored.x5.internal.core.builders.EntityDataBuilder;
 
-public class X5EntityDataSource extends X5DataSource implements EntityDataSource {
+public class X5EntityDataSource implements EntityDataSource {
 
-	public X5EntityDataSource(DataSourceManager manager, CompositeDataSource descriptor, EntityDataSource source) {
-		super(manager, descriptor);
+	public X5EntityDataSource(EntityDataSource source, EntityDataBuilder builder) {
 		this.source = source;
+		this.builder = builder;
 	}
 
 	@Override
 	public EObject getData() {
-		EObject data = source.getData();
-		EObject result = createData(data);
-		EClass eClass = result.eClass();
-		for (DataSourceReference reference : descriptor.getReferences()) {
-			EntityDataSource source = (EntityDataSource) getSource(reference.getSource());
-			EObject object = source.getData();
-			EReference ref = (EReference) eClass.getEStructuralFeature(reference.getName());
-			ref.setEType(object.eClass());
-			result.eSet(ref, object);
-		}
-		return result;
+		return builder.build(source.getData());
 	}
 
+	@Override
+	public void initialize(Map<String, String> options) {
+	}
+
+	private EntityDataBuilder builder;
 	private EntityDataSource source;
 
 }
