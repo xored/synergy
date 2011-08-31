@@ -1,6 +1,5 @@
 package com.xored.x5.internal.core.builders;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,17 +14,17 @@ import com.xored.sherlock.core.EventListener;
 import com.xored.sherlock.core.IntervalDataSource;
 import com.xored.sherlock.core.data.ProcessData;
 
-public class ProcessDataBuilder {
+public class ProcessDataBuilder extends DataBuilder {
 
 	public ProcessDataBuilder(EClass eClass, List<DataLink> links) {
-		this.eClass = eClass;
-		this.links = links;
+		super(eClass, links);
 	}
 
 	public EObject start(EObject input) {
-		data = (ProcessData) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		data = (ProcessData) createInstance();
 		input = EcoreUtil.copy(input);
 		data.setInput(input);
+		firePrepare(data);
 		for (DataLink link : links) {
 			DataSource source = link.getSource();
 			if (source instanceof EventDataSource) {
@@ -56,6 +55,7 @@ public class ProcessDataBuilder {
 				data.eSet(link.getEReference(), object);
 			}
 		}
+		firePush(data);
 		return output;
 	}
 
@@ -74,8 +74,6 @@ public class ProcessDataBuilder {
 
 	}
 
-	private EClass eClass;
-	private List<DataLink> links = new ArrayList<DataLink>();
 	private Map<DataLink, FieldListener> listeners = new HashMap<DataLink, FieldListener>();
 	private ProcessData data;
 

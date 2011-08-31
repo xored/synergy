@@ -8,7 +8,7 @@ import com.xored.x5.core.BaseDataSource;
 
 public class BaseDSDescriptor extends DSDescriptor {
 
-	public BaseDSDescriptor(BaseDataSource source, DataSourceManager manager) {
+	BaseDSDescriptor(BaseDataSource source, DataSourceManager manager) {
 		super(source, manager);
 	}
 

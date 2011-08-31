@@ -10,11 +10,15 @@ import com.xored.x5.core.CompositeDataSource;
 public abstract class DSDescriptor {
 
 	public static DSDescriptor create(BaseDataSource source, DataSourceManager manager) {
+		// TODO do we really need this? Need to refresh overloading knowledge...
 		if (source instanceof CompositeDataSource) {
-			return new CompositeDSDescriptor((CompositeDataSource) source, manager);
-		} else {
-			return new BaseDSDescriptor(source, manager);
+			return create((CompositeDataSource) source, manager);
 		}
+		return new BaseDSDescriptor(source, manager);
+	}
+
+	public static CompositeDSDescriptor create(CompositeDataSource source, DataSourceManager manager) {
+		return new CompositeDSDescriptor((CompositeDataSource) source, manager);
 	}
 
 	DSDescriptor(BaseDataSource source, DataSourceManager manager) {

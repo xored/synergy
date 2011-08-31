@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 
-import com.xored.sherlock.core.DataSource;
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceManager;
 import com.xored.x5.internal.core.CompositeDSDescriptor;
@@ -28,7 +27,7 @@ public class X5DataSourceFactory implements DataSourceFactory {
 	}
 
 	@Override
-	public DataSource create(Map<String, String> options) {
+	public X5DataSource create(Map<String, String> options) {
 		return descriptor.createSource();
 	}
 
@@ -55,6 +54,6 @@ public class X5DataSourceFactory implements DataSourceFactory {
 	}
 
 	private EPackage pack;
-	private DSDescriptor descriptor;
+	private CompositeDSDescriptor descriptor;
 
 }

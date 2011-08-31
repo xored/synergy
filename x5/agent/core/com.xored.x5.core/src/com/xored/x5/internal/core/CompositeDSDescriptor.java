@@ -16,6 +16,7 @@ import com.xored.sherlock.core.ProcessDataSource;
 import com.xored.x5.core.BaseDataSource;
 import com.xored.x5.core.CompositeDataSource;
 import com.xored.x5.core.DataSourceReference;
+import com.xored.x5.core.X5DataSource;
 import com.xored.x5.internal.core.builders.DataLink;
 import com.xored.x5.internal.core.builders.DataLinkDescriptor;
 import com.xored.x5.internal.core.builders.EntityDataBuilder;
@@ -23,7 +24,7 @@ import com.xored.x5.internal.core.builders.ProcessDataBuilder;
 
 public class CompositeDSDescriptor extends DSDescriptor {
 
-	public CompositeDSDescriptor(CompositeDataSource source, DataSourceManager manager) {
+	CompositeDSDescriptor(CompositeDataSource source, DataSourceManager manager) {
 		super(source, manager);
 		base = DSDescriptor.create(source.getBase(), manager);
 		eClass = buildClass();
@@ -35,7 +36,7 @@ public class CompositeDSDescriptor extends DSDescriptor {
 	}
 
 	@Override
-	public DataSource createSource() {
+	public X5DataSource createSource() {
 		DataSource base = this.base.createSource();
 		if (base instanceof EventDataSource) {
 			EntityDataBuilder builder = new EntityDataBuilder(getEClass(), createLinks());

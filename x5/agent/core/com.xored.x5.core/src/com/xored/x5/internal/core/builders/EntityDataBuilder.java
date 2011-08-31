@@ -1,31 +1,30 @@
 package com.xored.x5.internal.core.builders;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.xored.sherlock.core.EntityDataSource;
 
-public class EntityDataBuilder {
+public class EntityDataBuilder extends DataBuilder {
 
 	public EntityDataBuilder(EClass eClass, List<DataLink> links) {
-		this.eClass = eClass;
-		this.links = links;
+		super(eClass, links);
 	}
 
 	public EObject build(EObject data) {
-		DynamicEObjectImpl result = new DynamicEObjectImpl(eClass);
+		EObject result = createInstance();
 		copy(data, result);
+		firePrepare(result);
 		for (DataLink link : links) {
 			EntityDataSource source = (EntityDataSource) link.getSource();
 			result.eSet(link.getEReference(), source.getData());
 		}
+		firePush(result);
 		return result;
 	}
 
@@ -69,8 +68,5 @@ public class EntityDataBuilder {
 	static AttrMapper attribute = new AttrMapper();
 
 	static RefMapper reference = new RefMapper();
-
-	private EClass eClass;
-	private List<DataLink> links = new ArrayList<DataLink>();
 
 }
