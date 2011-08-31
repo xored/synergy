@@ -87,6 +87,8 @@ public class SherlockView extends ViewPart {
 							runInUI(new Runnable() {
 								@Override
 								public void run() {
+									if (item.isDisposed())
+										return;
 									addObject(item, event).setExpanded(true);
 								}
 							});
