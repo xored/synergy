@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: X5 Sample Transport
+Bundle-SymbolicName: com.xored.x5.sample.transport;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: xored software, Inc.
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ com.xored.sherlock.sample.ui,
+ org.eclipse.emf.ecore,
+ com.xored.x5.agent,
+ com.xored.x5.server,
+ com.xored.sherlock.core,
+ com.xored.sherlock.eclipse.core,
+ com.xored.x5.core

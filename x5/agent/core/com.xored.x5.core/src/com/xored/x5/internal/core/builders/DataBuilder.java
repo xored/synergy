@@ -16,12 +16,12 @@ public class DataBuilder {
 		this.links = links;
 	}
 
-	public void addDataListener(X5DataListener listener) {
-		listeners.add(listener);
+	public boolean addDataListener(X5DataListener listener) {
+		return listeners.add(listener);
 	}
 
-	public void removeDataListener(X5DataListener listener) {
-		listeners.remove(listener);
+	public boolean removeDataListener(X5DataListener listener) {
+		return listeners.remove(listener);
 	}
 
 	protected void firePrepare(EObject object) {

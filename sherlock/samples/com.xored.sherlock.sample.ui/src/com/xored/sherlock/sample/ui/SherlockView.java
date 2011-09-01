@@ -5,19 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 
@@ -35,10 +27,9 @@ public class SherlockView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
-		tree = new Tree(parent, SWT.BORDER);
-		tree.setLayoutData(new GridData(GridData.FILL_BOTH));
-
-		SherlockCore.getManager().addListener(new DataSourceListener() {
+		tree = new BaseEObjectTree(parent);
+		tree.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
+		listener = new DataSourceListener() {
 			@Override
 			public void handleRemove(String id) {
 				removeSource(id);
@@ -48,7 +39,8 @@ public class SherlockView extends ViewPart {
 			public void handleAdd(String id) {
 				addSource(id, SherlockCore.getManager().getSource(id));
 			}
-		});
+		};
+		SherlockCore.getManager().addListener(listener);
 		List<String> sources = SherlockCore.getManager().getSourceIds();
 		for (String id : sources) {
 			addSource(id, SherlockCore.getManager().getSource(id));
@@ -57,6 +49,7 @@ public class SherlockView extends ViewPart {
 
 	@Override
 	public void dispose() {
+		SherlockCore.getManager().removeListener(listener);
 		for (Entry<String, SourceInfo> entry : sources.entrySet()) {
 			removeItem(entry.getValue());
 		}
@@ -65,11 +58,11 @@ public class SherlockView extends ViewPart {
 	}
 
 	private void addSource(final String id, final DataSource source) {
-		runInUI(new Runnable() {
+		tree.runInUI(new Runnable() {
 
 			@Override
 			public void run() {
-				final TreeItem item = new TreeItem(tree, SWT.LEFT);
+				final TreeItem item = new TreeItem(tree.getTree(), SWT.LEFT);
 				item.setText(id);
 
 				SourceInfo info = new SourceInfo();
@@ -78,20 +71,13 @@ public class SherlockView extends ViewPart {
 				sources.put(id, info);
 
 				if (source instanceof EntityDataSource) {
-					addObject(item, ((EntityDataSource) source).getData());
+					tree.addObject(((EntityDataSource) source).getData(), item);
 				} else if (source instanceof EventDataSource) {
 					EventDataSource es = (EventDataSource) source;
 					EventListener listener = new EventListener() {
 						@Override
 						public void handle(final EObject event) {
-							runInUI(new Runnable() {
-								@Override
-								public void run() {
-									if (item.isDisposed())
-										return;
-									addObject(item, event).setExpanded(true);
-								}
-							});
+							tree.addObject(event, item);
 						}
 					};
 					info.listener = listener;
@@ -104,7 +90,7 @@ public class SherlockView extends ViewPart {
 
 						@Override
 						public void handleStart(EObject data) {
-							runInUI(new Runnable() {
+							tree.runInUI(new Runnable() {
 								@Override
 								public void run() {
 									pending = new TreeItem(item, 0);
@@ -115,11 +101,11 @@ public class SherlockView extends ViewPart {
 
 						@Override
 						public void handleFinish(final EObject data) {
-							runInUI(new Runnable() {
+							tree.runInUI(new Runnable() {
 								@Override
 								public void run() {
 									pending.dispose();
-									addObject(item, data).setExpanded(true);
+									tree.addObject(data, item);
 								}
 							});
 						}
@@ -132,7 +118,7 @@ public class SherlockView extends ViewPart {
 	}
 
 	private void removeSource(final String id) {
-		runInUI(new Runnable() {
+		tree.runInUI(new Runnable() {
 			@Override
 			public void run() {
 				SourceInfo info = sources.remove(id);
@@ -141,15 +127,6 @@ public class SherlockView extends ViewPart {
 				}
 			}
 		});
-	}
-
-	private void runInUI(Runnable runnable) {
-		Display display = Display.getDefault();
-		if (Thread.currentThread() == display.getThread()) {
-			runnable.run();
-		} else {
-			display.asyncExec(runnable);
-		}
 	}
 
 	private void removeItem(SourceInfo info) {
@@ -167,110 +144,9 @@ public class SherlockView extends ViewPart {
 		}
 	}
 
-	private TreeItem addObject(TreeItem parent, EObject eObject) {
-		TreeItem kid = new TreeItem(parent, 0);
-		if (eObject == null) {
-			kid.setText("null");
-		} else {
-			kid.setText(getClassName(eObject.eClass()));
-			showInTree(kid, eObject);
-		}
-		return kid;
-	}
-
-	private String getClassName(EClass eClass) {
-		StringBuilder builder = new StringBuilder();
-		builder.append(eClass.getName());
-		List<EClass> types = eClass.getEAllSuperTypes();
-		if (types.size() > 0) {
-			builder.append(" : ");
-			builder.append(types.get(0).getName());
-			for (int i = 1; i < types.size(); i++) {
-				builder.append(", ");
-				builder.append(types.get(i).getName());
-			}
-		}
-		return builder.toString();
-	}
-
-	private void showInTree(TreeItem parent, EObject object) {
-		for (EAttribute attr : object.eClass().getEAllAttributes()) {
-			TreeItem kid = new TreeItem(parent, 0);
-			Object value = object.eGet(attr);
-			if (attr.isMany()) {
-				kid.setText(attr.getName());
-				List<?> list = (List<?>) value;
-				for (Object element : list) {
-					TreeItem kk = new TreeItem(kid, 0);
-					kk.setText(asString(attr, element));
-				}
-			} else {
-				String text = asString(attr, value);
-				kid.setText(attr.getName() + ": " + text);
-			}
-		}
-		for (EReference ref : object.eClass().getEAllReferences()) {
-			TreeItem kid = new TreeItem(parent, 0);
-			Object value = object.eGet(ref);
-			if (ref.isMany()) {
-				kid.setText(ref.getName());
-				List<?> list = (List<?>) value;
-				for (int i = 0; i < list.size(); i++) {
-					TreeItem kk = new TreeItem(kid, 0);
-					EObject val = (EObject) list.get(i);
-					String text = inline(val);
-					if (text != null) {
-						kk.setText(text);
-					} else {
-						kk.setText(Integer.toString(i));
-						showInTree(kk, val);
-					}
-				}
-			} else {
-				EObject eObject = (EObject) value;
-				if (eObject != null) {
-					kid.setText(ref.getName() + ": " + getClassName(eObject.eClass()));
-					showInTree(kid, eObject);
-				} else {
-					kid.setText(ref.getName() + ": null");
-				}
-			}
-		}
-	}
-
-	private String inline(EObject object) {
-		List<EStructuralFeature> features = object.eClass().getEAllStructuralFeatures();
-		if (features.size() > 4)
-			return null;
-		for (EStructuralFeature feature : features) {
-			if (!(feature instanceof EAttribute))
-				return null;
-		}
-		StringBuilder builder = new StringBuilder();
-		builder.append("{");
-		for (int i = 0; i < features.size(); i++) {
-			if (i > 0)
-				builder.append(", ");
-			EAttribute attr = (EAttribute) features.get(i);
-			builder.append(attr.getName());
-			builder.append(": ");
-			builder.append(asString(attr, object.eGet(attr)));
-		}
-		builder.append("}");
-		return builder.toString();
-	}
-
-	private static String asString(EAttribute attr, Object value) {
-		if (value == null)
-			return "null";
-		EDataType type = attr.getEAttributeType();
-		EFactory factory = type.getEPackage().getEFactoryInstance();
-		return factory.convertToString(type, value);
-	}
-
 	@Override
 	public void setFocus() {
-		tree.setFocus();
+		tree.focus();
 	}
 
 	private class SourceInfo {
@@ -280,7 +156,7 @@ public class SherlockView extends ViewPart {
 	}
 
 	private Map<String, SourceInfo> sources = new HashMap<String, SherlockView.SourceInfo>();
-
-	private Tree tree;
+	private DataSourceListener listener;
+	private BaseEObjectTree tree;
 
 }

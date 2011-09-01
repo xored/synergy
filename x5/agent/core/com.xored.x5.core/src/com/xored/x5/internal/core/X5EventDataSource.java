@@ -33,13 +33,23 @@ public class X5EventDataSource extends BaseEventDataSource implements EventListe
 
 	@Override
 	public void addDataListener(X5DataListener listener) {
-		builder.addDataListener(listener);
+		if (builder.addDataListener(listener)) {
+			addEventListener(fake);
+		}
 	}
 
 	@Override
 	public void removeDataListener(X5DataListener listener) {
-		builder.removeDataListener(listener);
+		if (builder.removeDataListener(listener)) {
+			removeEventListener(fake);
+		}
 	}
+
+	private EventListener fake = new EventListener() {
+		@Override
+		public void handle(EObject event) {
+		}
+	};
 
 	private EventDataSource source;
 	private EntityDataBuilder builder;

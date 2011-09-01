@@ -38,13 +38,28 @@ public class X5ProcessDataSource extends BaseProcessDataSource implements Proces
 
 	@Override
 	public void addDataListener(X5DataListener listener) {
-		builder.addDataListener(listener);
+		if (builder.addDataListener(listener)) {
+			addProcessListener(fake);
+		}
 	}
 
 	@Override
 	public void removeDataListener(X5DataListener listener) {
-		builder.removeDataListener(listener);
+		if (builder.removeDataListener(listener)) {
+			removeProcessListener(fake);
+		}
 	}
+
+	private ProcessListener fake = new ProcessListener() {
+
+		@Override
+		public void handleStart(EObject data) {
+		}
+
+		@Override
+		public void handleFinish(EObject data) {
+		}
+	};
 
 	private ProcessDataSource source;
 	private ProcessDataBuilder builder;

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension point="org.eclipse.ui.views">
+    <view
+      class="com.xored.x5.sample.transport.SampleServerView"
+      id="com.xored.x5.sample.transport.view"
+      name="X5 Server View"
+      restorable="true"/>
+  </extension>
+
+</plugin>

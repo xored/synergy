@@ -16,7 +16,7 @@ public class X5DataSourceFactory implements DataSourceFactory {
 
 	public X5DataSourceFactory(CompositeDataSource source, DataSourceManager manager) {
 		descriptor = DSDescriptor.create(source, manager);
-		pack = createPackage();
+		pack = createPackage(source);
 		addClasses(descriptor);
 		EPackage.Registry.INSTANCE.put(pack.getNsURI(), pack);
 	}
@@ -35,11 +35,11 @@ public class X5DataSourceFactory implements DataSourceFactory {
 		return pack;
 	}
 
-	private EPackage createPackage() {
+	private EPackage createPackage(CompositeDataSource source) {
 		EPackage p = EcoreFactory.eINSTANCE.createEPackage();
-		p.setName("facts");
-		p.setNsURI("http://xored.com/x5/dynamic.ecore");
-		p.setNsPrefix("com.xored.x5.dynamic");
+		p.setName(source.getName());
+		p.setNsURI("http://xored.com/x5/" + source.getId() + "/dynamic.ecore");
+		p.setNsPrefix(source.getId());
 		return p;
 	}
 

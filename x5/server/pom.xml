@@ -3,18 +3,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.xored.synergy</groupId>
-	<artifactId>agent-core</artifactId>
+	<artifactId>x5-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>com.xored.synergy</groupId>
-		<artifactId>x5-agent</artifactId>
+		<artifactId>x5</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<modules>
-		<module>com.xored.x5.core</module>
-		<module>com.xored.x5.agent</module>
+		<module>core</module>
+		<module>samples</module>
 	</modules>
 </project>
