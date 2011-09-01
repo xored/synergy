@@ -101,6 +101,8 @@ public class BaseEObjectTree {
 			}
 		}
 		for (EReference ref : object.eClass().getEAllReferences()) {
+			if (!ref.isContainment())
+				continue;
 			TreeItem kid = new TreeItem(parent, 0);
 			Object value = object.eGet(ref);
 			if (ref.isMany()) {

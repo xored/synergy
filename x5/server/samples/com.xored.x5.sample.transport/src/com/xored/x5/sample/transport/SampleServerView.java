@@ -62,7 +62,7 @@ public class SampleServerView extends ViewPart {
 					}
 				} else if (source != null) {
 					button.setText("Finish");
-					agent = new X5Agent(agentTransport, source);
+					agent = new X5Agent(agentTransport, source, new ChangeAgentStrategy());
 					agent.connect();
 				}
 			}
