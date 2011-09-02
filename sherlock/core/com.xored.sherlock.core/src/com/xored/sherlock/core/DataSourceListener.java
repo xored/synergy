@@ -2,8 +2,8 @@ package com.xored.sherlock.core;
 
 public interface DataSourceListener {
 
-	void handleAdd(String id);
+	void handleAdd(DataSourceFactory factory);
 
-	void handleRemove(String id);
+	void handleRemove(DataSourceFactory factory);
 
 }

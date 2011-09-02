@@ -6,6 +6,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import com.xored.sherlock.core.DataSource;
@@ -15,6 +16,16 @@ public class DataSourceDescriptor implements DataSourceFactory {
 
 	public static DataSourceDescriptor read(IConfigurationElement config) throws CoreException {
 		return new DataSourceDescriptor(config);
+	}
+
+	@Override
+	public EClass getEClass() {
+		return eClass;
+	}
+
+	@Override
+	public Class<? extends DataSource> getSourceClass() {
+		return clazz;
 	}
 
 	@Override
@@ -28,11 +39,6 @@ public class DataSourceDescriptor implements DataSourceFactory {
 		}
 	}
 
-	@Override
-	public EClass getEClass() {
-		return eClass;
-	}
-
 	public String getId() {
 		return id;
 	}
@@ -41,16 +47,23 @@ public class DataSourceDescriptor implements DataSourceFactory {
 		this.element = element;
 		this.id = element.getAttribute(ATTR_ID);
 		this.eClass = parseEClass(element.getAttribute(ATTR_ECLASS));
+		DataSource source = (DataSource) element.createExecutableExtension(ATTR_CLASS);
+		clazz = source.getClass();
 	}
 
 	private EClass parseEClass(String text) {
 		URI uri = URI.createURI(text);
-		return (EClass) new ResourceSetImpl().getEObject(uri, true);
+		EObject object = new ResourceSetImpl().getEObject(uri, true);
+		if (object instanceof EClass) {
+			return (EClass) object;
+		}
+		throw new IllegalArgumentException("Can't find EClass with following URI: '" + text + "'");
 	}
 
 	private IConfigurationElement element;
 	private String id;
 	private EClass eClass;
+	private Class<? extends DataSource> clazz;
 
 	private static final String ATTR_CLASS = "class";
 	private static final String ATTR_ECLASS = "eClass";

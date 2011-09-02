@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceManager;
 import com.xored.sherlock.eclipse.core.SherlockCore;
 import com.xored.x5.core.CompositeDataSource;
@@ -54,10 +55,10 @@ public class X5Locator {
 	private void handle(IResource res, int kind) {
 		IFile file = getAsFile(res);
 		if (file != null) {
-			List<String> list = sources.get(file);
+			List<DataSourceFactory> list = sources.get(file);
 			if (list != null) {
-				for (String source : list) {
-					SherlockCore.getManager().remove(source);
+				for (DataSourceFactory factory : list) {
+					SherlockCore.getManager().remove(factory);
 				}
 			}
 			if (kind == IResourceDelta.CHANGED || kind == IResourceDelta.ADDED) {
@@ -83,24 +84,25 @@ public class X5Locator {
 		return null;
 	}
 
-	private List<String> load(Resource resource) {
+	private List<DataSourceFactory> load(Resource resource) {
 		final DataSourceManager manager = SherlockCore.getManager();
-		List<String> ids = new ArrayList<String>();
+		List<DataSourceFactory> factories = new ArrayList<DataSourceFactory>();
 		for (EObject object : resource.getContents()) {
 			if (object instanceof CompositeDataSource) {
 				final CompositeDataSource descriptor = (CompositeDataSource) object;
 				String id = descriptor.getId();
 				if (id != null && !id.isEmpty()) {
-					manager.add(id, new X5DataSourceFactory(descriptor, manager));
-					ids.add(id);
+					X5DataSourceFactory factory = new X5DataSourceFactory(descriptor, manager);
+					manager.add(factory);
+					factories.add(factory);
 				}
 			}
 		}
-		return ids;
+		return factories;
 	}
 
 	private ResourceSet resources = new ResourceSetImpl();
 
-	private Map<IFile, List<String>> sources = new HashMap<IFile, List<String>>();
+	private Map<IFile, List<DataSourceFactory>> sources = new HashMap<IFile, List<DataSourceFactory>>();
 
 }

@@ -6,8 +6,12 @@ import org.eclipse.emf.ecore.EClass;
 
 public interface DataSourceFactory {
 
-	DataSource create(Map<String, String> options);
+	String getId();
 
 	EClass getEClass();
+
+	DataSource create(Map<String, String> options);
+
+	Class<? extends DataSource> getSourceClass();
 
 }

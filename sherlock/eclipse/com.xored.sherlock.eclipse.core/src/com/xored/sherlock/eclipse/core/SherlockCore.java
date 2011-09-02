@@ -13,8 +13,7 @@ import com.xored.sherlock.internal.eclipse.core.DataSourceDescriptor;
 public class SherlockCore {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = SherlockCore.class.getPackage()
-			.getName();
+	public static final String PLUGIN_ID = SherlockCore.class.getPackage().getName();
 
 	public synchronized static DataSourceManager getManager() {
 		if (instance == null) {
@@ -25,8 +24,7 @@ public class SherlockCore {
 	}
 
 	private static void readExtensions() {
-		IConfigurationElement[] configs = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor(EXTPT_SOURCES);
+		IConfigurationElement[] configs = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTPT_SOURCES);
 		for (IConfigurationElement config : configs) {
 			try {
 				readDataSource(config);
@@ -50,10 +48,9 @@ public class SherlockCore {
 		}
 	}
 
-	private static void readDataSource(IConfigurationElement config)
-			throws CoreException {
+	private static void readDataSource(IConfigurationElement config) throws CoreException {
 		DataSourceDescriptor descriptor = DataSourceDescriptor.read(config);
-		instance.add(descriptor.getId(), descriptor);
+		instance.add(descriptor);
 	}
 
 	private static void log(String message, Throwable t) {

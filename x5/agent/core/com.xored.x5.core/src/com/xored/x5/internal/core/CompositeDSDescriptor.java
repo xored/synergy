@@ -28,11 +28,17 @@ public class CompositeDSDescriptor extends DSDescriptor {
 		super(source, manager);
 		base = DSDescriptor.create(source.getBase(), manager);
 		eClass = buildClass();
+		clazz = findSourceClass();
 	}
 
 	@Override
 	public EClass getEClass() {
 		return eClass;
+	}
+
+	@Override
+	public Class<? extends DataSource> getSourceClass() {
+		return clazz;
 	}
 
 	@Override
@@ -49,6 +55,20 @@ public class CompositeDSDescriptor extends DSDescriptor {
 			return new X5ProcessDataSource((ProcessDataSource) base, builder);
 		}
 		throw new IllegalArgumentException();
+	}
+
+	private Class<? extends DataSource> findSourceClass() {
+		clazz = this.base.getSourceClass();
+		if (EventDataSource.class.isAssignableFrom(clazz)) {
+			return X5EventDataSource.class;
+		} else if (EntityDataSource.class.isAssignableFrom(clazz)) {
+			return X5EntityDataSource.class;
+		} else if (ProcessDataSource.class.isAssignableFrom(clazz)) {
+			return X5ProcessDataSource.class;
+		}
+		throw new IllegalArgumentException(
+				"Base class of composite data source doesn't implement any known data sources: " + clazz.getName()
+						+ ". Should implement EventDataSource, EntityDataSource or ProcessDataSource.");
 	}
 
 	public List<DataLinkDescriptor> getLinks() {
@@ -81,24 +101,15 @@ public class CompositeDSDescriptor extends DSDescriptor {
 		EReference ref = EcoreFactory.eINSTANCE.createEReference();
 		ref.setName(reference.getName());
 		ref.setContainment(true);
-		if (isMany(source)) {
+		if (isMany(descriptor)) {
 			ref.setUpperBound(-1);
 		}
 		ref.setEType(descriptor.getEClass());
 		return new DataLinkDescriptor(ref, descriptor);
 	}
 
-	private boolean isMany(BaseDataSource descriptor) {
-		if (descriptor instanceof CompositeDataSource) {
-			CompositeDataSource source = (CompositeDataSource) descriptor;
-			return isMany(source.getBase());
-		} else {
-			return isMany(manager.getSource(descriptor.getId()));
-		}
-	}
-
-	private boolean isMany(DataSource source) {
-		return source instanceof EventDataSource;
+	private boolean isMany(DSDescriptor descriptor) {
+		return EventDataSource.class.isAssignableFrom(descriptor.getSourceClass());
 	}
 
 	private List<DataLink> createLinks() {
@@ -110,6 +121,7 @@ public class CompositeDSDescriptor extends DSDescriptor {
 	}
 
 	private EClass eClass;
+	private Class<? extends DataSource> clazz;
 	private List<DataLinkDescriptor> links = new ArrayList<DataLinkDescriptor>();
 	private DSDescriptor base;
 

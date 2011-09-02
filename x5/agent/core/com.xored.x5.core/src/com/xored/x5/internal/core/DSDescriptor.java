@@ -30,6 +30,8 @@ public abstract class DSDescriptor {
 
 	public abstract EClass getEClass();
 
+	public abstract Class<? extends DataSource> getSourceClass();
+
 	protected BaseDataSource source;
 	protected DataSourceManager manager;
 

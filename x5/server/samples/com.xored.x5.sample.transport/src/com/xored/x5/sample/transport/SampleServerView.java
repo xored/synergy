@@ -1,7 +1,6 @@
 package com.xored.x5.sample.transport;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -17,6 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
 import com.xored.sherlock.core.DataSource;
+import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceListener;
 import com.xored.sherlock.eclipse.core.SherlockCore;
 import com.xored.sherlock.sample.ui.BaseEObjectTree;
@@ -85,22 +85,23 @@ public class SampleServerView extends ViewPart {
 	protected void listen() {
 		listener = new DataSourceListener() {
 			@Override
-			public void handleRemove(String id) {
+			public void handleRemove(DataSourceFactory factory) {
 			}
 
 			@Override
-			public void handleAdd(String id) {
-				addSource(id, SherlockCore.getManager().getSource(id));
+			public void handleAdd(DataSourceFactory factory) {
+				addSource(factory);
 			}
 		};
 		SherlockCore.getManager().addListener(listener);
-		List<String> sources = SherlockCore.getManager().getSourceIds();
-		for (String id : sources) {
-			addSource(id, SherlockCore.getManager().getSource(id));
+		for (DataSourceFactory factory : SherlockCore.getManager().getFactories()) {
+			addSource(factory);
 		}
 	}
 
-	protected void addSource(final String id, final DataSource source) {
+	protected void addSource(DataSourceFactory factory) {
+		final String id = factory.getId();
+		final DataSource source = SherlockCore.getManager().getSource(id);
 		if (source instanceof X5DataSource) {
 			final X5DataSource x5ds = (X5DataSource) source;
 			tree.runInUI(new Runnable() {

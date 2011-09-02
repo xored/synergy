@@ -1,13 +1,10 @@
 package com.xored.sherlock.core;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import org.eclipse.emf.ecore.EClass;
 
 public class DataSourceManager {
 
@@ -17,45 +14,47 @@ public class DataSourceManager {
 	}
 
 	public DataSource getSource(String id, Map<String, String> options) {
-		DataSourceFactory type = sources.get(id);
-		if (type == null) {
+		DataSourceFactory factory = factories.get(id);
+		if (factory == null) {
 			throw new IllegalArgumentException("Data source '" + id + "' is not registered");
 		}
 		try {
-			return type.create(options);
+			return factory.create(options);
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Data source '" + "' can't be instantiated", e);
 		}
 	}
 
-	public EClass getSourceType(String id) {
-		DataSourceFactory factory = sources.get(id);
-		if (factory == null) {
-			throw new IllegalArgumentException("Data source '" + id + "' is not registered");
-		}
-		return factory.getEClass();
+	public DataSourceFactory getFactory(String id) {
+		DataSourceFactory factory = factories.get(id);
+		if (factory != null)
+			return factory;
+		throw new IllegalArgumentException("Data source '" + id + "' is not registered");
 	}
 
-	public List<String> getSourceIds() {
-		return new ArrayList<String>(sources.keySet());
+	public Collection<DataSourceFactory> getFactories() {
+		return Collections.unmodifiableCollection(factories.values());
 	}
 
-	public void add(String id, DataSourceFactory source) {
-		if (sources.putIfAbsent(id, source) == null) {
+	public void add(DataSourceFactory factory) {
+		String id = factory.getId();
+		if (factories.putIfAbsent(id, factory) == null) {
 			for (DataSourceListener listener : listeners) {
-				listener.handleAdd(id);
+				listener.handleAdd(factory);
 			}
 		} else {
 			throw new IllegalArgumentException("Data source with '" + id + "' id is already registered");
 		}
 	}
 
-	public void remove(String id) {
-		if (sources.remove(id) != null) {
+	public boolean remove(DataSourceFactory factory) {
+		if (factories.remove(factory.getId(), factory)) {
 			for (DataSourceListener listener : listeners) {
-				listener.handleRemove(id);
+				listener.handleRemove(factory);
 			}
+			return true;
 		}
+		return false;
 	}
 
 	public void addListener(DataSourceListener listener) {
@@ -66,7 +65,7 @@ public class DataSourceManager {
 		listeners.remove(listener);
 	}
 
-	private ConcurrentSkipListMap<String, DataSourceFactory> sources = new ConcurrentSkipListMap<String, DataSourceFactory>();
+	private ConcurrentSkipListMap<String, DataSourceFactory> factories = new ConcurrentSkipListMap<String, DataSourceFactory>();
 	private CopyOnWriteArrayList<DataSourceListener> listeners = new CopyOnWriteArrayList<DataSourceListener>();
 
 }

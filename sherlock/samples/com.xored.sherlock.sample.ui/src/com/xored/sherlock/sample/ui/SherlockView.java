@@ -1,7 +1,6 @@
 package com.xored.sherlock.sample.ui;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -14,6 +13,7 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 
 import com.xored.sherlock.core.DataSource;
+import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceListener;
 import com.xored.sherlock.core.EntityDataSource;
 import com.xored.sherlock.core.EventDataSource;
@@ -31,19 +31,18 @@ public class SherlockView extends ViewPart {
 		tree.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
 		listener = new DataSourceListener() {
 			@Override
-			public void handleRemove(String id) {
-				removeSource(id);
+			public void handleRemove(DataSourceFactory factory) {
+				removeSource(factory.getId());
 			}
 
 			@Override
-			public void handleAdd(String id) {
-				addSource(id, SherlockCore.getManager().getSource(id));
+			public void handleAdd(DataSourceFactory factory) {
+				addSource(factory);
 			}
 		};
 		SherlockCore.getManager().addListener(listener);
-		List<String> sources = SherlockCore.getManager().getSourceIds();
-		for (String id : sources) {
-			addSource(id, SherlockCore.getManager().getSource(id));
+		for (DataSourceFactory factory : SherlockCore.getManager().getFactories()) {
+			addSource(factory);
 		}
 	}
 
@@ -57,7 +56,9 @@ public class SherlockView extends ViewPart {
 		super.dispose();
 	}
 
-	private void addSource(final String id, final DataSource source) {
+	private void addSource(DataSourceFactory factory) {
+		final String id = factory.getId();
+		final DataSource source = SherlockCore.getManager().getSource(id);
 		tree.runInUI(new Runnable() {
 
 			@Override
