@@ -98,13 +98,22 @@ public interface SourcesPackage extends EPackage {
 	int DURATION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Time</b></em>' attribute.
+	 * The feature id for the '<em><b>Start</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DURATION__TIME = 0;
+	int DURATION__START = 0;
+
+	/**
+	 * The feature id for the '<em><b>Duration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DURATION__DURATION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Duration</em>' class.
@@ -113,7 +122,7 @@ public interface SourcesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DURATION_FEATURE_COUNT = 1;
+	int DURATION_FEATURE_COUNT = 2;
 
 
 	/**
@@ -177,15 +186,26 @@ public interface SourcesPackage extends EPackage {
 	EClass getDuration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.xored.sherlock.sample.sources.Duration#getTime <em>Time</em>}'.
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.sample.sources.Duration#getStart <em>Start</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Time</em>'.
-	 * @see com.xored.sherlock.sample.sources.Duration#getTime()
+	 * @return the meta object for the attribute '<em>Start</em>'.
+	 * @see com.xored.sherlock.sample.sources.Duration#getStart()
 	 * @see #getDuration()
 	 * @generated
 	 */
-	EAttribute getDuration_Time();
+	EAttribute getDuration_Start();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.sample.sources.Duration#getDuration <em>Duration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Duration</em>'.
+	 * @see com.xored.sherlock.sample.sources.Duration#getDuration()
+	 * @see #getDuration()
+	 * @generated
+	 */
+	EAttribute getDuration_Duration();
 
 	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.sample.sources.Sample <em>Sample</em>}'.
@@ -256,12 +276,19 @@ public interface SourcesPackage extends EPackage {
 		 */
 		EClass DURATION = eINSTANCE.getDuration();
 		/**
-		 * The meta object literal for the '<em><b>Time</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Start</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DURATION__TIME = eINSTANCE.getDuration_Time();
+		EAttribute DURATION__START = eINSTANCE.getDuration_Start();
+		/**
+		 * The meta object literal for the '<em><b>Duration</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DURATION__DURATION = eINSTANCE.getDuration_Duration();
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.sample.sources.impl.SampleImpl <em>Sample</em>}' class.
 		 * <!-- begin-user-doc -->

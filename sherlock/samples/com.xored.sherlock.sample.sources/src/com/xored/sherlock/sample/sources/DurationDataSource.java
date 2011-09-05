@@ -2,32 +2,24 @@ package com.xored.sherlock.sample.sources;
 
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
-
 import com.xored.sherlock.core.IntervalDataSource;
 
-public class DurationDataSource implements IntervalDataSource {
+public class DurationDataSource implements IntervalDataSource<Duration> {
 
 	@Override
 	public void initialize(Map<String, String> options) {
 	}
 
 	@Override
-	public EObject start() {
-		start = System.currentTimeMillis();
-		return null;
-	}
-
-	@Override
-	public EObject finish() {
-		long time = System.currentTimeMillis() - start;
-		duration = SourcesFactory.eINSTANCE.createDuration();
-		duration.setTime(time);
-		start = -1;
+	public Duration start() {
+		Duration duration = SourcesFactory.eINSTANCE.createDuration();
+		duration.setStart(System.currentTimeMillis());
 		return duration;
 	}
 
-	private long start;
-	private Duration duration;
+	@Override
+	public void finish(Duration object) {
+		object.setDuration(System.currentTimeMillis() - object.getStart());
+	}
 
 }

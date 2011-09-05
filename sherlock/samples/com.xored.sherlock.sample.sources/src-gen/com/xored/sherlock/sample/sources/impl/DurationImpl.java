@@ -23,7 +23,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.xored.sherlock.sample.sources.impl.DurationImpl#getTime <em>Time</em>}</li>
+ *   <li>{@link com.xored.sherlock.sample.sources.impl.DurationImpl#getStart <em>Start</em>}</li>
+ *   <li>{@link com.xored.sherlock.sample.sources.impl.DurationImpl#getDuration <em>Duration</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,24 +32,44 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class DurationImpl extends EObjectImpl implements Duration {
 	/**
-	 * The default value of the '{@link #getTime() <em>Time</em>}' attribute.
+	 * The default value of the '{@link #getStart() <em>Start</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTime()
+	 * @see #getStart()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long TIME_EDEFAULT = 0L;
+	protected static final long START_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getTime() <em>Time</em>}' attribute.
+	 * The cached value of the '{@link #getStart() <em>Start</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTime()
+	 * @see #getStart()
 	 * @generated
 	 * @ordered
 	 */
-	protected long time = TIME_EDEFAULT;
+	protected long start = START_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDuration() <em>Duration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDuration()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long DURATION_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getDuration() <em>Duration</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDuration()
+	 * @generated
+	 * @ordered
+	 */
+	protected long duration = DURATION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,8 +95,8 @@ public class DurationImpl extends EObjectImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getTime() {
-		return time;
+	public long getStart() {
+		return start;
 	}
 
 	/**
@@ -83,11 +104,32 @@ public class DurationImpl extends EObjectImpl implements Duration {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTime(long newTime) {
-		long oldTime = time;
-		time = newTime;
+	public void setStart(long newStart) {
+		long oldStart = start;
+		start = newStart;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SourcesPackage.DURATION__TIME, oldTime, time));
+			eNotify(new ENotificationImpl(this, Notification.SET, SourcesPackage.DURATION__START, oldStart, start));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDuration(long newDuration) {
+		long oldDuration = duration;
+		duration = newDuration;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SourcesPackage.DURATION__DURATION, oldDuration, duration));
 	}
 
 	/**
@@ -98,8 +140,10 @@ public class DurationImpl extends EObjectImpl implements Duration {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SourcesPackage.DURATION__TIME:
-				return getTime();
+			case SourcesPackage.DURATION__START:
+				return getStart();
+			case SourcesPackage.DURATION__DURATION:
+				return getDuration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,8 +156,11 @@ public class DurationImpl extends EObjectImpl implements Duration {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SourcesPackage.DURATION__TIME:
-				setTime((Long)newValue);
+			case SourcesPackage.DURATION__START:
+				setStart((Long)newValue);
+				return;
+			case SourcesPackage.DURATION__DURATION:
+				setDuration((Long)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +174,11 @@ public class DurationImpl extends EObjectImpl implements Duration {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SourcesPackage.DURATION__TIME:
-				setTime(TIME_EDEFAULT);
+			case SourcesPackage.DURATION__START:
+				setStart(START_EDEFAULT);
+				return;
+			case SourcesPackage.DURATION__DURATION:
+				setDuration(DURATION_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,8 +192,10 @@ public class DurationImpl extends EObjectImpl implements Duration {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SourcesPackage.DURATION__TIME:
-				return time != TIME_EDEFAULT;
+			case SourcesPackage.DURATION__START:
+				return start != START_EDEFAULT;
+			case SourcesPackage.DURATION__DURATION:
+				return duration != DURATION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -158,8 +210,10 @@ public class DurationImpl extends EObjectImpl implements Duration {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (time: ");
-		result.append(time);
+		result.append(" (start: ");
+		result.append(start);
+		result.append(", duration: ");
+		result.append(duration);
 		result.append(')');
 		return result.toString();
 	}

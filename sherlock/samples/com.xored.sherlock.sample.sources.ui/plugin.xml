@@ -17,7 +17,7 @@
    <extension point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.sample.sources.ui.SampleProcessSource"
-            eClass="http://xored.com/sherlock/core/data.ecore#//ProcessData"
+            eClass="http:///com/xored/sherlock/sample/sources.ecore#//Sample"
             id="com.xored.sherlock.sample.process"/>
    </extension>
 

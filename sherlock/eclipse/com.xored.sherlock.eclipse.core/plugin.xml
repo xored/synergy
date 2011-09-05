@@ -3,11 +3,4 @@
 <plugin>
    <extension-point id="sources" name="sources" schema="schema/sources.exsd"/>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://xored.com/sherlock/core/data.ecore"
-            class="com.xored.sherlock.core.data.DataPackage"
-            genModel="platform://com.xored.sherlock.core/model/data.genmodel"/>
-   </extension>
-
 </plugin>

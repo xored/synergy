@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import com.xored.x5.core.X5DataListener;
+import com.xored.x5.internal.core.utils.EUtil;
 
 public class DataBuilder {
 
@@ -34,6 +35,12 @@ public class DataBuilder {
 		for (X5DataListener listener : listeners) {
 			listener.push(object);
 		}
+	}
+
+	protected EObject createAndCopy(EObject data) {
+		EObject result = createInstance();
+		EUtil.copy(data, result);
+		return result;
 	}
 
 	protected EObject createInstance() {

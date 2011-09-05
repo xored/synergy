@@ -6,13 +6,14 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.xored.sherlock.core.DataSource;
 import com.xored.sherlock.core.EventDataSource;
 import com.xored.sherlock.core.EventListener;
 import com.xored.sherlock.core.IntervalDataSource;
-import com.xored.sherlock.core.data.ProcessData;
+import com.xored.x5.internal.core.utils.EUtil;
 
 public class ProcessDataBuilder extends DataBuilder {
 
@@ -20,49 +21,86 @@ public class ProcessDataBuilder extends DataBuilder {
 		super(eClass, links);
 	}
 
-	public EObject start(EObject input) {
-		data = (ProcessData) createInstance();
-		input = EcoreUtil.copy(input);
-		data.setInput(input);
-		firePrepare(data);
+	public EObject start(EObject data) {
+		EObject result = createAndCopy(data);
+		map.put(data, result);
+		firePrepare(result);
 		for (DataLink link : links) {
-			DataSource source = link.getSource();
-			if (source instanceof EventDataSource) {
-				@SuppressWarnings("unchecked")
-				List<EObject> events = (List<EObject>) data.eGet(link.getEReference());
-				FieldListener listener = new FieldListener(events);
-				((EventDataSource) source).addEventListener(listener);
-				listeners.put(link, listener);
-			} else if (source instanceof IntervalDataSource) {
-				((IntervalDataSource) source).start();
-			} else {
-				throw new IllegalArgumentException(source + " source is not a valid child for process data source");
-			}
+			DataSourceHandler handler = getHandler(result, link.getSource(), link.getEReference());
+			handler.start();
+			handlers.put(link, handler);
 		}
-		return input;
+		return result;
 	}
 
-	public EObject finish(EObject output) {
-		output = EcoreUtil.copy(output);
-		data.setOutput(output);
-		for (DataLink link : links) {
-			DataSource source = link.getSource();
-			if (source instanceof EventDataSource) {
-				FieldListener listener = listeners.get(link);
-				((EventDataSource) source).removeEventListener(listener);
-			} else {
-				EObject object = ((IntervalDataSource) source).finish();
-				data.eSet(link.getEReference(), object);
+	public EObject finish(EObject data) {
+		EObject result = map.remove(data);
+		if (result == null) {
+			// No start for specified data
+			return null;
+		}
+		// update changed features
+		for (EStructuralFeature feature : data.eClass().getEAllStructuralFeatures()) {
+			if (!EUtil.haveEqualFeature(data, result, feature)) {
+				EUtil.copyFeature(data, result, feature);
 			}
+		}
+		// collect finished handlers
+		for (DataLink link : links) {
+			handlers.get(link).finish();
 		}
 		firePush(data);
-		return output;
+		return result;
 	}
 
-	private class FieldListener implements EventListener {
+	private DataSourceHandler getHandler(EObject object, DataSource source, EReference reference) {
+		if (source instanceof EventDataSource) {
+			return new EventHandler(object, reference, (EventDataSource) source);
+		} else if (source instanceof IntervalDataSource) {
+			return createIntervalHandler(object, reference, (IntervalDataSource<?>) source);
+		} else {
+			throw new IllegalArgumentException(source + " source is not a valid child for process data source");
+		}
+	}
 
-		public FieldListener(List<EObject> events) {
-			this.events = events;
+	private <T extends EObject> IntervalHandler<T> createIntervalHandler(EObject object, EReference reference,
+			IntervalDataSource<T> source) {
+		return new IntervalHandler<T>(object, reference, source);
+	}
+
+	private abstract class DataSourceHandler {
+
+		public DataSourceHandler(EObject object, EReference reference) {
+			this.object = object;
+			this.reference = reference;
+		}
+
+		abstract void start();
+
+		abstract void finish();
+
+		EObject object;
+		EReference reference;
+
+	}
+
+	private class EventHandler extends DataSourceHandler implements EventListener {
+
+		public EventHandler(EObject object, EReference reference, EventDataSource source) {
+			super(object, reference);
+			this.source = source;
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		void start() {
+			events = (List<EObject>) object.eGet(reference);
+			source.addEventListener(this);
+		}
+
+		@Override
+		void finish() {
+			source.removeEventListener(this);
 		}
 
 		@Override
@@ -71,10 +109,32 @@ public class ProcessDataBuilder extends DataBuilder {
 		}
 
 		private List<EObject> events;
+		private EventDataSource source;
 
 	}
 
-	private Map<DataLink, FieldListener> listeners = new HashMap<DataLink, FieldListener>();
-	private ProcessData data;
+	private class IntervalHandler<T extends EObject> extends DataSourceHandler {
+
+		public IntervalHandler(EObject object, EReference reference, IntervalDataSource<T> source) {
+			super(object, reference);
+			this.source = source;
+		}
+
+		void start() {
+			data = source.start();
+		}
+
+		void finish() {
+			source.finish(data);
+			object.eSet(reference, data);
+		}
+
+		IntervalDataSource<T> source;
+		T data;
+
+	}
+
+	private Map<EObject, EObject> map = new HashMap<EObject, EObject>();
+	private Map<DataLink, DataSourceHandler> handlers = new HashMap<DataLink, DataSourceHandler>();
 
 }

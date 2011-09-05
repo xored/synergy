@@ -139,8 +139,17 @@ public class SourcesPackageImpl extends EPackageImpl implements SourcesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDuration_Time() {
+	public EAttribute getDuration_Start() {
 		return (EAttribute)durationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDuration_Duration() {
+		return (EAttribute)durationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -193,7 +202,8 @@ public class SourcesPackageImpl extends EPackageImpl implements SourcesPackage {
 		createEAttribute(dateEClass, DATE__TIME);
 
 		durationEClass = createEClass(DURATION);
-		createEAttribute(durationEClass, DURATION__TIME);
+		createEAttribute(durationEClass, DURATION__START);
+		createEAttribute(durationEClass, DURATION__DURATION);
 
 		sampleEClass = createEClass(SAMPLE);
 		createEAttribute(sampleEClass, SAMPLE__TEXT);
@@ -233,7 +243,8 @@ public class SourcesPackageImpl extends EPackageImpl implements SourcesPackage {
 		initEAttribute(getDate_Time(), ecorePackage.getEString(), "time", null, 0, 1, Date.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(durationEClass, Duration.class, "Duration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDuration_Time(), ecorePackage.getELong(), "time", null, 0, 1, Duration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDuration_Start(), ecorePackage.getELong(), "start", null, 0, 1, Duration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDuration_Duration(), ecorePackage.getELong(), "duration", null, 0, 1, Duration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sampleEClass, Sample.class, "Sample", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSample_Text(), ecorePackage.getEString(), "text", null, 0, 1, Sample.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

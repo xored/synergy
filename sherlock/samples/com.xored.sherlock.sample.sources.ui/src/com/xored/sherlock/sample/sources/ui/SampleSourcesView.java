@@ -62,7 +62,7 @@ public class SampleSourcesView extends ViewPart {
 				Sample sample = SourcesFactory.eINSTANCE.createSample();
 				sample.setText(intervalText.getText());
 				if (active) {
-					SampleRegistry.getInstance().fireProcessEnd(sample);
+					SampleRegistry.getInstance().fireProcessEnd();
 					intervalButton.setText("Start");
 				} else {
 					SampleRegistry.getInstance().fireProcessStart(sample);

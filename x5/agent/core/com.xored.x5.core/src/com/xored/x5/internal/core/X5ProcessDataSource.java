@@ -32,8 +32,11 @@ public class X5ProcessDataSource extends BaseProcessDataSource implements Proces
 	}
 
 	@Override
-	public void handleFinish(EObject output) {
-		fireFinish(builder.finish(output));
+	public void handleFinish(EObject data) {
+		EObject result = builder.finish(data);
+		if (result != null) {
+			fireFinish(result);
+		}
 	}
 
 	@Override

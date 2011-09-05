@@ -36,14 +36,15 @@ public class SampleRegistry {
 	}
 
 	void fireProcessStart(EObject data) {
+		processData = data;
 		for (ProcessListener listener : processListeners) {
 			listener.handleStart(data);
 		}
 	}
 
-	void fireProcessEnd(EObject data) {
+	void fireProcessEnd() {
 		for (ProcessListener listener : processListeners) {
-			listener.handleFinish(data);
+			listener.handleFinish(processData);
 		}
 	}
 
@@ -52,6 +53,8 @@ public class SampleRegistry {
 	private CopyOnWriteArrayList<EventListener> eventListeners = new CopyOnWriteArrayList<EventListener>();
 
 	private CopyOnWriteArrayList<ProcessListener> processListeners = new CopyOnWriteArrayList<ProcessListener>();
+
+	private EObject processData;
 
 	private SampleRegistry() {
 	}

@@ -2,10 +2,10 @@ package com.xored.sherlock.core;
 
 import org.eclipse.emf.ecore.EObject;
 
-public interface IntervalDataSource extends DataSource {
+public interface IntervalDataSource<T extends EObject> extends DataSource {
 
-	EObject start();
+	T start();
 
-	EObject finish();
+	void finish(T object);
 
 }
