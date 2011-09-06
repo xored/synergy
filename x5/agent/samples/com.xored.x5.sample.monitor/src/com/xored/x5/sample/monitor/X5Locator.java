@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import com.xored.sherlock.core.DataSourceFactory;
-import com.xored.sherlock.core.DataSourceManager;
+import com.xored.sherlock.core.DataSourceRegistry;
 import com.xored.sherlock.eclipse.core.SherlockCore;
+import com.xored.x5.agent.sources.X5DataSourceFactory;
 import com.xored.x5.core.CompositeDataSource;
-import com.xored.x5.core.X5DataSourceFactory;
 
 public class X5Locator {
 
@@ -58,7 +58,7 @@ public class X5Locator {
 			List<DataSourceFactory> list = sources.get(file);
 			if (list != null) {
 				for (DataSourceFactory factory : list) {
-					SherlockCore.getManager().remove(factory);
+					SherlockCore.getRegistry().removeFactory(factory);
 				}
 			}
 			if (kind == IResourceDelta.CHANGED || kind == IResourceDelta.ADDED) {
@@ -85,15 +85,15 @@ public class X5Locator {
 	}
 
 	private List<DataSourceFactory> load(Resource resource) {
-		final DataSourceManager manager = SherlockCore.getManager();
+		final DataSourceRegistry registry = SherlockCore.getRegistry();
 		List<DataSourceFactory> factories = new ArrayList<DataSourceFactory>();
 		for (EObject object : resource.getContents()) {
 			if (object instanceof CompositeDataSource) {
 				final CompositeDataSource descriptor = (CompositeDataSource) object;
 				String id = descriptor.getId();
 				if (id != null && !id.isEmpty()) {
-					X5DataSourceFactory factory = new X5DataSourceFactory(descriptor, manager);
-					manager.add(factory);
+					X5DataSourceFactory factory = new X5DataSourceFactory(descriptor, registry);
+					registry.addFactory(factory);
 					factories.add(factory);
 				}
 			}

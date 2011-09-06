@@ -8,4 +8,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore,
  com.xored.sherlock.core,
  com.xored.x5.core
-Export-Package: com.xored.x5.agent
+Export-Package: com.xored.x5.agent,
+ com.xored.x5.agent.sources

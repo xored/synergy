@@ -40,15 +40,15 @@ public class SherlockView extends ViewPart {
 				addSource(factory);
 			}
 		};
-		SherlockCore.getManager().addListener(listener);
-		for (DataSourceFactory factory : SherlockCore.getManager().getFactories()) {
+		SherlockCore.getRegistry().addListener(listener);
+		for (DataSourceFactory factory : SherlockCore.getRegistry().getFactories()) {
 			addSource(factory);
 		}
 	}
 
 	@Override
 	public void dispose() {
-		SherlockCore.getManager().removeListener(listener);
+		SherlockCore.getRegistry().removeListener(listener);
 		for (Entry<String, SourceInfo> entry : sources.entrySet()) {
 			removeItem(entry.getValue());
 		}
@@ -58,7 +58,7 @@ public class SherlockView extends ViewPart {
 
 	private void addSource(DataSourceFactory factory) {
 		final String id = factory.getId();
-		final DataSource source = SherlockCore.getManager().getSource(id);
+		final DataSource source = SherlockCore.getRegistry().getSource(id);
 		tree.runInUI(new Runnable() {
 
 			@Override

@@ -21,7 +21,6 @@ import com.xored.sherlock.core.DataSourceListener;
 import com.xored.sherlock.eclipse.core.SherlockCore;
 import com.xored.sherlock.sample.ui.BaseEObjectTree;
 import com.xored.x5.agent.X5Agent;
-import com.xored.x5.core.X5DataSource;
 import com.xored.x5.server.Server;
 
 public class SampleServerView extends ViewPart {
@@ -62,8 +61,8 @@ public class SampleServerView extends ViewPart {
 					}
 				} else if (source != null) {
 					button.setText("Finish");
-					agent = new X5Agent(agentTransport, source, new ChangeAgentStrategy());
-					agent.connect();
+					agent = new X5Agent(agentTransport, SherlockCore.getRegistry());
+					agent.initialize();
 				}
 			}
 		});
@@ -93,32 +92,29 @@ public class SampleServerView extends ViewPart {
 				addSource(factory);
 			}
 		};
-		SherlockCore.getManager().addListener(listener);
-		for (DataSourceFactory factory : SherlockCore.getManager().getFactories()) {
+		SherlockCore.getRegistry().addListener(listener);
+		for (DataSourceFactory factory : SherlockCore.getRegistry().getFactories()) {
 			addSource(factory);
 		}
 	}
 
 	protected void addSource(DataSourceFactory factory) {
 		final String id = factory.getId();
-		final DataSource source = SherlockCore.getManager().getSource(id);
-		if (source instanceof X5DataSource) {
-			final X5DataSource x5ds = (X5DataSource) source;
-			tree.runInUI(new Runnable() {
+		final DataSource source = SherlockCore.getRegistry().getSource(id);
+		tree.runInUI(new Runnable() {
 
-				@Override
-				public void run() {
-					sources.put(id, x5ds);
-					combo.add(id);
-					combo.select(combo.getItemCount() - 1);
-				}
-			});
-		}
+			@Override
+			public void run() {
+				sources.put(id, source);
+				combo.add(id);
+				combo.select(combo.getItemCount() - 1);
+			}
+		});
 	}
 
 	@Override
 	public void dispose() {
-		SherlockCore.getManager().removeListener(listener);
+		SherlockCore.getRegistry().removeListener(listener);
 		if (agent != null) {
 			agent.close();
 		}
@@ -136,9 +132,9 @@ public class SampleServerView extends ViewPart {
 	private Server server;
 	private Combo combo;
 	private Button button;
-	private X5DataSource source;
+	private DataSource source;
 	private X5Agent agent;
-	private Map<String, X5DataSource> sources = new HashMap<String, X5DataSource>();
+	private Map<String, DataSource> sources = new HashMap<String, DataSource>();
 	private DataSourceListener listener;
 
 }

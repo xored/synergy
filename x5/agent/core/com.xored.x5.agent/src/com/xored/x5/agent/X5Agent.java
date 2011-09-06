@@ -1,44 +1,74 @@
 package com.xored.x5.agent;
 
-import org.eclipse.emf.ecore.EObject;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import com.xored.x5.core.EObjectQueue;
-import com.xored.x5.core.X5DataSource;
+import com.xored.sherlock.core.DataSourceFactory;
+import com.xored.sherlock.core.DataSourceListener;
+import com.xored.sherlock.core.DataSourceRegistry;
+import com.xored.x5.internal.agent.DataSourceDispatcher;
+import com.xored.x5.internal.agent.DataSourceSender;
 
 public class X5Agent {
 
-	public X5Agent(AgentTransport transport, X5DataSource source) {
-		this(transport, source, new BaseAgentStrategy());
-	}
-
-	public X5Agent(AgentTransport transport, X5DataSource source, AgentStrategy strategy) {
+	public X5Agent(Transport transport, DataSourceRegistry registry) {
 		this.transport = transport;
-		this.strategy = strategy;
-		this.source = source;
+		this.registry = registry;
 	}
 
-	public void connect() {
-		transport.connect();
-		strategy.initialize(new Queue());
-		source.addDataListener(strategy);
+	public void initialize() {
+		senders = Collections.synchronizedMap(new HashMap<DataSourceFactory, DataSourceSender>());
+		executor = Executors.newFixedThreadPool(1);
+		for (DataSourceFactory factory : registry.addListener(listener)) {
+			attach(factory);
+		}
 	}
 
 	public void close() {
-		source.removeDataListener(strategy);
-		transport.close();
+		registry.removeListener(listener);
+		for (DataSourceSender sender : senders.values()) {
+			sender.detach();
+		}
+		executor.shutdown();
 	}
 
-	private class Queue implements EObjectQueue {
+	private void attach(DataSourceFactory factory) {
+		DataSourceSender sender = DataSourceDispatcher.create(factory, executor);
+		if (sender != null) {
+			senders.put(factory, sender);
+			sender.attachTo(transport);
+		}
+	}
+
+	private void detach(final DataSourceFactory factory) {
+		DataSourceSender sender = senders.remove(factory);
+		if (sender != null) {
+			sender.detach();
+		}
+	}
+
+	private RegistryListener listener = new RegistryListener();
+
+	private class RegistryListener implements DataSourceListener {
 
 		@Override
-		public void push(EObject object) {
-			transport.send(object);
+		public void handleAdd(DataSourceFactory factory) {
+			attach(factory);
+		}
+
+		@Override
+		public void handleRemove(DataSourceFactory factory) {
+			detach(factory);
 		}
 
 	}
 
-	private AgentTransport transport;
-	private AgentStrategy strategy;
-	private X5DataSource source;
+	private Transport transport;
+	private DataSourceRegistry registry;
+	private Map<DataSourceFactory, DataSourceSender> senders;
+	private ExecutorService executor;
 
 }

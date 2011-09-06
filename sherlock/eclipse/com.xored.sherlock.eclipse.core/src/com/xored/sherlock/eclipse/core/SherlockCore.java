@@ -7,7 +7,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
-import com.xored.sherlock.core.DataSourceManager;
+import com.xored.sherlock.core.DataSourceRegistry;
+import com.xored.sherlock.core.base.BaseDataSourceRegistry;
 import com.xored.sherlock.internal.eclipse.core.DataSourceDescriptor;
 
 public class SherlockCore {
@@ -15,9 +16,9 @@ public class SherlockCore {
 	// The plug-in ID
 	public static final String PLUGIN_ID = SherlockCore.class.getPackage().getName();
 
-	public synchronized static DataSourceManager getManager() {
+	public synchronized static DataSourceRegistry getRegistry() {
 		if (instance == null) {
-			instance = new DataSourceManager();
+			instance = new BaseDataSourceRegistry();
 			readExtensions();
 		}
 		return instance;
@@ -50,7 +51,7 @@ public class SherlockCore {
 
 	private static void readDataSource(IConfigurationElement config) throws CoreException {
 		DataSourceDescriptor descriptor = DataSourceDescriptor.read(config);
-		instance.add(descriptor);
+		instance.addFactory(descriptor);
 	}
 
 	private static void log(String message, Throwable t) {
@@ -62,7 +63,7 @@ public class SherlockCore {
 		return new Status(IStatus.ERROR, PLUGIN_ID, message, t);
 	}
 
-	private static DataSourceManager instance;
+	private static BaseDataSourceRegistry instance;
 
 	private static final String EXTPT_SOURCES = PLUGIN_ID + ".sources";
 
