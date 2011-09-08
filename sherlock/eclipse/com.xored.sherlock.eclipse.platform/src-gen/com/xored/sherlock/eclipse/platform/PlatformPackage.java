@@ -8,6 +8,7 @@ package com.xored.sherlock.eclipse.platform;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -198,13 +199,22 @@ public interface PlatformPackage extends EPackage {
 	int PLUGIN__PROVIDER = 3;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLUGIN__STATE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Plugin</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLUGIN_FEATURE_COUNT = 4;
+	int PLUGIN_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link com.xored.sherlock.eclipse.platform.impl.FeatureImpl <em>Feature</em>}' class.
@@ -503,6 +513,17 @@ public interface PlatformPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link com.xored.sherlock.eclipse.platform.PluginState <em>Plugin State</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.sherlock.eclipse.platform.PluginState
+	 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getPluginState()
+	 * @generated
+	 */
+	int PLUGIN_STATE = 7;
+
+
+	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.eclipse.platform.Platform <em>Platform</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -653,6 +674,17 @@ public interface PlatformPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPlugin_Provider();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.xored.sherlock.eclipse.platform.Plugin#getState <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.Plugin#getState()
+	 * @see #getPlugin()
+	 * @generated
+	 */
+	EAttribute getPlugin_State();
 
 	/**
 	 * Returns the meta object for class '{@link com.xored.sherlock.eclipse.platform.Feature <em>Feature</em>}'.
@@ -947,6 +979,16 @@ public interface PlatformPackage extends EPackage {
 	EAttribute getPreference_Path();
 
 	/**
+	 * Returns the meta object for enum '{@link com.xored.sherlock.eclipse.platform.PluginState <em>Plugin State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Plugin State</em>'.
+	 * @see com.xored.sherlock.eclipse.platform.PluginState
+	 * @generated
+	 */
+	EEnum getPluginState();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1070,6 +1112,13 @@ public interface PlatformPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PLUGIN__PROVIDER = eINSTANCE.getPlugin_Provider();
+		/**
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PLUGIN__STATE = eINSTANCE.getPlugin_State();
 		/**
 		 * The meta object literal for the '{@link com.xored.sherlock.eclipse.platform.impl.FeatureImpl <em>Feature</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1269,6 +1318,15 @@ public interface PlatformPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PREFERENCE__PATH = eINSTANCE.getPreference_Path();
+		/**
+		 * The meta object literal for the '{@link com.xored.sherlock.eclipse.platform.PluginState <em>Plugin State</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.sherlock.eclipse.platform.PluginState
+		 * @see com.xored.sherlock.eclipse.platform.impl.PlatformPackageImpl#getPluginState()
+		 * @generated
+		 */
+		EEnum PLUGIN_STATE = eINSTANCE.getPluginState();
 
 	}
 

@@ -14,10 +14,12 @@ import com.xored.sherlock.eclipse.platform.PlatformFactory;
 import com.xored.sherlock.eclipse.platform.PlatformPackage;
 
 import com.xored.sherlock.eclipse.platform.Plugin;
+import com.xored.sherlock.eclipse.platform.PluginState;
 import com.xored.sherlock.eclipse.platform.Preference;
 import com.xored.sherlock.eclipse.platform.Status;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.EReference;
@@ -77,6 +79,13 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * @generated
 	 */
 	private EClass preferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum pluginStateEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -263,6 +272,15 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 */
 	public EAttribute getPlugin_Provider() {
 		return (EAttribute)pluginEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPlugin_State() {
+		return (EAttribute)pluginEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -513,6 +531,15 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getPluginState() {
+		return pluginStateEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PlatformFactory getPlatformFactory() {
 		return (PlatformFactory)getEFactoryInstance();
 	}
@@ -551,6 +578,7 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 		createEAttribute(pluginEClass, PLUGIN__NAME);
 		createEAttribute(pluginEClass, PLUGIN__VERSION);
 		createEAttribute(pluginEClass, PLUGIN__PROVIDER);
+		createEAttribute(pluginEClass, PLUGIN__STATE);
 
 		featureEClass = createEClass(FEATURE);
 		createEAttribute(featureEClass, FEATURE__ID);
@@ -583,6 +611,9 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 		createEAttribute(preferenceEClass, PREFERENCE__NAME);
 		createEAttribute(preferenceEClass, PREFERENCE__VALUE);
 		createEAttribute(preferenceEClass, PREFERENCE__PATH);
+
+		// Create enums
+		pluginStateEEnum = createEEnum(PLUGIN_STATE);
 	}
 
 	/**
@@ -630,6 +661,7 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 		initEAttribute(getPlugin_Name(), ecorePackage.getEString(), "name", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlugin_Version(), ecorePackage.getEString(), "version", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPlugin_Provider(), ecorePackage.getEString(), "provider", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPlugin_State(), this.getPluginState(), "state", null, 0, 1, Plugin.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeature_Id(), ecorePackage.getEString(), "id", null, 0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -662,6 +694,15 @@ public class PlatformPackageImpl extends EPackageImpl implements PlatformPackage
 		initEAttribute(getPreference_Name(), ecorePackage.getEString(), "name", null, 0, 1, Preference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPreference_Value(), ecorePackage.getEString(), "value", null, 0, 1, Preference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPreference_Path(), ecorePackage.getEString(), "path", null, 0, 1, Preference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(pluginStateEEnum, PluginState.class, "PluginState");
+		addEEnumLiteral(pluginStateEEnum, PluginState.UNINSTALLED);
+		addEEnumLiteral(pluginStateEEnum, PluginState.INSTALLED);
+		addEEnumLiteral(pluginStateEEnum, PluginState.RESOLVED);
+		addEEnumLiteral(pluginStateEEnum, PluginState.STARTING);
+		addEEnumLiteral(pluginStateEEnum, PluginState.STOPPING);
+		addEEnumLiteral(pluginStateEEnum, PluginState.ACTIVE);
 
 		// Create resource
 		createResource(eNS_URI);

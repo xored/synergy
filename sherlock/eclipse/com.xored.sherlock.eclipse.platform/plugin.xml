@@ -55,5 +55,13 @@
             id="com.xored.sherlock.eclipse.log">
       </source>
    </extension>
+   <extension
+         point="com.xored.sherlock.eclipse.core.sources">
+      <source
+            class="com.xored.sherlock.eclipse.platform.BundleUsageSource"
+            eClass="http://xored.com/sherlock/eclipse/platform.ecore#//Plugin"
+            id="com.xored.sherlock.eclipse.bundle">
+      </source>
+   </extension>
 
 </plugin>

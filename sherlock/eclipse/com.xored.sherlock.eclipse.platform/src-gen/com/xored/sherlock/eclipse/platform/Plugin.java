@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.xored.sherlock.eclipse.platform.Plugin#getName <em>Name</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.Plugin#getVersion <em>Version</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.Plugin#getProvider <em>Provider</em>}</li>
+ *   <li>{@link com.xored.sherlock.eclipse.platform.Plugin#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -131,5 +132,34 @@ public interface Plugin extends EObject {
 	 * @generated
 	 */
 	void setProvider(String value);
+
+	/**
+	 * Returns the value of the '<em><b>State</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.xored.sherlock.eclipse.platform.PluginState}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>State</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State</em>' attribute.
+	 * @see com.xored.sherlock.eclipse.platform.PluginState
+	 * @see #setState(PluginState)
+	 * @see com.xored.sherlock.eclipse.platform.PlatformPackage#getPlugin_State()
+	 * @model
+	 * @generated
+	 */
+	PluginState getState();
+
+	/**
+	 * Sets the value of the '{@link com.xored.sherlock.eclipse.platform.Plugin#getState <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>State</em>' attribute.
+	 * @see com.xored.sherlock.eclipse.platform.PluginState
+	 * @see #getState()
+	 * @generated
+	 */
+	void setState(PluginState value);
 
 } // Plugin

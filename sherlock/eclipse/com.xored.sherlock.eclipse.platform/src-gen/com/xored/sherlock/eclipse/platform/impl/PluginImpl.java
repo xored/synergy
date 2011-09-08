@@ -9,6 +9,7 @@ package com.xored.sherlock.eclipse.platform.impl;
 import com.xored.sherlock.eclipse.platform.PlatformPackage;
 import com.xored.sherlock.eclipse.platform.Plugin;
 
+import com.xored.sherlock.eclipse.platform.PluginState;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PluginImpl#getName <em>Name</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PluginImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PluginImpl#getProvider <em>Provider</em>}</li>
+ *   <li>{@link com.xored.sherlock.eclipse.platform.impl.PluginImpl#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,6 +114,26 @@ public class PluginImpl extends EObjectImpl implements Plugin {
 	 * @ordered
 	 */
 	protected String provider = PROVIDER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final PluginState STATE_EDEFAULT = PluginState.UNINSTALLED;
+
+	/**
+	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected PluginState state = STATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -221,6 +243,27 @@ public class PluginImpl extends EObjectImpl implements Plugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PluginState getState() {
+		return state;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setState(PluginState newState) {
+		PluginState oldState = state;
+		state = newState == null ? STATE_EDEFAULT : newState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.PLUGIN__STATE, oldState, state));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -232,6 +275,8 @@ public class PluginImpl extends EObjectImpl implements Plugin {
 				return getVersion();
 			case PlatformPackage.PLUGIN__PROVIDER:
 				return getProvider();
+			case PlatformPackage.PLUGIN__STATE:
+				return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -255,6 +300,9 @@ public class PluginImpl extends EObjectImpl implements Plugin {
 				return;
 			case PlatformPackage.PLUGIN__PROVIDER:
 				setProvider((String)newValue);
+				return;
+			case PlatformPackage.PLUGIN__STATE:
+				setState((PluginState)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -280,6 +328,9 @@ public class PluginImpl extends EObjectImpl implements Plugin {
 			case PlatformPackage.PLUGIN__PROVIDER:
 				setProvider(PROVIDER_EDEFAULT);
 				return;
+			case PlatformPackage.PLUGIN__STATE:
+				setState(STATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -300,6 +351,8 @@ public class PluginImpl extends EObjectImpl implements Plugin {
 				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
 			case PlatformPackage.PLUGIN__PROVIDER:
 				return PROVIDER_EDEFAULT == null ? provider != null : !PROVIDER_EDEFAULT.equals(provider);
+			case PlatformPackage.PLUGIN__STATE:
+				return state != STATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -322,6 +375,8 @@ public class PluginImpl extends EObjectImpl implements Plugin {
 		result.append(version);
 		result.append(", provider: ");
 		result.append(provider);
+		result.append(", state: ");
+		result.append(state);
 		result.append(')');
 		return result.toString();
 	}

@@ -15,6 +15,7 @@ import org.osgi.service.prefs.BackingStoreException;
 
 import com.xored.sherlock.core.EntityDataSource;
 import com.xored.sherlock.internal.eclipse.platform.Activator;
+import com.xored.sherlock.internal.eclipse.platform.BundleUtil;
 
 public class PlatformSource implements EntityDataSource {
 
@@ -57,6 +58,7 @@ public class PlatformSource implements EntityDataSource {
 			plugin.setProvider(headers.get(Constants.BUNDLE_VENDOR));
 			plugin.setId(bundle.getSymbolicName());
 			plugin.setVersion(headers.get(Constants.BUNDLE_VERSION));
+			plugin.setState(BundleUtil.getState(bundle));
 			platform.getPlugins().add(plugin);
 		}
 
