@@ -28,11 +28,11 @@
             eClass="http:///com/xored/sherlock/sample/sources.ecore#//Duration"
             id="com.xored.sherlock.sample.duration"/>
    </extension>
-   <extension point="com.xored.sherlock.eclipse.core.sources">
+   <!--extension point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.sample.sources.SamplingDataSource"
             eClass="http:///com/xored/sherlock/sample/sources.ecore#//Sample"
             id="com.xored.sherlock.sample.sampling"/>
-   </extension>
+   </extension-->
 
 </plugin>

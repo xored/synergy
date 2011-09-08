@@ -30,7 +30,11 @@ public class X5Agent {
 	public void close() {
 		registry.removeListener(listener);
 		for (DataSourceSender sender : senders.values()) {
-			sender.detach();
+			try {
+				sender.detach();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		executor.shutdown();
 	}

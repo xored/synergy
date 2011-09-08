@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.FilteredTree;
-import org.eclipse.ui.dialogs.PatternFilter;
 import org.eclipse.ui.part.ViewPart;
 
 import com.xored.sherlock.sample.ui.EContentProvider;
@@ -39,7 +38,7 @@ public class SampleServerView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
 
-		tree = new FilteredTree(parent, SWT.BORDER, new PatternFilter(), true);
+		tree = new FilteredTree(parent, SWT.BORDER, new WeakPatternFilter(), true);
 		final TreeViewer viewer = tree.getViewer();
 		viewer.setContentProvider(new ServerContentProvider());
 		viewer.setLabelProvider(new ServerLabelProvider());

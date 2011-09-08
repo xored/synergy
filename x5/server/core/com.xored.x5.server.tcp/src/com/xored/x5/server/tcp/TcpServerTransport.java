@@ -23,19 +23,21 @@ public class TcpServerTransport extends ServerTransport {
 
 			public void run() {
 				try {
-					final Socket client = server.accept();
-					executor.submit(new Runnable() {
-						@Override
-						public void run() {
-							try {
-								while (true) {
-									TcpServerTransport.this.notify(readObject(client));
+					while (true) {
+						final Socket client = server.accept();
+						executor.submit(new Runnable() {
+							@Override
+							public void run() {
+								try {
+									while (true) {
+										TcpServerTransport.this.notify(readObject(client));
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
 								}
-							} catch (Exception e) {
-								e.printStackTrace();
 							}
-						}
-					});
+						});
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 					executor.shutdown();
