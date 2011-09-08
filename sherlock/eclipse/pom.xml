@@ -9,7 +9,7 @@
 
   	<parent>
 		<groupId>com.xored.synergy</groupId>
-		<artifactId>synergy</artifactId>
+		<artifactId>sherlock</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
   	</parent>
 
