@@ -2,20 +2,13 @@ package com.xored.x5.sample.transport;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.xored.x5.server.RequestHandler;
 import com.xored.x5.server.ServerTransport;
 
-public class SampleServerTransport implements ServerTransport {
+public class SampleServerTransport extends ServerTransport {
 
 	@Override
-	public void setHandler(RequestHandler handler) {
-		this.handler = handler;
+	public void notify(EObject data) {
+		super.notify(data);
 	}
-
-	public EObject push(EObject object) {
-		return handler.handle(object);
-	}
-
-	private RequestHandler handler;
 
 }

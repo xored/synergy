@@ -5,10 +5,14 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.xored.sherlock.core.DataSource;
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.x5.agent.Transport;
+import com.xored.x5.common.CommonFactory;
+import com.xored.x5.common.DataSourceEntry;
+import com.xored.x5.common.PackageEntry;
 
 abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceSender {
 
@@ -29,14 +33,6 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 			source = null;
 		}
 		if (transport != null) {
-			final Transport t = transport;
-			executor.submit(new Runnable() {
-
-				@Override
-				public void run() {
-					t.detach(factory);
-				}
-			});
 			transport = null;
 		}
 	}
@@ -50,7 +46,10 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 
 			@Override
 			public void run() {
-				transport.send(factory.getId(), data);
+				DataSourceEntry entry = CommonFactory.eINSTANCE.createDataSourceEntry();
+				entry.setSource(factory.getId());
+				entry.setContent(data);
+				transport.send(entry);
 			}
 		});
 	}
@@ -61,7 +60,10 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 
 			@Override
 			public void run() {
-				transport.attach(factory);
+				PackageEntry entry = CommonFactory.eINSTANCE.createPackageEntry();
+				entry.setSource(factory.getId());
+				entry.setContent(EcoreUtil.copy(factory.getEClass().getEPackage()));
+				transport.send(entry);
 			}
 		});
 		Map<String, String> options = Collections.emptyMap();

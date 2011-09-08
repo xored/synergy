@@ -1,13 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: X5 Agent
-Bundle-SymbolicName: com.xored.x5.agent
+Bundle-Name: X5 TCP Server Transport
+Bundle-SymbolicName: com.xored.x5.server.tcp
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: xored software, Inc.
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore,
- com.xored.sherlock.core,
- com.xored.x5.core,
- com.xored.x5.common
-Export-Package: com.xored.x5.agent,
- com.xored.x5.agent.sources
+ com.xored.x5.server
+Export-Package: com.xored.x5.server.tcp

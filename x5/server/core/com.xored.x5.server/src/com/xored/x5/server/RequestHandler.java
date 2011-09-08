@@ -4,6 +4,6 @@ import org.eclipse.emf.ecore.EObject;
 
 public interface RequestHandler {
 
-	EObject handle(EObject data);
+	void handle(EObject data);
 
 }

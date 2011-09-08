@@ -3,10 +3,9 @@
 <plugin>
   <extension point="org.eclipse.ui.views">
     <view
-      class="com.xored.x5.sample.transport.SampleServerView"
-      id="com.xored.x5.sample.transport.view"
-      name="X5 Server View"
+      class="com.xored.x5.sample.agent.SampleAgentView"
+      id="com.xored.x5.sample.agent.view"
+      name="X5 Agent View"
       restorable="true"/>
   </extension>
-
 </plugin>

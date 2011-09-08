@@ -1,7 +1,21 @@
 package com.xored.x5.server;
 
-public interface ServerTransport {
+import org.eclipse.emf.ecore.EObject;
 
-	void setHandler(RequestHandler handler);
+public abstract class ServerTransport {
+
+	protected void notify(EObject data) {
+		handler.handle(data);
+	}
+
+	public void setHandler(RequestHandler handler) {
+		this.handler = handler;
+	}
+
+	public void close() {
+
+	}
+
+	protected RequestHandler handler;
 
 }
