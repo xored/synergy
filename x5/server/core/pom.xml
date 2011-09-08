@@ -15,5 +15,6 @@
 
 	<modules>
 		<module>com.xored.x5.server</module>
+		<module>com.xored.x5.server.tcp</module>
 	</modules>
 </project>

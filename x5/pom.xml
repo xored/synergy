@@ -15,5 +15,7 @@
 
 	<modules>
 		<module>agent</module>
+		<module>common</module>
+		<module>server</module>
 	</modules>
 </project>
