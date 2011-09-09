@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="sources" name="sources" schema="schema/sources.exsd"/>
+   
+   <extension point="com.xored.x5.agent.eclipse.sources">
+      <source id="com.xored.x5.bundle" name="X5Bundle" base="com.xored.sherlock.eclipse.bundle">
+         <field name="date">
+            <reference id="com.xored.sherlock.sample.date"/>
+         </field>
+         <field
+               name="system">
+            <reference
+                  id="com.xored.sherlock.system">
+            </reference>
+         </field>
+      </source>
+   </extension>
+
+</plugin>
