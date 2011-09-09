@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.xored.sherlock.thread/src-gen"
+    modelPluginID="com.xored.sherlock.thread" modelName="Thread" importerID="org.eclipse.emf.importer.java"
+    complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.6">
+  <foreignModel>@model</foreignModel>
+  <genPackages prefix="Thread" basePackage="com.xored.sherlock" disposableProviderFactory="true"
+      ecorePackage="thread.ecore#/">
+    <genClasses ecoreClass="thread.ecore#//Thread"/>
+  </genPackages>
+</genmodel:GenModel>
