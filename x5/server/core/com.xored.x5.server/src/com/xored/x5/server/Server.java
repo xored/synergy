@@ -1,7 +1,11 @@
 package com.xored.x5.server;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.xored.x5.common.CommonPackage;
 import com.xored.x5.common.DataSourceEntry;
@@ -32,7 +36,9 @@ public abstract class Server {
 				DataSourceEntry entry = (DataSourceEntry) data;
 				Server.this.handle(entry.getSource(), entry.getContent());
 			} else if (data instanceof PackageEntry) {
-				EPackage ePackage = ((PackageEntry) data).getContent();
+				EPackage ePackage = EcoreUtil.copy(((PackageEntry) data).getContent());
+				Resource fake = new ResourceImpl(URI.createURI(ePackage.getNsURI()));
+				fake.getContents().add(ePackage);
 				EPackage.Registry.INSTANCE.put(ePackage.getNsURI(), ePackage);
 			}
 		}

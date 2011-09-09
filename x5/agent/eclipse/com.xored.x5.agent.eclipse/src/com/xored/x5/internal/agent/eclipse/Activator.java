@@ -3,9 +3,9 @@ package com.xored.x5.internal.agent.eclipse;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-import com.xored.sherlock.eclipse.core.SherlockCore;
 import com.xored.x5.agent.Transport;
 import com.xored.x5.agent.X5Agent;
+import com.xored.x5.agent.eclipse.X5Core;
 import com.xored.x5.agent.tcp.TcpAgentTransport;
 
 public class Activator implements BundleActivator {
@@ -28,7 +28,7 @@ public class Activator implements BundleActivator {
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
 		Transport transport = new TcpAgentTransport(7887);
-		agent = new X5Agent(transport, SherlockCore.getRegistry());
+		agent = new X5Agent(transport, X5Core.getRegistry());
 		agent.initialize();
 	}
 

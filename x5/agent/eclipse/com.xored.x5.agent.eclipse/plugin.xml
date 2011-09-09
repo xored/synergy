@@ -9,9 +9,23 @@
             <reference id="com.xored.sherlock.sample.date"/>
          </field>
          <field
-               name="system">
+               name="thread">
             <reference
-                  id="com.xored.sherlock.system">
+                  id="com.xored.sherlock.thread">
+            </reference>
+         </field>
+      </source>
+   </extension>
+   <extension
+         point="com.xored.x5.agent.eclipse.sources">
+      <source
+            base="com.xored.sherlock.tesla.aspect"
+            id="com.xored.x5.tesla.aspect"
+            name="X5Aspect">
+         <field
+               name="thread">
+            <reference
+                  id="com.xored.sherlock.thread">
             </reference>
          </field>
       </source>

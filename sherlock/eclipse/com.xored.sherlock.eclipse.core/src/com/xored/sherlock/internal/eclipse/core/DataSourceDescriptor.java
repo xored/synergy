@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import com.xored.sherlock.core.DataSource;
@@ -52,6 +53,9 @@ public class DataSourceDescriptor implements DataSourceFactory {
 	}
 
 	private EClass parseEClass(String text) {
+		if (text == null || text.length() == 0) {
+			return EcorePackage.eINSTANCE.getEObject();
+		}
 		URI uri = URI.createURI(text);
 		EObject object = new ResourceSetImpl().getEObject(uri, true);
 		if (object instanceof EClass) {
