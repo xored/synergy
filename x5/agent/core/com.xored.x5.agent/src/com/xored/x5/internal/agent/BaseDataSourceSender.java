@@ -1,10 +1,18 @@
 package com.xored.x5.internal.agent;
 
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.xored.sherlock.core.DataSource;
@@ -19,6 +27,7 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 	protected BaseDataSourceSender(DataSourceFactory factory, ExecutorService executor) {
 		this.factory = factory;
 		this.executor = executor;
+		knownPackages.add(EcorePackage.eINSTANCE);
 	}
 
 	public void attachTo(Transport transport) {
@@ -46,6 +55,18 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 
 			@Override
 			public void run() {
+				Set<EPackage> packages = new HashSet<EPackage>();
+				findAllPackages(data, packages);
+
+				for (EPackage ePackage : packages) {
+					if (knownPackages.add(ePackage)) {
+						PackageEntry entry = CommonFactory.eINSTANCE.createPackageEntry();
+						entry.setSource(factory.getId());
+						entry.setContent(EcoreUtil.copy(ePackage));
+						transport.send(entry);
+					}
+				}
+
 				DataSourceEntry entry = CommonFactory.eINSTANCE.createDataSourceEntry();
 				entry.setSource(factory.getId());
 				entry.setContent(data);
@@ -54,18 +75,31 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 		});
 	}
 
+	private Set<EPackage> knownPackages = new HashSet<EPackage>();
+
+	private void findAllPackages(EObject data, Collection<EPackage> packages) {
+		EClass eClass = data.eClass();
+		findAllPackages(eClass, packages);
+		for (EAttribute attribute : eClass.getEAllAttributes()) {
+			findAllPackages(attribute.getEAttributeType(), packages);
+		}
+		for (EObject content : data.eContents()) {
+			findAllPackages(content, packages);
+		}
+	}
+
+	private void findAllPackages(EClassifier type, Collection<EPackage> packages) {
+		packages.add(type.getEPackage());
+		if (type instanceof EClass) {
+			EClass eClass = (EClass) type;
+			for (EClass superType : eClass.getEAllSuperTypes()) {
+				packages.add(superType.getEPackage());
+			}
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	private void attach() {
-		executor.submit(new Runnable() {
-
-			@Override
-			public void run() {
-				PackageEntry entry = CommonFactory.eINSTANCE.createPackageEntry();
-				entry.setSource(factory.getId());
-				entry.setContent(EcoreUtil.copy(factory.getEClass().getEPackage()));
-				transport.send(entry);
-			}
-		});
 		Map<String, String> options = Collections.emptyMap();
 		source = (T) factory.create(options);
 		attachSource(source);

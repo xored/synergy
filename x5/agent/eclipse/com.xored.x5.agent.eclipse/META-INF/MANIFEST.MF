@@ -3,14 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: X5 Eclipse Agent
 Bundle-SymbolicName: com.xored.x5.agent.eclipse;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: com.xored.x5.internal.agent.eclipse.Activator
 Bundle-Vendor: xored software, Inc.
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.runtime,
  com.xored.sherlock.core,
- com.xored.sherlock.thread,
  com.xored.sherlock.eclipse.core,
- com.xored.x5.core,
  com.xored.x5.agent,
- com.xored.x5.agent.tcp
+ com.xored.x5.core
 Export-Package: com.xored.x5.agent.eclipse
