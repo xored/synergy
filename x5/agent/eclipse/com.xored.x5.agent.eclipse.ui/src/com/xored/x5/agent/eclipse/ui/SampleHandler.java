@@ -51,7 +51,7 @@ public class SampleHandler extends AbstractHandler {
 		}
 		try {
 			IFile model = createModel(factory);
-			createGenModel(model);
+			createGenModel(model, factory.getEPackage());
 		} catch (Exception e) {
 			throw new ExecutionException(e.getMessage(), e);
 		}
@@ -74,11 +74,14 @@ public class SampleHandler extends AbstractHandler {
 		return file;
 	}
 
-	private void createGenModel(IFile model) throws Exception {
+	private void createGenModel(IFile model, EPackage ePackage) throws Exception {
 		EcoreImporter importer = new EcoreImporter();
 		importer.setModelFile(model);
 		importer.setGenModelContainerPath(model.getParent().getFullPath());
 		importer.setGenModelFileName("model.genmodel");
+		importer.getEPackages().add(ePackage);
+		importer.getEPackageConvertInfo(ePackage).setConvert(true);
+		importer.getEPackageConvertInfo(ePackage).setConvertData("model.ecore");
 		importer.prepareGenModelAndEPackages(null);
 		importer.saveGenModelAndEPackages(null);
 	}
