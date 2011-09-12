@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Agent Eclipse UI
+Bundle-SymbolicName: com.xored.x5.agent.eclipse.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: xored software, Inc.
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
+ com.xored.sherlock.core,
+ com.xored.x5.agent,
+ com.xored.x5.agent.eclipse,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.importer,
+ org.eclipse.emf.importer.ecore
