@@ -14,7 +14,7 @@
       <package
             uri="http://xored.com/sherlock/system.ecore"
             class="com.xored.sherlock.system.SystemPackage"
-            genModel="platform://com.xored.sherlock.system/model/system.genmodel"/>
+            genModel="platform:/plugin/com.xored.sherlock.system/model/system.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
