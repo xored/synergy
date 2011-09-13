@@ -6,7 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: xored software, Inc.
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.xored.sherlock.thread.impl,
+Export-Package: com.xored.sherlock.thread,
+ com.xored.sherlock.thread.impl,
  com.xored.sherlock.thread.sources,
  com.xored.sherlock.thread.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
