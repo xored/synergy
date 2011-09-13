@@ -50,11 +50,20 @@ public class X5DataSourceFactory implements DataSourceFactory {
 	}
 
 	private EPackage createPackage(CompositeDataSource source) {
+		String id = source.getId();
 		EPackage p = EcoreFactory.eINSTANCE.createEPackage();
-		p.setName(source.getName());
-		p.setNsURI("http://xored.com/x5/" + source.getId() + "/dynamic.ecore");
-		p.setNsPrefix(source.getId());
+		p.setName(getPackageName(id));
+		p.setNsURI("http://xored.com/x5/dynamic/" + id);
+		p.setNsPrefix(id);
 		return p;
+	}
+
+	private String getPackageName(String id) {
+		int index = id.lastIndexOf('.');
+		if (index < 0 || index >= id.length() - 1) {
+			return id;
+		}
+		return id.substring(index + 1);
 	}
 
 	private void addClasses(DSDescriptor descriptor) {
