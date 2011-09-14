@@ -1,5 +1,8 @@
 package com.xored.x5.agent.eclipse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ILog;
@@ -7,13 +10,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
+import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceRegistry;
 import com.xored.sherlock.eclipse.core.SherlockCore;
-import com.xored.x5.agent.sources.X5DataSourceFactory;
-import com.xored.x5.core.BaseDataSource;
-import com.xored.x5.core.CompositeDataSource;
-import com.xored.x5.core.DataSourceReference;
-import com.xored.x5.core.X5Factory;
+import com.xored.x5.agent.DataSourceReference;
+import com.xored.x5.agent.X5DataSourceFactory;
 
 public class X5Core {
 
@@ -54,46 +55,48 @@ public class X5Core {
 	}
 
 	private static void readDataSource(IConfigurationElement config) throws CoreException {
-		instance.addFactory(new X5DataSourceFactory(readSource(config), instance));
+		X5DataSourceFactory factory = readSource(config);
+		// hook package building
+		factory.getEPackage();
+		instance.addFactory(factory);
 	}
 
-	private static CompositeDataSource readSource(IConfigurationElement config) {
-		CompositeDataSource source = X5Factory.eINSTANCE.createCompositeDataSource();
-		source.setId(config.getAttribute("id"));
-		source.setName(config.getAttribute("name"));
+	private static X5DataSourceFactory readSource(IConfigurationElement config) {
+		String id = config.getAttribute("id");
+		String name = config.getAttribute("name");
 
-		BaseDataSource base = X5Factory.eINSTANCE.createBaseDataSource();
-		base.setId(config.getAttribute("base"));
-		source.setBase(base);
+		DataSourceFactory base = readFactory(config, "base");
+		List<DataSourceReference> references = new ArrayList<DataSourceReference>();
 
 		for (IConfigurationElement kid : config.getChildren()) {
-			source.getReferences().add(readField(kid));
+			references.add(readField(kid));
 		}
 
-		return source;
+		return new X5DataSourceFactory(id, base, references, name);
 	}
 
 	private static DataSourceReference readField(IConfigurationElement config) {
-		DataSourceReference reference = X5Factory.eINSTANCE.createDataSourceReference();
-		reference.setName(config.getAttribute("name"));
-
-		IConfigurationElement[] references = config.getChildren("reference");
-		if (references.length > 0) {
-			reference.setSource(readReference(references[0]));
-		} else {
-			IConfigurationElement[] sources = config.getChildren("source");
-			if (sources.length > 0) {
-				reference.setSource(readSource(sources[0]));
-			}
-		}
-
-		return reference;
+		String name = config.getAttribute("name");
+		return new DataSourceReference(name, getFactory(config));
 	}
 
-	private static BaseDataSource readReference(IConfigurationElement config) {
-		BaseDataSource reference = X5Factory.eINSTANCE.createBaseDataSource();
-		reference.setId(config.getAttribute("id"));
-		return reference;
+	private static DataSourceFactory getFactory(IConfigurationElement config) {
+		IConfigurationElement[] references = config.getChildren("reference");
+		if (references.length > 0) {
+			return readFactory(references[0], "id");
+		} else {
+			IConfigurationElement[] sources = config.getChildren("source");
+			return readSource(sources[0]);
+		}
+	}
+
+	private static DataSourceFactory readFactory(IConfigurationElement config, String attr) {
+		String baseId = config.getAttribute(attr);
+		DataSourceFactory base = instance.getFactory(baseId);
+		if (base == null) {
+			throw new IllegalArgumentException("No such " + attr + " factory: '" + baseId + "'");
+		}
+		return base;
 	}
 
 	private static void log(String message, Throwable t) {
