@@ -50,7 +50,7 @@
    <element name="source">
       <complexType>
          <sequence>
-            <element ref="field" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="group"/>
          </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
@@ -59,6 +59,21 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="package" type="string">
+            <annotation>
+               <documentation>
+                  Namespace URI of the EMF Package
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="group">
+      <complexType>
+         <sequence>
+            <element ref="field" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
          <attribute name="name" type="string" use="required">
             <annotation>
                <documentation>
@@ -119,7 +134,7 @@
    <element name="field">
       <complexType>
          <choice>
-            <element ref="source"/>
+            <element ref="group"/>
             <element ref="reference"/>
          </choice>
          <attribute name="name" type="string" use="required">

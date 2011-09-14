@@ -9,6 +9,9 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EPackage;
 
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceRegistry;
@@ -55,38 +58,61 @@ public class X5Core {
 	}
 
 	private static void readDataSource(IConfigurationElement config) throws CoreException {
-		X5DataSourceFactory factory = readSource(config);
+		String id = config.getAttribute("id");
+		EPackage ePackage = getPackage(config);
+		X5DataSourceFactory factory = readSource(id, config.getChildren()[0], ePackage);
 		// hook package building
 		factory.getEPackage();
 		instance.addFactory(factory);
 	}
 
-	private static X5DataSourceFactory readSource(IConfigurationElement config) {
-		String id = config.getAttribute("id");
+	private static X5DataSourceFactory readSource(String id, IConfigurationElement config, EPackage ePackage) {
 		String name = config.getAttribute("name");
 
 		DataSourceFactory base = readFactory(config, "base");
 		List<DataSourceReference> references = new ArrayList<DataSourceReference>();
 
 		for (IConfigurationElement kid : config.getChildren()) {
-			references.add(readField(kid));
+			references.add(readField(kid, ePackage));
 		}
 
-		return new X5DataSourceFactory(id, base, references, name);
+		if (ePackage != null) {
+			EClassifier eClassifier = ePackage.getEClassifier(name);
+			if (eClassifier instanceof EClass) {
+				return new X5DataSourceFactory(id, base, references, (EClass) eClassifier);
+			} else {
+				throw new IllegalArgumentException("Class '" + name + "' doesn't exist in the package '"
+						+ ePackage.getNsURI() + "'");
+			}
+		} else {
+			return new X5DataSourceFactory(id, base, references, name);
+		}
 	}
 
-	private static DataSourceReference readField(IConfigurationElement config) {
+	private static EPackage getPackage(IConfigurationElement config) {
+		String nsURI = config.getAttribute("package");
+		if (nsURI == null || nsURI.length() == 0) {
+			return null;
+		}
+		EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
+		if (ePackage != null) {
+			return ePackage;
+		}
+		throw new IllegalArgumentException("EPackage '" + nsURI + "' doesn't registered");
+	}
+
+	private static DataSourceReference readField(IConfigurationElement config, EPackage ePackage) {
 		String name = config.getAttribute("name");
-		return new DataSourceReference(name, getFactory(config));
+		return new DataSourceReference(name, getFactory(config, ePackage));
 	}
 
-	private static DataSourceFactory getFactory(IConfigurationElement config) {
+	private static DataSourceFactory getFactory(IConfigurationElement config, EPackage ePackage) {
 		IConfigurationElement[] references = config.getChildren("reference");
 		if (references.length > 0) {
 			return readFactory(references[0], "id");
 		} else {
-			IConfigurationElement[] sources = config.getChildren("source");
-			return readSource(sources[0]);
+			IConfigurationElement[] sources = config.getChildren("group");
+			return readSource(null, sources[0], ePackage);
 		}
 	}
 

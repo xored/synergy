@@ -6,7 +6,10 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import com.xored.sherlock.core.DataSource;
 import com.xored.sherlock.core.DataSourceFactory;
@@ -68,10 +71,13 @@ public class X5DataSourceFactory implements DataSourceFactory {
 
 		EClass eClass = EcoreFactory.eINSTANCE.createEClass();
 		eClass.setName(name);
-		eClass.getESuperTypes().add(base);
+
+		if (!base.equals(EcorePackage.eINSTANCE.getEObject())) {
+			eClass.getESuperTypes().add(base);
+		}
 
 		for (DataSourceReference reference : references) {
-			eClass.getEStructuralFeatures().add(reference.getEReference());
+			eClass.getEStructuralFeatures().add(reference.initReference(null));
 		}
 		return eClass;
 	}
@@ -91,7 +97,20 @@ public class X5DataSourceFactory implements DataSourceFactory {
 	}
 
 	private void validateEClass() {
-		throw new UnsupportedOperationException();
+		if (!base.getEClass().equals(EcorePackage.eINSTANCE.getEObject())
+				&& !eClass.getESuperTypes().contains(base.getEClass())) {
+			throw new IllegalArgumentException("EClass '" + eClass.getName() + "' doesn't extend "
+					+ base.getEClass().getName());
+		}
+
+		for (DataSourceReference reference : references) {
+			EStructuralFeature feature = eClass.getEStructuralFeature(reference.getName());
+			if (!(feature instanceof EReference)) {
+				throw new IllegalArgumentException("EClass '" + eClass.getName() + "' doesn't contain '"
+						+ reference.getName() + "' reference");
+			}
+			reference.initReference((EReference) feature);
+		}
 	}
 
 	@Override

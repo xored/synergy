@@ -14,19 +14,15 @@ public class DataSourceReference {
 
 	public DataSourceReference(String name, DataSourceFactory factory) {
 		this.factory = factory;
-		this.eReference = createReference(name);
+		this.name = name;
 	}
 
 	public String getName() {
-		return eReference.getName();
+		return name;
 	}
 
 	public DataSourceFactory getFactory() {
 		return factory;
-	}
-
-	public EReference getEReference() {
-		return eReference;
 	}
 
 	public DataSource createSource() {
@@ -34,19 +30,49 @@ public class DataSourceReference {
 		return factory.create(options);
 	}
 
+	EReference getEReference() {
+		return eReference;
+	}
+
+	EReference initReference(EReference eReference) {
+		if (eReference == null) {
+			eReference = createReference(name);
+		} else {
+			if (!eReference.isContainment()) {
+				throw new IllegalArgumentException("Wrong reference '" + eReference.getName()
+						+ "': containment != true");
+			}
+			if (eReference.isMany() != isMany()) {
+				throw new IllegalArgumentException("Wrong reference '" + eReference.getName() + "': many != "
+						+ isMany());
+			}
+			if (eReference.getEType() != factory.getEClass()) {
+				throw new IllegalArgumentException("Wrong reference '" + eReference.getName() + "': type == "
+						+ eReference.getEType() + ", but expect " + factory.getEClass());
+			}
+		}
+		this.eReference = eReference;
+		return eReference;
+	}
+
 	private EReference createReference(String name) {
 		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
 		eReference.setName(name);
 		eReference.setContainment(true);
 		// is many?
-		if (EventDataSource.class.isAssignableFrom(factory.getSourceClass())) {
+		if (isMany()) {
 			eReference.setUpperBound(-1);
 		}
 		eReference.setEType(factory.getEClass());
 		return eReference;
 	}
 
+	private boolean isMany() {
+		return EventDataSource.class.isAssignableFrom(factory.getSourceClass());
+	}
+
 	private DataSourceFactory factory;
 	private EReference eReference;
+	private String name;
 
 }
