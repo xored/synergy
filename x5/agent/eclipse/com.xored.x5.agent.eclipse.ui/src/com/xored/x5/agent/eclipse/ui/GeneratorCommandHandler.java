@@ -32,7 +32,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import com.xored.sherlock.core.DataSourceFactory;
-import com.xored.x5.agent.X5DataSourceFactory;
+import com.xored.x5.agent.core.X5DataSourceFactory;
 import com.xored.x5.agent.eclipse.X5Core;
 
 public class GeneratorCommandHandler extends AbstractHandler {

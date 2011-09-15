@@ -2,7 +2,7 @@ package com.xored.x5.sample.transport;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.xored.x5.agent.Transport;
+import com.xored.x5.agent.core.Transport;
 
 public class SampleAgentTransport implements Transport {
 

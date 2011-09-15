@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.BinaryResourceImpl;
 
-import com.xored.x5.agent.Transport;
+import com.xored.x5.agent.core.Transport;
 
 public class TcpAgentTransport implements Transport {
 

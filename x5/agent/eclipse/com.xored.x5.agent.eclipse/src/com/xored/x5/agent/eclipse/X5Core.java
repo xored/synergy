@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EPackage;
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceRegistry;
 import com.xored.sherlock.eclipse.core.SherlockCore;
-import com.xored.x5.agent.DataSourceReference;
-import com.xored.x5.agent.X5DataSourceFactory;
+import com.xored.x5.agent.core.DataSourceReference;
+import com.xored.x5.agent.core.X5DataSourceFactory;
 
 public class X5Core {
 

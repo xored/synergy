@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceRegistry;
 import com.xored.sherlock.eclipse.core.SherlockCore;
-import com.xored.x5.agent.X5DataSourceFactory;
+import com.xored.x5.agent.core.X5DataSourceFactory;
 import com.xored.x5.core.BaseDataSource;
 import com.xored.x5.core.CompositeDataSource;
 import com.xored.x5.core.DataSourceReference;
@@ -107,10 +107,10 @@ public class X5Locator {
 		if (source instanceof CompositeDataSource) {
 			CompositeDataSource cds = (CompositeDataSource) source;
 			DataSourceFactory base = build(cds.getBase(), registry);
-			List<com.xored.x5.agent.DataSourceReference> references = new ArrayList<com.xored.x5.agent.DataSourceReference>();
+			List<com.xored.x5.agent.core.DataSourceReference> references = new ArrayList<com.xored.x5.agent.core.DataSourceReference>();
 			for (DataSourceReference reference : cds.getReferences()) {
 				DataSourceFactory rg = build(reference.getSource(), registry);
-				references.add(new com.xored.x5.agent.DataSourceReference(reference.getName(), rg));
+				references.add(new com.xored.x5.agent.core.DataSourceReference(reference.getName(), rg));
 			}
 			return new X5DataSourceFactory(cds.getName(), base, references, cds.getName());
 		} else {
