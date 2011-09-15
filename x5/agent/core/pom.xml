@@ -15,7 +15,7 @@
 
 	<modules>
 		<module>com.xored.x5.core</module>
-		<module>com.xored.x5.agent</module>
+		<module>com.xored.x5.agent.core</module>
 		<module>com.xored.x5.agent.tcp</module>
 	</modules>
 </project>

@@ -15,5 +15,6 @@
 
 	<modules>
 		<module>com.xored.x5.common</module>
+		<module>com.xored.x5-feature</module>
 	</modules>
 </project>

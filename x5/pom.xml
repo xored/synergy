@@ -14,8 +14,8 @@
 	</parent>
 
 	<modules>
-		<module>agent</module>
 		<module>common</module>
+		<module>agent</module>
 		<module>server</module>
 	</modules>
 </project>

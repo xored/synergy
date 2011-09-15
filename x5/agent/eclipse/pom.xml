@@ -15,5 +15,6 @@
 
 	<modules>
 		<module>com.xored.x5.agent.eclipse</module>
+		<module>com.xored.x5.agent-feature</module>
 	</modules>
 </project>
