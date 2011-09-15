@@ -14,7 +14,8 @@
 	</parent>
 
 	<modules>
-		<module>com.xored.x5.server</module>
+		<module>com.xored.x5.server.core</module>
 		<module>com.xored.x5.server.tcp</module>
+		<module>com.xored.x5.server-feature</module>
 	</modules>
 </project>

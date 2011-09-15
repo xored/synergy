@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: X5 Server
-Bundle-SymbolicName: com.xored.x5.server
+Bundle-SymbolicName: com.xored.x5.server.core
 Bundle-Version: 2.0.0.qualifier
 Bundle-Vendor: xored software, Inc.
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore,
  com.xored.x5.common
-Export-Package: com.xored.x5.server
+Export-Package: com.xored.x5.server.core

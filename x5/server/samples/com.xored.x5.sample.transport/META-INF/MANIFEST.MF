@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.core.runtime,
  com.xored.sherlock.sample.ui,
  org.eclipse.emf.ecore,
  com.xored.x5.agent.core,
- com.xored.x5.server,
+ com.xored.x5.server.core,
  com.xored.sherlock.core,
  com.xored.sherlock.eclipse.core,
  org.eclipse.emf.ecore.change

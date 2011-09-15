@@ -19,7 +19,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.xored.sherlock.sample.ui.EContentProvider;
 import com.xored.sherlock.sample.ui.ELabelProvider;
-import com.xored.x5.server.Server;
+import com.xored.x5.server.core.Server;
 import com.xored.x5.server.tcp.TcpServerTransport;
 
 public class SampleServerView extends ViewPart {

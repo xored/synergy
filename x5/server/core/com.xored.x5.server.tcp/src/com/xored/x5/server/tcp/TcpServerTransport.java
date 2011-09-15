@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.BinaryResourceImpl;
 
-import com.xored.x5.server.ServerTransport;
+import com.xored.x5.server.core.ServerTransport;
 
 public class TcpServerTransport extends ServerTransport {
 
