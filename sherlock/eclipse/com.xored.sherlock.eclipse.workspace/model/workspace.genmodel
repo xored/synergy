@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.xored.sherlock.eclipse.workspace/src-gen"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.xored.sherlock.eclipse.workspace/src-gen"
     modelPluginID="com.xored.sherlock.eclipse.workspace" modelName="Workspace" importerID="org.eclipse.emf.importer.java"
-    complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.6">
+    complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.4">
   <foreignModel>@model</foreignModel>
   <genPackages prefix="Workspace" basePackage="com.xored.sherlock.eclipse" disposableProviderFactory="true"
       ecorePackage="workspace.ecore#/">
-    <genClasses ecoreClass="workspace.ecore#//Workspace"/>
+    <genClasses ecoreClass="workspace.ecore#//Workspace">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Workspace/location"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Workspace/partition"/>
+    </genClasses>
+    <genClasses ecoreClass="workspace.ecore#//DiskPartition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//DiskPartition/freeSpace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//DiskPartition/totalSpace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//DiskPartition/usableSpace"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

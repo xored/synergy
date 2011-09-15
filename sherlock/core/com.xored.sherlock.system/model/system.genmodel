@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.xored.sherlock.system/src-gen"
     modelPluginID="com.xored.sherlock.system" modelName="System" importerID="org.eclipse.emf.importer.java"
-    bundleManifest="false" complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.6"
+    bundleManifest="false" complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.4"
     usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>@model</foreignModel>
   <genPackages prefix="System" basePackage="com.xored.sherlock" disposableProviderFactory="true"
@@ -13,7 +13,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/osVersion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/osArch"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/username"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/locale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/userHome"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/workDir"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/region"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//System/timezone"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference system.ecore#//System/variables"/>
     </genClasses>
     <genClasses ecoreClass="system.ecore#//Java">
@@ -22,7 +26,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//Java/maxMemory"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//Java/freeMemory"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//Java/totalMemory"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute system.ecore#//Java/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference system.ecore#//Java/properties"/>
     </genClasses>
     <genClasses ecoreClass="system.ecore#//Entry">

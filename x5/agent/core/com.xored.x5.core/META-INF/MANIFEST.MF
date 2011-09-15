@@ -6,9 +6,9 @@ Bundle-Version: 2.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: xored software, Inc.
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
- com.xored.sherlock.core
-Bundle-ActivationPolicy: lazy
 Export-Package: com.xored.x5.core,
  com.xored.x5.core.impl,
  com.xored.x5.core.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
+Bundle-ActivationPolicy: lazy
