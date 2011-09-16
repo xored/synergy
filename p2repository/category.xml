@@ -9,6 +9,22 @@
    <feature url="features/com.xored.sherlock_2.0.0.qualifier.jar" id="com.xored.sherlock" version="2.0.0.qualifier">
       <category name="com.xored.sherlock"/>
    </feature>
-   <category-def name="com.xored.emfjson" label="EMF/JSON conversion"/>
+   <feature url="features/com.xored.x5_2.0.0.qualifier.jar" id="com.xored.x5" version="2.0.0.qualifier">
+      <category name="com.xored.x5.common"/>
+   </feature>
+   <feature url="features/com.xored.x5.agent_2.0.0.qualifier.jar" id="com.xored.x5.agent" version="2.0.0.qualifier">
+      <category name="com.xored.x5.agent"/>
+   </feature>
+   <feature url="features/com.xored.x5.server_2.0.0.qualifier.jar" id="com.xored.x5.server" version="2.0.0.qualifier">
+      <category name="com.xored.x5.server"/>
+   </feature>
+   <category-def name="com.xored.x5.agent" label="X5 Agent"/>
+   <category-def name="com.xored.x5.server" label="X5 Server"/>
    <category-def name="com.xored.sherlock" label="Sherlock"/>
+   <category-def name="com.xored.x5.common" label="X5 Common">
+      <description>
+         Common X5 part for agent and server
+      </description>
+   </category-def>
+   <category-def name="com.xored.emfjson" label="EMF/JSON conversion"/>
 </site>
