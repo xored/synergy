@@ -29,8 +29,9 @@ public class TcpServerTransport extends ServerTransport {
 							@Override
 							public void run() {
 								try {
-									while (true) {
-										TcpServerTransport.this.notify(readObject(client));
+									EObject object;
+									while ((object = readObject(client)) != null) {
+										TcpServerTransport.this.notify(object);
 									}
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -48,7 +49,11 @@ public class TcpServerTransport extends ServerTransport {
 
 	private static EObject readObject(Socket socket) throws IOException {
 		Resource r = new BinaryResourceImpl();
-		ByteArrayInputStream bin = new ByteArrayInputStream(readBytes(socket));
+		byte[] bytes = readBytes(socket);
+		if (bytes == null) {
+			return null;
+		}
+		ByteArrayInputStream bin = new ByteArrayInputStream(bytes);
 		r.load(bin, null);
 		EObject obj = r.getContents().get(0);
 		return obj;
@@ -56,7 +61,13 @@ public class TcpServerTransport extends ServerTransport {
 
 	private static byte[] readBytes(Socket socket) throws IOException {
 		DataInputStream in = new DataInputStream(socket.getInputStream());
-		int len = in.readInt();
+		int len;
+		try {
+			len = in.readInt();
+		} catch (Exception e) {
+			// connection was closed
+			return null;
+		}
 		byte[] result = new byte[len];
 		in.readFully(result);
 		return result;
