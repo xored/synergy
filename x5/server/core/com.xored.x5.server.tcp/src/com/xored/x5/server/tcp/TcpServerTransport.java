@@ -1,76 +1,82 @@
 package com.xored.x5.server.tcp;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.BinaryResourceImpl;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.xored.x5.common.BinaryReader;
+import com.xored.x5.common.BinaryWriter;
 import com.xored.x5.server.core.ServerTransport;
+import com.xored.x5.server.core.Session;
 
-public class TcpServerTransport extends ServerTransport {
+public class TcpServerTransport implements ServerTransport {
 
-	public TcpServerTransport(int port) throws IOException {
-		final ServerSocket server = new ServerSocket(port);
-		final ExecutorService executor = Executors.newCachedThreadPool();
-		executor.submit(new Runnable() {
-
-			public void run() {
-				try {
-					while (true) {
-						final Socket client = server.accept();
-						executor.submit(new Runnable() {
-							@Override
-							public void run() {
-								try {
-									EObject object;
-									while ((object = readObject(client)) != null) {
-										TcpServerTransport.this.notify(object);
-									}
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-							}
-						});
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-					executor.shutdown();
-				}
-			}
-		});
+	public TcpServerTransport(String id, int port) throws IOException {
+		this.id = id;
+		server = new ServerSocket(port);
 	}
 
-	private static EObject readObject(Socket socket) throws IOException {
-		Resource r = new BinaryResourceImpl();
-		byte[] bytes = readBytes(socket);
-		if (bytes == null) {
-			return null;
-		}
-		ByteArrayInputStream bin = new ByteArrayInputStream(bytes);
-		r.load(bin, null);
-		EObject obj = r.getContents().get(0);
-		return obj;
+	@Override
+	public String getId() {
+		return id;
 	}
 
-	private static byte[] readBytes(Socket socket) throws IOException {
-		DataInputStream in = new DataInputStream(socket.getInputStream());
-		int len;
+	@Override
+	public Session accept() throws Exception {
+		return new TcpSession(server.accept());
+	}
+
+	@Override
+	public void close() {
 		try {
-			len = in.readInt();
+			server.close();
 		} catch (Exception e) {
-			// connection was closed
-			return null;
+			// ignore close exception
 		}
-		byte[] result = new byte[len];
-		in.readFully(result);
-		return result;
 	}
+
+	private static class TcpSession implements Session {
+
+		public TcpSession(Socket socket) {
+			this.socket = socket;
+		}
+
+		@Override
+		public void initialize(ResourceSet resourceSet) throws Exception {
+			reader = new BinaryReader(resourceSet, socket.getInputStream());
+			writer = new BinaryWriter(resourceSet, socket.getOutputStream());
+		}
+
+		@Override
+		public EObject getRequest() throws Exception {
+			return reader.read();
+		}
+
+		@Override
+		public void setResponse(EObject eObject) throws Exception {
+			writer.write(eObject);
+		}
+
+		@Override
+		public void close() {
+			try {
+				socket.close();
+			} catch (IOException e) {
+				// ignore close exceptions
+			}
+		}
+
+		private BinaryReader reader;
+		private BinaryWriter writer;
+
+		private Socket socket;
+
+	}
+
+	private ServerSocket server;
+	private String id;
 
 }

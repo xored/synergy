@@ -13,18 +13,17 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.xored.sherlock.core.DataSource;
 import com.xored.sherlock.core.DataSourceFactory;
-import com.xored.sherlock.status.Severity;
 import com.xored.sherlock.status.Status;
-import com.xored.sherlock.status.StatusFactory;
 import com.xored.sherlock.status.StatusUtil;
-import com.xored.x5.agent.core.Log;
 import com.xored.x5.agent.core.Transport;
 import com.xored.x5.common.CommonFactory;
 import com.xored.x5.common.DataSourceEntry;
+import com.xored.x5.common.Log;
 import com.xored.x5.common.PackageEntry;
 
 abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceSender {
@@ -39,6 +38,11 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 	public void attachTo(Transport transport) {
 		detach();
 		this.transport = transport;
+		try {
+			transport.initialize(new ResourceSetImpl());
+		} catch (Exception e) {
+			StatusUtil.newErrorStatus("com.xored.x5.agent.core", e);
+		}
 		attach();
 	}
 
@@ -92,11 +96,8 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 				}
 			}
 		} catch (Exception e) {
-			status = StatusFactory.eINSTANCE.createStatus();
-			status.setSeverity(Severity.ERROR);
-			status.setTarget("com.xored.x5.agent.core");
-			status.setMessage("Can't send data: " + request);
-			status.setException(StatusUtil.convert(e));
+			e.printStackTrace();
+			status = StatusUtil.newErrorStatus("com.xored.x5.agent.core", e, "Can't send data: " + request);
 		}
 		if (status != null) {
 			log.log(status);

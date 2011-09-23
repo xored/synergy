@@ -1,29 +1,35 @@
-package com.xored.x5.common.transport;
+package com.xored.x5.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.BinaryResourceImpl;
 
 public class BinaryReader {
 
-	public BinaryReader(InputStream stream) {
+	public BinaryReader(ResourceSet resourceSet, InputStream stream) {
 		this.stream = stream;
+		this.resourceSet = resourceSet;
 	}
 
 	public EObject read() throws IOException {
-		Resource r = new BinaryResourceImpl();
+		Resource resource = new BinaryResourceImpl();
+		resource.setURI(URI.createURI("mem://" + resource.hashCode()));
+		resourceSet.getResources().add(resource);
+
 		byte[] bytes = readBytes();
 		if (bytes == null) {
 			return null;
 		}
 		ByteArrayInputStream bin = new ByteArrayInputStream(bytes);
-		r.load(bin, null);
-		EObject obj = r.getContents().get(0);
+		resource.load(bin, null);
+		EObject obj = resource.getContents().get(0);
 		return obj;
 	}
 
@@ -42,5 +48,6 @@ public class BinaryReader {
 	}
 
 	private InputStream stream;
+	private ResourceSet resourceSet;
 
 }

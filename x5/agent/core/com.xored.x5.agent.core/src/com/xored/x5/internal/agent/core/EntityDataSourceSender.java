@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.EntityDataSource;
-import com.xored.x5.agent.core.Log;
+import com.xored.x5.common.Log;
 
 class EntityDataSourceSender extends BaseDataSourceSender<EntityDataSource> {
 

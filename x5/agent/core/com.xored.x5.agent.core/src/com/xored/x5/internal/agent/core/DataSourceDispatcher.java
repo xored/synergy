@@ -6,7 +6,7 @@ import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.EntityDataSource;
 import com.xored.sherlock.core.EventDataSource;
 import com.xored.sherlock.core.ProcessDataSource;
-import com.xored.x5.agent.core.Log;
+import com.xored.x5.common.Log;
 
 public class DataSourceDispatcher {
 

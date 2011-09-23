@@ -1,21 +1,11 @@
 package com.xored.x5.server.core;
 
-import org.eclipse.emf.ecore.EObject;
+public interface ServerTransport {
 
-public abstract class ServerTransport {
+	String getId();
 
-	protected void notify(EObject data) {
-		handler.handle(data);
-	}
+	Session accept() throws Exception;
 
-	public void setHandler(RequestHandler handler) {
-		this.handler = handler;
-	}
-
-	public void close() {
-
-	}
-
-	protected RequestHandler handler;
+	void close();
 
 }

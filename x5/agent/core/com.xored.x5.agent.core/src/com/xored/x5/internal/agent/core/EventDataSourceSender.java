@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.EventDataSource;
 import com.xored.sherlock.core.EventListener;
-import com.xored.x5.agent.core.Log;
+import com.xored.x5.common.Log;
 
 class EventDataSourceSender extends BaseDataSourceSender<EventDataSource> implements EventListener {
 

@@ -10,6 +10,9 @@ import java.util.concurrent.Executors;
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceListener;
 import com.xored.sherlock.core.DataSourceRegistry;
+import com.xored.sherlock.status.StatusUtil;
+import com.xored.x5.common.DefaultLog;
+import com.xored.x5.common.Log;
 import com.xored.x5.internal.agent.core.DataSourceDispatcher;
 import com.xored.x5.internal.agent.core.DataSourceSender;
 
@@ -44,7 +47,7 @@ public class X5Agent {
 			try {
 				sender.detach();
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.log(StatusUtil.newErrorStatus("com.xored.x5.agent.core", e));
 			}
 		}
 		executor.shutdown();

@@ -53,6 +53,12 @@
             id="com.xored.sherlock.java">
       </source>
    </extension>
+   <extension point="com.xored.sherlock.eclipse.core.sources">
+      <source
+            class="com.xored.sherlock.thread.sources.ThreadSource"
+            eClass="http://xored.com/sherlock/thread.ecore#//Thread"
+            id="com.xored.sherlock.thread"/>
+   </extension>
    <extension
          point="com.xored.sherlock.eclipse.core.sources">
       <source
@@ -65,7 +71,7 @@
          point="com.xored.sherlock.eclipse.core.sources">
       <source
             class="com.xored.sherlock.eclipse.platform.LogSource"
-            eClass="http://xored.com/sherlock/eclipse/platform.ecore#//Status"
+            eClass="http://xored.com/sherlock/status.ecore#//Status"
             id="com.xored.sherlock.eclipse.log">
       </source>
    </extension>

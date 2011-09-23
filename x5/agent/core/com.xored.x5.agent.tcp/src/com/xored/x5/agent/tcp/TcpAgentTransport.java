@@ -6,10 +6,11 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.xored.x5.agent.core.Transport;
-import com.xored.x5.common.transport.BinaryReader;
-import com.xored.x5.common.transport.BinaryWriter;
+import com.xored.x5.common.BinaryReader;
+import com.xored.x5.common.BinaryWriter;
 
 public class TcpAgentTransport implements Transport {
 
@@ -29,12 +30,16 @@ public class TcpAgentTransport implements Transport {
 		this(port, host, 0);
 	}
 
+	@Override
+	public void initialize(ResourceSet resourceSet) throws IOException {
+		reader = new BinaryReader(resourceSet, socket.getInputStream());
+		writer = new BinaryWriter(resourceSet, socket.getOutputStream());
+	}
+
 	public TcpAgentTransport(int port, InetAddress host, int timeout) throws IOException {
 		InetSocketAddress addr = new InetSocketAddress(host, port);
 		socket = new Socket();
 		socket.connect(addr, timeout);
-		reader = new BinaryReader(socket.getInputStream());
-		writer = new BinaryWriter(socket.getOutputStream());
 	}
 
 	public EObject send(EObject eObject) throws IOException {

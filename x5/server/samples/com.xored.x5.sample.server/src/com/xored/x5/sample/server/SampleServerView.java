@@ -19,6 +19,8 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.xored.sherlock.sample.ui.EContentProvider;
 import com.xored.sherlock.sample.ui.ELabelProvider;
+import com.xored.sherlock.status.StatusUtil;
+import com.xored.x5.common.DefaultLog;
 import com.xored.x5.server.core.Server;
 import com.xored.x5.server.tcp.TcpServerTransport;
 
@@ -28,7 +30,7 @@ public class SampleServerView extends ViewPart {
 	public void init(IViewSite site) throws PartInitException {
 		super.init(site);
 		try {
-			transport = new TcpServerTransport(7887);
+			transport = new TcpServerTransport("com.xored.x5.sample.server", 7887);
 		} catch (IOException e) {
 			throw new PartInitException("Can't initialize tcp transport", e);
 		}
@@ -45,10 +47,10 @@ public class SampleServerView extends ViewPart {
 
 		viewer.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
 
-		server = new Server(transport) {
+		server = new Server(DefaultLog.INSTANCE) {
 
 			@Override
-			protected void handle(final String id, final EObject object) {
+			protected EObject handle(final String id, final EObject object) {
 				runInUI(new Runnable() {
 
 					@Override
@@ -58,15 +60,16 @@ public class SampleServerView extends ViewPart {
 						viewer.add(entities, entry);
 					}
 				});
+				return StatusUtil.newOkStatus();
 			}
 		};
-		server.initialize();
+		server.start(transport);
 		viewer.setInput(entities);
 	}
 
 	@Override
 	public void dispose() {
-		transport.close();
+		server.close();
 		super.dispose();
 	}
 

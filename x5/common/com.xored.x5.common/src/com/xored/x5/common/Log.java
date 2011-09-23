@@ -1,4 +1,4 @@
-package com.xored.x5.agent.core;
+package com.xored.x5.common;
 
 import com.xored.sherlock.status.Status;
 
