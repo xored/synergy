@@ -1,17 +1,15 @@
 package com.xored.x5.agent.tcp;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.BinaryResourceImpl;
 
 import com.xored.x5.agent.core.Transport;
+import com.xored.x5.common.transport.BinaryReader;
+import com.xored.x5.common.transport.BinaryWriter;
 
 public class TcpAgentTransport implements Transport {
 
@@ -35,30 +33,17 @@ public class TcpAgentTransport implements Transport {
 		InetSocketAddress addr = new InetSocketAddress(host, port);
 		socket = new Socket();
 		socket.connect(addr, timeout);
+		reader = new BinaryReader(socket.getInputStream());
+		writer = new BinaryWriter(socket.getOutputStream());
 	}
 
-	public void send(EObject object) {
-		try {
-			writeObject(object);
-		} catch (IOException e) {
-			throw new RuntimeException("Can't send object '" + object + "'", e);
-		}
+	public EObject send(EObject eObject) throws IOException {
+		writer.write(eObject);
+		return reader.read();
 	}
 
-	private void writeObject(EObject obj) throws IOException {
-		Resource r = new BinaryResourceImpl();
-		r.getContents().add(obj);
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		r.save(out, null);
-		writeData(out.toByteArray());
-	}
-
-	private void writeData(byte[] data) throws IOException {
-		DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-		out.writeInt(data.length);
-		out.write(data);
-		out.flush();
-	}
+	private BinaryReader reader;
+	private BinaryWriter writer;
 
 	private Socket socket;
 

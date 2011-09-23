@@ -15,6 +15,7 @@
 
 	<modules>
 		<module>com.xored.sherlock.core</module>
+		<module>com.xored.sherlock.status</module>
 		<module>com.xored.sherlock.system</module>
 		<module>com.xored.sherlock.thread</module>
 	</modules>

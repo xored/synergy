@@ -1,5 +1,6 @@
 package com.xored.sherlock.core.base;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -37,7 +38,7 @@ public class FixedDataSourceRegistry implements DataSourceRegistry {
 
 	@Override
 	public Collection<DataSourceFactory> getFactories() {
-		return factories.values();
+		return new ArrayList<DataSourceFactory>(factories.values());
 	}
 
 	@Override
@@ -51,8 +52,8 @@ public class FixedDataSourceRegistry implements DataSourceRegistry {
 	}
 
 	@Override
-	public Collection<DataSourceFactory> addListener(DataSourceListener listener) {
-		return getFactories();
+	public boolean addListener(DataSourceListener listener) {
+		return true;
 	}
 
 	@Override

@@ -7,5 +7,6 @@ Bundle-Vendor: xored software, Inc.
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore,
  com.xored.sherlock.core,
+ com.xored.sherlock.status,
  com.xored.x5.common
 Export-Package: com.xored.x5.agent.core

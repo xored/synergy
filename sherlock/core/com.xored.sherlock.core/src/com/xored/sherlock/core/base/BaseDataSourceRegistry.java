@@ -1,5 +1,6 @@
 package com.xored.sherlock.core.base;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -35,7 +36,7 @@ public class BaseDataSourceRegistry implements DataSourceRegistry {
 	}
 
 	public synchronized Collection<DataSourceFactory> getFactories() {
-		return Collections.unmodifiableCollection(factories.values());
+		return new ArrayList<DataSourceFactory>(factories.values());
 	}
 
 	public boolean addFactory(DataSourceFactory factory) {
@@ -66,9 +67,8 @@ public class BaseDataSourceRegistry implements DataSourceRegistry {
 		return true;
 	}
 
-	public synchronized Collection<DataSourceFactory> addListener(DataSourceListener listener) {
-		listeners.addIfAbsent(listener);
-		return getFactories();
+	public boolean addListener(DataSourceListener listener) {
+		return listeners.addIfAbsent(listener);
 	}
 
 	public boolean removeListener(DataSourceListener listener) {

@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package com.xored.sherlock.eclipse.platform.util;
+package com.xored.sherlock.status.util;
 
-import com.xored.sherlock.eclipse.platform.*;
+import com.xored.sherlock.status.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -20,17 +20,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see com.xored.sherlock.eclipse.platform.PlatformPackage
+ * @see com.xored.sherlock.status.StatusPackage
  * @generated
  */
-public class PlatformAdapterFactory extends AdapterFactoryImpl {
+public class StatusAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static PlatformPackage modelPackage;
+	protected static StatusPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -38,9 +38,9 @@ public class PlatformAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PlatformAdapterFactory() {
+	public StatusAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = PlatformPackage.eINSTANCE;
+			modelPackage = StatusPackage.eINSTANCE;
 		}
 	}
 
@@ -69,23 +69,19 @@ public class PlatformAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PlatformSwitch<Adapter> modelSwitch =
-		new PlatformSwitch<Adapter>() {
+	protected StatusSwitch<Adapter> modelSwitch =
+		new StatusSwitch<Adapter>() {
 			@Override
-			public Adapter casePlatform(Platform object) {
-				return createPlatformAdapter();
+			public Adapter caseJavaException(JavaException object) {
+				return createJavaExceptionAdapter();
 			}
 			@Override
-			public Adapter casePlugin(Plugin object) {
-				return createPluginAdapter();
+			public Adapter caseJavaStackTraceEntry(JavaStackTraceEntry object) {
+				return createJavaStackTraceEntryAdapter();
 			}
 			@Override
-			public Adapter caseFeature(Feature object) {
-				return createFeatureAdapter();
-			}
-			@Override
-			public Adapter casePreference(Preference object) {
-				return createPreferenceAdapter();
+			public Adapter caseStatus(Status object) {
+				return createStatusAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -108,58 +104,44 @@ public class PlatformAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.eclipse.platform.Platform <em>Platform</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.status.JavaException <em>Java Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.xored.sherlock.eclipse.platform.Platform
+	 * @see com.xored.sherlock.status.JavaException
 	 * @generated
 	 */
-	public Adapter createPlatformAdapter() {
+	public Adapter createJavaExceptionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.eclipse.platform.Plugin <em>Plugin</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.status.JavaStackTraceEntry <em>Java Stack Trace Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.xored.sherlock.eclipse.platform.Plugin
+	 * @see com.xored.sherlock.status.JavaStackTraceEntry
 	 * @generated
 	 */
-	public Adapter createPluginAdapter() {
+	public Adapter createJavaStackTraceEntryAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.eclipse.platform.Feature <em>Feature</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.status.Status <em>Status</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.xored.sherlock.eclipse.platform.Feature
+	 * @see com.xored.sherlock.status.Status
 	 * @generated
 	 */
-	public Adapter createFeatureAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.sherlock.eclipse.platform.Preference <em>Preference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.xored.sherlock.eclipse.platform.Preference
-	 * @generated
-	 */
-	public Adapter createPreferenceAdapter() {
+	public Adapter createStatusAdapter() {
 		return null;
 	}
 
@@ -175,4 +157,4 @@ public class PlatformAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //PlatformAdapterFactory
+} //StatusAdapterFactory

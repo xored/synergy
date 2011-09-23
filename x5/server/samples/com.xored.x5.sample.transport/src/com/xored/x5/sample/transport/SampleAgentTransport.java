@@ -2,6 +2,7 @@ package com.xored.x5.sample.transport;
 
 import org.eclipse.emf.ecore.EObject;
 
+import com.xored.sherlock.status.StatusUtil;
 import com.xored.x5.agent.core.Transport;
 
 public class SampleAgentTransport implements Transport {
@@ -11,8 +12,9 @@ public class SampleAgentTransport implements Transport {
 	}
 
 	@Override
-	public void send(EObject data) {
+	public EObject send(EObject data) {
 		server.notify(data);
+		return StatusUtil.newOkStatus();
 	}
 
 	private SampleServerTransport server;

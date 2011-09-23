@@ -1,6 +1,7 @@
 package com.xored.sherlock.sample.ui;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.eclipse.ui.part.ViewPart;
 import com.xored.sherlock.core.DataSource;
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.DataSourceListener;
+import com.xored.sherlock.core.DataSourceRegistry;
 import com.xored.sherlock.core.EntityDataSource;
 import com.xored.sherlock.core.EventDataSource;
 import com.xored.sherlock.core.EventListener;
@@ -56,7 +58,13 @@ public class SherlockView extends ViewPart {
 				});
 			}
 		};
-		for (DataSourceFactory factory : SherlockCore.getRegistry().addListener(listener)) {
+		DataSourceRegistry registry = SherlockCore.getRegistry();
+		Collection<DataSourceFactory> factories;
+		synchronized (registry) {
+			factories = registry.getFactories();
+			registry.addListener(listener);
+		}
+		for (DataSourceFactory factory : factories) {
 			addSource(factory);
 		}
 		viewer.setInput(sources);

@@ -17,7 +17,7 @@ public interface DataSourceRegistry {
 
 	boolean removeFactory(DataSourceFactory factory);
 
-	Collection<DataSourceFactory> addListener(DataSourceListener listener);
+	boolean addListener(DataSourceListener listener);
 
 	boolean removeListener(DataSourceListener listener);
 

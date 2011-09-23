@@ -4,11 +4,11 @@
  *
  * $Id$
  */
-package com.xored.sherlock.eclipse.platform.impl;
+package com.xored.sherlock.status.impl;
 
-import com.xored.sherlock.eclipse.platform.JavaException;
-import com.xored.sherlock.eclipse.platform.JavaStackTraceEntry;
-import com.xored.sherlock.eclipse.platform.PlatformPackage;
+import com.xored.sherlock.status.JavaException;
+import com.xored.sherlock.status.JavaStackTraceEntry;
+import com.xored.sherlock.status.StatusPackage;
 
 import java.util.Collection;
 
@@ -33,10 +33,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.JavaExceptionImpl#getClassName <em>Class Name</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.JavaExceptionImpl#getCause <em>Cause</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.JavaExceptionImpl#getMessage <em>Message</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.JavaExceptionImpl#getStacktrace <em>Stacktrace</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.JavaExceptionImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.JavaExceptionImpl#getCause <em>Cause</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.JavaExceptionImpl#getMessage <em>Message</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.JavaExceptionImpl#getStacktrace <em>Stacktrace</em>}</li>
  * </ul>
  * </p>
  *
@@ -119,7 +119,7 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PlatformPackage.Literals.JAVA_EXCEPTION;
+		return StatusPackage.Literals.JAVA_EXCEPTION;
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 		String oldClassName = className;
 		className = newClassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.JAVA_EXCEPTION__CLASS_NAME, oldClassName, className));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.JAVA_EXCEPTION__CLASS_NAME, oldClassName, className));
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 		JavaException oldCause = cause;
 		cause = newCause;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PlatformPackage.JAVA_EXCEPTION__CAUSE, oldCause, newCause);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StatusPackage.JAVA_EXCEPTION__CAUSE, oldCause, newCause);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -176,14 +176,14 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 		if (newCause != cause) {
 			NotificationChain msgs = null;
 			if (cause != null)
-				msgs = ((InternalEObject)cause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PlatformPackage.JAVA_EXCEPTION__CAUSE, null, msgs);
+				msgs = ((InternalEObject)cause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StatusPackage.JAVA_EXCEPTION__CAUSE, null, msgs);
 			if (newCause != null)
-				msgs = ((InternalEObject)newCause).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PlatformPackage.JAVA_EXCEPTION__CAUSE, null, msgs);
+				msgs = ((InternalEObject)newCause).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StatusPackage.JAVA_EXCEPTION__CAUSE, null, msgs);
 			msgs = basicSetCause(newCause, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.JAVA_EXCEPTION__CAUSE, newCause, newCause));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.JAVA_EXCEPTION__CAUSE, newCause, newCause));
 	}
 
 	/**
@@ -204,7 +204,7 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 		String oldMessage = message;
 		message = newMessage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.JAVA_EXCEPTION__MESSAGE, oldMessage, message));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.JAVA_EXCEPTION__MESSAGE, oldMessage, message));
 	}
 
 	/**
@@ -214,7 +214,7 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 	 */
 	public EList<JavaStackTraceEntry> getStacktrace() {
 		if (stacktrace == null) {
-			stacktrace = new EObjectContainmentEList<JavaStackTraceEntry>(JavaStackTraceEntry.class, this, PlatformPackage.JAVA_EXCEPTION__STACKTRACE);
+			stacktrace = new EObjectContainmentEList<JavaStackTraceEntry>(JavaStackTraceEntry.class, this, StatusPackage.JAVA_EXCEPTION__STACKTRACE);
 		}
 		return stacktrace;
 	}
@@ -227,9 +227,9 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PlatformPackage.JAVA_EXCEPTION__CAUSE:
+			case StatusPackage.JAVA_EXCEPTION__CAUSE:
 				return basicSetCause(null, msgs);
-			case PlatformPackage.JAVA_EXCEPTION__STACKTRACE:
+			case StatusPackage.JAVA_EXCEPTION__STACKTRACE:
 				return ((InternalEList<?>)getStacktrace()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -243,13 +243,13 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PlatformPackage.JAVA_EXCEPTION__CLASS_NAME:
+			case StatusPackage.JAVA_EXCEPTION__CLASS_NAME:
 				return getClassName();
-			case PlatformPackage.JAVA_EXCEPTION__CAUSE:
+			case StatusPackage.JAVA_EXCEPTION__CAUSE:
 				return getCause();
-			case PlatformPackage.JAVA_EXCEPTION__MESSAGE:
+			case StatusPackage.JAVA_EXCEPTION__MESSAGE:
 				return getMessage();
-			case PlatformPackage.JAVA_EXCEPTION__STACKTRACE:
+			case StatusPackage.JAVA_EXCEPTION__STACKTRACE:
 				return getStacktrace();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -264,16 +264,16 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PlatformPackage.JAVA_EXCEPTION__CLASS_NAME:
+			case StatusPackage.JAVA_EXCEPTION__CLASS_NAME:
 				setClassName((String)newValue);
 				return;
-			case PlatformPackage.JAVA_EXCEPTION__CAUSE:
+			case StatusPackage.JAVA_EXCEPTION__CAUSE:
 				setCause((JavaException)newValue);
 				return;
-			case PlatformPackage.JAVA_EXCEPTION__MESSAGE:
+			case StatusPackage.JAVA_EXCEPTION__MESSAGE:
 				setMessage((String)newValue);
 				return;
-			case PlatformPackage.JAVA_EXCEPTION__STACKTRACE:
+			case StatusPackage.JAVA_EXCEPTION__STACKTRACE:
 				getStacktrace().clear();
 				getStacktrace().addAll((Collection<? extends JavaStackTraceEntry>)newValue);
 				return;
@@ -289,16 +289,16 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PlatformPackage.JAVA_EXCEPTION__CLASS_NAME:
+			case StatusPackage.JAVA_EXCEPTION__CLASS_NAME:
 				setClassName(CLASS_NAME_EDEFAULT);
 				return;
-			case PlatformPackage.JAVA_EXCEPTION__CAUSE:
+			case StatusPackage.JAVA_EXCEPTION__CAUSE:
 				setCause((JavaException)null);
 				return;
-			case PlatformPackage.JAVA_EXCEPTION__MESSAGE:
+			case StatusPackage.JAVA_EXCEPTION__MESSAGE:
 				setMessage(MESSAGE_EDEFAULT);
 				return;
-			case PlatformPackage.JAVA_EXCEPTION__STACKTRACE:
+			case StatusPackage.JAVA_EXCEPTION__STACKTRACE:
 				getStacktrace().clear();
 				return;
 		}
@@ -313,13 +313,13 @@ public class JavaExceptionImpl extends EObjectImpl implements JavaException {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PlatformPackage.JAVA_EXCEPTION__CLASS_NAME:
+			case StatusPackage.JAVA_EXCEPTION__CLASS_NAME:
 				return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
-			case PlatformPackage.JAVA_EXCEPTION__CAUSE:
+			case StatusPackage.JAVA_EXCEPTION__CAUSE:
 				return cause != null;
-			case PlatformPackage.JAVA_EXCEPTION__MESSAGE:
+			case StatusPackage.JAVA_EXCEPTION__MESSAGE:
 				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
-			case PlatformPackage.JAVA_EXCEPTION__STACKTRACE:
+			case StatusPackage.JAVA_EXCEPTION__STACKTRACE:
 				return stacktrace != null && !stacktrace.isEmpty();
 		}
 		return super.eIsSet(featureID);

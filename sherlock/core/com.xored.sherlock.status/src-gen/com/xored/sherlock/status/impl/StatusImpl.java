@@ -4,11 +4,12 @@
  *
  * $Id$
  */
-package com.xored.sherlock.eclipse.platform.impl;
+package com.xored.sherlock.status.impl;
 
-import com.xored.sherlock.eclipse.platform.JavaException;
-import com.xored.sherlock.eclipse.platform.PlatformPackage;
-import com.xored.sherlock.eclipse.platform.Status;
+import com.xored.sherlock.status.JavaException;
+import com.xored.sherlock.status.Severity;
+import com.xored.sherlock.status.Status;
+import com.xored.sherlock.status.StatusPackage;
 
 import java.util.Collection;
 
@@ -33,12 +34,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.StatusImpl#getChildren <em>Children</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.StatusImpl#getCode <em>Code</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.StatusImpl#getMessage <em>Message</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.StatusImpl#getPlugin <em>Plugin</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.StatusImpl#getSeverity <em>Severity</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.StatusImpl#getException <em>Exception</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.StatusImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.StatusImpl#getCode <em>Code</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.StatusImpl#getMessage <em>Message</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.StatusImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.StatusImpl#getSeverity <em>Severity</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.StatusImpl#getException <em>Exception</em>}</li>
  * </ul>
  * </p>
  *
@@ -96,24 +97,24 @@ public class StatusImpl extends EObjectImpl implements Status {
 	protected String message = MESSAGE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPlugin() <em>Plugin</em>}' attribute.
+	 * The default value of the '{@link #getTarget() <em>Target</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPlugin()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PLUGIN_EDEFAULT = null;
+	protected static final String TARGET_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPlugin() <em>Plugin</em>}' attribute.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPlugin()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected String plugin = PLUGIN_EDEFAULT;
+	protected String target = TARGET_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
@@ -123,7 +124,7 @@ public class StatusImpl extends EObjectImpl implements Status {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SEVERITY_EDEFAULT = 0;
+	protected static final Severity SEVERITY_EDEFAULT = Severity.OK;
 
 	/**
 	 * The cached value of the '{@link #getSeverity() <em>Severity</em>}' attribute.
@@ -133,7 +134,7 @@ public class StatusImpl extends EObjectImpl implements Status {
 	 * @generated
 	 * @ordered
 	 */
-	protected int severity = SEVERITY_EDEFAULT;
+	protected Severity severity = SEVERITY_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getException() <em>Exception</em>}' containment reference.
@@ -161,7 +162,7 @@ public class StatusImpl extends EObjectImpl implements Status {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PlatformPackage.Literals.STATUS;
+		return StatusPackage.Literals.STATUS;
 	}
 
 	/**
@@ -171,7 +172,7 @@ public class StatusImpl extends EObjectImpl implements Status {
 	 */
 	public EList<Status> getChildren() {
 		if (children == null) {
-			children = new EObjectContainmentEList<Status>(Status.class, this, PlatformPackage.STATUS__CHILDREN);
+			children = new EObjectContainmentEList<Status>(Status.class, this, StatusPackage.STATUS__CHILDREN);
 		}
 		return children;
 	}
@@ -194,7 +195,7 @@ public class StatusImpl extends EObjectImpl implements Status {
 		int oldCode = code;
 		code = newCode;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.STATUS__CODE, oldCode, code));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.STATUS__CODE, oldCode, code));
 	}
 
 	/**
@@ -215,7 +216,7 @@ public class StatusImpl extends EObjectImpl implements Status {
 		String oldMessage = message;
 		message = newMessage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.STATUS__MESSAGE, oldMessage, message));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.STATUS__MESSAGE, oldMessage, message));
 	}
 
 	/**
@@ -223,8 +224,8 @@ public class StatusImpl extends EObjectImpl implements Status {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPlugin() {
-		return plugin;
+	public String getTarget() {
+		return target;
 	}
 
 	/**
@@ -232,11 +233,11 @@ public class StatusImpl extends EObjectImpl implements Status {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlugin(String newPlugin) {
-		String oldPlugin = plugin;
-		plugin = newPlugin;
+	public void setTarget(String newTarget) {
+		String oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.STATUS__PLUGIN, oldPlugin, plugin));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.STATUS__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -244,7 +245,7 @@ public class StatusImpl extends EObjectImpl implements Status {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSeverity() {
+	public Severity getSeverity() {
 		return severity;
 	}
 
@@ -253,11 +254,11 @@ public class StatusImpl extends EObjectImpl implements Status {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSeverity(int newSeverity) {
-		int oldSeverity = severity;
-		severity = newSeverity;
+	public void setSeverity(Severity newSeverity) {
+		Severity oldSeverity = severity;
+		severity = newSeverity == null ? SEVERITY_EDEFAULT : newSeverity;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.STATUS__SEVERITY, oldSeverity, severity));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.STATUS__SEVERITY, oldSeverity, severity));
 	}
 
 	/**
@@ -278,7 +279,7 @@ public class StatusImpl extends EObjectImpl implements Status {
 		JavaException oldException = exception;
 		exception = newException;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PlatformPackage.STATUS__EXCEPTION, oldException, newException);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StatusPackage.STATUS__EXCEPTION, oldException, newException);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -293,14 +294,14 @@ public class StatusImpl extends EObjectImpl implements Status {
 		if (newException != exception) {
 			NotificationChain msgs = null;
 			if (exception != null)
-				msgs = ((InternalEObject)exception).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PlatformPackage.STATUS__EXCEPTION, null, msgs);
+				msgs = ((InternalEObject)exception).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StatusPackage.STATUS__EXCEPTION, null, msgs);
 			if (newException != null)
-				msgs = ((InternalEObject)newException).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PlatformPackage.STATUS__EXCEPTION, null, msgs);
+				msgs = ((InternalEObject)newException).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StatusPackage.STATUS__EXCEPTION, null, msgs);
 			msgs = basicSetException(newException, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.STATUS__EXCEPTION, newException, newException));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.STATUS__EXCEPTION, newException, newException));
 	}
 
 	/**
@@ -311,9 +312,9 @@ public class StatusImpl extends EObjectImpl implements Status {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PlatformPackage.STATUS__CHILDREN:
+			case StatusPackage.STATUS__CHILDREN:
 				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
-			case PlatformPackage.STATUS__EXCEPTION:
+			case StatusPackage.STATUS__EXCEPTION:
 				return basicSetException(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -327,17 +328,17 @@ public class StatusImpl extends EObjectImpl implements Status {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PlatformPackage.STATUS__CHILDREN:
+			case StatusPackage.STATUS__CHILDREN:
 				return getChildren();
-			case PlatformPackage.STATUS__CODE:
+			case StatusPackage.STATUS__CODE:
 				return getCode();
-			case PlatformPackage.STATUS__MESSAGE:
+			case StatusPackage.STATUS__MESSAGE:
 				return getMessage();
-			case PlatformPackage.STATUS__PLUGIN:
-				return getPlugin();
-			case PlatformPackage.STATUS__SEVERITY:
+			case StatusPackage.STATUS__TARGET:
+				return getTarget();
+			case StatusPackage.STATUS__SEVERITY:
 				return getSeverity();
-			case PlatformPackage.STATUS__EXCEPTION:
+			case StatusPackage.STATUS__EXCEPTION:
 				return getException();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -352,23 +353,23 @@ public class StatusImpl extends EObjectImpl implements Status {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PlatformPackage.STATUS__CHILDREN:
+			case StatusPackage.STATUS__CHILDREN:
 				getChildren().clear();
 				getChildren().addAll((Collection<? extends Status>)newValue);
 				return;
-			case PlatformPackage.STATUS__CODE:
+			case StatusPackage.STATUS__CODE:
 				setCode((Integer)newValue);
 				return;
-			case PlatformPackage.STATUS__MESSAGE:
+			case StatusPackage.STATUS__MESSAGE:
 				setMessage((String)newValue);
 				return;
-			case PlatformPackage.STATUS__PLUGIN:
-				setPlugin((String)newValue);
+			case StatusPackage.STATUS__TARGET:
+				setTarget((String)newValue);
 				return;
-			case PlatformPackage.STATUS__SEVERITY:
-				setSeverity((Integer)newValue);
+			case StatusPackage.STATUS__SEVERITY:
+				setSeverity((Severity)newValue);
 				return;
-			case PlatformPackage.STATUS__EXCEPTION:
+			case StatusPackage.STATUS__EXCEPTION:
 				setException((JavaException)newValue);
 				return;
 		}
@@ -383,22 +384,22 @@ public class StatusImpl extends EObjectImpl implements Status {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PlatformPackage.STATUS__CHILDREN:
+			case StatusPackage.STATUS__CHILDREN:
 				getChildren().clear();
 				return;
-			case PlatformPackage.STATUS__CODE:
+			case StatusPackage.STATUS__CODE:
 				setCode(CODE_EDEFAULT);
 				return;
-			case PlatformPackage.STATUS__MESSAGE:
+			case StatusPackage.STATUS__MESSAGE:
 				setMessage(MESSAGE_EDEFAULT);
 				return;
-			case PlatformPackage.STATUS__PLUGIN:
-				setPlugin(PLUGIN_EDEFAULT);
+			case StatusPackage.STATUS__TARGET:
+				setTarget(TARGET_EDEFAULT);
 				return;
-			case PlatformPackage.STATUS__SEVERITY:
+			case StatusPackage.STATUS__SEVERITY:
 				setSeverity(SEVERITY_EDEFAULT);
 				return;
-			case PlatformPackage.STATUS__EXCEPTION:
+			case StatusPackage.STATUS__EXCEPTION:
 				setException((JavaException)null);
 				return;
 		}
@@ -413,17 +414,17 @@ public class StatusImpl extends EObjectImpl implements Status {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PlatformPackage.STATUS__CHILDREN:
+			case StatusPackage.STATUS__CHILDREN:
 				return children != null && !children.isEmpty();
-			case PlatformPackage.STATUS__CODE:
+			case StatusPackage.STATUS__CODE:
 				return code != CODE_EDEFAULT;
-			case PlatformPackage.STATUS__MESSAGE:
+			case StatusPackage.STATUS__MESSAGE:
 				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
-			case PlatformPackage.STATUS__PLUGIN:
-				return PLUGIN_EDEFAULT == null ? plugin != null : !PLUGIN_EDEFAULT.equals(plugin);
-			case PlatformPackage.STATUS__SEVERITY:
+			case StatusPackage.STATUS__TARGET:
+				return TARGET_EDEFAULT == null ? target != null : !TARGET_EDEFAULT.equals(target);
+			case StatusPackage.STATUS__SEVERITY:
 				return severity != SEVERITY_EDEFAULT;
-			case PlatformPackage.STATUS__EXCEPTION:
+			case StatusPackage.STATUS__EXCEPTION:
 				return exception != null;
 		}
 		return super.eIsSet(featureID);
@@ -443,8 +444,8 @@ public class StatusImpl extends EObjectImpl implements Status {
 		result.append(code);
 		result.append(", message: ");
 		result.append(message);
-		result.append(", plugin: ");
-		result.append(plugin);
+		result.append(", target: ");
+		result.append(target);
 		result.append(", severity: ");
 		result.append(severity);
 		result.append(')');

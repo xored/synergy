@@ -19,6 +19,20 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
+            uri="http://xored.com/sherlock/status.ecore"
+            class="com.xored.sherlock.status.StatusPackage"
+            genModel="platform:/plugin/com.xored.sherlock.status/model/status.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://xored.com/sherlock/thread.ecore"
+            class="com.xored.sherlock.thread.ThreadPackage"
+            genModel="platform:/plugin/com.xored.sherlock.thread/model/thread.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
             uri="http://xored.com/sherlock/eclipse/platform.ecore"
             class="com.xored.sherlock.eclipse.platform.PlatformPackage"
             genModel="model/platform.genmodel"/>

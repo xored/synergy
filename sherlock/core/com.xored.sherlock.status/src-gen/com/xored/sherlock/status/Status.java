@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package com.xored.sherlock.eclipse.platform;
+package com.xored.sherlock.status;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -18,23 +18,23 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link com.xored.sherlock.eclipse.platform.Status#getChildren <em>Children</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.Status#getCode <em>Code</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.Status#getMessage <em>Message</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.Status#getPlugin <em>Plugin</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.Status#getSeverity <em>Severity</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.Status#getException <em>Exception</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.Status#getChildren <em>Children</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.Status#getCode <em>Code</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.Status#getMessage <em>Message</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.Status#getTarget <em>Target</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.Status#getSeverity <em>Severity</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.Status#getException <em>Exception</em>}</li>
  * </ul>
  * </p>
  *
- * @see com.xored.sherlock.eclipse.platform.PlatformPackage#getStatus()
+ * @see com.xored.sherlock.status.StatusPackage#getStatus()
  * @model
  * @generated
  */
 public interface Status extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Children</b></em>' containment reference list.
-	 * The list contents are of type {@link com.xored.sherlock.eclipse.platform.Status}.
+	 * The list contents are of type {@link com.xored.sherlock.status.Status}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Children</em>' containment reference list isn't clear,
@@ -42,7 +42,7 @@ public interface Status extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Children</em>' containment reference list.
-	 * @see com.xored.sherlock.eclipse.platform.PlatformPackage#getStatus_Children()
+	 * @see com.xored.sherlock.status.StatusPackage#getStatus_Children()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -58,14 +58,14 @@ public interface Status extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Code</em>' attribute.
 	 * @see #setCode(int)
-	 * @see com.xored.sherlock.eclipse.platform.PlatformPackage#getStatus_Code()
+	 * @see com.xored.sherlock.status.StatusPackage#getStatus_Code()
 	 * @model
 	 * @generated
 	 */
 	int getCode();
 
 	/**
-	 * Sets the value of the '{@link com.xored.sherlock.eclipse.platform.Status#getCode <em>Code</em>}' attribute.
+	 * Sets the value of the '{@link com.xored.sherlock.status.Status#getCode <em>Code</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Code</em>' attribute.
@@ -84,14 +84,14 @@ public interface Status extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Message</em>' attribute.
 	 * @see #setMessage(String)
-	 * @see com.xored.sherlock.eclipse.platform.PlatformPackage#getStatus_Message()
+	 * @see com.xored.sherlock.status.StatusPackage#getStatus_Message()
 	 * @model
 	 * @generated
 	 */
 	String getMessage();
 
 	/**
-	 * Sets the value of the '{@link com.xored.sherlock.eclipse.platform.Status#getMessage <em>Message</em>}' attribute.
+	 * Sets the value of the '{@link com.xored.sherlock.status.Status#getMessage <em>Message</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Message</em>' attribute.
@@ -101,33 +101,34 @@ public interface Status extends EObject {
 	void setMessage(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Plugin</b></em>' attribute.
+	 * Returns the value of the '<em><b>Target</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Plugin</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Target</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Plugin</em>' attribute.
-	 * @see #setPlugin(String)
-	 * @see com.xored.sherlock.eclipse.platform.PlatformPackage#getStatus_Plugin()
+	 * @return the value of the '<em>Target</em>' attribute.
+	 * @see #setTarget(String)
+	 * @see com.xored.sherlock.status.StatusPackage#getStatus_Target()
 	 * @model
 	 * @generated
 	 */
-	String getPlugin();
+	String getTarget();
 
 	/**
-	 * Sets the value of the '{@link com.xored.sherlock.eclipse.platform.Status#getPlugin <em>Plugin</em>}' attribute.
+	 * Sets the value of the '{@link com.xored.sherlock.status.Status#getTarget <em>Target</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Plugin</em>' attribute.
-	 * @see #getPlugin()
+	 * @param value the new value of the '<em>Target</em>' attribute.
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setPlugin(String value);
+	void setTarget(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Severity</b></em>' attribute.
+	 * The literals are from the enumeration {@link com.xored.sherlock.status.Severity}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Severity</em>' attribute isn't clear,
@@ -135,22 +136,24 @@ public interface Status extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Severity</em>' attribute.
-	 * @see #setSeverity(int)
-	 * @see com.xored.sherlock.eclipse.platform.PlatformPackage#getStatus_Severity()
+	 * @see com.xored.sherlock.status.Severity
+	 * @see #setSeverity(Severity)
+	 * @see com.xored.sherlock.status.StatusPackage#getStatus_Severity()
 	 * @model
 	 * @generated
 	 */
-	int getSeverity();
+	Severity getSeverity();
 
 	/**
-	 * Sets the value of the '{@link com.xored.sherlock.eclipse.platform.Status#getSeverity <em>Severity</em>}' attribute.
+	 * Sets the value of the '{@link com.xored.sherlock.status.Status#getSeverity <em>Severity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Severity</em>' attribute.
+	 * @see com.xored.sherlock.status.Severity
 	 * @see #getSeverity()
 	 * @generated
 	 */
-	void setSeverity(int value);
+	void setSeverity(Severity value);
 
 	/**
 	 * Returns the value of the '<em><b>Exception</b></em>' containment reference.
@@ -162,14 +165,14 @@ public interface Status extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Exception</em>' containment reference.
 	 * @see #setException(JavaException)
-	 * @see com.xored.sherlock.eclipse.platform.PlatformPackage#getStatus_Exception()
+	 * @see com.xored.sherlock.status.StatusPackage#getStatus_Exception()
 	 * @model containment="true"
 	 * @generated
 	 */
 	JavaException getException();
 
 	/**
-	 * Sets the value of the '{@link com.xored.sherlock.eclipse.platform.Status#getException <em>Exception</em>}' containment reference.
+	 * Sets the value of the '{@link com.xored.sherlock.status.Status#getException <em>Exception</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Exception</em>' containment reference.

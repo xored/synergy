@@ -6,17 +6,18 @@ import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.EntityDataSource;
 import com.xored.sherlock.core.EventDataSource;
 import com.xored.sherlock.core.ProcessDataSource;
+import com.xored.x5.agent.core.Log;
 
 public class DataSourceDispatcher {
 
-	public static DataSourceSender create(DataSourceFactory factory, ExecutorService executor) {
+	public static DataSourceSender create(DataSourceFactory factory, ExecutorService executor, Log log) {
 		Class<?> clazz = factory.getSourceClass();
 		if (EventDataSource.class.isAssignableFrom(clazz)) {
-			return new EventDataSourceSender(factory, executor);
+			return new EventDataSourceSender(factory, executor, log);
 		} else if (EntityDataSource.class.isAssignableFrom(clazz)) {
-			return new EntityDataSourceSender(factory, executor);
+			return new EntityDataSourceSender(factory, executor, log);
 		} else if (ProcessDataSource.class.isAssignableFrom(clazz)) {
-			return new ProcessDataSourceSender(factory, executor);
+			return new ProcessDataSourceSender(factory, executor, log);
 		}
 		return null;
 	}

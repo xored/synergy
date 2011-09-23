@@ -1,5 +1,6 @@
 package com.xored.x5.agent.core;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,14 +16,24 @@ import com.xored.x5.internal.agent.core.DataSourceSender;
 public class X5Agent {
 
 	public X5Agent(Transport transport, DataSourceRegistry registry) {
+		this(transport, registry, DefaultLog.INSTANCE);
+	}
+
+	public X5Agent(Transport transport, DataSourceRegistry registry, Log log) {
 		this.transport = transport;
 		this.registry = registry;
+		this.log = log;
 	}
 
 	public void initialize() {
 		senders = Collections.synchronizedMap(new HashMap<DataSourceFactory, DataSourceSender>());
 		executor = Executors.newFixedThreadPool(1);
-		for (DataSourceFactory factory : registry.addListener(listener)) {
+		Collection<DataSourceFactory> factories;
+		synchronized (registry) {
+			factories = registry.getFactories();
+			registry.addListener(listener);
+		}
+		for (DataSourceFactory factory : factories) {
 			attach(factory);
 		}
 	}
@@ -40,7 +51,7 @@ public class X5Agent {
 	}
 
 	private void attach(DataSourceFactory factory) {
-		DataSourceSender sender = DataSourceDispatcher.create(factory, executor);
+		DataSourceSender sender = DataSourceDispatcher.create(factory, executor, log);
 		if (sender != null) {
 			senders.put(factory, sender);
 			sender.attachTo(transport);
@@ -72,6 +83,7 @@ public class X5Agent {
 
 	private Transport transport;
 	private DataSourceRegistry registry;
+	private Log log;
 	private Map<DataSourceFactory, DataSourceSender> senders;
 	private ExecutorService executor;
 

@@ -17,6 +17,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.xored.sherlock.core.DataSource;
 import com.xored.sherlock.core.DataSourceFactory;
+import com.xored.sherlock.status.Severity;
+import com.xored.sherlock.status.Status;
+import com.xored.sherlock.status.StatusFactory;
+import com.xored.sherlock.status.StatusUtil;
+import com.xored.x5.agent.core.Log;
 import com.xored.x5.agent.core.Transport;
 import com.xored.x5.common.CommonFactory;
 import com.xored.x5.common.DataSourceEntry;
@@ -24,9 +29,10 @@ import com.xored.x5.common.PackageEntry;
 
 abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceSender {
 
-	protected BaseDataSourceSender(DataSourceFactory factory, ExecutorService executor) {
+	protected BaseDataSourceSender(DataSourceFactory factory, ExecutorService executor, Log log) {
 		this.factory = factory;
 		this.executor = executor;
+		this.log = log;
 		knownPackages.add(EcorePackage.eINSTANCE);
 	}
 
@@ -63,16 +69,38 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 						PackageEntry entry = CommonFactory.eINSTANCE.createPackageEntry();
 						entry.setSource(factory.getId());
 						entry.setContent(EcoreUtil.copy(ePackage));
-						transport.send(entry);
+						send(entry);
 					}
 				}
 
 				DataSourceEntry entry = CommonFactory.eINSTANCE.createDataSourceEntry();
 				entry.setSource(factory.getId());
 				entry.setContent(data);
-				transport.send(entry);
+				send(entry);
 			}
 		});
+	}
+
+	private void send(EObject request) {
+		Status status = null;
+		try {
+			EObject response = transport.send(request);
+			if (response instanceof Status) {
+				status = (Status) response;
+				if (StatusUtil.isOk(status)) {
+					status = null;
+				}
+			}
+		} catch (Exception e) {
+			status = StatusFactory.eINSTANCE.createStatus();
+			status.setSeverity(Severity.ERROR);
+			status.setTarget("com.xored.x5.agent.core");
+			status.setMessage("Can't send data: " + request);
+			status.setException(StatusUtil.convert(e));
+		}
+		if (status != null) {
+			log.log(status);
+		}
 	}
 
 	private Set<EPackage> knownPackages = new HashSet<EPackage>();
@@ -106,6 +134,7 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 	}
 
 	private T source;
+	private Log log;
 	private DataSourceFactory factory;
 	private Transport transport;
 	private ExecutorService executor;

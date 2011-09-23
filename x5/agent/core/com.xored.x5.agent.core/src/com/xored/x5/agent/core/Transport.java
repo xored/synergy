@@ -4,6 +4,6 @@ import org.eclipse.emf.ecore.EObject;
 
 public interface Transport {
 
-	void send(EObject data);
+	EObject send(EObject request) throws Exception;
 
 }

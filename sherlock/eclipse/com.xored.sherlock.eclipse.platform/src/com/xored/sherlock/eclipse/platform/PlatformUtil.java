@@ -2,18 +2,23 @@ package com.xored.sherlock.eclipse.platform;
 
 import org.eclipse.core.runtime.IStatus;
 
+import com.xored.sherlock.status.Severity;
+import com.xored.sherlock.status.Status;
+import com.xored.sherlock.status.StatusFactory;
+import com.xored.sherlock.status.StatusUtil;
+
 public class PlatformUtil {
 
 	public static Status convert(IStatus s) {
-		final Status status = PlatformFactory.eINSTANCE.createStatus();
+		final Status status = StatusFactory.eINSTANCE.createStatus();
 		status.setCode(s.getCode());
 		status.setMessage(s.getMessage());
-		status.setPlugin(s.getPlugin());
-		status.setSeverity(s.getSeverity());
+		status.setTarget(s.getPlugin());
+		status.setSeverity(convertSeverity(s));
 
 		final Throwable exception = s.getException();
 		if (exception != null) {
-			status.setException(convert(exception));
+			status.setException(StatusUtil.convert(exception));
 		}
 
 		for (IStatus child : s.getChildren()) {
@@ -23,31 +28,19 @@ public class PlatformUtil {
 		return status;
 	}
 
-	public static JavaException convert(Throwable t) {
-		final JavaException exception = PlatformFactory.eINSTANCE.createJavaException();
-		exception.setClassName(t.getClass().getName());
-		exception.setMessage(t.getMessage());
-
-		final Throwable cause = t.getCause();
-		if (cause != null) {
-			exception.setCause(convert(cause));
+	private static Severity convertSeverity(IStatus s) {
+		switch (s.getSeverity()) {
+		case IStatus.OK:
+			return Severity.OK;
+		case IStatus.INFO:
+			return Severity.INFO;
+		case IStatus.WARNING:
+			return Severity.WARNING;
+		case IStatus.CANCEL:
+			return Severity.CANCEL;
+		default:
+			return Severity.ERROR;
 		}
-
-		for (StackTraceElement element : t.getStackTrace()) {
-			exception.getStacktrace().add(convert(element));
-		}
-
-		return exception;
-	}
-
-	public static JavaStackTraceEntry convert(StackTraceElement element) {
-		JavaStackTraceEntry entry = PlatformFactory.eINSTANCE.createJavaStackTraceEntry();
-		entry.setFileName(element.getFileName());
-		entry.setClassName(element.getClassName());
-		entry.setMethodName(element.getMethodName());
-		entry.setLineNumber(element.getLineNumber());
-		entry.setNative(element.isNativeMethod());
-		return entry;
 	}
 
 }

@@ -4,10 +4,10 @@
  *
  * $Id$
  */
-package com.xored.sherlock.eclipse.platform.impl;
+package com.xored.sherlock.status.impl;
 
-import com.xored.sherlock.eclipse.platform.JavaStackTraceEntry;
-import com.xored.sherlock.eclipse.platform.PlatformPackage;
+import com.xored.sherlock.status.JavaStackTraceEntry;
+import com.xored.sherlock.status.StatusPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.JavaStackTraceEntryImpl#getFileName <em>File Name</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.JavaStackTraceEntryImpl#getClassName <em>Class Name</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.JavaStackTraceEntryImpl#getMethodName <em>Method Name</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.JavaStackTraceEntryImpl#getLineNumber <em>Line Number</em>}</li>
- *   <li>{@link com.xored.sherlock.eclipse.platform.impl.JavaStackTraceEntryImpl#isNative <em>Native</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.JavaStackTraceEntryImpl#getFileName <em>File Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.JavaStackTraceEntryImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.JavaStackTraceEntryImpl#getMethodName <em>Method Name</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.JavaStackTraceEntryImpl#getLineNumber <em>Line Number</em>}</li>
+ *   <li>{@link com.xored.sherlock.status.impl.JavaStackTraceEntryImpl#isNative <em>Native</em>}</li>
  * </ul>
  * </p>
  *
@@ -150,7 +150,7 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PlatformPackage.Literals.JAVA_STACK_TRACE_ENTRY;
+		return StatusPackage.Literals.JAVA_STACK_TRACE_ENTRY;
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 		String oldFileName = fileName;
 		fileName = newFileName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME, oldFileName, fileName));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME, oldFileName, fileName));
 	}
 
 	/**
@@ -192,7 +192,7 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 		String oldClassName = className;
 		className = newClassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME, oldClassName, className));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME, oldClassName, className));
 	}
 
 	/**
@@ -213,7 +213,7 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 		String oldMethodName = methodName;
 		methodName = newMethodName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME, oldMethodName, methodName));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME, oldMethodName, methodName));
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 		int oldLineNumber = lineNumber;
 		lineNumber = newLineNumber;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER, oldLineNumber, lineNumber));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER, oldLineNumber, lineNumber));
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 		boolean oldNative = native_;
 		native_ = newNative;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PlatformPackage.JAVA_STACK_TRACE_ENTRY__NATIVE, oldNative, native_));
+			eNotify(new ENotificationImpl(this, Notification.SET, StatusPackage.JAVA_STACK_TRACE_ENTRY__NATIVE, oldNative, native_));
 	}
 
 	/**
@@ -266,15 +266,15 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME:
 				return getFileName();
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME:
 				return getClassName();
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME:
 				return getMethodName();
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER:
 				return getLineNumber();
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__NATIVE:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__NATIVE:
 				return isNative();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -288,19 +288,19 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME:
 				setFileName((String)newValue);
 				return;
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME:
 				setClassName((String)newValue);
 				return;
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME:
 				setMethodName((String)newValue);
 				return;
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER:
 				setLineNumber((Integer)newValue);
 				return;
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__NATIVE:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__NATIVE:
 				setNative((Boolean)newValue);
 				return;
 		}
@@ -315,19 +315,19 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME:
 				setFileName(FILE_NAME_EDEFAULT);
 				return;
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME:
 				setClassName(CLASS_NAME_EDEFAULT);
 				return;
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME:
 				setMethodName(METHOD_NAME_EDEFAULT);
 				return;
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER:
 				setLineNumber(LINE_NUMBER_EDEFAULT);
 				return;
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__NATIVE:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__NATIVE:
 				setNative(NATIVE_EDEFAULT);
 				return;
 		}
@@ -342,15 +342,15 @@ public class JavaStackTraceEntryImpl extends EObjectImpl implements JavaStackTra
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__FILE_NAME:
 				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__CLASS_NAME:
 				return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__METHOD_NAME:
 				return METHOD_NAME_EDEFAULT == null ? methodName != null : !METHOD_NAME_EDEFAULT.equals(methodName);
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__LINE_NUMBER:
 				return lineNumber != LINE_NUMBER_EDEFAULT;
-			case PlatformPackage.JAVA_STACK_TRACE_ENTRY__NATIVE:
+			case StatusPackage.JAVA_STACK_TRACE_ENTRY__NATIVE:
 				return native_ != NATIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

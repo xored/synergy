@@ -7,11 +7,12 @@ import org.eclipse.emf.ecore.EObject;
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.core.ProcessDataSource;
 import com.xored.sherlock.core.ProcessListener;
+import com.xored.x5.agent.core.Log;
 
 public class ProcessDataSourceSender extends BaseDataSourceSender<ProcessDataSource> implements ProcessListener {
 
-	protected ProcessDataSourceSender(DataSourceFactory factory, ExecutorService executor) {
-		super(factory, executor);
+	protected ProcessDataSourceSender(DataSourceFactory factory, ExecutorService executor, Log log) {
+		super(factory, executor, log);
 	}
 
 	@Override

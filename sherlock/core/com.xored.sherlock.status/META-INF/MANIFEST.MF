@@ -1,16 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: X5 Common
-Bundle-SymbolicName: com.xored.x5.common;singleton:=true
+Bundle-Name: Sherlock Status Model
+Bundle-SymbolicName: com.xored.sherlock.status;singleton:=true
 Bundle-Version: 2.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: xored software, Inc.
-Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.xored.x5.common,
- com.xored.x5.common.impl,
- com.xored.x5.common.transport,
- com.xored.x5.common.util
+Export-Package: com.xored.sherlock.status,
+ com.xored.sherlock.status.impl,
+ com.xored.sherlock.status.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
