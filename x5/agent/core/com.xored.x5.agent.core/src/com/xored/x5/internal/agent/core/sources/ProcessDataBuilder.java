@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.xored.sherlock.core.DataSource;
+import com.xored.sherlock.core.EntityDataSource;
 import com.xored.sherlock.core.EventDataSource;
 import com.xored.sherlock.core.EventListener;
 import com.xored.sherlock.core.IntervalDataSource;
@@ -56,6 +57,8 @@ public class ProcessDataBuilder extends DataBuilder {
 	private DataSourceHandler getHandler(EObject object, DataSource source, EReference reference) {
 		if (source instanceof EventDataSource) {
 			return new EventHandler(object, reference, (EventDataSource) source);
+		} else if (source instanceof EntityDataSource) {
+			return new EntityHandler(object, reference, (EntityDataSource) source);
 		} else if (source instanceof IntervalDataSource) {
 			return createIntervalHandler(object, reference, (IntervalDataSource<?>) source);
 		} else {
@@ -81,6 +84,26 @@ public class ProcessDataBuilder extends DataBuilder {
 
 		EObject object;
 		EReference reference;
+
+	}
+
+	private class EntityHandler extends DataSourceHandler {
+
+		public EntityHandler(EObject object, EReference reference, EntityDataSource source) {
+			super(object, reference);
+			this.source = source;
+		}
+
+		@Override
+		void start() {
+			object.eSet(reference, source.getData());
+		}
+
+		@Override
+		void finish() {
+		}
+
+		private EntityDataSource source;
 
 	}
 

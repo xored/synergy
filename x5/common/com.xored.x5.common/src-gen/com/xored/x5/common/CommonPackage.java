@@ -6,7 +6,6 @@
  */
 package com.xored.x5.common;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -60,34 +59,6 @@ public interface CommonPackage extends EPackage {
 	CommonPackage eINSTANCE = com.xored.x5.common.impl.CommonPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link com.xored.x5.common.Entry <em>Entry</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.xored.x5.common.Entry
-	 * @see com.xored.x5.common.impl.CommonPackageImpl#getEntry()
-	 * @generated
-	 */
-	int ENTRY = 0;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTRY__SOURCE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Entry</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTRY_FEATURE_COUNT = 1;
-
-	/**
 	 * The meta object id for the '{@link com.xored.x5.common.impl.PackageEntryImpl <em>Package Entry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,16 +66,7 @@ public interface CommonPackage extends EPackage {
 	 * @see com.xored.x5.common.impl.CommonPackageImpl#getPackageEntry()
 	 * @generated
 	 */
-	int PACKAGE_ENTRY = 1;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_ENTRY__SOURCE = ENTRY__SOURCE;
+	int PACKAGE_ENTRY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Content</b></em>' containment reference.
@@ -113,7 +75,7 @@ public interface CommonPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_ENTRY__CONTENT = ENTRY_FEATURE_COUNT + 0;
+	int PACKAGE_ENTRY__CONTENT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Package Entry</em>' class.
@@ -122,7 +84,7 @@ public interface CommonPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_ENTRY_FEATURE_COUNT = ENTRY_FEATURE_COUNT + 1;
+	int PACKAGE_ENTRY_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link com.xored.x5.common.impl.DataSourceEntryImpl <em>Data Source Entry</em>}' class.
@@ -132,16 +94,7 @@ public interface CommonPackage extends EPackage {
 	 * @see com.xored.x5.common.impl.CommonPackageImpl#getDataSourceEntry()
 	 * @generated
 	 */
-	int DATA_SOURCE_ENTRY = 2;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_SOURCE_ENTRY__SOURCE = ENTRY__SOURCE;
+	int DATA_SOURCE_ENTRY = 1;
 
 	/**
 	 * The feature id for the '<em><b>Content</b></em>' containment reference.
@@ -150,7 +103,7 @@ public interface CommonPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SOURCE_ENTRY__CONTENT = ENTRY_FEATURE_COUNT + 0;
+	int DATA_SOURCE_ENTRY__CONTENT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Data Source Entry</em>' class.
@@ -159,29 +112,8 @@ public interface CommonPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SOURCE_ENTRY_FEATURE_COUNT = ENTRY_FEATURE_COUNT + 1;
+	int DATA_SOURCE_ENTRY_FEATURE_COUNT = 1;
 
-
-	/**
-	 * Returns the meta object for class '{@link com.xored.x5.common.Entry <em>Entry</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Entry</em>'.
-	 * @see com.xored.x5.common.Entry
-	 * @generated
-	 */
-	EClass getEntry();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.xored.x5.common.Entry#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Source</em>'.
-	 * @see com.xored.x5.common.Entry#getSource()
-	 * @see #getEntry()
-	 * @generated
-	 */
-	EAttribute getEntry_Source();
 
 	/**
 	 * Returns the meta object for class '{@link com.xored.x5.common.PackageEntry <em>Package Entry</em>}'.
@@ -247,24 +179,6 @@ public interface CommonPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
-		/**
-		 * The meta object literal for the '{@link com.xored.x5.common.Entry <em>Entry</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see com.xored.x5.common.Entry
-		 * @see com.xored.x5.common.impl.CommonPackageImpl#getEntry()
-		 * @generated
-		 */
-		EClass ENTRY = eINSTANCE.getEntry();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ENTRY__SOURCE = eINSTANCE.getEntry_Source();
-
 		/**
 		 * The meta object literal for the '{@link com.xored.x5.common.impl.PackageEntryImpl <em>Package Entry</em>}' class.
 		 * <!-- begin-user-doc -->

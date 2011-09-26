@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.xored.x5.common.BinaryReader;
 import com.xored.x5.common.BinaryWriter;
+import com.xored.x5.server.core.RequestHandler;
 import com.xored.x5.server.core.ServerTransport;
 import com.xored.x5.server.core.Session;
 
@@ -51,13 +52,13 @@ public class TcpServerTransport implements ServerTransport {
 		}
 
 		@Override
-		public EObject getRequest() throws Exception {
-			return reader.read();
-		}
-
-		@Override
-		public void setResponse(EObject eObject) throws Exception {
-			writer.write(eObject);
+		public boolean handle(RequestHandler handler) throws Exception {
+			EObject eObject = reader.read();
+			if (eObject != null) {
+				writer.write(handler.handle(eObject));
+				return true;
+			}
+			return false;
 		}
 
 		@Override

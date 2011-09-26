@@ -1,30 +1,18 @@
 package com.xored.x5.internal.agent.core;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.xored.sherlock.core.DataSource;
 import com.xored.sherlock.core.DataSourceFactory;
 import com.xored.sherlock.status.Status;
 import com.xored.sherlock.status.StatusUtil;
 import com.xored.x5.agent.core.Transport;
-import com.xored.x5.common.CommonFactory;
-import com.xored.x5.common.DataSourceEntry;
 import com.xored.x5.common.Log;
-import com.xored.x5.common.PackageEntry;
 
 abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceSender {
 
@@ -32,7 +20,6 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 		this.factory = factory;
 		this.executor = executor;
 		this.log = log;
-		knownPackages.add(EcorePackage.eINSTANCE);
 	}
 
 	public void attachTo(Transport transport) {
@@ -65,22 +52,7 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 
 			@Override
 			public void run() {
-				Set<EPackage> packages = new HashSet<EPackage>();
-				findAllPackages(data, packages);
-
-				for (EPackage ePackage : packages) {
-					if (knownPackages.add(ePackage)) {
-						PackageEntry entry = CommonFactory.eINSTANCE.createPackageEntry();
-						entry.setSource(factory.getId());
-						entry.setContent(EcoreUtil.copy(ePackage));
-						send(entry);
-					}
-				}
-
-				DataSourceEntry entry = CommonFactory.eINSTANCE.createDataSourceEntry();
-				entry.setSource(factory.getId());
-				entry.setContent(data);
-				send(entry);
+				send(data);
 			}
 		});
 	}
@@ -91,39 +63,14 @@ abstract class BaseDataSourceSender<T extends DataSource> implements DataSourceS
 			EObject response = transport.send(request);
 			if (response instanceof Status) {
 				status = (Status) response;
-				if (StatusUtil.isOk(status)) {
-					status = null;
-				}
 			}
 		} catch (Exception e) {
+			// TODO remove print stack trace
 			e.printStackTrace();
 			status = StatusUtil.newErrorStatus("com.xored.x5.agent.core", e, "Can't send data: " + request);
 		}
-		if (status != null) {
+		if (status != null && !StatusUtil.isOk(status)) {
 			log.log(status);
-		}
-	}
-
-	private Set<EPackage> knownPackages = new HashSet<EPackage>();
-
-	private void findAllPackages(EObject data, Collection<EPackage> packages) {
-		EClass eClass = data.eClass();
-		findAllPackages(eClass, packages);
-		for (EAttribute attribute : eClass.getEAllAttributes()) {
-			findAllPackages(attribute.getEAttributeType(), packages);
-		}
-		for (EObject content : data.eContents()) {
-			findAllPackages(content, packages);
-		}
-	}
-
-	private void findAllPackages(EClassifier type, Collection<EPackage> packages) {
-		packages.add(type.getEPackage());
-		if (type instanceof EClass) {
-			EClass eClass = (EClass) type;
-			for (EClass superType : eClass.getEAllSuperTypes()) {
-				packages.add(superType.getEPackage());
-			}
 		}
 	}
 

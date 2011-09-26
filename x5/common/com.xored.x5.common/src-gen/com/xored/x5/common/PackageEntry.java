@@ -6,6 +6,7 @@
  */
 package com.xored.x5.common;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 /**
@@ -24,7 +25,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @model
  * @generated
  */
-public interface PackageEntry extends Entry {
+public interface PackageEntry extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Content</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

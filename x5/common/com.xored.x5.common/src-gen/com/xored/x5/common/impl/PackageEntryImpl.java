@@ -24,7 +24,6 @@ import com.xored.x5.common.PackageEntry;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.xored.x5.common.impl.PackageEntryImpl#getSource <em>Source</em>}</li>
  *   <li>{@link com.xored.x5.common.impl.PackageEntryImpl#getContent <em>Content</em>}</li>
  * </ul>
  * </p>
@@ -32,26 +31,6 @@ import com.xored.x5.common.PackageEntry;
  * @generated
  */
 public class PackageEntryImpl extends EObjectImpl implements PackageEntry {
-	/**
-	 * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SOURCE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected String source = SOURCE_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getContent() <em>Content</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -79,27 +58,6 @@ public class PackageEntryImpl extends EObjectImpl implements PackageEntry {
 	@Override
 	protected EClass eStaticClass() {
 		return CommonPackage.Literals.PACKAGE_ENTRY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getSource() {
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(String newSource) {
-		String oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CommonPackage.PACKAGE_ENTRY__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -167,8 +125,6 @@ public class PackageEntryImpl extends EObjectImpl implements PackageEntry {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CommonPackage.PACKAGE_ENTRY__SOURCE:
-				return getSource();
 			case CommonPackage.PACKAGE_ENTRY__CONTENT:
 				return getContent();
 		}
@@ -183,9 +139,6 @@ public class PackageEntryImpl extends EObjectImpl implements PackageEntry {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CommonPackage.PACKAGE_ENTRY__SOURCE:
-				setSource((String)newValue);
-				return;
 			case CommonPackage.PACKAGE_ENTRY__CONTENT:
 				setContent((EPackage)newValue);
 				return;
@@ -201,9 +154,6 @@ public class PackageEntryImpl extends EObjectImpl implements PackageEntry {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CommonPackage.PACKAGE_ENTRY__SOURCE:
-				setSource(SOURCE_EDEFAULT);
-				return;
 			case CommonPackage.PACKAGE_ENTRY__CONTENT:
 				setContent((EPackage)null);
 				return;
@@ -219,28 +169,10 @@ public class PackageEntryImpl extends EObjectImpl implements PackageEntry {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CommonPackage.PACKAGE_ENTRY__SOURCE:
-				return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
 			case CommonPackage.PACKAGE_ENTRY__CONTENT:
 				return content != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (source: ");
-		result.append(source);
-		result.append(')');
-		return result.toString();
 	}
 
 } //PackageEntryImpl

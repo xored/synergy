@@ -6,7 +6,6 @@
  */
 package com.xored.x5.common.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -15,7 +14,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import com.xored.x5.common.CommonFactory;
 import com.xored.x5.common.CommonPackage;
 import com.xored.x5.common.DataSourceEntry;
-import com.xored.x5.common.Entry;
 import com.xored.x5.common.PackageEntry;
 
 /**
@@ -25,13 +23,6 @@ import com.xored.x5.common.PackageEntry;
  * @generated
  */
 public class CommonPackageImpl extends EPackageImpl implements CommonPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass entryEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,24 +103,6 @@ public class CommonPackageImpl extends EPackageImpl implements CommonPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEntry() {
-		return entryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getEntry_Source() {
-		return (EAttribute)entryEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPackageEntry() {
 		return packageEntryEClass;
 	}
@@ -189,9 +162,6 @@ public class CommonPackageImpl extends EPackageImpl implements CommonPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		entryEClass = createEClass(ENTRY);
-		createEAttribute(entryEClass, ENTRY__SOURCE);
-
 		packageEntryEClass = createEClass(PACKAGE_ENTRY);
 		createEReference(packageEntryEClass, PACKAGE_ENTRY__CONTENT);
 
@@ -227,13 +197,8 @@ public class CommonPackageImpl extends EPackageImpl implements CommonPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		packageEntryEClass.getESuperTypes().add(this.getEntry());
-		dataSourceEntryEClass.getESuperTypes().add(this.getEntry());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(entryEClass, Entry.class, "Entry", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEntry_Source(), ecorePackage.getEString(), "source", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(packageEntryEClass, PackageEntry.class, "PackageEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPackageEntry_Content(), ecorePackage.getEPackage(), null, "content", null, 0, 1, PackageEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

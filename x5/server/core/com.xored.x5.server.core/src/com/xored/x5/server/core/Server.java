@@ -6,20 +6,13 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.xored.sherlock.status.StatusUtil;
 import com.xored.x5.common.CommonPackage;
-import com.xored.x5.common.DataSourceEntry;
 import com.xored.x5.common.Log;
-import com.xored.x5.common.PackageEntry;
 
 public abstract class Server {
 
@@ -44,7 +37,7 @@ public abstract class Server {
 		}
 	}
 
-	protected abstract EObject handle(String id, EObject object);
+	protected abstract EObject handle(EObject object);
 
 	public void close() {
 		executor.shutdownNow();
@@ -114,10 +107,13 @@ public abstract class Server {
 					resourceSet = new ResourceSetImpl();
 					resourceSet.getPackageRegistry().put("http://xored.com/x5/common.ecore", CommonPackage.eINSTANCE);
 					session.initialize(resourceSet);
-					EObject eObject;
-					while ((eObject = session.getRequest()) != null) {
-						EObject response = handle(eObject);
-						session.setResponse(response);
+					RequestHandler handler = new RequestHandler() {
+						@Override
+						public EObject handle(EObject request) {
+							return Server.this.handle(request);
+						}
+					};
+					while (session.handle(handler)) {
 					}
 				} catch (InterruptedException e) {
 					// ignore. it's normal shutdown
@@ -126,22 +122,6 @@ public abstract class Server {
 				}
 			} finally {
 				safeClose();
-			}
-		}
-
-		private EObject handle(EObject data) {
-			if (data instanceof DataSourceEntry) {
-				DataSourceEntry entry = (DataSourceEntry) data;
-				return Server.this.handle(entry.getSource(), entry.getContent());
-			} else if (data instanceof PackageEntry) {
-				EPackage ePackage = EcoreUtil.copy(((PackageEntry) data).getContent());
-				Resource fake = new ResourceImpl(URI.createURI(ePackage.getNsURI()));
-				fake.getContents().add(ePackage);
-				resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
-				resourceSet.getResources().add(fake);
-				return StatusUtil.newOkStatus();
-			} else {
-				return StatusUtil.newErrorStatus("com.xored.x5.server.core", "Unexpected data: " + data);
 			}
 		}
 

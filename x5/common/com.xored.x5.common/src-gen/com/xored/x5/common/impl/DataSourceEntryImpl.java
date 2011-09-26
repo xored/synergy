@@ -24,7 +24,6 @@ import com.xored.x5.common.DataSourceEntry;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.xored.x5.common.impl.DataSourceEntryImpl#getSource <em>Source</em>}</li>
  *   <li>{@link com.xored.x5.common.impl.DataSourceEntryImpl#getContent <em>Content</em>}</li>
  * </ul>
  * </p>
@@ -32,26 +31,6 @@ import com.xored.x5.common.DataSourceEntry;
  * @generated
  */
 public class DataSourceEntryImpl extends EObjectImpl implements DataSourceEntry {
-	/**
-	 * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SOURCE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected String source = SOURCE_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getContent() <em>Content</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -79,27 +58,6 @@ public class DataSourceEntryImpl extends EObjectImpl implements DataSourceEntry 
 	@Override
 	protected EClass eStaticClass() {
 		return CommonPackage.Literals.DATA_SOURCE_ENTRY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getSource() {
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(String newSource) {
-		String oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CommonPackage.DATA_SOURCE_ENTRY__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -167,8 +125,6 @@ public class DataSourceEntryImpl extends EObjectImpl implements DataSourceEntry 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CommonPackage.DATA_SOURCE_ENTRY__SOURCE:
-				return getSource();
 			case CommonPackage.DATA_SOURCE_ENTRY__CONTENT:
 				return getContent();
 		}
@@ -183,9 +139,6 @@ public class DataSourceEntryImpl extends EObjectImpl implements DataSourceEntry 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CommonPackage.DATA_SOURCE_ENTRY__SOURCE:
-				setSource((String)newValue);
-				return;
 			case CommonPackage.DATA_SOURCE_ENTRY__CONTENT:
 				setContent((EObject)newValue);
 				return;
@@ -201,9 +154,6 @@ public class DataSourceEntryImpl extends EObjectImpl implements DataSourceEntry 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CommonPackage.DATA_SOURCE_ENTRY__SOURCE:
-				setSource(SOURCE_EDEFAULT);
-				return;
 			case CommonPackage.DATA_SOURCE_ENTRY__CONTENT:
 				setContent((EObject)null);
 				return;
@@ -219,28 +169,10 @@ public class DataSourceEntryImpl extends EObjectImpl implements DataSourceEntry 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CommonPackage.DATA_SOURCE_ENTRY__SOURCE:
-				return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
 			case CommonPackage.DATA_SOURCE_ENTRY__CONTENT:
 				return content != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (source: ");
-		result.append(source);
-		result.append(')');
-		return result.toString();
 	}
 
 } //DataSourceEntryImpl

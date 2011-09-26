@@ -72,10 +72,6 @@ public class CommonAdapterFactory extends AdapterFactoryImpl {
 	protected CommonSwitch<Adapter> modelSwitch =
 		new CommonSwitch<Adapter>() {
 			@Override
-			public Adapter caseEntry(Entry object) {
-				return createEntryAdapter();
-			}
-			@Override
 			public Adapter casePackageEntry(PackageEntry object) {
 				return createPackageEntryAdapter();
 			}
@@ -102,20 +98,6 @@ public class CommonAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.xored.x5.common.Entry <em>Entry</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.xored.x5.common.Entry
-	 * @generated
-	 */
-	public Adapter createEntryAdapter() {
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link com.xored.x5.common.PackageEntry <em>Package Entry</em>}'.

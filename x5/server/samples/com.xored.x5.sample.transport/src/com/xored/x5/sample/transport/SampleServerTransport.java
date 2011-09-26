@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.xored.sherlock.status.StatusUtil;
+import com.xored.x5.server.core.RequestHandler;
 import com.xored.x5.server.core.ServerTransport;
 import com.xored.x5.server.core.Session;
 
@@ -39,13 +40,13 @@ public class SampleServerTransport implements ServerTransport {
 		}
 
 		@Override
-		public EObject getRequest() throws Exception {
-			return data;
-		}
-
-		@Override
-		public void setResponse(EObject eObject) throws Exception {
-			data = null;
+		public boolean handle(RequestHandler handler) throws Exception {
+			if (data != null) {
+				handler.handle(data);
+				data = null;
+				return true;
+			}
+			return false;
 		}
 
 		@Override
