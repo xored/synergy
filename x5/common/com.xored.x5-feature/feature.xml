@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="com.xored.x5"
-      label="X5 Feature"
+      label="X5 Core"
       version="2.0.0.qualifier"
+      plugin="com.xored.x5.common"
       provider-name="xored software, Inc.">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description url="http://www.xored.com/x5">
+     X5 is a highly customiable extensible framework for collecting and analyzing various data about Eclipse platform
    </description>
 
    <copyright url="http://www.example.com/copyright">
