@@ -14,14 +14,14 @@ import com.xored.x5.server.core.Session;
 
 public class TcpServerTransport implements ServerTransport {
 
-	public TcpServerTransport(String id, int port) throws IOException {
-		this.id = id;
+	public TcpServerTransport(int port) throws IOException {
+		this.port = port;
 		server = new ServerSocket(port);
 	}
 
 	@Override
-	public String getId() {
-		return id;
+	public String toString() {
+		return "TCP server (port=" + port + ")";
 	}
 
 	@Override
@@ -77,6 +77,6 @@ public class TcpServerTransport implements ServerTransport {
 	}
 
 	private ServerSocket server;
-	private String id;
+	private int port;
 
 }

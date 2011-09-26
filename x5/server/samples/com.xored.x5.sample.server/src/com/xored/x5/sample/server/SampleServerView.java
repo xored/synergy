@@ -30,7 +30,7 @@ public class SampleServerView extends ViewPart {
 	public void init(IViewSite site) throws PartInitException {
 		super.init(site);
 		try {
-			transport = new TcpServerTransport("com.xored.x5.sample.server", 7887);
+			transport = new TcpServerTransport(7887);
 		} catch (IOException e) {
 			throw new PartInitException("Can't initialize tcp transport", e);
 		}

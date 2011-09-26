@@ -138,6 +138,7 @@ public abstract class Server {
 				Resource fake = new ResourceImpl(URI.createURI(ePackage.getNsURI()));
 				fake.getContents().add(ePackage);
 				resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
+				resourceSet.getResources().add(fake);
 				return StatusUtil.newOkStatus();
 			} else {
 				return StatusUtil.newErrorStatus("com.xored.x5.server.core", "Unexpected data: " + data);
@@ -160,8 +161,7 @@ public abstract class Server {
 
 	private void handleTransportException(ServerTransport transport, Exception e) {
 		e.printStackTrace();
-		log.log(StatusUtil.newErrorStatus("com.xored.x5.server.core", e,
-				"Server transport error (id = " + transport.getId() + ")"));
+		log.log(StatusUtil.newErrorStatus("com.xored.x5.server.core", e, "Server transport error: " + transport));
 	}
 
 	private final ExecutorService executor;
