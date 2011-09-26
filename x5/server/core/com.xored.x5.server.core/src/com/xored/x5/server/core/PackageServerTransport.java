@@ -64,18 +64,22 @@ public class PackageServerTransport implements ServerTransport {
 
 		@Override
 		public EObject handle(EObject request) {
-			if (request instanceof DataSourceEntry) {
-				DataSourceEntry entry = (DataSourceEntry) request;
-				return handler.handle(entry.getContent());
-			} else if (request instanceof PackageEntry) {
-				EPackage ePackage = EcoreUtil.copy(((PackageEntry) request).getContent());
-				Resource fake = new ResourceImpl(URI.createURI(ePackage.getNsURI()));
-				fake.getContents().add(ePackage);
-				resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
-				resourceSet.getResources().add(fake);
-				return StatusUtil.newOkStatus();
-			} else {
-				return StatusUtil.newErrorStatus("com.xored.x5.server.core", "Unexpected data: " + request);
+			try {
+				if (request instanceof DataSourceEntry) {
+					DataSourceEntry entry = (DataSourceEntry) request;
+					return handler.handle(entry.getContent());
+				} else if (request instanceof PackageEntry) {
+					EPackage ePackage = EcoreUtil.copy(((PackageEntry) request).getContent());
+					Resource fake = new ResourceImpl(URI.createURI(ePackage.getNsURI()));
+					fake.getContents().add(ePackage);
+					resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
+					resourceSet.getResources().add(fake);
+					return StatusUtil.newOkStatus();
+				} else {
+					return StatusUtil.newErrorStatus(TARGET, "Unexpected data: " + request);
+				}
+			} catch (Exception e) {
+				return StatusUtil.newErrorStatus(TARGET, e, "Error while handle client request: " + request);
 			}
 		}
 
@@ -85,5 +89,7 @@ public class PackageServerTransport implements ServerTransport {
 	}
 
 	private ServerTransport transport;
+
+	private static final String TARGET = PackageServerTransport.class.getPackage().getName();
 
 }
