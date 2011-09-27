@@ -6,11 +6,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -35,20 +35,15 @@ public class PackageTransport implements Transport {
 
 	@Override
 	public EObject send(EObject request) throws Exception {
-		Set<EPackage> packages = new HashSet<EPackage>();
-		findAllPackages(request, packages);
-
 		List<Status> fails = new ArrayList<Status>();
-
+		List<EPackage> packages = getUnknownPackages(request);
 		for (EPackage ePackage : packages) {
-			if (knownPackages.add(ePackage)) {
-				PackageEntry entry = CommonFactory.eINSTANCE.createPackageEntry();
-				entry.setContent(EcoreUtil.copy(ePackage));
-				EObject response = transport.send(entry);
-				Status status = asStatus(response);
-				if (!StatusUtil.isOk(status)) {
-					fails.add(status);
-				}
+			PackageEntry entry = CommonFactory.eINSTANCE.createPackageEntry();
+			entry.setContent(EcoreUtil.copy(ePackage));
+			EObject response = transport.send(entry);
+			Status status = asStatus(response);
+			if (!StatusUtil.isOk(status)) {
+				fails.add(status);
 			}
 		}
 
@@ -59,7 +54,7 @@ public class PackageTransport implements Transport {
 			fails.add(status);
 		}
 		if (fails.size() > 0) {
-			Status result = StatusUtil.newErrorStatus("com.xored.x5.agent.core", "Error while sending " + request);
+			Status result = StatusUtil.newErrorStatus(TARGET, "Error while sending " + request);
 			result.getChildren().addAll(fails);
 			return result;
 		}
@@ -70,31 +65,55 @@ public class PackageTransport implements Transport {
 		if (response instanceof Status) {
 			return (Status) response;
 		}
-		return StatusUtil.newErrorStatus("com.xored.x5.agent.core", "Expect status response, but found: " + response);
+		return StatusUtil.newErrorStatus(TARGET, "Expect status response, but found: " + response);
 	}
 
-	private void findAllPackages(EObject data, Collection<EPackage> packages) {
-		EClass eClass = data.eClass();
-		findAllPackages(eClass, packages);
-		for (EAttribute attribute : eClass.getEAllAttributes()) {
-			findAllPackages(attribute.getEAttributeType(), packages);
+	private List<EPackage> getUnknownPackages(EObject eObject) {
+		Set<EPackage> packages = new HashSet<EPackage>();
+		findMentionedPackages(eObject, packages);
+		List<EPackage> result = new ArrayList<EPackage>();
+		for (EPackage ePackage : packages) {
+			findUnknownPackages(ePackage, result);
 		}
+		return result;
+	}
+
+	private void findMentionedPackages(EObject data, Set<EPackage> mentions) {
+		mentions.add(data.eClass().getEPackage());
 		for (EObject content : data.eContents()) {
-			findAllPackages(content, packages);
+			findMentionedPackages(content, mentions);
 		}
 	}
 
-	private void findAllPackages(EClassifier type, Collection<EPackage> packages) {
-		packages.add(type.getEPackage());
-		if (type instanceof EClass) {
-			EClass eClass = (EClass) type;
-			for (EClass superType : eClass.getEAllSuperTypes()) {
-				packages.add(superType.getEPackage());
+	private void findUnknownPackages(EPackage ePackage, Collection<EPackage> packages) {
+		if (knownPackages.add(ePackage)) {
+			Collection<EPackage> references = getReferences(ePackage);
+			for (EPackage reference : references) {
+				findUnknownPackages(reference, packages);
+			}
+			packages.add(ePackage);
+		}
+	}
+
+	private Collection<EPackage> getReferences(EPackage ePackage) {
+		Set<EPackage> references = new HashSet<EPackage>();
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass) eClassifier;
+				for (EClass superType : eClass.getESuperTypes()) {
+					references.add(superType.getEPackage());
+				}
+				for (EStructuralFeature feature : eClass.getEStructuralFeatures()) {
+					references.add(feature.getEType().getEPackage());
+				}
 			}
 		}
+		return references;
 	}
 
 	private final Transport transport;
 	private final Set<EPackage> knownPackages = new HashSet<EPackage>();
+
+	private static final String TARGET = PackageTransport.class.getPackage().getName();
 
 }
