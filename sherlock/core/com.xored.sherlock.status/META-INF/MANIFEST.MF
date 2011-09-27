@@ -9,6 +9,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.xored.sherlock.status,
  com.xored.sherlock.status.impl,
  com.xored.sherlock.status.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

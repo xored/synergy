@@ -14,9 +14,10 @@
   	</parent>
 
 	<modules>
-		<module>com.xored.sherlock-feature</module> 
 		<module>com.xored.sherlock.eclipse.core</module>
 		<module>com.xored.sherlock.eclipse.platform</module>
 		<module>com.xored.sherlock.eclipse.workspace</module>
+		<module>com.xored.sherlock.model-feature</module>
+		<module>com.xored.sherlock-feature</module>
 	</modules>
 </project>
