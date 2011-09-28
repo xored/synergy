@@ -8,6 +8,19 @@ class JavaExceptionWrapper extends Exception {
 
 	public JavaExceptionWrapper(JavaException exception) {
 		this.exception = exception;
+		if (exception.getCause() != null) {
+			cause = new JavaExceptionWrapper(exception.getCause());
+		}
+	}
+
+	@Override
+	public String getMessage() {
+		return exception.getMessage();
+	}
+
+	@Override
+	public Throwable getCause() {
+		return cause;
 	}
 
 	@Override
@@ -30,7 +43,15 @@ class JavaExceptionWrapper extends Exception {
 		return trace;
 	}
 
+	@Override
+	public String toString() {
+		String s = exception.getClassName();
+		String message = exception.getMessage();
+		return (message != null) ? (s + ": " + message) : s;
+	}
+
 	private JavaException exception;
+	private Throwable cause;
 
 	private static final long serialVersionUID = 1L;
 
