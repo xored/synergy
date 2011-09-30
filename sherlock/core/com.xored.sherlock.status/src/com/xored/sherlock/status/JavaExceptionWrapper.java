@@ -25,12 +25,12 @@ class JavaExceptionWrapper extends Exception {
 
 	@Override
 	public void printStackTrace(PrintStream s) {
-		ExceptionUtil.printStackTrace(exception, s);
+		ExceptionUtil.print(exception, s);
 	}
 
 	@Override
 	public void printStackTrace(PrintWriter s) {
-		ExceptionUtil.printStackTrace(exception, s);
+		ExceptionUtil.print(exception, s);
 	}
 
 	@Override

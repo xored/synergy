@@ -2,7 +2,6 @@ package com.xored.sherlock.status;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExceptionUtil {
@@ -82,39 +81,30 @@ public class ExceptionUtil {
 		return builder.toString();
 	}
 
-	public static void printStackTrace(JavaException exception, PrintStream s) {
+	public static void print(JavaException exception, PrintStream s) {
 		synchronized (s) {
-			List<String> lines = toLines(exception);
-			for (String line : lines) {
-				s.println(line);
-			}
+			printException(exception, new TextPrinter.Stream(s));
 		}
 	}
 
-	public static void printStackTrace(JavaException exception, PrintWriter s) {
+	public static void print(JavaException exception, PrintWriter s) {
 		synchronized (s) {
-			List<String> lines = toLines(exception);
-			for (String line : lines) {
-				s.println(line);
-			}
+			printException(exception, new TextPrinter.Writer(s));
 		}
 	}
 
-	private static List<String> toLines(JavaException exception) {
-		List<String> lines = new ArrayList<String>();
-		lines.add(asString(exception));
+	static void printException(JavaException exception, TextPrinter priner) {
+		priner.println(asString(exception));
 		List<JavaStackTraceEntry> trace = exception.getStacktrace();
 		for (int i = 0; i < trace.size(); i++)
-			lines.add("\tat " + asString(trace.get(i)));
+			priner.println("\tat " + asString(trace.get(i)));
 
 		JavaException cause = exception.getCause();
 		if (cause != null)
-			lines.addAll(toCauseLines(cause, trace));
-		return lines;
+			printCause(cause, trace, priner);
 	}
 
-	private static List<String> toCauseLines(JavaException exception, List<JavaStackTraceEntry> causedTrace) {
-		List<String> lines = new ArrayList<String>();
+	static void printCause(JavaException exception, List<JavaStackTraceEntry> causedTrace, TextPrinter priner) {
 		// Compute number of frames in common between this and caused
 		List<JavaStackTraceEntry> trace = exception.getStacktrace();
 		int m = trace.size() - 1, n = causedTrace.size() - 1;
@@ -124,17 +114,16 @@ public class ExceptionUtil {
 		}
 		int framesInCommon = trace.size() - 1 - m;
 
-		lines.add("Caused by: " + asString(exception));
+		priner.println("Caused by: " + asString(exception));
 		for (int i = 0; i <= m; i++)
-			lines.add("\tat " + asString(trace.get(i)));
+			priner.println("\tat " + asString(trace.get(i)));
 		if (framesInCommon != 0)
-			lines.add("\t... " + framesInCommon + " more");
+			priner.println("\t... " + framesInCommon + " more");
 
 		// Recurse if we have a cause
 		JavaException ourCause = exception.getCause();
 		if (ourCause != null)
-			lines.addAll(toCauseLines(ourCause, trace));
-		return lines;
+			printCause(ourCause, trace, priner);
 	}
 
 }
