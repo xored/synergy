@@ -20,6 +20,10 @@ public class TcpServerTransport implements ServerTransport {
 		server = new ServerSocket(port);
 	}
 
+	public int getPort() {
+		return port;
+	}
+
 	@Override
 	public String toString() {
 		return "TCP server (port=" + port + ")";
