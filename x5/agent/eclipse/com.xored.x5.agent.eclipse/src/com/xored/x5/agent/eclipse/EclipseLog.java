@@ -8,7 +8,9 @@ import com.xored.sherlock.eclipse.platform.PlatformUtil;
 import com.xored.sherlock.status.Status;
 import com.xored.x5.common.Log;
 
-public class EclipseLog implements Log {
+public enum EclipseLog implements Log {
+
+	INSTANCE;
 
 	@Override
 	public void log(Status status) {
