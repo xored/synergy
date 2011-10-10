@@ -47,7 +47,6 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	
 	<repositories>
 		<repository>
 			<snapshots>
@@ -65,11 +64,15 @@
 			<layout>p2</layout>
 			<url>http://download.xored.com/mirrors/updates36/</url>
 		</repository>
+
 		<repository>
-      		<id>ajdt36</id>
-      		<layout>p2</layout>
-      		<url>http://download.xored.com/mirrors/ajdt36/</url>
-    	</repository>
+			<snapshots>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+			<id>guava-osgi</id>
+			<layout>p2</layout>
+			<url>http://guava-osgi.googlecode.com/svn/trunk/repository/</url>
+		</repository>
 	</repositories>
 	
 	<build>

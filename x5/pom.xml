@@ -18,4 +18,13 @@
 		<module>agent</module>
 		<module>server</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>10.0</version>
+			<type>jar</type>
+		</dependency>
+	</dependencies>
 </project>

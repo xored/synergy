@@ -12,5 +12,6 @@ Require-Bundle: org.eclipse.core.runtime,
  com.xored.sherlock.eclipse.core,
  com.xored.sherlock.eclipse.platform,
  com.xored.x5.common,
- com.xored.x5.agent.core
+ com.xored.x5.agent.core,
+ com.google.guava
 Export-Package: com.xored.x5.agent.eclipse
