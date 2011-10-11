@@ -3,6 +3,9 @@
    <feature url="features/com.xored.emfjson_1.0.0.qualifier.jar" id="com.xored.emfjson" version="1.0.0.qualifier">
       <category name="com.xored.emfjson"/>
    </feature>
+   <feature url="features/org.eclipse.epp.usagedata.feature_2.0.0.qualifier.jar" id="org.eclipse.epp.usagedata.feature" version="2.0.0.qualifier">
+      <category name="org.eclipse.epp.usagedata"/>
+   </feature>
    <feature url="features/com.google.libs_1.0.0.qualifier.jar" id="com.google.libs" version="1.0.0.qualifier">
       <category name="com.xored.emfjson"/>
    </feature>
@@ -21,6 +24,7 @@
    <feature url="features/com.xored.sherlock.model_2.0.0.qualifier.jar" id="com.xored.sherlock.model" version="2.0.0.qualifier">
       <category name="com.xored.sherlock.model"/>
    </feature>
+   <category-def name="org.eclipse.epp.usagedata" label="Usage Data Collector patched by Xored"/>
    <category-def name="com.xored.x5.agent" label="X5 Agent"/>
    <category-def name="com.xored.x5.server" label="X5 Server"/>
    <category-def name="com.xored.sherlock" label="Sherlock"/>

@@ -11,10 +11,11 @@
   
 	<modules>
 		<module>emfjson</module>
+		<module>udc</module>
 		<module>google-libs</module>
-		<module>p2repository</module>
 		<module>sherlock</module>
 		<module>x5</module>
+		<module>p2repository</module>
 	</modules>
   
 	<properties>
