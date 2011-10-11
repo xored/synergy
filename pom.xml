@@ -71,7 +71,7 @@
 			</snapshots>
 			<id>guava-osgi</id>
 			<layout>p2</layout>
-			<url>http://guava-osgi.googlecode.com/svn/trunk/repository/</url>
+			<url>http://download.xored.com/mirrors/guava/</url>
 		</repository>
 	</repositories>
 	
