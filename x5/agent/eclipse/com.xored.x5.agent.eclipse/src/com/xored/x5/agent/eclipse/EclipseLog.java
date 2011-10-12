@@ -4,7 +4,6 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 
-import com.google.common.base.Strings;
 import com.xored.sherlock.eclipse.platform.PlatformUtil;
 import com.xored.sherlock.status.Status;
 import com.xored.x5.common.Log;
@@ -17,7 +16,7 @@ public enum EclipseLog implements Log {
 	public void log(Status status) {
 		String target = status.getTarget();
 		Bundle bundle = null;
-		if (!Strings.isNullOrEmpty(target)) {
+		if (target != null && !target.isEmpty()) {
 			bundle = Platform.getBundle(target);
 		}
 		if (bundle == null) {
