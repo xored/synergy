@@ -15,7 +15,7 @@ import com.xored.x5.common.BinaryWriter;
 public class TcpAgentTransport implements Transport {
 
 	public TcpAgentTransport(int port) throws IOException {
-		this(port, InetAddress.getLocalHost(), 0);
+		this(port, "localhost");
 	}
 
 	public TcpAgentTransport(int port, String host) throws IOException {
