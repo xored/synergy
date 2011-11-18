@@ -67,7 +67,7 @@ public class PreferencesBasedFilter extends AbstractUsageDataEventFilter {
 
 	public boolean includes(UsageDataEvent event) {
 		if (includeOnlyEclipseDotOrgBundles()) {
-			return event.bundleId.startsWith("org.eclipse."); //$NON-NLS-1$
+			return event.bundleId.startsWith("org.eclipse.") || event.bundleId.startsWith("com.xored."); //$NON-NLS-1$
 		}
 		for (String filter : getFilterPatterns()) {
 			if (matches(filter, event.bundleId)) return false;

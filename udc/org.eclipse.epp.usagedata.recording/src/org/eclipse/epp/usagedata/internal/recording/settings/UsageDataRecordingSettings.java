@@ -52,7 +52,7 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	static final String UPLOAD_URL_KEY = UsageDataRecordingActivator.PLUGIN_ID + ".upload-url"; //$NON-NLS-1$
 	
 	public static final int PERIOD_REASONABLE_MINIMUM = 15 * 60 * 1000; // 15 minutes
-	static final int UPLOAD_PERIOD_DEFAULT = 24 * 60 * 60 * 1000; // one day
+	static final int UPLOAD_PERIOD_DEFAULT = 15 * 60 * 1000; // 15 minutes
 	static final String UPLOAD_URL_DEFAULT = "http://udc.xored.com/upload"; //$NON-NLS-1$
 	static final boolean ASK_TO_UPLOAD_DEFAULT = true;
 

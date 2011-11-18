@@ -49,10 +49,10 @@ import com.ibm.icu.text.MessageFormat;
 public class UsageDataUploadingPreferencesPage extends PreferencePage
 	implements IWorkbenchPreferencePage {
 
-	private static final int MILLISECONDS_IN_ONE_DAY = 24 * 60 * 60 * 1000;
+	private static final int MILLISECONDS_IN_ONE_MINUTE = 60 * 1000;
 
-	private static final long MINIMUM_PERIOD_IN_DAYS = UsageDataRecordingSettings.PERIOD_REASONABLE_MINIMUM / MILLISECONDS_IN_ONE_DAY;
-	private static final long MAXIMUM_PERIOD_IN_DAYS = 90;
+	private static final long MINIMUM_PERIOD_IN_MINUTES = UsageDataRecordingSettings.PERIOD_REASONABLE_MINIMUM / MILLISECONDS_IN_ONE_MINUTE/3;
+	private static final long MAXIMUM_PERIOD_IN_MINUTES = 90 * MILLISECONDS_IN_ONE_MINUTE;
 	
 	private Text uploadPeriodText;
 	private Label label;
@@ -164,7 +164,7 @@ public class UsageDataUploadingPreferencesPage extends PreferencePage
 	 * Note that this method expects to be run in the UI Thread.
 	 */
 	private void updateUploadPeriodText() {
-		uploadPeriodText.setText(String.valueOf(getRecordingPreferences().getLong(UsageDataRecordingSettings.UPLOAD_PERIOD_KEY) / MILLISECONDS_IN_ONE_DAY));
+		uploadPeriodText.setText(String.valueOf(getRecordingPreferences().getLong(UsageDataRecordingSettings.UPLOAD_PERIOD_KEY) / MILLISECONDS_IN_ONE_MINUTE));
 	}
 
 
@@ -194,7 +194,7 @@ public class UsageDataUploadingPreferencesPage extends PreferencePage
 	@Override
 	public boolean performOk() {		
 		getRecordingPreferences().setValue(UsageDataRecordingSettings.ASK_TO_UPLOAD_KEY, askBeforeUploadingCheckbox.getSelection());		
-		getRecordingPreferences().setValue(UsageDataRecordingSettings.UPLOAD_PERIOD_KEY, Long.valueOf(uploadPeriodText.getText()) * MILLISECONDS_IN_ONE_DAY);
+		getRecordingPreferences().setValue(UsageDataRecordingSettings.UPLOAD_PERIOD_KEY, Long.valueOf(uploadPeriodText.getText()) * MILLISECONDS_IN_ONE_MINUTE);
 		
 		return super.performOk();
 	}
@@ -214,7 +214,7 @@ public class UsageDataUploadingPreferencesPage extends PreferencePage
 	@Override
 	protected void performDefaults() {
 		askBeforeUploadingCheckbox.setSelection(getRecordingPreferences().getDefaultBoolean(UsageDataRecordingSettings.ASK_TO_UPLOAD_KEY));
-		uploadPeriodText.setText(String.valueOf(getRecordingPreferences().getDefaultLong(UsageDataRecordingSettings.UPLOAD_PERIOD_KEY) / MILLISECONDS_IN_ONE_DAY));
+		uploadPeriodText.setText(String.valueOf(getRecordingPreferences().getDefaultLong(UsageDataRecordingSettings.UPLOAD_PERIOD_KEY) / MILLISECONDS_IN_ONE_MINUTE));
 
 		updateLastUploadText();
 
@@ -268,14 +268,14 @@ public class UsageDataUploadingPreferencesPage extends PreferencePage
 		gridData.horizontalSpan = 1;
 		GC gc = new GC(uploadPeriodText.getDisplay());
 		gc.setFont(uploadPeriodText.getFont());
-		gridData.widthHint = gc.stringExtent(String.valueOf(MAXIMUM_PERIOD_IN_DAYS)).x;
+		gridData.widthHint = gc.stringExtent(String.valueOf(MAXIMUM_PERIOD_IN_MINUTES)).x;
 		gc.dispose();
 		uploadPeriodText.setLayoutData(gridData);
 		
 		new Label(composite, SWT.NONE).setText(Messages.UsageDataUploadingPreferencesPage_4); 
 		
 		final ControlDecoration rangeErrorDecoration = new ControlDecoration(uploadPeriodText, SWT.LEFT | SWT.TOP);
-		rangeErrorDecoration.setDescriptionText(MessageFormat.format(Messages.UsageDataUploadingPreferencesPage_5, new Object[] {MINIMUM_PERIOD_IN_DAYS, MAXIMUM_PERIOD_IN_DAYS})); 
+		rangeErrorDecoration.setDescriptionText(MessageFormat.format(Messages.UsageDataUploadingPreferencesPage_5, new Object[] {MINIMUM_PERIOD_IN_MINUTES, MAXIMUM_PERIOD_IN_MINUTES})); 
 		rangeErrorDecoration.setImage(getErrorImage());
 		rangeErrorDecoration.hide();
 		
@@ -299,9 +299,9 @@ public class UsageDataUploadingPreferencesPage extends PreferencePage
 	private boolean isValidUploadPeriod(String text) {
 		try {
 			long value = Long.parseLong(text);
-			if (value < MINIMUM_PERIOD_IN_DAYS)
+			if (value < MINIMUM_PERIOD_IN_MINUTES)
 				return false;
-			if (value > MAXIMUM_PERIOD_IN_DAYS)
+			if (value > MAXIMUM_PERIOD_IN_MINUTES)
 				return false;
 		} catch (NumberFormatException e) {
 			return false;
