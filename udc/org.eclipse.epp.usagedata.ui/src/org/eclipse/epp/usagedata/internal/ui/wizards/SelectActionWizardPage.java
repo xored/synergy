@@ -34,10 +34,10 @@ public class SelectActionWizardPage extends WizardPage {
 
 	// TODO Replace with proper values
 	private static final String UDC_URL = "http://www.eclipse.org/org/usagedata/index.php"; //$NON-NLS-1$
-	private static final String FAQ_URL = "http://www.eclipse.org/org/usagedata/faq.php"; //$NON-NLS-1$
+	private static final String FAQ_URL = "mail:udc@xored.com"; //$NON-NLS-1$
 
 	private static final int WIDTH_HINT = 500;
-	
+
 	private final AskUserUploader uploader;
 	private Button neverUploadRadio;
 	private Button dontUploadRadio;
@@ -47,8 +47,8 @@ public class SelectActionWizardPage extends WizardPage {
 	public SelectActionWizardPage(AskUserUploader uploader) {
 		super("wizardPage"); //$NON-NLS-1$
 		this.uploader = uploader;
-		setTitle(Messages.SelectActionWizardPage_3); 
-		setDescription(Messages.SelectActionWizardPage_4); 
+		setTitle(Messages.SelectActionWizardPage_3);
+		setDescription(Messages.SelectActionWizardPage_4);
 	}
 
 	/**
@@ -57,31 +57,33 @@ public class SelectActionWizardPage extends WizardPage {
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout());
-		
-		FormText greeting = createFormText(composite, Messages.SelectActionWizardPage_5); 
+
+		FormText greeting = createFormText(composite,
+				Messages.SelectActionWizardPage_5);
 		greeting.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent event) {
 				if ("udc".equals(event.getHref())) { //$NON-NLS-1$
-					browseTo(UDC_URL); 
+					browseTo(UDC_URL);
 				} else if ("preview".equals(event.getHref())) { //$NON-NLS-1$
-					((AskUserUploaderWizard)getWizard()).showPreviewPage();
-				} else if ("faq".equals(event.getHref())) { //$NON-NLS-1$
-					browseTo(FAQ_URL);
-				}
+					((AskUserUploaderWizard) getWizard()).showPreviewPage();
+				}/*
+				 * else if ("mailus".equals(event.getHref())) { //$NON-NLS-1$
+				 * browseTo(FAQ_URL); }
+				 */
 			}
 		});
-		createSpacer(composite);		
-						
-		createUploadNowRadio(composite);		
 		createSpacer(composite);
-		
+
+		createUploadNowRadio(composite);
+		createSpacer(composite);
+
 		createUploadAlwaysRadio(composite);
 		createSpacer(composite);
-		
+
 		createDontUploadRadio(composite);
 		createSpacer(composite);
-		
+
 		createNeverUploadRadio(composite);
 		createSpacer(composite);
 
@@ -89,15 +91,15 @@ public class SelectActionWizardPage extends WizardPage {
 		text.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent event) {
-				((AskUserUploaderWizard)getWizard()).showTermsPage();
+				((AskUserUploaderWizard) getWizard()).showTermsPage();
 			}
 		});
-		
+
 		setControl(composite);
 	}
 
 	private String getTermsText() {
-		return Messages.SelectActionWizardPage_9; 
+		return Messages.SelectActionWizardPage_9;
 	}
 
 	private void createSpacer(Composite parent) {
@@ -108,23 +110,29 @@ public class SelectActionWizardPage extends WizardPage {
 	}
 
 	private void createUploadNowRadio(Composite parent) {
-		uploadNowRadio = createRadio(parent, Messages.SelectActionWizardPage_10, AskUserUploader.UPLOAD_NOW); 
-		createDescriptionText(parent, Messages.SelectActionWizardPage_11); 
+		uploadNowRadio = createRadio(parent,
+				Messages.SelectActionWizardPage_10, AskUserUploader.UPLOAD_NOW);
+		createDescriptionText(parent, Messages.SelectActionWizardPage_11);
 	}
 
 	private void createUploadAlwaysRadio(Composite parent) {
-		uploadAlwaysRadio = createRadio(parent, Messages.SelectActionWizardPage_12, AskUserUploader.UPLOAD_ALWAYS); 
-		createDescriptionText(parent, Messages.SelectActionWizardPage_13); 
+		uploadAlwaysRadio = createRadio(parent,
+				Messages.SelectActionWizardPage_12,
+				AskUserUploader.UPLOAD_ALWAYS);
+		createDescriptionText(parent, Messages.SelectActionWizardPage_13);
 	}
 
 	private void createDontUploadRadio(Composite parent) {
-		dontUploadRadio = createRadio(parent, Messages.SelectActionWizardPage_14, AskUserUploader.DONT_UPLOAD);		 
-		createDescriptionText(parent, Messages.SelectActionWizardPage_15); 
+		dontUploadRadio = createRadio(parent,
+				Messages.SelectActionWizardPage_14, AskUserUploader.DONT_UPLOAD);
+		createDescriptionText(parent, Messages.SelectActionWizardPage_15);
 	}
 
 	private void createNeverUploadRadio(Composite parent) {
-		neverUploadRadio = createRadio(parent, Messages.SelectActionWizardPage_16,AskUserUploader.NEVER_UPLOAD);	 
-		createDescriptionText(parent, Messages.SelectActionWizardPage_17);		 
+		neverUploadRadio = createRadio(parent,
+				Messages.SelectActionWizardPage_16,
+				AskUserUploader.NEVER_UPLOAD);
+		createDescriptionText(parent, Messages.SelectActionWizardPage_17);
 	}
 
 	private Button createRadio(Composite parent, String label, final int action) {
@@ -138,18 +146,18 @@ public class SelectActionWizardPage extends WizardPage {
 			}
 		});
 		radio.setSelection(uploader.getAction() == action);
-		
+
 		return radio;
 	}
-	
+
 	private void createDescriptionText(Composite parent, String string) {
 		createText(parent, string, 25);
 	}
-		
+
 	private void createText(Composite parent, String string, int indent) {
 		Label text = new Label(parent, SWT.WRAP);
 		text.setText(string);
-		
+
 		GridData layoutData = new GridData();
 		layoutData.horizontalIndent = indent;
 		layoutData.grabExcessHorizontalSpace = true;
@@ -161,31 +169,40 @@ public class SelectActionWizardPage extends WizardPage {
 	private FormText createFormText(Composite parent, String string) {
 		FormText text = new FormText(parent, SWT.WRAP);
 		text.setText(string, true, true);
-		
+
 		GridData layoutData = new GridData();
 		layoutData.grabExcessHorizontalSpace = true;
 		layoutData.horizontalAlignment = SWT.FILL;
 		layoutData.widthHint = WIDTH_HINT;
 		text.setLayoutData(layoutData);
-		
+
 		return text;
 	}
 
 	@Override
 	public boolean isPageComplete() {
-		if (uploadAlwaysRadio.getSelection()) return true;
-		if (uploadNowRadio.getSelection()) return true;
-		if (neverUploadRadio.getSelection()) return true;
-		if (dontUploadRadio.getSelection()) return true;
-		
+		if (uploadAlwaysRadio.getSelection())
+			return true;
+		if (uploadNowRadio.getSelection())
+			return true;
+		if (neverUploadRadio.getSelection())
+			return true;
+		if (dontUploadRadio.getSelection())
+			return true;
+
 		return false;
 	}
 
 	private void browseTo(String url) {
 		try {
-			PlatformUI.getWorkbench().getBrowserSupport().getExternalBrowser().openURL(new URL(url));
+			PlatformUI.getWorkbench().getBrowserSupport().getExternalBrowser()
+					.openURL(new URL(url));
 		} catch (Exception e) {
-			Activator.getDefault().getLog().log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error opening browser", e)); //$NON-NLS-1$
+			Activator
+					.getDefault()
+					.getLog()
+					.log(new Status(Status.ERROR, Activator.PLUGIN_ID,
+							"Error opening browser", e)); //$NON-NLS-1$
 		}
 	}
 }
