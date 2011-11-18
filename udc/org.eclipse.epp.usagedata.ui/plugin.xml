@@ -33,21 +33,4 @@
             class="org.eclipse.epp.usagedata.internal.ui.uploaders.AskUserUploader">
       </uploader>
    </extension>
-   <extension
-         point="org.eclipse.help.toc">
-      <toc
-            file="toc.xml"
-            primary="true">
-      </toc>
-      <toc
-            file="tocgettingstarted.xml">
-      </toc>
-   </extension>
-   <extension
-         point="org.eclipse.ui.intro.configExtension">
-      <configExtension
-            configId="org.eclipse.ui.intro.universalConfig"
-            content="intro/udc-intro.xml">
-      </configExtension>
-   </extension>
 </plugin>
