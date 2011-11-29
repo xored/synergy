@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import com.xored.sherlock.status.StatusUtil;
 import com.xored.x5.common.DataSourceEntry;
 import com.xored.x5.common.PackageEntry;
+import com.xored.x5.common.PingEntry;
 
 public class PackageServerTransport implements ServerTransport {
 
@@ -74,6 +75,9 @@ public class PackageServerTransport implements ServerTransport {
 					fake.getContents().add(ePackage);
 					resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
 					resourceSet.getResources().add(fake);
+					return StatusUtil.newOkStatus();
+				} else if (request instanceof PingEntry) {
+					// do nothing, just send OK
 					return StatusUtil.newOkStatus();
 				} else {
 					return StatusUtil.newErrorStatus(TARGET, "Unexpected data: " + request);

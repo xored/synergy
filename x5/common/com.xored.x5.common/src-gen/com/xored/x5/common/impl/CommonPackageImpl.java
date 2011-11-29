@@ -15,6 +15,7 @@ import com.xored.x5.common.CommonFactory;
 import com.xored.x5.common.CommonPackage;
 import com.xored.x5.common.DataSourceEntry;
 import com.xored.x5.common.PackageEntry;
+import com.xored.x5.common.PingEntry;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +37,13 @@ public class CommonPackageImpl extends EPackageImpl implements CommonPackage {
 	 * @generated
 	 */
 	private EClass dataSourceEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pingEntryEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -139,6 +147,15 @@ public class CommonPackageImpl extends EPackageImpl implements CommonPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPingEntry() {
+		return pingEntryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CommonFactory getCommonFactory() {
 		return (CommonFactory)getEFactoryInstance();
 	}
@@ -167,6 +184,8 @@ public class CommonPackageImpl extends EPackageImpl implements CommonPackage {
 
 		dataSourceEntryEClass = createEClass(DATA_SOURCE_ENTRY);
 		createEReference(dataSourceEntryEClass, DATA_SOURCE_ENTRY__CONTENT);
+
+		pingEntryEClass = createEClass(PING_ENTRY);
 	}
 
 	/**
@@ -204,6 +223,8 @@ public class CommonPackageImpl extends EPackageImpl implements CommonPackage {
 
 		initEClass(dataSourceEntryEClass, DataSourceEntry.class, "DataSourceEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataSourceEntry_Content(), ecorePackage.getEObject(), null, "content", null, 0, 1, DataSourceEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pingEntryEClass, PingEntry.class, "PingEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

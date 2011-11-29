@@ -62,6 +62,7 @@ public class CommonFactoryImpl extends EFactoryImpl implements CommonFactory {
 		switch (eClass.getClassifierID()) {
 			case CommonPackage.PACKAGE_ENTRY: return createPackageEntry();
 			case CommonPackage.DATA_SOURCE_ENTRY: return createDataSourceEntry();
+			case CommonPackage.PING_ENTRY: return createPingEntry();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -85,6 +86,16 @@ public class CommonFactoryImpl extends EFactoryImpl implements CommonFactory {
 	public DataSourceEntry createDataSourceEntry() {
 		DataSourceEntryImpl dataSourceEntry = new DataSourceEntryImpl();
 		return dataSourceEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PingEntry createPingEntry() {
+		PingEntryImpl pingEntry = new PingEntryImpl();
+		return pingEntry;
 	}
 
 	/**

@@ -116,6 +116,26 @@ public interface CommonPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link com.xored.x5.common.impl.PingEntryImpl <em>Ping Entry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.xored.x5.common.impl.PingEntryImpl
+	 * @see com.xored.x5.common.impl.CommonPackageImpl#getPingEntry()
+	 * @generated
+	 */
+	int PING_ENTRY = 2;
+
+	/**
+	 * The number of structural features of the '<em>Ping Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PING_ENTRY_FEATURE_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link com.xored.x5.common.PackageEntry <em>Package Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,6 +176,16 @@ public interface CommonPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDataSourceEntry_Content();
+
+	/**
+	 * Returns the meta object for class '{@link com.xored.x5.common.PingEntry <em>Ping Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ping Entry</em>'.
+	 * @see com.xored.x5.common.PingEntry
+	 * @generated
+	 */
+	EClass getPingEntry();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -214,6 +244,16 @@ public interface CommonPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DATA_SOURCE_ENTRY__CONTENT = eINSTANCE.getDataSourceEntry_Content();
+
+		/**
+		 * The meta object literal for the '{@link com.xored.x5.common.impl.PingEntryImpl <em>Ping Entry</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.xored.x5.common.impl.PingEntryImpl
+		 * @see com.xored.x5.common.impl.CommonPackageImpl#getPingEntry()
+		 * @generated
+		 */
+		EClass PING_ENTRY = eINSTANCE.getPingEntry();
 
 	}
 

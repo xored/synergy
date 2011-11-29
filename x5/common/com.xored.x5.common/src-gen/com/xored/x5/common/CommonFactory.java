@@ -44,6 +44,15 @@ public interface CommonFactory extends EFactory {
 	DataSourceEntry createDataSourceEntry();
 
 	/**
+	 * Returns a new object of class '<em>Ping Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ping Entry</em>'.
+	 * @generated
+	 */
+	PingEntry createPingEntry();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
