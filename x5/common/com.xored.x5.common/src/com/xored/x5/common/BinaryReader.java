@@ -42,9 +42,18 @@ public class BinaryReader {
 			// connection was closed
 			return null;
 		}
-		byte[] result = new byte[len];
-		in.readFully(result);
-		return result;
+		if (len < 0) {
+			throw new IOException("Expect size of data block but found: " + len);
+		}
+		try {
+			byte[] result = new byte[len];
+			in.readFully(result);
+			return result;
+		} catch (OutOfMemoryError e) {
+			throw new IOException(
+					"Couldn't allocate data block with the following size: "
+							+ len, e);
+		}
 	}
 
 	private InputStream stream;
