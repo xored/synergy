@@ -9,7 +9,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.BinaryResourceImpl;
 
 public class BinaryReader {
 
@@ -19,7 +18,7 @@ public class BinaryReader {
 	}
 
 	public EObject read() throws IOException {
-		Resource resource = new BinaryResourceImpl();
+		Resource resource = new X5BinaryResourceImpl();
 		resource.setURI(URI.createURI("mem://" + resource.hashCode()));
 		resourceSet.getResources().add(resource);
 
