@@ -8,8 +8,8 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.xored.synergy</groupId>
-  <artifactId>com.xored.x5.server-feature</artifactId>
+  <groupId>com.xored.synergy.features</groupId>
+  <artifactId>com.xored.x5.server</artifactId>
   <version>2.0.0-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
 </project>
