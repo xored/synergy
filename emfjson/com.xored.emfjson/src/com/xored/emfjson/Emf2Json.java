@@ -36,9 +36,8 @@ public class Emf2Json {
 		for (EPackage ePackage : packages) {
 			for (EClassifier classifier : ePackage.getEClassifiers()) {
 				if (classifier instanceof EClass) {
-					((EClass) classifier).getName();
-					classNamesToEClass.put(classifier.getInstanceClass()
-							.getName(), (EClass) classifier);
+					classNamesToEClass.put(getClassName((EClass) classifier),
+							(EClass) classifier);
 				}
 			}
 		}
@@ -57,8 +56,7 @@ public class Emf2Json {
 		EClass eClass = object.eClass();
 		JsonObject jsonObject = new JsonObject();
 		if (saveClass) {
-			jsonObject.addProperty(CLASS_ATTRIBUTE, eClass.getEPackage().getName()
-					+ "." + eClass.getName());
+			jsonObject.addProperty(CLASS_ATTRIBUTE, getClassName(eClass));
 		}
 
 		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
@@ -78,10 +76,15 @@ public class Emf2Json {
 					jsonObject.add(feature.getName(), jsonArray);
 				}
 			} else {
-				jsonObject.add(feature.getName(), handleFeature(feature, value));
+				jsonObject
+						.add(feature.getName(), handleFeature(feature, value));
 			}
 		}
 		return jsonObject;
+	}
+
+	private String getClassName(EClass eClass) {
+		return eClass.getEPackage().getName() + "." + eClass.getName();
 	}
 
 	private static final JsonElement JSON_NULL = new JsonNull();
@@ -152,16 +155,16 @@ public class Emf2Json {
 		if (useStringConvertation(dataType)) {
 			return new JsonPrimitive(EcoreUtil.convertToString(dataType, value));
 		}
-                if (value instanceof Boolean) {
-                  return new JsonPrimitive((Boolean)value);
-                } else if (value instanceof Number) {
-                  return new JsonPrimitive((Number)value);
-                } else if (value instanceof String) {
-                  return new JsonPrimitive((String)value);
-                } else if (value instanceof Character) {
-                  return new JsonPrimitive((Character)value);
-                } else 
-		  return new JsonPrimitive(value.toString());
+		if (value instanceof Boolean) {
+			return new JsonPrimitive((Boolean) value);
+		} else if (value instanceof Number) {
+			return new JsonPrimitive((Number) value);
+		} else if (value instanceof String) {
+			return new JsonPrimitive((String) value);
+		} else if (value instanceof Character) {
+			return new JsonPrimitive((Character) value);
+		} else
+			return new JsonPrimitive(value.toString());
 	}
 
 	public EObject deserialize(JsonObject jsonObject) {
@@ -189,7 +192,8 @@ public class Emf2Json {
 
 	private EObject fromJsonObject(JsonObject jsonObject, EClass eClass) {
 		if (jsonObject.has(CLASS_ATTRIBUTE)) {
-			String explicitClassName = jsonObject.getAsJsonPrimitive(CLASS_ATTRIBUTE).getAsString();
+			String explicitClassName = jsonObject.getAsJsonPrimitive(
+					CLASS_ATTRIBUTE).getAsString();
 			EClass eClassExplicit = classNamesToEClass.get(explicitClassName);
 			if (eClassExplicit != null) {
 				eClass = eClassExplicit;
@@ -240,7 +244,8 @@ public class Emf2Json {
 					JsonArray jsonArray = jsonObject.getAsJsonArray(feature
 							.getName());
 					for (Object jsonValue : jsonArray) {
-						if (!jsonValue.equals( JSON_NULL )) { // TODO: is it always JsonNull?
+						if (!jsonValue.equals(JSON_NULL)) { // TODO: is it
+															// always JsonNull?
 							list.add(handleJson(feature, jsonValue));
 						}
 					}
@@ -266,8 +271,10 @@ public class Emf2Json {
 
 			if (di.value.equals(JSON_NULL)) { // TODO: is it always JsonNull?
 				di.eOject.eSet(di.reference, null);
-			} else if (di.value instanceof JsonPrimitive && ((JsonPrimitive)di.value).isString() ) {
-				EObject toSet = linkCache.get( ((JsonPrimitive)di.value).getAsString() );
+			} else if (di.value instanceof JsonPrimitive
+					&& ((JsonPrimitive) di.value).isString()) {
+				EObject toSet = linkCache.get(((JsonPrimitive) di.value)
+						.getAsString());
 				di.eOject.eSet(di.reference, toSet);
 			} else if (di.value instanceof JsonArray) {
 				JsonArray array = (JsonArray) di.value;
@@ -386,9 +393,10 @@ public class Emf2Json {
 		}
 		EDataType dataType = attr.getEAttributeType();
 		if (useStringConvertation(dataType)) {
-			return EcoreUtil.createFromString(dataType, ((JsonPrimitive)value).getAsString());
+			return EcoreUtil.createFromString(dataType,
+					((JsonPrimitive) value).getAsString());
 		}
-                return Coercer.coerce(dataType.getInstanceClass(), value);
+		return Coercer.coerce(dataType.getInstanceClass(), value);
 	}
 
 	private boolean useStringConvertation(EDataType dataType) {
