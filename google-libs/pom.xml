@@ -16,6 +16,7 @@
   	
 	<modules>
 		<module>com.google.gson</module>
+		<module>com.google.guava</module>
 		<module>com.google.libs-feature</module>
 	</modules>
   </project>
