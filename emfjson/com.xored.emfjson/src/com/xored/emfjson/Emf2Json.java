@@ -311,7 +311,6 @@ public class Emf2Json {
 
 		return new Cache<String, EObject>(new Cache.Creator<String, EObject>() {
 
-			@Override
 			public EObject create(String strValue) {
 				if (!strValue.startsWith("@//")) {
 					throwIllegalURILink(strValue);

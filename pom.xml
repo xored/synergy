@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-  
+
 	<groupId>com.xored.synergy</groupId>
 	<artifactId>synergy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-  
-  
+
+
 	<modules>
 		<module>emfjson</module>
-		<module>udc</module>
 		<module>google-libs</module>
-		<module>sherlock</module>
-		<module>x5</module>
 		<module>p2repository</module>
 	</modules>
-  
+
 	<properties>
-  		<tycho-version>0.15.0</tycho-version>
+		<tycho-version>0.16.0</tycho-version>
 		<tycho-groupid>org.eclipse.tycho</tycho-groupid>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-  
+
 	<distributionManagement>
 		<repository>
 			<id>xored</id>
@@ -36,7 +34,7 @@
 			<url>http://maven.xored.com/nexus/content/repositories/q7-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
-	
+
 	<pluginRepositories>
 		<pluginRepository>
 			<snapshots>
@@ -53,17 +51,9 @@
 			<snapshots>
 				<updatePolicy>always</updatePolicy>
 			</snapshots>
-			<id>helios</id>
+			<id>juno</id>
 			<layout>p2</layout>
-			<url>http://download.xored.com/mirrors/helios/</url>
-		</repository>
-		<repository>
-			<snapshots>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-			<id>helios-updates</id>
-			<layout>p2</layout>
-			<url>http://download.xored.com/mirrors/updates36/</url>
+			<url>http://download.xored.com/mirrors/juno/</url>
 		</repository>
 
 		<repository>
@@ -75,9 +65,18 @@
 			<url>http://download.xored.com/mirrors/guava/</url>
 		</repository>
 	</repositories>
-	
+
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>${tycho-groupid}</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
@@ -116,7 +115,7 @@
 							<ws>cocoa</ws>
 							<arch>x86_64</arch>
 						</environment>
-					</environments>					
+					</environments>
 				</configuration>
 			</plugin>
 		</plugins>
