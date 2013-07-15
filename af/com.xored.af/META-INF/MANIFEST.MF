@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Application Framework
+Bundle-SymbolicName: com.xored.af;singleton:=true
+Bundle-Version: 7.0.0.qualifier
+Bundle-Vendor: Xored
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.core.databinding,
+ org.eclipse.core.databinding.property,
+ org.eclipse.emf.common,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.workspace,
+ org.eclipse.text
+Export-Package: com.xored.af,
+ com.xored.af.builds,
+ com.xored.af.databinding,
+ com.xored.af.validation
+Bundle-Activator: com.xored.af.internal.AfPlugin
+Bundle-ActivationPolicy: lazy
+Eclipse-BundleShape: jar
