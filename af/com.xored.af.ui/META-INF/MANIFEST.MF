@@ -23,6 +23,7 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: com.xored.af.ui,
+ com.xored.af.ui.builds,
  com.xored.af.ui.databinding,
  com.xored.af.ui.forms,
  com.xored.af.ui.forms.parts,
