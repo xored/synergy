@@ -248,8 +248,6 @@ public abstract class EmfProjectBuilder extends IncrementalProjectBuilder {
             if (resource != null) {
                 if (resource.isLoaded()) {
                     resource.unload();
-                    // TODO: hack.
-                    // Thread.sleep(1000);
                 }
                 resource.load(editingDomain.getResourceSet().getLoadOptions());
             }
