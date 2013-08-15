@@ -28,14 +28,14 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This class provides a convenient location to find the settings
- * for this bundle. Some settings are in the preferences; others
- * are found in system properties. Still more are simply provided
- * as constant values.
+ * This class provides a convenient location to find the settings for this
+ * bundle. Some settings are in the preferences; others are found in system
+ * properties. Still more are simply provided as constant values.
  * 
  * @author Wayne Beaton
- *
+ * 
  */
+@SuppressWarnings("deprecation")
 public class UsageDataRecordingSettings implements UploadSettings {
 
 	private static final String DEFAULT_ID = "unknown"; //$NON-NLS-1$
@@ -46,13 +46,16 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	public static final String LAST_UPLOAD_KEY = UsageDataRecordingActivator.PLUGIN_ID + ".last-upload"; //$NON-NLS-1$
 	public static final String ASK_TO_UPLOAD_KEY = UsageDataRecordingActivator.PLUGIN_ID + ".ask"; //$NON-NLS-1$
 	public static final String LOG_SERVER_ACTIVITY_KEY = UsageDataRecordingActivator.PLUGIN_ID + ".log-server"; //$NON-NLS-1$
-	public static final String FILTER_ECLIPSE_BUNDLES_ONLY_KEY = UsageDataRecordingActivator.PLUGIN_ID + ".filter-eclipse-only"; //$NON-NLS-1$
+	public static final String FILTER_ECLIPSE_BUNDLES_ONLY_KEY = UsageDataRecordingActivator.PLUGIN_ID
+			+ ".filter-eclipse-only"; //$NON-NLS-1$
 	public static final String FILTER_PATTERNS_KEY = UsageDataRecordingActivator.PLUGIN_ID + ".filter-patterns"; //$NON-NLS-1$
-	
+
 	static final String UPLOAD_URL_KEY = UsageDataRecordingActivator.PLUGIN_ID + ".upload-url"; //$NON-NLS-1$
-	
-	public static final int PERIOD_REASONABLE_MINIMUM = 15 * 60 * 1000; // 15 minutes
-	static final int UPLOAD_PERIOD_DEFAULT = 24 * 60 * 60 * 1000; // one day minutes
+
+	public static final int PERIOD_REASONABLE_MINIMUM = 15 * 60 * 1000; // 15
+																		// minutes
+	static final int UPLOAD_PERIOD_DEFAULT = 24 * 60 * 60 * 1000; // one day
+																	// minutes
 	static final String UPLOAD_URL_DEFAULT = "http://udc.xored.com/upload"; //$NON-NLS-1$
 	static final boolean ASK_TO_UPLOAD_DEFAULT = true;
 
@@ -77,8 +80,11 @@ public class UsageDataRecordingSettings implements UploadSettings {
 			} catch (NumberFormatException e) {
 				// If we can't get it from this source, we'll pick it up some
 				// other way. Long the problem and move on.
-				UsageDataRecordingActivator.getDefault().log(IStatus.WARNING,
-						e, "The UsageDataUploader cannot parse the %1$s system property (\"%2$s\"", UPLOAD_PERIOD_KEY, value); //$NON-NLS-1$
+				UsageDataRecordingActivator
+						.getDefault()
+						.log(IStatus.WARNING,
+								e,
+								"The UsageDataUploader cannot parse the %1$s system property (\"%2$s\"", UPLOAD_PERIOD_KEY, value); //$NON-NLS-1$
 			}
 		} else if (getPreferencesStore().contains(UPLOAD_PERIOD_KEY)) {
 			period = getPreferencesStore().getLong(UPLOAD_PERIOD_KEY);
@@ -100,6 +106,7 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	 * 
 	 * @return
 	 */
+
 	public long getLastUploadTime() {
 		if (getPreferencesStore().contains(LAST_UPLOAD_KEY)) {
 			return getPreferencesStore().getLong(LAST_UPLOAD_KEY);
@@ -112,10 +119,10 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	}
 
 	/**
-	 * This method answers <code>true</code> if enough time has passed since
-	 * the last upload to warrant starting a new one. If an upload has not yet
-	 * occurred, it answers <code>true</code> if the required amount of time
-	 * has passed since the first time this method was called. It answers
+	 * This method answers <code>true</code> if enough time has passed since the
+	 * last upload to warrant starting a new one. If an upload has not yet
+	 * occurred, it answers <code>true</code> if the required amount of time has
+	 * passed since the first time this method was called. It answers
 	 * <code>false</code> otherwise.
 	 * 
 	 * @return <code>true</code> if it is time to upload; <code>false</code>
@@ -127,9 +134,10 @@ public class UsageDataRecordingSettings implements UploadSettings {
 		return System.currentTimeMillis() - getLastUploadTime() > getPeriodBetweenUploads();
 	}
 
-	/** 
-	 * This method returns the {@link File} where usage data events should be persisted.
-	 *  
+	/**
+	 * This method returns the {@link File} where usage data events should be
+	 * persisted.
+	 * 
 	 * @return the {@link File} where usage data events are persisted.
 	 */
 	public File getEventFile() {
@@ -137,13 +145,14 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	}
 
 	/**
-	 * When it's time to start uploading the usage data, the file that's used
-	 * to persist the data is moved (renamed) and a new file is created. The
-	 * moved file is then uploaded to the server. This method finds an appropriate
-	 * destination for the moved file. The destination {@link File} will be in the
-	 * bundle's state location, but will not actually exist in the file system.
+	 * When it's time to start uploading the usage data, the file that's used to
+	 * persist the data is moved (renamed) and a new file is created. The moved
+	 * file is then uploaded to the server. This method finds an appropriate
+	 * destination for the moved file. The destination {@link File} will be in
+	 * the bundle's state location, but will not actually exist in the file
+	 * system.
 	 * 
-	 * @return a destination {@link File} for the move operation. 
+	 * @return a destination {@link File} for the move operation.
 	 */
 	public File computeDestinationFile() {
 		int index = 0;
@@ -158,24 +167,25 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	}
 
 	/**
-	 * This method returns an identifier for the workstation. This value
-	 * is common to all workspaces on a single machine. The value
-	 * is persisted (if possible) in a hidden file in the users's working 
-	 * directory. If an existing file cannot be read, or a new file cannot
-	 * be written, this method returns "unknown".
+	 * This method returns an identifier for the workstation. This value is
+	 * common to all workspaces on a single machine. The value is persisted (if
+	 * possible) in a hidden file in the users's working directory. If an
+	 * existing file cannot be read, or a new file cannot be written, this
+	 * method returns "unknown".
 	 * 
 	 * @return an identifier for the workstation.
 	 */
 	public String getUserId() {
-		return getExistingOrGenerateId(new File(System.getProperty("user.home")), "." + UsageDataRecordingActivator.PLUGIN_ID //$NON-NLS-1$ //$NON-NLS-2$
-				+ ".userId"); //$NON-NLS-1$
+		return getExistingOrGenerateId(
+				new File(System.getProperty("user.home")), "." + UsageDataRecordingActivator.PLUGIN_ID //$NON-NLS-1$ //$NON-NLS-2$
+						+ ".userId"); //$NON-NLS-1$
 	}
 
 	/**
 	 * This method returns an identifier for the workspace. This value is unique
-	 * to the workspace. It is persisted (if possible) in a hidden file in the bundle's
-	 * state location.If an existing file cannot be read, or a new file cannot
-	 * be written, this method returns "unknown".
+	 * to the workspace. It is persisted (if possible) in a hidden file in the
+	 * bundle's state location.If an existing file cannot be read, or a new file
+	 * cannot be written, this method returns "unknown".
 	 * 
 	 * @return an identifier for the workspace.
 	 */
@@ -184,12 +194,11 @@ public class UsageDataRecordingSettings implements UploadSettings {
 				+ UsageDataRecordingActivator.PLUGIN_ID + ".workspaceId"); //$NON-NLS-1$
 	}
 
-
 	/**
-	 * This method answers whether or not we want to ask the server to 
-	 * provide a log of activity. This method only answers <code>true</code>
-	 * if the "{@value #LOG_SERVER_ACTIVITY_KEY}" system property is set
-	 * to "true". This is mostly useful for debugging.
+	 * This method answers whether or not we want to ask the server to provide a
+	 * log of activity. This method only answers <code>true</code> if the "
+	 * {@value #LOG_SERVER_ACTIVITY_KEY}" system property is set to "true". This
+	 * is mostly useful for debugging.
 	 * 
 	 * @return true if we're logging, false otherwise.
 	 * 
@@ -200,8 +209,8 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	}
 
 	/**
-	 * This method answers an array containing the files that are available
-	 * for uploading.
+	 * This method answers an array containing the files that are available for
+	 * uploading.
 	 * 
 	 * @return
 	 */
@@ -215,14 +224,14 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	}
 
 	/**
-	 * This method sets the {@value #LAST_UPLOAD_KEY} property to the
-	 * current time.
+	 * This method sets the {@value #LAST_UPLOAD_KEY} property to the current
+	 * time.
 	 */
 	public void setLastUploadTime() {
 		getPreferencesStore().setValue(LAST_UPLOAD_KEY, System.currentTimeMillis());
 		UsageDataRecordingActivator.getDefault().savePluginPreferences();
 	}
-	
+
 	/**
 	 * <p>
 	 * This method either finds an existing id or generates a new one. The id is
@@ -234,13 +243,14 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	 * </p>
 	 * 
 	 * @param directory
-	 *           the directory that will contain the stored id.
+	 *            the directory that will contain the stored id.
 	 * @param fileName
 	 *            name of the file containing the id.
 	 * @return a globally unique id.
 	 */
 	private String getExistingOrGenerateId(File directory, String fileName) {
-		if (!directory.exists()) return DEFAULT_ID;
+		if (!directory.exists())
+			return DEFAULT_ID;
 		if (!directory.isDirectory()) {
 		} // TODO Think of something else
 		File file = new File(directory, fileName);
@@ -277,17 +287,18 @@ public class UsageDataRecordingSettings implements UploadSettings {
 	}
 
 	private void handleCannotReadFileException(File file, IOException e) {
-		UsageDataRecordingActivator.getDefault().log(IStatus.WARNING,	e, "Cannot read the existing id from %1$s; using the default.", file.toString()); //$NON-NLS-1$
+		UsageDataRecordingActivator.getDefault().log(IStatus.WARNING, e,
+				"Cannot read the existing id from %1$s; using the default.", file.toString()); //$NON-NLS-1$
 	}
 
 	private IPreferenceStore getPreferencesStore() {
 		return UsageDataRecordingActivator.getDefault().getPreferenceStore();
 	}
-	
+
 	private File getWorkingDirectory() {
 		return UsageDataRecordingActivator.getDefault().getStateLocation().toFile();
 	}
-	
+
 	/**
 	 * Convenience method for closing a {@link Writer} that could possibly be
 	 * <code>null</code>.
@@ -332,15 +343,23 @@ public class UsageDataRecordingSettings implements UploadSettings {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.epp.usagedata.internal.recording.settings.UploadSettings#getFilter()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.epp.usagedata.internal.recording.settings.UploadSettings#
+	 * getFilter()
 	 */
 	public UsageDataEventFilter getFilter() {
 		return filter;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.epp.usagedata.internal.recording.settings.UploadSettings#hasUserAcceptedTermsOfUse()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.epp.usagedata.internal.recording.settings.UploadSettings#
+	 * hasUserAcceptedTermsOfUse()
 	 */
 	public boolean hasUserAcceptedTermsOfUse() {
 		return getCaptureSettings().hasUserAcceptedTermsOfUse();
@@ -350,13 +369,17 @@ public class UsageDataRecordingSettings implements UploadSettings {
 		getCaptureSettings().setUserAcceptedTermsOfUse(value);
 		UsageDataRecordingActivator.getDefault().savePluginPreferences();
 	}
-	
+
 	private UsageDataCaptureSettings getCaptureSettings() {
 		return org.eclipse.epp.usagedata.internal.gathering.UsageDataCaptureActivator.getDefault().getSettings();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.epp.usagedata.internal.recording.settings.UploadSettings#isEnabled()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.epp.usagedata.internal.recording.settings.UploadSettings#
+	 * isEnabled()
 	 */
 	public boolean isEnabled() {
 		return getCaptureSettings().isEnabled();

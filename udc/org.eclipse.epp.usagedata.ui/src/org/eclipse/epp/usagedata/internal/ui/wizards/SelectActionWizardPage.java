@@ -34,6 +34,7 @@ public class SelectActionWizardPage extends WizardPage {
 
 	// TODO Replace with proper values
 	private static final String UDC_URL = "http://www.eclipse.org/org/usagedata/index.php"; //$NON-NLS-1$
+	@SuppressWarnings("unused")
 	private static final String FAQ_URL = "mail:udc@xored.com"; //$NON-NLS-1$
 
 	private static final int WIDTH_HINT = 500;
@@ -201,8 +202,7 @@ public class SelectActionWizardPage extends WizardPage {
 			Activator
 					.getDefault()
 					.getLog()
-					.log(new Status(Status.ERROR, Activator.PLUGIN_ID,
-							"Error opening browser", e)); //$NON-NLS-1$
+					.log(new Status(Status.ERROR, Activator.PLUGIN_ID, "Error opening browser", e)); //$NON-NLS-1$
 		}
 	}
 }

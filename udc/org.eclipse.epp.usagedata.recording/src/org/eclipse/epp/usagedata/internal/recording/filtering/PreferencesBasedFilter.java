@@ -20,17 +20,18 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 /**
  * The {@link PreferencesBasedFilter} is a {@link UsageDataEventFilter} with
  * direct links to preferences for the org.eclipse.epp.usagedata.recording
- * bundle. When created, instances hook a listener into the preference store
- * for the bundle so as to be notified by changes in preferences and update
+ * bundle. When created, instances hook a listener into the preference store for
+ * the bundle so as to be notified by changes in preferences and update
  * accordingly. Instances must be released using the {@link #dispose()} method
  * to clean up the listener.
  * <p>
- * A single instance of this class is maintained by the activator for the
- * bundle via the settings object. The activator manages the lifecycle.
+ * A single instance of this class is maintained by the activator for the bundle
+ * via the settings object. The activator manages the lifecycle.
  * 
  * @see UsageDataRecordingSettings
  * @author Wayne Beaton
  */
+@SuppressWarnings("deprecation")
 public class PreferencesBasedFilter extends AbstractUsageDataEventFilter {
 
 	public PreferencesBasedFilter() {
@@ -43,7 +44,7 @@ public class PreferencesBasedFilter extends AbstractUsageDataEventFilter {
 				if (isFilterProperty(event.getProperty())) {
 					fireFilterChangedEvent();
 				}
-			}			
+			}
 		};
 		getPreferenceStore().addPropertyChangeListener(propertyChangeListener);
 	}
@@ -56,12 +57,14 @@ public class PreferencesBasedFilter extends AbstractUsageDataEventFilter {
 	}
 
 	/**
-	 * This method is used to test whether or the parameter represents
-	 * a property that the receiver is interested in.
+	 * This method is used to test whether or the parameter represents a
+	 * property that the receiver is interested in.
 	 */
 	boolean isFilterProperty(String property) {
-		if (UsageDataRecordingSettings.FILTER_ECLIPSE_BUNDLES_ONLY_KEY.equals(property)) return true;
-		if (UsageDataRecordingSettings.FILTER_PATTERNS_KEY.equals(property)) return true;
+		if (UsageDataRecordingSettings.FILTER_ECLIPSE_BUNDLES_ONLY_KEY.equals(property))
+			return true;
+		if (UsageDataRecordingSettings.FILTER_PATTERNS_KEY.equals(property))
+			return true;
 		return false;
 	}
 
@@ -70,14 +73,15 @@ public class PreferencesBasedFilter extends AbstractUsageDataEventFilter {
 			return event.bundleId.startsWith("org.eclipse.") || event.bundleId.startsWith("com.xored."); //$NON-NLS-1$
 		}
 		for (String filter : getFilterPatterns()) {
-			if (matches(filter, event.bundleId)) return false;
+			if (matches(filter, event.bundleId))
+				return false;
 		}
 		return true;
 	}
 
 	public String[] getFilterPatterns() {
 		String patternString = getPreferenceStore().getString(UsageDataRecordingSettings.FILTER_PATTERNS_KEY);
-		if ("".equals(patternString)) return new String[0]; //$NON-NLS-1$
+		if ("".equals(patternString))return new String[0]; //$NON-NLS-1$
 		return patternString.split("\n"); //$NON-NLS-1$
 	}
 
@@ -99,10 +103,11 @@ public class PreferencesBasedFilter extends AbstractUsageDataEventFilter {
 		getPreferenceStore().setValue(UsageDataRecordingSettings.FILTER_PATTERNS_KEY, patternString);
 		UsageDataRecordingActivator.getDefault().savePluginPreferences();
 	}
-	
+
 	public boolean includesPattern(String pattern) {
 		for (String filter : getFilterPatterns()) {
-			if (pattern.equals(filter)) return true;
+			if (pattern.equals(filter))
+				return true;
 		}
 		return false;
 	}
@@ -125,7 +130,8 @@ public class PreferencesBasedFilter extends AbstractUsageDataEventFilter {
 
 	private boolean shouldRemovePattern(String pattern, Object[] toRemove) {
 		for (Object object : toRemove) {
-			if (object.equals(pattern)) return true;			
+			if (object.equals(pattern))
+				return true;
 		}
 		return false;
 	}
@@ -140,6 +146,5 @@ public class PreferencesBasedFilter extends AbstractUsageDataEventFilter {
 	public boolean isEclipseOnly() {
 		return getPreferenceStore().getBoolean(UsageDataRecordingSettings.FILTER_ECLIPSE_BUNDLES_ONLY_KEY);
 	}
-
 
 }

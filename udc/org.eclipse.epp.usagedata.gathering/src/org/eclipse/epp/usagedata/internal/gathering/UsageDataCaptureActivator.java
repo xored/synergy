@@ -27,6 +27,7 @@ import org.osgi.util.tracker.ServiceTracker;
 /**
  * The activator class controls the plug-in life cycle
  */
+@SuppressWarnings("rawtypes")
 public class UsageDataCaptureActivator extends AbstractUIPlugin implements IStartup {
 
 	// The plug-in ID
@@ -42,20 +43,23 @@ public class UsageDataCaptureActivator extends AbstractUIPlugin implements IStar
 	private UsageDataCaptureSettings settings;
 
 	private BundleContext context;
-	
+
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
+	 * 
+	 * @see
+	 * org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
 	 */
+	@SuppressWarnings("unchecked")
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		this.context = context;
-		
+
 		settings = new UsageDataCaptureSettings();
-		
+
 		final UsageDataService service = new UsageDataService();
-				
+
 		getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
 
 			public void propertyChange(PropertyChangeEvent event) {
@@ -69,21 +73,26 @@ public class UsageDataCaptureActivator extends AbstractUIPlugin implements IStar
 			}
 
 			private boolean isTrue(Object newValue) {
-				if (newValue instanceof Boolean) return ((Boolean)newValue).booleanValue();
-				if (newValue instanceof String) return Boolean.valueOf((String)newValue);
+				if (newValue instanceof Boolean)
+					return ((Boolean) newValue).booleanValue();
+				if (newValue instanceof String)
+					return Boolean.valueOf((String) newValue);
 				return false;
 			}
-			
+
 		});
-		
-		// TODO There is basically no value to having this as a service at this point.
-		// In fact, there is potential for some weirdness with this as a service. For
-		// example, if the service is shut down it will just keep running anyway.
+
+		// TODO There is basically no value to having this as a service at this
+		// point.
+		// In fact, there is potential for some weirdness with this as a
+		// service. For
+		// example, if the service is shut down it will just keep running
+		// anyway.
 		registration = context.registerService(UsageDataService.class.getName(), service, null);
-		
+
 		usageDataServiceTracker = new ServiceTracker(context, UsageDataService.class.getName(), null);
 		usageDataServiceTracker.open();
-		
+
 		/*
 		 * Create a job that starts the UsageDataService in the UI Thread. This
 		 * should happen well after this method has exited and the bundle is
@@ -103,34 +112,37 @@ public class UsageDataCaptureActivator extends AbstractUIPlugin implements IStar
 				}
 				return Status.OK_STATUS;
 			}
-			
+
 		};
 		job.schedule(1000);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
+	 * 
+	 * @see
+	 * org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
-	public void stop(BundleContext context) throws Exception {		
+	public void stop(BundleContext context) throws Exception {
 		this.context = context;
 		UsageDataService service = getUsageDataCaptureService();
-		if (service != null) service.stopMonitoring();
-		
+		if (service != null)
+			service.stopMonitoring();
+
 		usageDataServiceTracker.close();
 		registration.unregister();
-		
+
 		plugin = null;
 		super.stop(context);
 	}
 
 	private UsageDataService getUsageDataCaptureService() {
-		return (UsageDataService)usageDataServiceTracker.getService();
+		return (UsageDataService) usageDataServiceTracker.getService();
 	}
 
 	/**
 	 * Returns the shared instance
-	 *
+	 * 
 	 * @return the shared instance
 	 */
 	public static UsageDataCaptureActivator getDefault() {
@@ -140,7 +152,7 @@ public class UsageDataCaptureActivator extends AbstractUIPlugin implements IStar
 	public void earlyStartup() {
 		// Do nothing.
 	}
-	
+
 	/**
 	 * <p>
 	 * This is a convenience method for logging an exception.

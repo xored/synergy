@@ -15,13 +15,11 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.io.Writer;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.epp.usagedata.internal.gathering.events.UsageDataEvent;
 
 public class UsageDataRecorderUtils {
-	
+
 	/**
 	 * Write a header onto the {@link Writer}.
 	 * 
@@ -44,7 +42,7 @@ public class UsageDataRecorderUtils {
 		writer.write("time"); //$NON-NLS-1$
 		writer.write("\n"); //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * Dump the event on the writer. This method assumes exclusive access to the
 	 * writer.
@@ -75,14 +73,14 @@ public class UsageDataRecorderUtils {
 
 	/**
 	 * This method encodes the description so that it can be successfully parsed
-	 * as a single entry by a CSV parser. This takes care of most of the
-	 * escape characters to ensure that the output gets dumped onto a single
-	 * line. We probably take care of more escape characters than we really
-	 * need to, but that's better than the opposite...
+	 * as a single entry by a CSV parser. This takes care of most of the escape
+	 * characters to ensure that the output gets dumped onto a single line. We
+	 * probably take care of more escape characters than we really need to, but
+	 * that's better than the opposite...
 	 * <p>
-	 * The escaped characters should only be an issue in the rare case when
-	 * a status message contains them. Most of our monitors do not generate
-	 * text that contains them.
+	 * The escaped characters should only be an issue in the rare case when a
+	 * status message contains them. Most of our monitors do not generate text
+	 * that contains them.
 	 * 
 	 * @param description
 	 *            a {@link String}. Must not be <code>null</code>.
@@ -92,32 +90,32 @@ public class UsageDataRecorderUtils {
 	public static String encode(String description) {
 		StringBuilder builder = new StringBuilder();
 		builder.append('"');
-		for(int index=0;index<description.length();index++) {
+		for (int index = 0; index < description.length(); index++) {
 			char next = description.charAt(index);
 			switch (next) {
-			case '"' : 
+			case '"':
 				builder.append('"');
 				builder.append(next);
 				break;
-			case '\\' :
+			case '\\':
 				builder.append("\\\\"); //$NON-NLS-1$
 				break;
-			case '\n' :
+			case '\n':
 				builder.append("\\n"); //$NON-NLS-1$
 				break;
-			case '\r' :
+			case '\r':
 				builder.append("\\r"); //$NON-NLS-1$
 				break;
-			case '\b' :
+			case '\b':
 				builder.append("\\b"); //$NON-NLS-1$
 				break;
-			case '\t' :
+			case '\t':
 				builder.append("\\t"); //$NON-NLS-1$
 				break;
-			case '\f' :
+			case '\f':
 				builder.append("\\f"); //$NON-NLS-1$
-				break;				
-			default :
+				break;
+			default:
 				builder.append(next);
 			}
 		}
@@ -134,9 +132,10 @@ public class UsageDataRecorderUtils {
 	 * trailing) in the input.
 	 * <p>
 	 * Note that we don't worry about trying to re-translate escaped characters
-	 * back into their unescaped form. We assume that this method is used exclusively
-	 * for displaying events in a preview pane, or for applying filters; we don't
-	 * need to translate the escaped characters in either of these cases.
+	 * back into their unescaped form. We assume that this method is used
+	 * exclusively for displaying events in a preview pane, or for applying
+	 * filters; we don't need to translate the escaped characters in either of
+	 * these cases.
 	 * <p>
 	 * The value: "first,\"\"\"second\"\", third\",fourth" will be parsed into
 	 * three strings: "first", "\"second\", third", and "fourth".
@@ -150,7 +149,7 @@ public class UsageDataRecorderUtils {
 	 * @return an array of {@link String}s.
 	 */
 	public static String[] splitLine(String line) {
-		List<String> strings = new java.util.ArrayList<String>(); 
+		List<String> strings = new java.util.ArrayList<String>();
 		try {
 			splitLine(line, strings);
 		} catch (IOException e) {
@@ -162,11 +161,11 @@ public class UsageDataRecorderUtils {
 
 	private static void splitLine(String line, List<String> strings) throws IOException {
 		/*
-		 * There is a potential issue with this implementation in the case
-		 * where a quoted-wrapped field starts with an escaped quote. i.e.
-		 * the string \"\"\"value\"\"\" will be read as escaped-quote, followed
-		 * by quote rather than as quote followed by escaped-quote as is
-		 * intended. The net result is the same (evidenced in the test cases).
+		 * There is a potential issue with this implementation in the case where
+		 * a quoted-wrapped field starts with an escaped quote. i.e. the string
+		 * \"\"\"value\"\"\" will be read as escaped-quote, followed by quote
+		 * rather than as quote followed by escaped-quote as is intended. The
+		 * net result is the same (evidenced in the test cases).
 		 */
 		Reader reader = new StringReader(line);
 		int next = 0;
@@ -188,9 +187,9 @@ public class UsageDataRecorderUtils {
 					strings.add(builder.toString());
 					builder = new StringBuilder();
 				}
-				
+
 			} else {
-				builder.append((char)next);
+				builder.append((char) next);
 			}
 		}
 		strings.add(builder.toString());
