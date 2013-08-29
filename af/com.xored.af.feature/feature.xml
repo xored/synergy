@@ -2,7 +2,7 @@
 <feature
       id="com.xored.af.feature"
       label="Application Framework Feature"
-      version="1.0.0.qualifier"
+      version="7.0.0.qualifier"
       provider-name="Xored">
 
    <description url="http://www.example.com/description">

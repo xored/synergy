@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.xored.af.feature_7.0.0.qualifier.jar" id="com.xored.af.feature" version="7.0.0.qualifier"/>
+</site>
